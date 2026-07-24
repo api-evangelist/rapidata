@@ -1,0 +1,849 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Flow API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Flow
+  x-displayName: Flow
+paths:
+  /flow/{flowId}:
+    delete:
+      tags:
+      - Flow
+      summary: Deletes a flow.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Flow
+      summary: Retrieves a flow by its ID.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IFlowModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /flow/ranking/{flowId}/completion-time-histogram:
+    get:
+      tags:
+      - Flow
+      summary: Returns the distribution of completion durations (in seconds) per completed flow item.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Optional start of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Optional end of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: bucketCount
+        in: query
+        description: Number of histogram buckets (default 10, max 100).
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /flow/ranking/{flowId}/flow-item-creation-timeseries:
+    get:
+      tags:
+      - Flow
+      summary: Returns flow item creation counts bucketed over time.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Optional start of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Optional end of the date range filter (exclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: datapoints
+        in: query
+        description: Number of time buckets (default 100, max 1000).
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetFlowItemCreationTimeseriesEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /flow/ranking/{flowId}/response-count-histogram:
+    get:
+      tags:
+      - Flow
+      summary: Returns the distribution of total votes per completed flow item.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Optional start of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Optional end of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: bucketCount
+        in: query
+        description: Number of histogram buckets (default 10, max 100).
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResponseCountHistogramEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /flow/ranking/{flowId}/response-count-timeseries:
+    get:
+      tags:
+      - Flow
+      summary: Returns average response counts bucketed over time for completed flow items.
+      parameters:
+      - name: flowId
+        in: path
+        description: The ID of the flow.
+        required: true
+        schema:
+          type: string
+      - name: from
+        in: query
+        description: Optional start of the date range filter (inclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: to
+        in: query
+        description: Optional end of the date range filter (exclusive).
+        schema:
+          type: string
+          format: date-time
+      - name: datapoints
+        in: query
+        description: Number of time buckets (default 100, max 1000).
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /flow:
+    get:
+      tags:
+      - Flow
+      summary: Queries flows with filtering and pagination.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - name
+            - -name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryFlowsEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    GetCompletionTimeHistogramEndpoint_Output:
+      required:
+      - buckets
+      type: object
+      properties:
+        buckets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output_Bucket'
+          description: The histogram buckets.
+    GetCompletionTimeHistogramEndpoint_Output_Bucket:
+      required:
+      - lowerBound
+      - upperBound
+      - count
+      type: object
+      properties:
+        lowerBound:
+          type: number
+          format: double
+        upperBound:
+          type: number
+          format: double
+        count:
+          type: integer
+          format: int32
+    FlowType:
+      enum:
+      - Ranking
+    PidBatchMode:
+      enum:
+      - Total
+      - PerBatch
+      - PerBatchTimeWeighted
+    GetResponseCountHistogramEndpoint_Output_Bucket:
+      required:
+      - lowerBound
+      - upperBound
+      - count
+      type: object
+      properties:
+        lowerBound:
+          type: number
+          format: double
+        upperBound:
+          type: number
+          format: double
+        count:
+          type: integer
+          format: int32
+    QueryFlowsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryFlowsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IFlowModelRankingFlowModel:
+      required:
+      - id
+      - name
+      - campaignId
+      - flowItemCount
+      - targetResponseCount
+      - pidProportionalGain
+      - pidIntegralGain
+      - pidDerivativeGain
+      - pidOutputOffset
+      - pidMinSessionsPerMinute
+      - pidMaxSessionsPerMinute
+      - pidBatchMode
+      - serveTimeoutSeconds
+      - drainDurationSeconds
+      - serveToResponseRatio
+      - criteria
+      - startingElo
+      - minResponses
+      - maxResponses
+      - serveResponses
+      - featureFlags
+      - ownerId
+      - ownerMail
+      - createdAt
+      - _t
+      properties:
+        _t:
+          enum:
+          - RankingFlow
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the flow.
+        name:
+          type: string
+          description: The name of the flow.
+        campaignId:
+          type: string
+          description: The ID of the campaign associated with this flow.
+        flowItemCount:
+          type: integer
+          description: The total number of items that have been added to this flow. Incremented atomically on each item creation.
+          format: int64
+        targetResponseCount:
+          type: integer
+          description: Target average response count per completed item. Enables PID-based automatic rate control when set. Null disables PID.
+          format: int32
+          nullable: true
+        pidProportionalGain:
+          type: number
+          description: PID proportional gain. Controls how strongly the rate reacts to the current error between target and actual response counts.
+          format: double
+        pidIntegralGain:
+          type: number
+          description: PID integral gain. Eliminates steady-state error by accumulating error over time. Includes anti-windup clamping.
+          format: double
+        pidDerivativeGain:
+          type: number
+          description: PID derivative gain. Provides damping by reacting to the rate of change of the error, helping prevent overshoot.
+          format: double
+        pidOutputOffset:
+          type: number
+          description: Constant offset added to the PID output before clamping, shifting the controller's operating point so the P/I/D terms trim around a non-zero baseline.
+          format: double
+        pidMinSessionsPerMinute:
+          type: integer
+          description: Minimum sessions per minute the PID controller can set. Prevents the rate from dropping to zero.
+          format: int32
+        pidMaxSessionsPerMinute:
+          type: integer
+          description: Maximum sessions per minute the PID controller can set. Prevents the rate from exceeding infrastructure capacity.
+          format: int32
+        pidBatchMode:
+          allOf:
+          - $ref: '#/components/schemas/PidBatchMode'
+          description: 'How the PID output maps to the campaign rate. Total: used directly. PerBatch: multiplied by active item count. PerBatchTimeWeighted: multiplied by time-weighted active item count based on remaining TTL.'
+        serveTimeoutSeconds:
+          type: integer
+          description: Maximum time in seconds a user has to submit an answer after loading the task. Null uses the system-wide default.
+          format: int32
+          nullable: true
+        drainDurationSeconds:
+          type: integer
+          description: Grace period in seconds after an item stops receiving new serves, allowing in-flight responses to complete.
+          format: int32
+        serveToResponseRatio:
+          type: number
+          description: Ratio of serves to responses used to calculate how many tasks to serve per expected response.
+          format: double
+          nullable: true
+        criteria:
+          type: string
+          description: The comparison instruction shown to annotators during ranking tasks (e.g. "Which image is sharper?").
+          nullable: true
+        startingElo:
+          type: integer
+          description: The initial Elo rating assigned to new items entering the ranking. Standard default is 1200.
+          format: int32
+        minResponses:
+          type: integer
+          description: Minimum number of responses a ranking item must receive before it is considered sufficiently evaluated.
+          format: int32
+        maxResponses:
+          type: integer
+          description: Maximum number of responses a ranking item can receive before being removed from active ranking. Null allows unlimited responses.
+          format: int32
+          nullable: true
+        serveResponses:
+          type: integer
+          description: Number of accepted responses per rapid at which to stop serving. Null defaults to MaxResponses.
+          format: int32
+          nullable: true
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: Key-value feature flags that enable specific behaviors for this flow (e.g. rapid_hints).
+        ownerId:
+          type: string
+          description: The ID of the customer who owns the flow.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the customer who owns the flow.
+        createdAt:
+          type: string
+          description: The timestamp when the flow was created.
+          format: date-time
+    GetResponseCountTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - averageResponseCount
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        averageResponseCount:
+          type: number
+          format: double
+    IFlowModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFlowModelRankingFlowModel'
+      description: "A flow definition exposed over the API, identified by a discriminator.\n Implementations describe the flow's type-specific configuration."
+      discriminator:
+        propertyName: _t
+        mapping:
+          RankingFlow: '#/components/schemas/IFlowModelRankingFlowModel'
+    GetFlowItemCreationTimeseriesEndpoint_Output:
+      required:
+      - datapoints
+      type: object
+      properties:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint'
+          description: The timeseries data points.
+    GetResponseCountHistogramEndpoint_Output:
+      required:
+      - buckets
+      type: object
+      properties:
+        buckets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponseCountHistogramEndpoint_Output_Bucket'
+          description: The histogram buckets.
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    GetResponseCountTimeseriesEndpoint_Output:
+      required:
+      - datapoints
+      type: object
+      properties:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output_DataPoint'
+          description: The timeseries data points.
+    QueryFlowsEndpoint_Output:
+      required:
+      - id
+      - name
+      - type
+      - ownerId
+      - ownerMail
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the flow.
+        name:
+          type: string
+          description: The name of the flow.
+        type:
+          allOf:
+          - $ref: '#/components/schemas/FlowType'
+          description: The type of the flow.
+        ownerId:
+          type: string
+          description: The ID of the customer who owns the flow.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the customer who owns the flow.
+        createdAt:
+          type: string
+          description: The timestamp when the flow was created.
+          format: date-time
+    GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - count
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        count:
+          type: integer
+          format: int64
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

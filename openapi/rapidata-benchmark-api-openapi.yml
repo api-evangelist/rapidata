@@ -1,0 +1,4592 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Benchmark API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Benchmark
+  x-displayName: Benchmark
+paths:
+  /benchmark:
+    post:
+      tags:
+      - Benchmark
+      summary: Creates a benchmark.
+      requestBody:
+        description: The payload describing the benchmark to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBenchmarkEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/participants:
+    post:
+      tags:
+      - Benchmark
+      summary: Creates a participant in a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark the participant will be added to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload describing the participant to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBenchmarkParticipantEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBenchmarkParticipantEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Benchmark
+      summary: Queries all participants within a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark whose participants will be returned.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - name
+            - -name
+            - status
+            - -status
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: status
+        in: query
+        description: Filter by status.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryParticipantsByBenchmarkEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/prompt:
+    post:
+      tags:
+      - Benchmark
+      summary: Adds a new prompt to a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to add the prompt to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload describing the prompt to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePromptForBenchmarkEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreatePromptForBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}:
+    delete:
+      tags:
+      - Benchmark
+      summary: Deletes a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Benchmark
+      summary: Returns a single benchmark by its id.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to load.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBenchmarkByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    patch:
+      tags:
+      - Benchmark
+      summary: Updates a benchmark using patch semantics.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The patch payload describing which fields should change.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBenchmarkEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/participant/{participantId}:
+    delete:
+      tags:
+      - Benchmark
+      summary: Deletes a participant on a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark the participant belongs to.
+        required: true
+        schema:
+          type: string
+      - name: participantId
+        in: path
+        description: The id of the participant to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/fork:
+    post:
+      tags:
+      - Benchmark
+      summary: Creates a copy of a public benchmark and all of its related entities.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to fork.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ForkBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/prompts:
+    get:
+      tags:
+      - Benchmark
+      summary: Returns the paged prompts of a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to query.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: identifier
+        in: query
+        description: Filter by identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: english_prompt
+        in: query
+        description: Filter by english_prompt.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: original_prompt
+        in: query
+        description: Filter by original_prompt.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPromptsByBenchmarkEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmarks:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries all benchmarks of the current user.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - name
+            - -name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_mail
+        in: query
+        description: Filter by owner_mail.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryBenchmarksEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/combined-matrix/query:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the combined win matrix of multiple benchmarks.
+      description: "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+      parameters:
+      - name: benchmarkIds
+        in: query
+        description: The identifiers of the benchmarks to combine.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: useWeightedScoring
+        in: query
+        description: Whether to apply weighted scoring based on user scores.
+        schema:
+          type: boolean
+          default: false
+      - name: country
+        in: query
+        description: Filter by country.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: language
+        in: query
+        description: Filter by language.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: gender
+        in: query
+        description: Filter by gender.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: age_bucket
+        in: query
+        description: Filter by age_bucket.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: occupation
+        in: query
+        description: Filter by occupation.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: tags
+        in: query
+        description: Filter by tags.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: participant_id
+        in: query
+        description: Filter by participant_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: leaderboard_id
+        in: query
+        description: Filter by leaderboard_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: run_id
+        in: query
+        description: Filter by run_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: prompt_identifier
+        in: query
+        description: Filter by prompt_identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: voted_at
+        in: query
+        description: Filter by voted_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryCombinedMatrixByBenchmarksEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/combined-standings/query:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the combined standings of multiple benchmarks.
+      description: "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+      parameters:
+      - name: benchmarkIds
+        in: query
+        description: The identifiers of the benchmarks to combine.
+        required: true
+        schema:
+          type: array
+          items:
+            type: string
+      - name: useWeightedScoring
+        in: query
+        description: Whether to apply weighted scoring based on user scores.
+        schema:
+          type: boolean
+          default: false
+      - name: country
+        in: query
+        description: Filter by country.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: language
+        in: query
+        description: Filter by language.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: gender
+        in: query
+        description: Filter by gender.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: age_bucket
+        in: query
+        description: Filter by age_bucket.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: occupation
+        in: query
+        description: Filter by occupation.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: tags
+        in: query
+        description: Filter by tags.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: participant_id
+        in: query
+        description: Filter by participant_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: leaderboard_id
+        in: query
+        description: Filter by leaderboard_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: run_id
+        in: query
+        description: Filter by run_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: prompt_identifier
+        in: query
+        description: Filter by prompt_identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: voted_at
+        in: query
+        description: Filter by voted_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryCombinedStandingsByBenchmarksEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/leaderboards:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries all leaderboards for the given benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark whose leaderboards will be returned.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - name
+            - -name
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryLeaderboardsByBenchmarkEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmarks/managed:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the curated benchmarks available to every customer.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - name
+            - -name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_mail
+        in: query
+        description: Filter by owner_mail.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryManagedBenchmarksEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/matrix/query:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the win matrix of a benchmark.
+      description: "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark.
+        required: true
+        schema:
+          type: string
+      - name: useWeightedScoring
+        in: query
+        description: Whether to apply weighted scoring based on user scores.
+        schema:
+          type: boolean
+          default: false
+      - name: country
+        in: query
+        description: Filter by country.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: language
+        in: query
+        description: Filter by language.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: gender
+        in: query
+        description: Filter by gender.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: age_bucket
+        in: query
+        description: Filter by age_bucket.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: occupation
+        in: query
+        description: Filter by occupation.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: tags
+        in: query
+        description: Filter by tags.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: participant_id
+        in: query
+        description: Filter by participant_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: leaderboard_id
+        in: query
+        description: Filter by leaderboard_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: run_id
+        in: query
+        description: Filter by run_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: prompt_identifier
+        in: query
+        description: Filter by prompt_identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: voted_at
+        in: query
+        description: Filter by voted_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryMatrixByBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmarks/published:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the benchmarks surfaced in the public benchmark repository.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - name
+            - -name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_mail
+        in: query
+        description: Filter by owner_mail.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryPublishedBenchmarksEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/standings/query:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries the standings of a benchmark.
+      description: "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark.
+        required: true
+        schema:
+          type: string
+      - name: useWeightedScoring
+        in: query
+        description: Whether to apply weighted scoring based on user scores.
+        schema:
+          type: boolean
+          default: false
+      - name: country
+        in: query
+        description: Filter by country.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: language
+        in: query
+        description: Filter by language.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: gender
+        in: query
+        description: Filter by gender.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: age_bucket
+        in: query
+        description: Filter by age_bucket.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: occupation
+        in: query
+        description: Filter by occupation.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: tags
+        in: query
+        description: Filter by tags.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: participant_id
+        in: query
+        description: Filter by participant_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: leaderboard_id
+        in: query
+        description: Filter by leaderboard_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: run_id
+        in: query
+        description: Filter by run_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: prompt_identifier
+        in: query
+        description: Filter by prompt_identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: voted_at
+        in: query
+        description: Filter by voted_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryStandingsByBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/tags:
+    get:
+      tags:
+      - Benchmark
+      summary: Queries all tags within a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark whose tags will be returned.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryTagsByBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/sample-generation:
+    post:
+      tags:
+      - Benchmark
+      summary: Starts an asynchronous sample generation run.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The benchmark whose participants should run their faucets.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The generation configuration.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSampleGenerationEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSampleGenerationEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/participants/{participantId}/submit:
+    post:
+      tags:
+      - Benchmark
+      summary: Submits a participant to a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark the participant belongs to.
+        required: true
+        schema:
+          type: string
+      - name: participantId
+        in: path
+        description: The id of the participant to submit.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitParticipantByBenchmarkEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/name:
+    put:
+      tags:
+      - Benchmark
+      summary: Updates the name of a benchmark.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload describing the new name.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBenchmarkNameEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    QueryLeaderboardsByBenchmarkEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryLeaderboardsByBenchmarkEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryStandingsByBenchmarkEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/QueryStandingsByBenchmarkEndpoint_OutputItem'
+          description: The standings items, ordered by score descending.
+      description: The queried standings output.
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    CreateBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created benchmark.
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    CreatePromptForBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created prompt.
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    QueryCombinedMatrixByBenchmarksEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix rows, ordered strongest first.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix columns, ordered strongest first.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
+    CreateBenchmarkEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the benchmark.
+        description:
+          type: string
+          description: "Optional plain-text credit for the people or sources behind the benchmark. Limited to\n 2000 characters. Leave unset for no description."
+          nullable: true
+        initialBoostLevel:
+          type: integer
+          description: "Initial boost level applied to the campaign of every run created from this benchmark.\n Leave unset to fall back to DefaultInitialBoostLevel. Admins\n may set any value the validator allows (0-10); non-admins are restricted to\n 0..BenchmarkEntity.DefaultInitialBoostLevel — anything outside that range returns\n 403 Forbidden via IsAllowedToSetInitialBoostLevel."
+          format: int32
+          nullable: true
+        scoreShift:
+          type: number
+          description: "Additive offset applied to displayed scores on the overall scoreboard of this\n benchmark. Defaults to 0 when unset."
+          format: double
+          nullable: true
+        scoreScale:
+          type: number
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark. Defaults to 1.0 when\n unset; must be strictly positive."
+          format: double
+          nullable: true
+    QueryTagsByBenchmarkEndpoint_Output:
+      required:
+      - tags
+      type: object
+      properties:
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the benchmark.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type: string
+          nullable: true
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    QueryCombinedStandingsByBenchmarksEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/QueryCombinedStandingsByBenchmarksEndpoint_OutputItem'
+          description: The standings items, ordered by score descending.
+      description: The queried standings output.
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    CreatePromptForBenchmarkEndpoint_Input:
+      required:
+      - identifier
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: An identifier associated with the prompt.
+        prompt:
+          type: string
+          description: The prompt text.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset associated with the prompt.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: The tags associated with the prompt.
+    QueryManagedBenchmarksEndpoint_Output:
+      required:
+      - id
+      - name
+      - isManaged
+      - isPublic
+      - isPublished
+      - createdAt
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the benchmark.
+        name:
+          type: string
+          description: The name of the benchmark.
+        isManaged:
+          type: boolean
+          description: Whether the benchmark is managed.
+        isPublic:
+          type: boolean
+          description: Whether the benchmark is public.
+        isPublished:
+          type: boolean
+          description: Whether the benchmark is published to the public benchmark repository.
+        createdAt:
+          type: string
+          description: The timestamp when the benchmark was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The mail of the customer owning the benchmark.
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    QueryParticipantsByBenchmarkEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryParticipantsByBenchmarkEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    ExistingAssetInput:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    StandingStatus:
+      enum:
+      - Created
+      - Active
+      - Idle
+    ForkBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the new benchmark created.
+    QueryStandingsByBenchmarkEndpoint_OutputItem:
+      required:
+      - id
+      - name
+      - status
+      - score
+      - wins
+      - totalMatches
+      - isDisabled
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        family:
+          type: string
+          nullable: true
+        proprietaryName:
+          type: string
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StandingStatus'
+        score:
+          type: number
+          format: double
+          nullable: true
+        wins:
+          type: number
+          format: double
+        totalMatches:
+          type: number
+          format: double
+        isDisabled:
+          type: boolean
+        confidenceInterval:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/ConfidenceInterval'
+          nullable: true
+    CreateSampleGenerationEndpoint_Output:
+      required:
+      - id
+      - totalCount
+      - skippedParticipantIds
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created sample generation request.
+        totalCount:
+          type: integer
+          description: The total number of generation items that were queued.
+          format: int32
+        skippedParticipantIds:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: "Participants that matched the selection but were skipped because they have no faucet\n configured. Empty when explicit participant ids were supplied."
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    QueryLeaderboardsByBenchmarkEndpoint_Output:
+      required:
+      - id
+      - name
+      - instruction
+      - showPrompt
+      - showPromptAsset
+      - isInversed
+      - responseBudget
+      - minResponses
+      - audienceId
+      - featureFlags
+      - weight
+      - scoreShift
+      - scoreScale
+      - isHidden
+      - isExcludedFromOverall
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the leaderboard.
+        name:
+          type: string
+          description: The name of the leaderboard.
+        instruction:
+          type: string
+          description: The instruction shown on the leaderboard.
+        showPrompt:
+          type: boolean
+          description: Whether the prompt text is shown.
+        showPromptAsset:
+          type: boolean
+          description: Whether the prompt asset is shown.
+        isInversed:
+          type: boolean
+          description: Whether the leaderboard's scoring is inversed.
+        responseBudget:
+          type: integer
+          description: The response budget for the leaderboard.
+          format: int32
+        minResponses:
+          type: integer
+          description: The minimum number of responses for the leaderboard.
+          format: int32
+        audienceId:
+          type: string
+          description: The id of the audience assigned to the leaderboard.
+        jobDefinitionId:
+          type: string
+          description: The id of the job definition assigned to the leaderboard, if any.
+          nullable: true
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags enabled for the leaderboard.
+        weight:
+          type: number
+          description: "Multiplier applied to every match result from this leaderboard when it contributes to\n the parent benchmark's overall / combined scoreboards."
+          format: double
+        scoreShift:
+          type: number
+          description: "Additive offset applied to displayed scores on this leaderboard's per-leaderboard\n scoreboard."
+          format: double
+        scoreScale:
+          type: number
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on this leaderboard's per-leaderboard scoreboard."
+          format: double
+        isHidden:
+          type: boolean
+          description: Whether the leaderboard is hidden in listings and reads for non-admins.
+        isExcludedFromOverall:
+          type: boolean
+          description: "Whether the leaderboard is excluded from its benchmark's overall / combined scoreboard,\n making it an owner-only private experiment."
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    ParticipantStatus:
+      enum:
+      - Created
+      - Submittable
+      - Submitted
+      - Disabled
+    CreateBenchmarkParticipantEndpoint_Output:
+      required:
+      - participantId
+      - datasetId
+      type: object
+      properties:
+        participantId:
+          type: string
+          description: The id of the created participant.
+        datasetId:
+          type: string
+          description: The id of the participant's dataset.
+    GetPromptsByBenchmarkEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetPromptsByBenchmarkEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type: string
+          nullable: true
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    QueryParticipantsByBenchmarkEndpoint_Output:
+      required:
+      - id
+      - name
+      - benchmarkId
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the participant.
+        name:
+          type: string
+          description: The name of the participant.
+        benchmarkId:
+          type: string
+          description: The id of the benchmark the participant belongs to.
+        family:
+          type: string
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), or null if unset.
+          nullable: true
+        proprietaryName:
+          type: string
+          description: The vendor-facing display name of the model, or null if unset.
+          nullable: true
+        logo:
+          type: string
+          description: The logo of the model, or null if unset.
+          nullable: true
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ParticipantStatus'
+          description: The status of the participant.
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    CreateSampleGenerationEndpoint_Input:
+      required:
+      - samplesPerPrompt
+      type: object
+      properties:
+        samplesPerPrompt:
+          type: integer
+          description: How many samples to request per matching prompt (1 to 16).
+          format: int32
+        participantIds:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: "Restrict generation to specific participants. Defaults to all participants\n in the benchmark that have a configured faucet."
+        promptIdentifiers:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: "Restrict generation to specific prompt identifiers.\n Defaults to every prompt in the benchmark."
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: Restrict generation to prompts having at least one of these tags.
+    QueryMatrixByBenchmarkEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix rows, ordered strongest first.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix columns, ordered strongest first.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
+    CreateBenchmarkParticipantEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the participant.
+        family:
+          type: string
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), if any.
+          nullable: true
+        proprietaryName:
+          type: string
+          description: The vendor-facing display name of the model, if any.
+          nullable: true
+        logo:
+          allOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: An optional logo image for the model. Must be an existing image asset.
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    GetPromptsByBenchmarkEndpoint_Output:
+      required:
+      - id
+      - identifier
+      - createdAt
+      - tags
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the prompt.
+        englishPrompt:
+          type: string
+          description: The prompt text translated to English.
+          nullable: true
+        originalPrompt:
+          type: string
+          description: The prompt text as originally provided.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The optional asset associated with the prompt.
+        identifier:
+          type: string
+          description: The identifier associated with the prompt.
+        createdAt:
+          type: string
+          description: The timestamp when the prompt was created.
+          format: date-time
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the prompt.
+    QueryManagedBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryManagedBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    UpdateBenchmarkEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the benchmark.
+        description:
+          type: string
+          description: "Optional plain-text credit for the people or sources behind the benchmark. Limited to\n 2000 characters. Send null to clear it; omit to leave it unchanged."
+        isPublic:
+          type: boolean
+          description: Whether the benchmark should be public (only admins can change this).
+        isPublished:
+          type: boolean
+          description: "Whether the benchmark should be surfaced in the public benchmark repository (only\n admins can change this)."
+        initialBoostLevel:
+          type: integer
+          description: "Initial boost level applied to the campaign of every run created from this benchmark.\n Admins may set any value the validator allows (0-10) or null to clear the\n override; non-admins are restricted to\n 0..DefaultInitialBoostLevel and may not clear\n it. Both restrictions are enforced by\n IsAllowedToSetInitialBoostLevel with a 403 on\n violation."
+          format: int32
+          nullable: true
+        scoreShift:
+          type: number
+          description: "Additive offset applied to displayed scores on the overall scoreboard of this\n benchmark."
+          format: double
+        scoreScale:
+          type: number
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark. Must be strictly positive."
+          format: double
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    GetBenchmarkByIdEndpoint_Output:
+      required:
+      - id
+      - name
+      - description
+      - isPublic
+      - isPublished
+      - createdAt
+      - ownerId
+      - ownerMail
+      - initialBoostLevel
+      - scoreShift
+      - scoreScale
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the benchmark.
+        name:
+          type: string
+          description: The name of the benchmark.
+        description:
+          type: string
+          description: "Optional plain-text credit for the people or sources behind the benchmark. Null when no\n description was supplied."
+          nullable: true
+        isPublic:
+          type: boolean
+          description: Whether the benchmark is public.
+        isPublished:
+          type: boolean
+          description: Whether the benchmark is published to the public benchmark repository.
+        createdAt:
+          type: string
+          description: The timestamp when the benchmark was created.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the customer owning the benchmark.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the customer owning the benchmark.
+        initialBoostLevel:
+          type: integer
+          description: "The initial boost level applied to the campaign of every run created from this\n benchmark. Null means the benchmark default is used."
+          format: int32
+          nullable: true
+        scoreShift:
+          type: number
+          description: "Additive offset applied to displayed scores on the overall scoreboard of this\n benchmark."
+          format: double
+        scoreScale:
+          type: number
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark."
+          format: double
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    ConfidenceInterval:
+      required:
+      - lowerOffset
+      - upperOffset
+      type: object
+      properties:
+        lowerOffset:
+          type: number
+          format: double
+        upperOffset:
+          type: number
+          format: double
+    QueryBenchmarksEndpoint_Output:
+      required:
+      - id
+      - name
+      - isManaged
+      - isPublic
+      - isPublished
+      - createdAt
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the benchmark.
+        name:
+          type: string
+          description: The name of the benchmark.
+        isManaged:
+          type: boolean
+          description: Whether the benchmark is managed.
+        isPublic:
+          type: boolean
+          description: Whether the benchmark is public.
+        isPublished:
+          type: boolean
+          description: Whether the benchmark is published to the public benchmark repository.
+        createdAt:
+          type: string
+          description: The timestamp when the benchmark was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The mail of the customer owning the benchmark.
+    UpdateBenchmarkNameEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the benchmark.
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    QueryCombinedStandingsByBenchmarksEndpoint_OutputItem:
+      required:
+      - id
+      - name
+      - status
+      - score
+      - wins
+      - totalMatches
+      - isDisabled
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        family:
+          type: string
+          nullable: true
+        proprietaryName:
+          type: string
+          nullable: true
+        logo:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/StandingStatus'
+        score:
+          type: number
+          format: double
+          nullable: true
+        wins:
+          type: number
+          format: double
+        totalMatches:
+          type: number
+          format: double
+        isDisabled:
+          type: boolean
+        confidenceInterval:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/ConfidenceInterval'
+          nullable: true
+    SubmitParticipantByBenchmarkEndpoint_Output:
+      required:
+      - validDatapoints
+      - invalidDatapoints
+      type: object
+      properties:
+        validDatapoints:
+          type: integer
+          description: The number of valid datapoints collected by the participant.
+          format: int32
+        invalidDatapoints:
+          type: integer
+          description: The number of invalid datapoints collected by the participant.
+          format: int32
+    QueryPublishedBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryPublishedBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    QueryPublishedBenchmarksEndpoint_Output:
+      required:
+      - id
+      - name
+      - isManaged
+      - isPublic
+      - isPublished
+      - createdAt
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the benchmark.
+        name:
+          type: string
+          description: The name of the benchmark.
+        isManaged:
+          type: boolean
+          description: Whether the benchmark is managed.
+        isPublic:
+          type: boolean
+          description: Whether the benchmark is public.
+        isPublished:
+          type: boolean
+          description: Whether the benchmark is published to the public benchmark repository.
+        createdAt:
+          type: string
+          description: The timestamp when the benchmark was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The mail of the customer owning the benchmark.
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

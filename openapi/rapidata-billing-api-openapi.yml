@@ -1,0 +1,2820 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Billing API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Billing
+  x-displayName: Billing
+paths:
+  /billing/manual-charge:
+    post:
+      tags:
+      - Billing
+      summary: Creates a manual charge billing item for a customer.
+      requestBody:
+        description: The manual charge data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateManualChargeEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateManualChargeEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/external-service-prices:
+    post:
+      tags:
+      - Billing
+      summary: Creates a rate-card price for an external service.
+      requestBody:
+        description: The external-service price data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalServicePriceEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-period/active/billing-items:
+    get:
+      tags:
+      - Billing
+      summary: Gets the paged billing groups for the active billing period.
+      parameters:
+      - name: customerId
+        in: query
+        description: Optional customer ID. Admins can specify any customer; non-admins see their own.
+        schema:
+          type: string
+          format: uuid
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - gross_cost
+            - -gross_cost
+            - discount
+            - -discount
+            - net_cost
+            - -net_cost
+            - response_count
+            - -response_count
+            type: string
+        x-parameter-group: sort
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResultOfIBillingGroupModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-period/active:
+    get:
+      tags:
+      - Billing
+      summary: Gets the overview for the active billing period.
+      parameters:
+      - name: customerId
+        in: query
+        description: Optional customer ID. Admins can specify any customer; non-admins see their own.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetActiveBillingPeriodOverviewEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-period/{billingPeriodId}/billing-items:
+    get:
+      tags:
+      - Billing
+      summary: Gets the paged billing groups for a billing period.
+      parameters:
+      - name: billingPeriodId
+        in: path
+        description: The ID of the billing period.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - gross_cost
+            - -gross_cost
+            - discount
+            - -discount
+            - net_cost
+            - -net_cost
+            - response_count
+            - -response_count
+            type: string
+        x-parameter-group: sort
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResultOfIBillingGroupModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-period/{billingPeriodId}:
+    get:
+      tags:
+      - Billing
+      summary: Gets the overview for a billing period by its ID.
+      parameters:
+      - name: billingPeriodId
+        in: path
+        description: The ID of the billing period to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillingPeriodOverviewEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/summary:
+    get:
+      tags:
+      - Billing
+      summary: Gets the current-period usage and applicable limit for a customer.
+      description: Defaults to the authenticated customer when no customerId is provided.
+      parameters:
+      - name: customerId
+        in: query
+        description: The id of the customer to get the billing summary for.
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillingSummaryEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/cost/time-series:
+    get:
+      tags:
+      - Billing
+      summary: Gets the billing cost time series.
+      parameters:
+      - name: startDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date-time
+      - name: grouping
+        in: query
+        required: true
+        schema:
+          $ref: '#/components/schemas/TimeGrouping'
+      - name: customerId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: customerMail
+        in: query
+        schema:
+          type: string
+      - name: includeNonBillable
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCostTimeSeriesEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-periods:
+    get:
+      tags:
+      - Billing
+      summary: Queries billing periods accessible to the current customer.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - start_date
+            - -start_date
+            - end_date
+            - -end_date
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: status
+        in: query
+        description: Filter by status.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_id
+        in: query
+        description: Filter by owner_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: start_date
+        in: query
+        description: Filter by start_date.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: end_date
+        in: query
+        description: Filter by end_date.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryBillingPeriodsEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/costs/customers:
+    get:
+      tags:
+      - Billing
+      summary: Returns billing costs aggregated per customer, ranked by cost.
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: customerId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: customerMail
+        in: query
+        schema:
+          type: string
+      - name: includeNonBillable
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryCostsByCustomerEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/costs/groups:
+    get:
+      tags:
+      - Billing
+      summary: Returns billing costs aggregated per billing group, ranked by cost.
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: customerId
+        in: query
+        schema:
+          type: string
+          format: uuid
+      - name: customerMail
+        in: query
+        schema:
+          type: string
+      - name: includeNonBillable
+        in: query
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - gross_cost
+            - -gross_cost
+            - discount
+            - -discount
+            - net_cost
+            - -net_cost
+            - response_count
+            - -response_count
+            type: string
+        x-parameter-group: sort
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PagedResultOfIBillingGroupModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/costs/organizations:
+    get:
+      tags:
+      - Billing
+      summary: Returns billing costs aggregated per organization, ranked by cost.
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: page
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          format: int32
+      - name: includeNonBillable
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryCostsByOrganizationEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconciliation/bulk/{bulkReconciliationId}:
+    get:
+      tags:
+      - Billing
+      summary: Returns the aggregated status and results of all reconciliation jobs in a bulk operation.
+      parameters:
+      - name: bulkReconciliationId
+        in: path
+        description: The correlation identifier returned from the bulk reconcile endpoint.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBulkReconciliationStatusEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconciliation/{jobId}:
+    get:
+      tags:
+      - Billing
+      summary: Returns the status and results of a reconciliation job.
+      parameters:
+      - name: jobId
+        in: path
+        description: The unique identifier of the reconciliation job.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetReconciliationStatusEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconciliation/bulk/{bulkReconciliationId}/redispatch:
+    post:
+      tags:
+      - Billing
+      summary: Redispatches the individual reconciliations contained in the given bulk reconciliation.
+      parameters:
+      - name: bulkReconciliationId
+        in: path
+        description: The bulk reconciliation to redispatch.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconcile:
+    post:
+      tags:
+      - Billing
+      summary: Starts reconciliation for a single billing item, all items for a customer, or all items in a billing group.
+      description: "Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.\n Date range filtering is only available with CustomerId or BillingGroupId.\n Returns a correlation ID that can be used to track progress of the bulk operation."
+      requestBody:
+        description: The reconciliation target and configuration options.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartBulkReconciliationEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartBulkReconciliationEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/billing-item/{billingItemId}/settings:
+    post:
+      tags:
+      - Billing
+      summary: Creates a billing setting for a billing item.
+      parameters:
+      - name: billingItemId
+        in: path
+        description: The billing item identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBillingItemBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/customer/{customerId}/settings:
+    post:
+      tags:
+      - Billing
+      summary: Creates a billing setting for a customer.
+      parameters:
+      - name: customerId
+        in: path
+        description: The customer identifier.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings:
+    post:
+      tags:
+      - Billing
+      summary: Creates a global billing setting.
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGlobalBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/billing-item/{billingItemId}/settings/{settingId}:
+    delete:
+      tags:
+      - Billing
+      summary: Deletes a billing item billing setting.
+      parameters:
+      - name: billingItemId
+        in: path
+        description: The billing item identifier.
+        required: true
+        schema:
+          type: string
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/customer/{customerId}/settings/{settingId}:
+    delete:
+      tags:
+      - Billing
+      summary: Deletes a customer billing setting.
+      parameters:
+      - name: customerId
+        in: path
+        description: The customer identifier.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings/{settingId}:
+    delete:
+      tags:
+      - Billing
+      summary: Deletes a global billing setting.
+      parameters:
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings/timeline:
+    get:
+      tags:
+      - Billing
+      summary: Gets the billing settings timeline.
+      parameters:
+      - name: customerId
+        in: query
+        description: Optional customer identifier to scope the timeline.
+        schema:
+          type: string
+          format: uuid
+      - name: billingItemId
+        in: query
+        description: Optional billing item identifier to scope the timeline.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing-period/{billingPeriodId}/volume-discounts:
+    post:
+      tags:
+      - Billing
+      summary: Creates a volume discount bracket for a billing period.
+      parameters:
+      - name: billingPeriodId
+        in: path
+        description: The billing period to add the volume discount to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The volume discount bracket data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateVolumeDiscountEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateVolumeDiscountEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Billing
+      summary: Gets all volume discount brackets for a billing period.
+      parameters:
+      - name: billingPeriodId
+        in: path
+        description: The billing period to get volume discounts for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetVolumeDiscountsEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    ILineItemModelOtherChargeModel:
+      required:
+      - id
+      - name
+      - amount
+      - _t
+      properties:
+        _t:
+          enum:
+          - Other
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        comment:
+          type: string
+          nullable: true
+    StartBulkReconciliationEndpoint_Input:
+      type: object
+      properties:
+        billingItemId:
+          type: string
+          description: The identifier of a single billing item to reconcile.
+          nullable: true
+        customerId:
+          type: string
+          description: The customer identifier to reconcile all billing items for.
+          format: uuid
+          nullable: true
+        billingGroupId:
+          type: string
+          description: The billing group identifier to reconcile all billing items for.
+          nullable: true
+        startDate:
+          type: string
+          description: Optional start date filter. Only applies with CustomerId or BillingGroupId.
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: Optional end date filter. Only applies with CustomerId or BillingGroupId.
+          format: date-time
+          nullable: true
+        timestampMode:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationTimestampMode'
+          description: Controls the timestamp used for correction entries.
+    GetVolumeDiscountsEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem'
+          description: The volume discount brackets.
+    ILineItemModelRefundModel:
+      required:
+      - id
+      - name
+      - amount
+      - _t
+      properties:
+        _t:
+          enum:
+          - Refund
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        comment:
+          type: string
+          nullable: true
+    PagedResultOfIBillingGroupModel:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/IBillingGroupModel'
+        totalPages:
+          type: integer
+          format: int32
+    IBillingGroupModelBenchmarkBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - benchmarkId
+      - _t
+      properties:
+        _t:
+          enum:
+          - BenchmarkBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        benchmarkId:
+          type: string
+          description: The identifier of the benchmark that produced the responses.
+      description: A billing group for responses produced by a benchmark.
+    ILineItemModelVolumeDiscountModel:
+      required:
+      - amount
+      - effectiveDiscountRatio
+      - _t
+      properties:
+        _t:
+          enum:
+          - VolumeDiscount
+          type: string
+        amount:
+          type: number
+          format: double
+        effectiveDiscountRatio:
+          type: number
+          format: double
+    GetCostTimeSeriesEndpoint_CostDataPoint:
+      required:
+      - periodStart
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      type: object
+      properties:
+        periodStart:
+          type: string
+          format: date-time
+        grossCost:
+          type: number
+          format: double
+        discount:
+          type: number
+          format: double
+        netCost:
+          type: number
+          format: double
+        responseCount:
+          type: integer
+          format: int64
+    IBillingGroupModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IBillingGroupModelAudienceDistillationBillingGroupModel'
+      - $ref: '#/components/schemas/IBillingGroupModelAudienceJobBillingGroupModel'
+      - $ref: '#/components/schemas/IBillingGroupModelBenchmarkBillingGroupModel'
+      - $ref: '#/components/schemas/IBillingGroupModelOrderBillingGroupModel'
+      - $ref: '#/components/schemas/IBillingGroupModelRankingFlowBillingGroupModel'
+      - $ref: '#/components/schemas/IBillingGroupModelValidationSetBillingGroupModel'
+      description: "A billable group of responses on a billing period, identified by a discriminator.\n Implementations describe the source of the charges (order, benchmark, audience job, etc.)."
+      discriminator:
+        propertyName: _t
+        mapping:
+          AudienceDistillationBillingGroup: '#/components/schemas/IBillingGroupModelAudienceDistillationBillingGroupModel'
+          AudienceJobBillingGroup: '#/components/schemas/IBillingGroupModelAudienceJobBillingGroupModel'
+          BenchmarkBillingGroup: '#/components/schemas/IBillingGroupModelBenchmarkBillingGroupModel'
+          OrderBillingGroup: '#/components/schemas/IBillingGroupModelOrderBillingGroupModel'
+          RankingFlowBillingGroup: '#/components/schemas/IBillingGroupModelRankingFlowBillingGroupModel'
+          ValidationSetBillingGroup: '#/components/schemas/IBillingGroupModelValidationSetBillingGroupModel'
+    BillingSummaryMode:
+      enum:
+      - Usage
+      - Limited
+      - Prepaid
+    QueryCostsByCustomerEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryCostsByCustomerEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    CreateExternalServicePriceEndpoint_Input:
+      required:
+      - serviceKind
+      - pricingKey
+      - unitPrice
+      type: object
+      properties:
+        serviceKind:
+          allOf:
+          - $ref: '#/components/schemas/ExternalServiceKind'
+          description: The service this price applies to.
+        pricingKey:
+          type: string
+          description: Hierarchical variant key (e.g. reve, replicate/flux-1.1-pro).
+        customerId:
+          type: string
+          description: Null for the global default; set to scope the price to one customer.
+          format: uuid
+          nullable: true
+        unitPrice:
+          type: number
+          description: Price per unit (per image / per shortening).
+          format: double
+        priority:
+          type: integer
+          description: Priority; defaults to the configured global/customer default if unset.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+      description: The external-service price input data.
+    ReconciliationJobState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
+    IBillingGroupModelOrderBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - orderId
+      - _t
+      properties:
+        _t:
+          enum:
+          - OrderBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        orderId:
+          type: string
+          description: The identifier of the order that produced the responses.
+      description: A billing group for responses produced by an order.
+    GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem:
+      required:
+      - id
+      - minResponses
+      - discountRatio
+      type: object
+      properties:
+        id:
+          type: string
+        minResponses:
+          type: integer
+          format: int64
+        discountRatio:
+          type: number
+          format: double
+    ILineItemModelMinimumSpendCommitmentModel:
+      required:
+      - name
+      - amount
+      - _t
+      properties:
+        _t:
+          enum:
+          - MinimumSpendCommitment
+          type: string
+        id:
+          type: string
+          nullable: true
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        comment:
+          type: string
+          nullable: true
+    CreateVolumeDiscountEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created volume discount bracket.
+    GetReconciliationStatusEndpoint_Output:
+      required:
+      - jobId
+      - billingId
+      - state
+      - timestampMode
+      - rapidsProcessed
+      - rapidsUpdated
+      - rapidsAlreadyCorrect
+      - rapidsFailed
+      - responsesProcessed
+      - correctionsCreated
+      - responsesAlreadyCorrect
+      - responsesFailed
+      - createdAt
+      - createdById
+      - createdByMail
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The unique identifier of the reconciliation job.
+        billingId:
+          type: string
+          description: The billing item identifier this job reconciles.
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier if this job was created as part of a bulk operation.
+          nullable: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationJobState'
+          description: The current state of the reconciliation job.
+        timestampMode:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationTimestampMode'
+          description: The timestamp mode used for correction entries.
+        rapidsProcessed:
+          type: integer
+          description: The total number of rapids processed.
+          format: int32
+        rapidsUpdated:
+          type: integer
+          description: The number of rapids that were updated.
+          format: int32
+        rapidsAlreadyCorrect:
+          type: integer
+          description: The number of rapids that were already correct.
+          format: int32
+        rapidsFailed:
+          type: integer
+          description: The number of rapids that failed during reconciliation.
+          format: int32
+        responsesProcessed:
+          type: integer
+          description: The total number of responses processed.
+          format: int32
+        correctionsCreated:
+          type: integer
+          description: The number of correction entries created.
+          format: int32
+        responsesAlreadyCorrect:
+          type: integer
+          description: The number of responses that were already correct.
+          format: int32
+        responsesFailed:
+          type: integer
+          description: The number of responses that failed during reconciliation.
+          format: int32
+        errorMessage:
+          type: string
+          description: The error message if the job failed.
+          nullable: true
+        completedAt:
+          type: string
+          description: The timestamp when the job completed.
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          description: The timestamp when the job was created.
+          format: date-time
+        createdById:
+          type: string
+          description: The identifier of the user who created the job.
+          format: uuid
+        createdByMail:
+          type: string
+          description: The email of the user who created the job.
+    QueryCostsByCustomerEndpoint_Output:
+      required:
+      - customerId
+      - customerMail
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The customer identifier.
+          format: uuid
+        customerMail:
+          type: string
+          description: The customer email.
+        grossCost:
+          type: number
+          description: The gross cost for this customer (before discount).
+          format: double
+        discount:
+          type: number
+          description: The discount for this customer.
+          format: double
+        netCost:
+          type: number
+          description: The net cost for this customer (after discount).
+          format: double
+        responseCount:
+          type: integer
+          description: The total number of responses for this customer.
+          format: int64
+      description: Billing cost data aggregated per customer.
+    IBillingGroupModelRankingFlowBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - flowId
+      - _t
+      properties:
+        _t:
+          enum:
+          - RankingFlowBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        flowId:
+          type: string
+          description: The identifier of the ranking flow that produced the responses.
+      description: A billing group for responses produced by a ranking flow.
+    ILineItemModelPlatformFeeModel:
+      required:
+      - id
+      - name
+      - amount
+      - _t
+      properties:
+        _t:
+          enum:
+          - PlatformFee
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+          format: double
+        comment:
+          type: string
+          nullable: true
+    ExternalServiceKind:
+      enum:
+      - ContextShortening
+      - ImageGeneration
+    BillingPeriodStatus:
+      enum:
+      - Open
+      - Invoiced
+      - Void
+      - Reconciling
+    TimeGrouping:
+      enum:
+      - Hour
+      - Day
+      - Week
+      - Month
+      - Minute
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateManualChargeEndpoint_Input:
+      required:
+      - name
+      - billingPeriodId
+      - customerId
+      - customerMail
+      - amount
+      - reason
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the manual charge.
+        billingPeriodId:
+          type: string
+          description: The billing period to add the charge to.
+        customerId:
+          type: string
+          description: The customer to charge.
+          format: uuid
+        customerMail:
+          type: string
+          description: The customer's email address.
+        amount:
+          type: number
+          description: The charge amount. Positive for fees, negative for refunds.
+          format: double
+        reason:
+          allOf:
+          - $ref: '#/components/schemas/ManualChargeReason'
+          description: The reason for the manual charge.
+        comment:
+          type: string
+          description: An optional comment describing the charge.
+          nullable: true
+    CreateVolumeDiscountEndpoint_Input:
+      required:
+      - minResponses
+      - discountRatio
+      type: object
+      properties:
+        minResponses:
+          type: integer
+          description: The minimum number of responses to trigger this discount bracket.
+          format: int64
+        discountRatio:
+          type: number
+          description: The discount ratio for this bracket (e.g., 0.10 for 10%).
+          format: double
+    BillingPeriodStatusModel:
+      enum:
+      - Open
+      - Invoiced
+      - Void
+      - Reconciling
+    ILineItemModelRunningCostModel:
+      required:
+      - amount
+      - _t
+      properties:
+        _t:
+          enum:
+          - RunningCost
+          type: string
+        amount:
+          type: number
+          format: double
+    IBillingGroupModelValidationSetBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - validationSetId
+      - _t
+      properties:
+        _t:
+          enum:
+          - ValidationSetBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        validationSetId:
+          type: string
+          description: The identifier of the validation set that produced the responses.
+      description: A billing group for responses produced by a validation set.
+    QueryBillingPeriodsEndpoint_Output:
+      required:
+      - id
+      - ownerId
+      - startDate
+      - endDate
+      - status
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The billing period ID.
+        ownerId:
+          type: string
+          description: The customer ID of the billing period owner.
+          format: uuid
+        startDate:
+          type: string
+          description: The start date of the billing period.
+          format: date-time
+        endDate:
+          type: string
+          description: The end date of the billing period.
+          format: date-time
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BillingPeriodStatus'
+          description: The status of the billing period.
+        createdAt:
+          type: string
+          description: The date the billing period was created.
+          format: date-time
+    GetBillingPeriodOverviewEndpoint_Output:
+      required:
+      - id
+      - startDate
+      - endDate
+      - status
+      - totalGrossCost
+      - totalDiscount
+      - totalNetCost
+      - totalResponseCount
+      - lineItems
+      type: object
+      properties:
+        id:
+          type: string
+          description: The billing period ID.
+        startDate:
+          type: string
+          description: The start date of the billing period.
+          format: date-time
+        endDate:
+          type: string
+          description: The end date of the billing period.
+          format: date-time
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BillingPeriodStatusModel'
+          description: The status of the billing period.
+        totalGrossCost:
+          type: number
+          description: The total gross cost before discounts.
+          format: double
+        totalDiscount:
+          type: number
+          description: The total discount amount.
+          format: double
+        totalNetCost:
+          type: number
+          description: The total net cost after discounts.
+          format: double
+        totalResponseCount:
+          type: integer
+          description: The total number of billable responses.
+          format: int64
+        lineItems:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ILineItemModel'
+          description: The line items (running cost, platform fees, refunds, volume discounts).
+    GetCostTimeSeriesEndpoint_Output:
+      required:
+      - timeSeries
+      - totalGrossCost
+      - totalDiscount
+      - totalNetCost
+      type: object
+      properties:
+        timeSeries:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCostTimeSeriesEndpoint_CostDataPoint'
+          description: The time series data points.
+        totalGrossCost:
+          type: number
+          description: The total gross cost across all data points.
+          format: double
+        totalDiscount:
+          type: number
+          description: The total discount across all data points.
+          format: double
+        totalNetCost:
+          type: number
+          description: The total net cost across all data points.
+          format: double
+      description: The output for the cost time series endpoint.
+    GetBillingSettingsTimelineEndpoint_Output_Interval:
+      required:
+      - costPerResponseFreeText
+      - costPerResponseImage
+      - costPerResponseMediaPerSecond
+      - costPerResponseMediaMinimum
+      - costPerResponseTextPer50Chars
+      - costPerResponseContextTextPer50Chars
+      - costPerResponseContextTextMinimum
+      - costPerResponseContextImage
+      - costPerResponseContextVideoPerSecond
+      - costPerResponseContextVideoMinimum
+      - discountRatio
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          nullable: true
+        to:
+          type: string
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          format: double
+        costPerResponseImage:
+          type: number
+          format: double
+        costPerResponseMediaPerSecond:
+          type: number
+          format: double
+        costPerResponseMediaMinimum:
+          type: number
+          format: double
+        costPerResponseTextPer50Chars:
+          type: number
+          format: double
+        costPerResponseContextTextPer50Chars:
+          type: number
+          format: double
+        costPerResponseContextTextMinimum:
+          type: number
+          format: double
+        costPerResponseContextImage:
+          type: number
+          format: double
+        costPerResponseContextVideoPerSecond:
+          type: number
+          format: double
+        costPerResponseContextVideoMinimum:
+          type: number
+          format: double
+        discountRatio:
+          type: number
+          format: double
+    CreateManualChargeEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created billing item.
+    ReconciliationTimestampMode:
+      enum:
+      - UseResponseCreatedAt
+      - UseReconciliationTime
+    StartBulkReconciliationEndpoint_Output:
+      required:
+      - bulkReconciliationId
+      type: object
+      properties:
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier for all jobs created in this bulk operation.
+    ManualChargeReason:
+      enum:
+      - PlatformFee
+      - Refund
+      - Other
+      - MinimumSpendCommitment
+    BulkReconciliationDispatchState:
+      enum:
+      - Dispatching
+      - Completed
+      - Failed
+    IBillingGroupModelAudienceJobBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - jobId
+      - audienceId
+      - _t
+      properties:
+        _t:
+          enum:
+          - AudienceJobBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        jobId:
+          type: string
+          description: The identifier of the audience job that produced the responses.
+        audienceId:
+          type: string
+          description: The identifier of the audience the job belongs to.
+      description: A billing group for responses produced by an audience job.
+    QueryCostsByOrganizationEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryCostsByOrganizationEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryBillingPeriodsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryBillingPeriodsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    CreateCustomerBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured customer default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+    QueryCostsByOrganizationEndpoint_Output:
+      required:
+      - organizationOwnerId
+      - organizationName
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      type: object
+      properties:
+        organizationOwnerId:
+          type: string
+          description: The organization owner identifier.
+          format: uuid
+        organizationName:
+          type: string
+          description: The organization name.
+        grossCost:
+          type: number
+          description: The gross cost for this organization (before discount).
+          format: double
+        discount:
+          type: number
+          description: The discount for this organization.
+          format: double
+        netCost:
+          type: number
+          description: The net cost for this organization (after discount).
+          format: double
+        responseCount:
+          type: integer
+          description: The total number of responses for this organization.
+          format: int64
+      description: Billing cost data aggregated per organization.
+    ILineItemModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/ILineItemModelMinimumSpendCommitmentModel'
+      - $ref: '#/components/schemas/ILineItemModelOtherChargeModel'
+      - $ref: '#/components/schemas/ILineItemModelPlatformFeeModel'
+      - $ref: '#/components/schemas/ILineItemModelRefundModel'
+      - $ref: '#/components/schemas/ILineItemModelRunningCostModel'
+      - $ref: '#/components/schemas/ILineItemModelVolumeDiscountModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          MinimumSpendCommitment: '#/components/schemas/ILineItemModelMinimumSpendCommitmentModel'
+          Other: '#/components/schemas/ILineItemModelOtherChargeModel'
+          PlatformFee: '#/components/schemas/ILineItemModelPlatformFeeModel'
+          Refund: '#/components/schemas/ILineItemModelRefundModel'
+          RunningCost: '#/components/schemas/ILineItemModelRunningCostModel'
+          VolumeDiscount: '#/components/schemas/ILineItemModelVolumeDiscountModel'
+    GetBillingSettingsTimelineEndpoint_Output:
+      required:
+      - intervals
+      type: object
+      properties:
+        intervals:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
+          description: The billing settings intervals.
+    GetBulkReconciliationStatusEndpoint_Output:
+      required:
+      - bulkReconciliationId
+      - dispatchState
+      - expectedTotal
+      - totalJobs
+      - pendingJobs
+      - runningJobs
+      - completedJobs
+      - failedJobs
+      - rapidsProcessed
+      - rapidsUpdated
+      - rapidsAlreadyCorrect
+      - rapidsFailed
+      - responsesProcessed
+      - correctionsCreated
+      - responsesAlreadyCorrect
+      - responsesFailed
+      - createdAt
+      type: object
+      properties:
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier for the bulk operation.
+        dispatchState:
+          allOf:
+          - $ref: '#/components/schemas/BulkReconciliationDispatchState'
+          description: The current dispatch state (Dispatching, Completed, Failed).
+        expectedTotal:
+          type: integer
+          description: The expected total number of billing items to dispatch.
+          format: int32
+        dispatchCompletedAt:
+          type: string
+          description: The timestamp when dispatching finished. Null if still dispatching.
+          format: date-time
+          nullable: true
+        totalJobs:
+          type: integer
+          description: The total number of reconciliation jobs in this bulk operation.
+          format: int32
+        pendingJobs:
+          type: integer
+          description: The number of jobs in Pending state.
+          format: int32
+        runningJobs:
+          type: integer
+          description: The number of jobs in Running state.
+          format: int32
+        completedJobs:
+          type: integer
+          description: The number of jobs in Completed state.
+          format: int32
+        failedJobs:
+          type: integer
+          description: The number of jobs in Failed state.
+          format: int32
+        rapidsProcessed:
+          type: integer
+          description: The total number of rapids processed across all jobs.
+          format: int32
+        rapidsUpdated:
+          type: integer
+          description: The total number of rapids updated across all jobs.
+          format: int32
+        rapidsAlreadyCorrect:
+          type: integer
+          description: The total number of rapids already correct across all jobs.
+          format: int32
+        rapidsFailed:
+          type: integer
+          description: The total number of rapids that failed across all jobs.
+          format: int32
+        responsesProcessed:
+          type: integer
+          description: The total number of responses processed across all jobs.
+          format: int32
+        correctionsCreated:
+          type: integer
+          description: The total number of corrections created across all jobs.
+          format: int32
+        responsesAlreadyCorrect:
+          type: integer
+          description: The total number of responses already correct across all jobs.
+          format: int32
+        responsesFailed:
+          type: integer
+          description: The total number of responses that failed across all jobs.
+          format: int32
+        createdAt:
+          type: string
+          description: The timestamp when the bulk operation was created.
+          format: date-time
+        completedAt:
+          type: string
+          description: The timestamp when all jobs completed. Null if not fully complete.
+          format: date-time
+          nullable: true
+    GetActiveBillingPeriodOverviewEndpoint_Output:
+      required:
+      - id
+      - startDate
+      - endDate
+      - status
+      - totalGrossCost
+      - totalDiscount
+      - totalNetCost
+      - totalResponseCount
+      - lineItems
+      type: object
+      properties:
+        id:
+          type: string
+          description: The billing period ID.
+        startDate:
+          type: string
+          description: The start date of the billing period.
+          format: date-time
+        endDate:
+          type: string
+          description: The end date of the billing period.
+          format: date-time
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BillingPeriodStatusModel'
+          description: The status of the billing period.
+        totalGrossCost:
+          type: number
+          description: The total gross cost before discounts.
+          format: double
+        totalDiscount:
+          type: number
+          description: The total discount amount.
+          format: double
+        totalNetCost:
+          type: number
+          description: The total net cost after discounts.
+          format: double
+        totalResponseCount:
+          type: integer
+          description: The total number of billable responses.
+          format: int64
+        lineItems:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ILineItemModel'
+          description: The line items (running cost, platform fees, refunds, volume discounts).
+    IBillingGroupModelAudienceDistillationBillingGroupModel:
+      required:
+      - id
+      - name
+      - grossCost
+      - discount
+      - netCost
+      - responseCount
+      - audienceId
+      - _t
+      properties:
+        _t:
+          enum:
+          - AudienceDistillationBillingGroup
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the billing group.
+        name:
+          type: string
+          description: A human-readable name for the billing group.
+        grossCost:
+          type: number
+          description: The gross cost of the responses in this group, before any discount.
+          format: double
+        discount:
+          type: number
+          description: The absolute discount applied to the gross cost.
+          format: double
+        netCost:
+          type: number
+          description: The net cost of the responses in this group after discount.
+          format: double
+        responseCount:
+          type: integer
+          description: The number of responses attributed to this billing group.
+          format: int64
+        audienceId:
+          type: string
+          description: The identifier of the audience the distillation run was executed for.
+      description: A billing group for responses produced by an audience distillation run.
+    CreateBillingItemBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured billing item default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+    CreateGlobalBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured global default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+    GetBillingSummaryEndpoint_Output:
+      required:
+      - mode
+      - currentPeriodUsage
+      - minimumSpendCommitment
+      type: object
+      properties:
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/BillingSummaryMode'
+          description: How the billing summary should be presented (usage, limited, or prepaid).
+        currentPeriodUsage:
+          type: number
+          description: The accumulated billable spend in the current billing period.
+          format: double
+        effectiveLimit:
+          type: number
+          description: The spending cap for the current period, or null when unlimited.
+          format: double
+          nullable: true
+        availableAmount:
+          type: number
+          description: The remaining prepaid balance, set only for prepaid customers.
+          format: double
+          nullable: true
+        minimumSpendCommitment:
+          type: number
+          description: Dollars the customer has committed to spend per billing period; 0 means no commitment.
+          format: double
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

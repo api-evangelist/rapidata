@@ -1,0 +1,289 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Payment API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Payment
+  x-displayName: Payment
+paths:
+  /payment/checkout:
+    post:
+      tags:
+      - Payment
+      summary: Creates a new Stripe checkout session for the given price.
+      parameters:
+      - name: priceId
+        in: query
+        description: The Stripe price id to check out.
+        required: true
+        schema:
+          type: string
+      - name: mode
+        in: query
+        description: The mode in which the payment should be done.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCheckoutEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /payment/topup:
+    post:
+      tags:
+      - Payment
+      summary: "Creates a hosted checkout session for the authenticated customer to add the given amount to\n their prepaid balance."
+      description: "Rejected for non-prepaid customers and for amounts below the configured minimum. On\n successful payment a voucher for the amount is minted, which raises the customer's balance."
+      requestBody:
+        description: The amount in dollars to add to the balance.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTopUpEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTopUpEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /payment/session/{sessionId}:
+    get:
+      tags:
+      - Payment
+      summary: Gets the current status of a checkout session.
+      description: Used to check whether the payment was successful or is still pending.
+      parameters:
+      - name: sessionId
+        in: path
+        description: The id of the checkout session to get the status for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCheckoutSessionEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /payment/webhook:
+    post:
+      tags:
+      - Payment
+      summary: Processes an incoming Stripe webhook event.
+      description: "Reads the raw request body and the Stripe-Signature header, then dispatches a\n ProcessPaymentEventCommand."
+      responses:
+        '200':
+          description: OK
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    CreateCheckoutEndpoint_Output:
+      required:
+      - sessionId
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: The id of the created checkout session.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateTopUpEndpoint_Output:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: The hosted Stripe checkout url to redirect the customer to.
+    GetCheckoutSessionEndpoint_Output:
+      required:
+      - status
+      type: object
+      properties:
+        status:
+          type: string
+          description: The current status of the checkout session.
+    CreateTopUpEndpoint_Input:
+      required:
+      - amount
+      type: object
+      properties:
+        amount:
+          type: number
+          description: The amount in dollars to add to the prepaid balance.
+          format: double
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

@@ -1,0 +1,330 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Dataset API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Dataset
+  x-displayName: Dataset
+paths:
+  /dataset:
+    post:
+      tags:
+      - Dataset
+      summary: Creates a new empty dataset.
+      requestBody:
+        description: The dataset creation parameters.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDatasetEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDatasetEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /dataset/{datasetId}:
+    get:
+      tags:
+      - Dataset
+      summary: Gets a dataset by its id.
+      parameters:
+      - name: datasetId
+        in: path
+        description: The id of the dataset to get.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDatasetByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /dataset/{datasetId}/progress:
+    get:
+      tags:
+      - Dataset
+      summary: Gets the upload progress of a dataset.
+      parameters:
+      - name: datasetId
+        in: path
+        description: The id of the dataset to get the progress of.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetDatasetProgressEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /dataset/{datasetId}/name:
+    patch:
+      tags:
+      - Dataset
+      summary: Updates the name of a dataset.
+      parameters:
+      - name: datasetId
+        in: path
+        description: The id of the dataset to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The new name for the dataset.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateDatasetNameEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    UpdateDatasetNameEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the dataset.
+    CreateDatasetEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name to give to the new dataset.
+      description: The input for the create dataset endpoint.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateDatasetEndpoint_Output:
+      required:
+      - datasetId
+      type: object
+      properties:
+        datasetId:
+          type: string
+          description: The id of the created dataset.
+      description: The result when a dataset has been created.
+    GetDatasetProgressEndpoint_Output:
+      required:
+      - total
+      - ready
+      - pending
+      - failed
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of datapoints in the dataset.
+          format: int32
+        ready:
+          type: integer
+          description: The number of datapoints that have been uploaded successfully.
+          format: int32
+        pending:
+          type: integer
+          description: The number of datapoints that are still being processed.
+          format: int32
+        failed:
+          type: integer
+          description: The number of datapoints that failed to upload.
+          format: int32
+    GetDatasetByIdEndpoint_Output:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the dataset.
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

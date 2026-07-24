@@ -1,0 +1,721 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset BillingAccount API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: BillingAccount
+  x-displayName: BillingAccount
+paths:
+  /vouchers:
+    post:
+      tags:
+      - BillingAccount
+      summary: Grants a voucher to a customer.
+      description: "Provide exactly one of validity (a duration from now) or expiresAt (an\n explicit instant) — not both, not neither. The grant immediately raises the customer's\n serve allowance."
+      requestBody:
+        description: The customer, voucher amount, and expiry.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GrantVoucherEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GrantVoucherEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - BillingAccount
+      summary: Queries vouchers with filtering, sorting, and pagination.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - issued_at
+            - -issued_at
+            - expires_at
+            - -expires_at
+            - amount
+            - -amount
+            type: string
+        x-parameter-group: sort
+      - name: customer_id
+        in: query
+        description: Filter by customer_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: status
+        in: query
+        description: Filter by status.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: source
+        in: query
+        description: Filter by source.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: expires_at
+        in: query
+        description: Filter by expires_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: issued_at
+        in: query
+        description: Filter by issued_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryVouchersEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /vouchers/{voucherId}/revoke:
+    post:
+      tags:
+      - BillingAccount
+      summary: Revokes a voucher.
+      description: Lowers the owning customer's serve allowance by the voucher's remaining grant.
+      parameters:
+      - name: voucherId
+        in: path
+        description: The id of the voucher to revoke.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /customer/{customerId}/credit-line:
+    put:
+      tags:
+      - BillingAccount
+      summary: Sets the spend limit for a customer.
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer whose credit line to set.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The new credit line.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetCreditLineEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /customer/{customerId}/minimum-spend-commitment:
+    put:
+      tags:
+      - BillingAccount
+      summary: Sets the minimum spend commitment for a customer.
+      description: "At invoice time, if the period's measured spend is below the commitment, a top-up charge for\n the shortfall is added so the usage-side bill reaches the commitment. Setting it to 0\n removes the commitment."
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer whose minimum spend commitment to set.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The new minimum spend commitment.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetMinimumSpendCommitmentEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /customer/{customerId}/platform-fee:
+    put:
+      tags:
+      - BillingAccount
+      summary: Sets the platform fee for a customer.
+      description: "The fee is automatically applied as a charge to the customer's current open billing period\n and to every future period. Setting it to null removes the platform-fee charge from\n the current open period; 0 keeps an explicit $0 charge that is still shown."
+      parameters:
+      - name: customerId
+        in: path
+        description: The id of the customer whose platform fee to set.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The new platform fee.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SetPlatformFeeEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /customer/unsubscribe:
+    post:
+      tags:
+      - BillingAccount
+      summary: Unsubscribes the current customer.
+      requestBody:
+        description: Optional reason for unsubscribing.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UnsubscribeEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    SetCreditLineEndpoint_Input:
+      required:
+      - creditLine
+      type: object
+      properties:
+        creditLine:
+          type: number
+          description: "The new credit line. null means no limit (unlimited), 0 disables all traffic,\n and a positive value caps spend at that amount."
+          format: double
+          nullable: true
+    QueryVouchersEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryVouchersEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    SetPlatformFeeEndpoint_Input:
+      required:
+      - platformFee
+      type: object
+      properties:
+        platformFee:
+          type: number
+          description: "The new platform fee. null removes the platform fee; 0 is an explicit $0\n fee that is still shown; a positive value is charged once per billing period."
+          format: double
+          nullable: true
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    GrantVoucherEndpoint_Output:
+      required:
+      - voucherId
+      type: object
+      properties:
+        voucherId:
+          type: string
+          description: The id of the granted voucher.
+    VoucherSource:
+      enum:
+      - Signup
+      - ManualGrant
+      - TopUp
+    QueryVouchersEndpoint_Output:
+      required:
+      - id
+      - amount
+      - used
+      - remaining
+      - issuedAt
+      - expiresAt
+      - status
+      - source
+      type: object
+      properties:
+        id:
+          type: string
+          description: The voucher id.
+        amount:
+          type: number
+          description: The face value of the voucher in dollars.
+          format: double
+        used:
+          type: number
+          description: The amount already consumed across closed billing periods.
+          format: double
+        remaining:
+          type: number
+          description: The remaining free usage the voucher can still grant.
+          format: double
+        issuedAt:
+          type: string
+          description: When the voucher was issued.
+          format: date-time
+        expiresAt:
+          type: string
+          description: When the voucher expires.
+          format: date-time
+        status:
+          allOf:
+          - $ref: '#/components/schemas/VoucherStatus'
+          description: The voucher's lifecycle status.
+        source:
+          allOf:
+          - $ref: '#/components/schemas/VoucherSource'
+          description: Where the voucher came from.
+    SetMinimumSpendCommitmentEndpoint_Input:
+      required:
+      - minimumSpendCommitment
+      type: object
+      properties:
+        minimumSpendCommitment:
+          type: number
+          description: "The new minimum spend commitment. 0 means no commitment; a positive value tops up\n the usage-side bill at invoice time when measured spend falls short."
+          format: double
+    GrantVoucherEndpoint_Input:
+      required:
+      - customerId
+      - amount
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The id of the customer to grant the voucher to.
+          format: uuid
+        amount:
+          type: number
+          description: The face value of the voucher in dollars.
+          format: double
+        validity:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type: string
+          description: "How long the voucher stays valid, counted from now. Serialized as a duration string in\n the format [days.]hh:mm:ss (the days part is optional): \"30.00:00:00\" = 30\n days, \"7.00:00:00\" = 7 days, \"12:00:00\" = 12 hours. Must be positive.\n Provide this or expiresAt, not both."
+          nullable: true
+        expiresAt:
+          type: string
+          description: "An explicit expiry instant as an ISO-8601 timestamp (e.g. \"2026-12-31T23:59:59Z\").\n Use this instead of validity when you know the exact date the\n voucher should expire. Provide this or validity, not both."
+          format: date-time
+          nullable: true
+    VoucherStatus:
+      enum:
+      - Active
+      - Exhausted
+      - Expired
+      - Revoked
+    UnsubscribeEndpoint_Input:
+      type: object
+      properties:
+        reason:
+          type: string
+          description: The reason for unsubscribing.
+          nullable: true
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

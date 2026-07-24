@@ -1,0 +1,672 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Settings API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Settings
+  x-displayName: Settings
+paths:
+  /billing/billing-item/{billingItemId}/settings:
+    post:
+      tags:
+      - Settings
+      summary: Creates a billing setting for a billing item.
+      parameters:
+      - name: billingItemId
+        in: path
+        description: The billing item identifier.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBillingItemBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/customer/{customerId}/settings:
+    post:
+      tags:
+      - Settings
+      summary: Creates a billing setting for a customer.
+      parameters:
+      - name: customerId
+        in: path
+        description: The customer identifier.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCustomerBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings:
+    post:
+      tags:
+      - Settings
+      summary: Creates a global billing setting.
+      requestBody:
+        description: The billing setting data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateGlobalBillingSettingEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/billing-item/{billingItemId}/settings/{settingId}:
+    delete:
+      tags:
+      - Settings
+      summary: Deletes a billing item billing setting.
+      parameters:
+      - name: billingItemId
+        in: path
+        description: The billing item identifier.
+        required: true
+        schema:
+          type: string
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/customer/{customerId}/settings/{settingId}:
+    delete:
+      tags:
+      - Settings
+      summary: Deletes a customer billing setting.
+      parameters:
+      - name: customerId
+        in: path
+        description: The customer identifier.
+        required: true
+        schema:
+          type: string
+          format: uuid
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings/{settingId}:
+    delete:
+      tags:
+      - Settings
+      summary: Deletes a global billing setting.
+      parameters:
+      - name: settingId
+        in: path
+        description: The billing setting identifier.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/settings/timeline:
+    get:
+      tags:
+      - Settings
+      summary: Gets the billing settings timeline.
+      parameters:
+      - name: customerId
+        in: query
+        description: Optional customer identifier to scope the timeline.
+        schema:
+          type: string
+          format: uuid
+      - name: billingItemId
+        in: query
+        description: Optional billing item identifier to scope the timeline.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    GetBillingSettingsTimelineEndpoint_Output_Interval:
+      required:
+      - costPerResponseFreeText
+      - costPerResponseImage
+      - costPerResponseMediaPerSecond
+      - costPerResponseMediaMinimum
+      - costPerResponseTextPer50Chars
+      - costPerResponseContextTextPer50Chars
+      - costPerResponseContextTextMinimum
+      - costPerResponseContextImage
+      - costPerResponseContextVideoPerSecond
+      - costPerResponseContextVideoMinimum
+      - discountRatio
+      type: object
+      properties:
+        from:
+          type: string
+          format: date-time
+          nullable: true
+        to:
+          type: string
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          format: double
+        costPerResponseImage:
+          type: number
+          format: double
+        costPerResponseMediaPerSecond:
+          type: number
+          format: double
+        costPerResponseMediaMinimum:
+          type: number
+          format: double
+        costPerResponseTextPer50Chars:
+          type: number
+          format: double
+        costPerResponseContextTextPer50Chars:
+          type: number
+          format: double
+        costPerResponseContextTextMinimum:
+          type: number
+          format: double
+        costPerResponseContextImage:
+          type: number
+          format: double
+        costPerResponseContextVideoPerSecond:
+          type: number
+          format: double
+        costPerResponseContextVideoMinimum:
+          type: number
+          format: double
+        discountRatio:
+          type: number
+          format: double
+    CreateCustomerBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured customer default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+    GetBillingSettingsTimelineEndpoint_Output:
+      required:
+      - intervals
+      type: object
+      properties:
+        intervals:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
+          description: The billing settings intervals.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateBillingItemBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured billing item default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+    CreateGlobalBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type: integer
+          description: The priority of the setting. Defaults to the configured global default if not specified.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+        costPerResponseFreeText:
+          type: number
+          description: The cost per free text response.
+          format: double
+          nullable: true
+        costPerResponseImage:
+          type: number
+          description: The cost per image response.
+          format: double
+          nullable: true
+        costPerResponseMediaPerSecond:
+          type: number
+          description: The cost per second of media response.
+          format: double
+          nullable: true
+        costPerResponseMediaMinimum:
+          type: number
+          description: The minimum cost per media response.
+          format: double
+          nullable: true
+        costPerResponseTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of text response.
+          format: double
+          nullable: true
+        costPerResponseContextTextPer50Chars:
+          type: number
+          description: The cost per 50 characters of context text.
+          format: double
+          nullable: true
+        costPerResponseContextTextMinimum:
+          type: number
+          description: The minimum cost per context text.
+          format: double
+          nullable: true
+        costPerResponseContextImage:
+          type: number
+          description: The cost per context image.
+          format: double
+          nullable: true
+        costPerResponseContextVideoPerSecond:
+          type: number
+          description: The cost per second of context video.
+          format: double
+          nullable: true
+        costPerResponseContextVideoMinimum:
+          type: number
+          description: The minimum cost per context video.
+          format: double
+          nullable: true
+        discountRatio:
+          type: number
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+          nullable: true
+      description: The billing setting input data.
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

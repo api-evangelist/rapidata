@@ -1,0 +1,358 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Asset
+  x-displayName: Asset
+paths:
+  /asset/compress:
+    post:
+      tags:
+      - Asset
+      summary: Compresses an uploaded image and returns the WebP result.
+      description: "Compression metrics are returned in response headers: X-Original-Size, X-Compressed-Size,\n X-Processing-Time-Ms, X-Original-Dimensions, X-Output-Dimensions."
+      parameters:
+      - name: quality
+        in: query
+        description: The compression quality from 1 to 100.
+        schema:
+          type: integer
+          format: int32
+          default: 85
+      - name: maxdim
+        in: query
+        description: The maximum dimension (width or height) of the output image.
+        schema:
+          type: integer
+          format: int32
+          default: 800
+      requestBody:
+        description: The image file to compress.
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  $ref: '#/components/schemas/IFormFile'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /asset/file:
+    post:
+      tags:
+      - Asset
+      summary: Uploads a file to our system and returns the new file name used internally.
+      parameters:
+      - name: compress
+        in: query
+        description: When set, forces image compression on or off for this upload, overriding the configured default.
+        schema:
+          type: boolean
+      - name: quality
+        in: query
+        description: WebP quality (1..100) to use when compression runs. Falls back to the configured default when null.
+        schema:
+          type: integer
+          format: int32
+      - name: maxdim
+        in: query
+        description: Maximum width or height in pixels when compression runs. Falls back to the configured default when null.
+        schema:
+          type: integer
+          format: int32
+      requestBody:
+        description: The file to upload
+        content:
+          multipart/form-data:
+            schema:
+              required:
+              - file
+              type: object
+              properties:
+                file:
+                  $ref: '#/components/schemas/IFormFile'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadFileEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /asset/url:
+    post:
+      tags:
+      - Asset
+      summary: Downloads a file from the provided URL, stores it in our system and returns the new file name used internally.
+      parameters:
+      - name: url
+        in: query
+        description: The url of the file to upload.
+        required: true
+        schema:
+          type: string
+          format: uri
+      - name: compress
+        in: query
+        description: When set, forces image compression on or off for this upload, overriding the configured default.
+        schema:
+          type: boolean
+      - name: quality
+        in: query
+        description: WebP quality (1..100) to use when compression runs. Falls back to the configured default when null.
+        schema:
+          type: integer
+          format: int32
+      - name: maxdim
+        in: query
+        description: Maximum width or height in pixels when compression runs. Falls back to the configured default when null.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UploadFileFromUrlEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    UploadFileEndpoint_Output:
+      required:
+      - fileName
+      - warnings
+      - wasCompressed
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: "The generated file name used internally to reference the uploaded asset.\n This is not the original file name and should be used for all subsequent operations on this asset."
+        warnings:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: Any warnings that might have occurred during the upload.
+        wasCompressed:
+          type: boolean
+          description: Whether the uploaded file was compressed during processing.
+        originalSizeBytes:
+          type: integer
+          description: The original size of the uploaded file in bytes, if available. This may be null if the size could not be determined.
+          format: int64
+          nullable: true
+        finalSizeBytes:
+          type: integer
+          description: "The final size of the stored file in bytes after processing (e.g., compression), if available.\n This may be null if the size could not be determined. If compression was applied, this size may be smaller than the original size."
+          format: int64
+          nullable: true
+    UploadFileFromUrlEndpoint_Output:
+      required:
+      - fileName
+      - warnings
+      - wasCompressed
+      type: object
+      properties:
+        fileName:
+          type: string
+          description: "The generated file name used internally to reference the uploaded asset.\n This is not the original file name and should be used for all subsequent operations on this asset."
+        warnings:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: Any warnings that might have occurred during the upload.
+        wasCompressed:
+          type: boolean
+          description: Whether the uploaded file was compressed during processing.
+        originalSizeBytes:
+          type: integer
+          description: The original size of the uploaded file in bytes, if available. This may be null if the size could not be determined.
+          format: int64
+          nullable: true
+        finalSizeBytes:
+          type: integer
+          description: "The final size of the stored file in bytes after processing (e.g., compression), if available.\n This may be smaller than the original size if compression was applied."
+          format: int64
+          nullable: true
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IFormFile:
+      type: string
+      format: binary
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

@@ -1,0 +1,1097 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Sample API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Sample
+  x-displayName: Sample
+paths:
+  /benchmark-sample/{sampleId}:
+    get:
+      tags:
+      - Sample
+      summary: Gets a benchmark sample by its id.
+      parameters:
+      - name: sampleId
+        in: path
+        description: The id of the sample to be retrieved.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSampleByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark-sample/{sampleId}/navigation:
+    get:
+      tags:
+      - Sample
+      summary: Gets navigation context (previous, next, related samples) for a sample.
+      parameters:
+      - name: sampleId
+        in: path
+        description: The id of the sample to anchor navigation on.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSampleNavigationEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /benchmark/{benchmarkId}/samples/{identifier}:
+    get:
+      tags:
+      - Sample
+      summary: Returns the paged samples of a benchmark filtered by an identifier.
+      parameters:
+      - name: benchmarkId
+        in: path
+        description: The id of the benchmark to query.
+        required: true
+        schema:
+          type: string
+      - name: identifier
+        in: path
+        description: The identifier to filter all samples for.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: participant_id
+        in: query
+        description: Filter by participant_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSamplesByIdentifierEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/samples:
+    get:
+      tags:
+      - Sample
+      summary: Queries all samples of a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to query samples for.
+        required: true
+        schema:
+          type: string
+      - name: fillMissing
+        in: query
+        description: Whether to fill missing samples with placeholders.
+        schema:
+          type: boolean
+          default: false
+      - name: tags
+        in: query
+        description: The tags to filter the samples by; a sample matches when any of its prompt tags is in this list.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - identifier
+            - -identifier
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: identifier
+        in: query
+        description: Filter by identifier.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_PagedResultOfISampleOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    GetSampleNavigationEndpoint_Output:
+      required:
+      - current
+      - previous
+      - next
+      - related
+      type: object
+      properties:
+        current:
+          allOf:
+          - $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: The current sample that navigation is anchored on.
+        previous:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Up to three samples of the same participant preceding the current sample,\n ordered ascending by identifier. Empty when the current sample is the first\n of its participant."
+        next:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Up to three samples of the same participant following the current sample,\n ordered ascending by identifier. Empty when the current sample is the last\n of its participant."
+        related:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Samples of other participants in the same benchmark that share the current\n sample's identifier."
+    GetSamplesByIdentifierEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetSamplesByIdentifierEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput:
+      required:
+      - id
+      - identifier
+      - asset
+      - tags
+      - ownerMail
+      - _t
+      properties:
+        _t:
+          enum:
+          - SampleOutput
+          type: string
+        id:
+          type: string
+          description: The unique identifier of the sample.
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with the sample.
+        englishPrompt:
+          type: string
+          description: An optional prompt text translated to English.
+          nullable: true
+        originalPrompt:
+          type: string
+          description: An optional prompt text as originally provided.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: An optional prompt asset associated with the sample.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the sample.
+        createdAt:
+          type: string
+          description: The timestamp when the sample was created.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the customer that owns the sample.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the customer that owns the sample.
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type: string
+          nullable: true
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    GetSamplesByParticipantEndpoint_ISampleOutput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
+      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
+      description: Represents a sample returned for a participant.
+      discriminator:
+        propertyName: _t
+        mapping:
+          SampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
+          PlaceholderSampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    GetSamplesByParticipantEndpoint_PagedResultOfISampleOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutput'
+        totalPages:
+          type: integer
+          format: int32
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    GetSamplesByIdentifierEndpoint_Output:
+      required:
+      - id
+      - identifier
+      - participantId
+      - participantName
+      - asset
+      - tags
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the sample.
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        participantId:
+          type: string
+          description: The id of the participant that owns the sample.
+        participantName:
+          type: string
+          description: The name of the participant that owns the sample.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with the sample.
+        englishPrompt:
+          type: string
+          description: An optional prompt text translated to English.
+          nullable: true
+        originalPrompt:
+          type: string
+          description: An optional prompt text as originally provided.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: An optional prompt asset associated with the sample.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the sample.
+        createdAt:
+          type: string
+          description: The timestamp when the sample was created.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the customer that owns the sample.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the customer that owns the sample.
+    GetSampleNavigationEndpoint_SampleModel:
+      required:
+      - id
+      - identifier
+      - participantId
+      - participantName
+      - asset
+      - tags
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+        identifier:
+          type: string
+        participantId:
+          type: string
+        participantName:
+          type: string
+        asset:
+          $ref: '#/components/schemas/IAssetModel'
+        englishPrompt:
+          type: string
+          nullable: true
+        originalPrompt:
+          type: string
+          nullable: true
+        promptAsset:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: string
+        createdAt:
+          type: string
+          format: date-time
+        ownerId:
+          type: string
+          format: uuid
+        ownerMail:
+          type: string
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput:
+      required:
+      - identifier
+      - tags
+      - _t
+      properties:
+        _t:
+          enum:
+          - PlaceholderSampleOutput
+          type: string
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        englishPrompt:
+          type: string
+          description: An optional prompt text translated to English.
+          nullable: true
+        originalPrompt:
+          type: string
+          description: An optional prompt text as originally provided.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: An optional prompt asset associated with the sample.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the sample.
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    GetSampleByIdEndpoint_Output:
+      required:
+      - id
+      - identifier
+      - participantId
+      - participantName
+      - asset
+      - tags
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the sample.
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        participantId:
+          type: string
+          description: The id of the participant that owns the sample.
+        participantName:
+          type: string
+          description: The name of the participant that owns the sample.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with the sample.
+        englishPrompt:
+          type: string
+          description: An optional prompt text translated to English.
+          nullable: true
+        originalPrompt:
+          type: string
+          description: An optional prompt text as originally provided.
+          nullable: true
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: An optional prompt asset associated with the sample.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the sample.
+        createdAt:
+          type: string
+          description: The timestamp when the sample was created.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the customer that owns the sample.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the customer that owns the sample.
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

@@ -1,0 +1,888 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Participant API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Participant
+  x-displayName: Participant
+paths:
+  /participant/{participantId}/sample:
+    post:
+      tags:
+      - Participant
+      summary: Adds a sample to a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to add the sample to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload describing the sample to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSampleEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSampleEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/sample-new:
+    post:
+      tags:
+      - Participant
+      summary: Adds a sample to a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to add the sample to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload describing the sample to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateSampleNewEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateSampleNewEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}:
+    delete:
+      tags:
+      - Participant
+      summary: Deletes a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Participant
+      summary: Gets a participant by its id.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to query.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetParticipantByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    patch:
+      tags:
+      - Participant
+      summary: Updates a participant using patch semantics.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The patch payload describing which fields should change.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateParticipantEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant-sample/{sampleId}:
+    delete:
+      tags:
+      - Participant
+      summary: Deletes a participant sample.
+      parameters:
+      - name: sampleId
+        in: path
+        description: The id of the sample to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/disable:
+    post:
+      tags:
+      - Participant
+      summary: Disables a participant in a benchmark.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to disable.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/enable:
+    post:
+      tags:
+      - Participant
+      summary: Enables a previously disabled participant in a benchmark.
+      description: Fails with 400 if the participant is not currently disabled.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to enable.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/faucet:
+    delete:
+      tags:
+      - Participant
+      summary: Removes the faucet configuration from a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    put:
+      tags:
+      - Participant
+      summary: Sets the faucet used to auto-generate samples for a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant whose faucet to set.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The faucet configuration payload.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IFaucetInput'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participants/{participantId}/submit:
+    post:
+      tags:
+      - Participant
+      summary: Submits a participant to a benchmark.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant to submit.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SubmitParticipantEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/name:
+    put:
+      tags:
+      - Participant
+      summary: Updates the name of a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant whose name should be updated.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The payload containing the new participant name.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateParticipantNameEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    CreateSampleEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created sample.
+    CreateSampleEndpoint_Input:
+      required:
+      - identifier
+      - asset
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset input for the sample.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    ExistingAssetInput:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    ParticipantStatus:
+      enum:
+      - Created
+      - Submittable
+      - Submitted
+      - Disabled
+    SubmitParticipantEndpoint_Output:
+      required:
+      - validDatapoints
+      - invalidDatapoints
+      type: object
+      properties:
+        validDatapoints:
+          type: integer
+          description: The number of valid datapoints collected by the participant.
+          format: int32
+        invalidDatapoints:
+          type: integer
+          description: The number of invalid datapoints collected by the participant.
+          format: int32
+    GetParticipantByIdEndpoint_Output:
+      required:
+      - id
+      - name
+      - benchmarkId
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the participant.
+        name:
+          type: string
+          description: The name of the participant.
+        benchmarkId:
+          type: string
+          description: The id of the benchmark the participant belongs to.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ParticipantStatus'
+          description: The status of the participant.
+        family:
+          type: string
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), or null if unset.
+          nullable: true
+        proprietaryName:
+          type: string
+          description: The vendor-facing display name of the model, or null if unset.
+          nullable: true
+        logo:
+          type: string
+          description: The logo of the model, or null if unset.
+          nullable: true
+        faucet:
+          allOf:
+          - $ref: '#/components/schemas/IFaucetOutput'
+          description: The faucet configured to auto-generate samples, or null if none is set.
+    CreateSampleNewEndpoint_Input:
+      required:
+      - identifier
+      - asset
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset input for the sample.
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type: string
+          nullable: true
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IFaucetOutputManagedFaucetOutput:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - Managed
+          type: string
+        testTimeScaling:
+          type: integer
+          format: int32
+          nullable: true
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    UpdateParticipantNameEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the participant.
+    IFaucetOutputReplicateFaucetOutput:
+      required:
+      - modelOwner
+      - modelName
+      - additionalInputs
+      - _t
+      properties:
+        _t:
+          enum:
+          - Replicate
+          type: string
+        modelOwner:
+          type: string
+        modelName:
+          type: string
+        modelVersion:
+          type: string
+          nullable: true
+        additionalInputs:
+          type: object
+    IFaucetOutput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
+      - $ref: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          Managed: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
+          Replicate: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
+    UpdateParticipantEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the participant.
+        family:
+          type: string
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"). Pass null to clear.
+          nullable: true
+        proprietaryName:
+          type: string
+          description: The vendor-facing display name of the model. Pass null to clear.
+          nullable: true
+        logo:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: An image asset for the model's logo. Pass null to clear.
+          nullable: true
+        faucet:
+          allOf:
+          - $ref: '#/components/schemas/IFaucetInput'
+          description: The faucet to set or replace on the participant.
+    CreateSampleNewEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created sample.
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IFaucetInputReplicateFaucetInput:
+      required:
+      - modelOwner
+      - modelName
+      - _t
+      properties:
+        _t:
+          enum:
+          - Replicate
+          type: string
+        modelOwner:
+          type: string
+          description: The owner of the hosted model (e.g. "stability-ai").
+        modelName:
+          type: string
+          description: The model name (e.g. "sdxl").
+        modelVersion:
+          type: string
+          description: Optional pinned model version hash.
+          nullable: true
+        additionalInputs:
+          type: object
+          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
+      description: Configures a faucet that generates samples via the Replicate API.
+    IFaucetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
+      discriminator:
+        propertyName: _t
+        mapping:
+          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

@@ -1,0 +1,506 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Reconciliation API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Reconciliation
+  x-displayName: Reconciliation
+paths:
+  /billing/reconciliation/bulk/{bulkReconciliationId}:
+    get:
+      tags:
+      - Reconciliation
+      summary: Returns the aggregated status and results of all reconciliation jobs in a bulk operation.
+      parameters:
+      - name: bulkReconciliationId
+        in: path
+        description: The correlation identifier returned from the bulk reconcile endpoint.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBulkReconciliationStatusEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconciliation/{jobId}:
+    get:
+      tags:
+      - Reconciliation
+      summary: Returns the status and results of a reconciliation job.
+      parameters:
+      - name: jobId
+        in: path
+        description: The unique identifier of the reconciliation job.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetReconciliationStatusEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconciliation/bulk/{bulkReconciliationId}/redispatch:
+    post:
+      tags:
+      - Reconciliation
+      summary: Redispatches the individual reconciliations contained in the given bulk reconciliation.
+      parameters:
+      - name: bulkReconciliationId
+        in: path
+        description: The bulk reconciliation to redispatch.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /billing/reconcile:
+    post:
+      tags:
+      - Reconciliation
+      summary: Starts reconciliation for a single billing item, all items for a customer, or all items in a billing group.
+      description: "Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.\n Date range filtering is only available with CustomerId or BillingGroupId.\n Returns a correlation ID that can be used to track progress of the bulk operation."
+      requestBody:
+        description: The reconciliation target and configuration options.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartBulkReconciliationEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartBulkReconciliationEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    GetReconciliationStatusEndpoint_Output:
+      required:
+      - jobId
+      - billingId
+      - state
+      - timestampMode
+      - rapidsProcessed
+      - rapidsUpdated
+      - rapidsAlreadyCorrect
+      - rapidsFailed
+      - responsesProcessed
+      - correctionsCreated
+      - responsesAlreadyCorrect
+      - responsesFailed
+      - createdAt
+      - createdById
+      - createdByMail
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The unique identifier of the reconciliation job.
+        billingId:
+          type: string
+          description: The billing item identifier this job reconciles.
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier if this job was created as part of a bulk operation.
+          nullable: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationJobState'
+          description: The current state of the reconciliation job.
+        timestampMode:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationTimestampMode'
+          description: The timestamp mode used for correction entries.
+        rapidsProcessed:
+          type: integer
+          description: The total number of rapids processed.
+          format: int32
+        rapidsUpdated:
+          type: integer
+          description: The number of rapids that were updated.
+          format: int32
+        rapidsAlreadyCorrect:
+          type: integer
+          description: The number of rapids that were already correct.
+          format: int32
+        rapidsFailed:
+          type: integer
+          description: The number of rapids that failed during reconciliation.
+          format: int32
+        responsesProcessed:
+          type: integer
+          description: The total number of responses processed.
+          format: int32
+        correctionsCreated:
+          type: integer
+          description: The number of correction entries created.
+          format: int32
+        responsesAlreadyCorrect:
+          type: integer
+          description: The number of responses that were already correct.
+          format: int32
+        responsesFailed:
+          type: integer
+          description: The number of responses that failed during reconciliation.
+          format: int32
+        errorMessage:
+          type: string
+          description: The error message if the job failed.
+          nullable: true
+        completedAt:
+          type: string
+          description: The timestamp when the job completed.
+          format: date-time
+          nullable: true
+        createdAt:
+          type: string
+          description: The timestamp when the job was created.
+          format: date-time
+        createdById:
+          type: string
+          description: The identifier of the user who created the job.
+          format: uuid
+        createdByMail:
+          type: string
+          description: The email of the user who created the job.
+    BulkReconciliationDispatchState:
+      enum:
+      - Dispatching
+      - Completed
+      - Failed
+    StartBulkReconciliationEndpoint_Input:
+      type: object
+      properties:
+        billingItemId:
+          type: string
+          description: The identifier of a single billing item to reconcile.
+          nullable: true
+        customerId:
+          type: string
+          description: The customer identifier to reconcile all billing items for.
+          format: uuid
+          nullable: true
+        billingGroupId:
+          type: string
+          description: The billing group identifier to reconcile all billing items for.
+          nullable: true
+        startDate:
+          type: string
+          description: Optional start date filter. Only applies with CustomerId or BillingGroupId.
+          format: date-time
+          nullable: true
+        endDate:
+          type: string
+          description: Optional end date filter. Only applies with CustomerId or BillingGroupId.
+          format: date-time
+          nullable: true
+        timestampMode:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationTimestampMode'
+          description: Controls the timestamp used for correction entries.
+    GetBulkReconciliationStatusEndpoint_Output:
+      required:
+      - bulkReconciliationId
+      - dispatchState
+      - expectedTotal
+      - totalJobs
+      - pendingJobs
+      - runningJobs
+      - completedJobs
+      - failedJobs
+      - rapidsProcessed
+      - rapidsUpdated
+      - rapidsAlreadyCorrect
+      - rapidsFailed
+      - responsesProcessed
+      - correctionsCreated
+      - responsesAlreadyCorrect
+      - responsesFailed
+      - createdAt
+      type: object
+      properties:
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier for the bulk operation.
+        dispatchState:
+          allOf:
+          - $ref: '#/components/schemas/BulkReconciliationDispatchState'
+          description: The current dispatch state (Dispatching, Completed, Failed).
+        expectedTotal:
+          type: integer
+          description: The expected total number of billing items to dispatch.
+          format: int32
+        dispatchCompletedAt:
+          type: string
+          description: The timestamp when dispatching finished. Null if still dispatching.
+          format: date-time
+          nullable: true
+        totalJobs:
+          type: integer
+          description: The total number of reconciliation jobs in this bulk operation.
+          format: int32
+        pendingJobs:
+          type: integer
+          description: The number of jobs in Pending state.
+          format: int32
+        runningJobs:
+          type: integer
+          description: The number of jobs in Running state.
+          format: int32
+        completedJobs:
+          type: integer
+          description: The number of jobs in Completed state.
+          format: int32
+        failedJobs:
+          type: integer
+          description: The number of jobs in Failed state.
+          format: int32
+        rapidsProcessed:
+          type: integer
+          description: The total number of rapids processed across all jobs.
+          format: int32
+        rapidsUpdated:
+          type: integer
+          description: The total number of rapids updated across all jobs.
+          format: int32
+        rapidsAlreadyCorrect:
+          type: integer
+          description: The total number of rapids already correct across all jobs.
+          format: int32
+        rapidsFailed:
+          type: integer
+          description: The total number of rapids that failed across all jobs.
+          format: int32
+        responsesProcessed:
+          type: integer
+          description: The total number of responses processed across all jobs.
+          format: int32
+        correctionsCreated:
+          type: integer
+          description: The total number of corrections created across all jobs.
+          format: int32
+        responsesAlreadyCorrect:
+          type: integer
+          description: The total number of responses already correct across all jobs.
+          format: int32
+        responsesFailed:
+          type: integer
+          description: The total number of responses that failed across all jobs.
+          format: int32
+        createdAt:
+          type: string
+          description: The timestamp when the bulk operation was created.
+          format: date-time
+        completedAt:
+          type: string
+          description: The timestamp when all jobs completed. Null if not fully complete.
+          format: date-time
+          nullable: true
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    ReconciliationTimestampMode:
+      enum:
+      - UseResponseCreatedAt
+      - UseReconciliationTime
+    ReconciliationJobState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
+    StartBulkReconciliationEndpoint_Output:
+      required:
+      - bulkReconciliationId
+      type: object
+      properties:
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier for all jobs created in this bulk operation.
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

@@ -1,0 +1,334 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Identity API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Identity
+  x-displayName: Identity
+paths:
+  /identity/bridge-token:
+    post:
+      tags:
+      - Identity
+      summary: Creates a pair of read and write bridge token keys for a client.
+      description: The write key stores the authentication result and the read key retrieves it.
+      parameters:
+      - name: clientId
+        in: query
+        description: The client ID to create the keys for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBridgeTokenEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Identity
+      summary: Reads the bridge token keys for a given read key.
+      description: Returns 200 with the keys when available, 202 when they are not yet available, or 404 when not found.
+      parameters:
+      - name: readKey
+        in: query
+        description: The read key to read the bridge token keys for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadBridgeTokenEndpoint_KeysOutput'
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadBridgeTokenEndpoint_NotAvailableOutput'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: string
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /identity/google-one-tap:
+    post:
+      tags:
+      - Identity
+      summary: Signs in a user using a token received from Google One Tap.
+      description: Redirects to the register confirmation page when the account requires email confirmation.
+      requestBody:
+        description: The body of the request containing the id token.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GoogleOneTapLoginEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GoogleOneTapLoginEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /identity/referrer:
+    post:
+      tags:
+      - Identity
+      summary: Stores the referrer in a cookie for later use during sign-up.
+      parameters:
+      - name: referrer
+        in: query
+        description: The referrer value to store.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    ReadBridgeTokenEndpoint_NotAvailableOutput:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message indicating that the keys are not yet available.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateBridgeTokenEndpoint_Output:
+      required:
+      - readKey
+      - writeKey
+      type: object
+      properties:
+        readKey:
+          type: string
+          description: The read key used to retrieve the authentication result.
+        writeKey:
+          type: string
+          description: The write key used to store the authentication result.
+    GoogleOneTapLoginEndpoint_Output:
+      required:
+      - requiresEmailConfirmation
+      type: object
+      properties:
+        requiresEmailConfirmation:
+          type: boolean
+          description: Whether the account still requires email confirmation.
+        email:
+          type: string
+          description: The email of the signed-in user, if available.
+          nullable: true
+    GoogleOneTapLoginEndpoint_Input:
+      required:
+      - idToken
+      type: object
+      properties:
+        idToken:
+          type: string
+          description: The id token received from the Google One Tap login.
+    ReadBridgeTokenEndpoint_KeysOutput:
+      required:
+      - accessToken
+      - expiresIn
+      - refreshToken
+      - idToken
+      - tokenType
+      - scope
+      type: object
+      properties:
+        accessToken:
+          type: string
+          description: The issued access token.
+          nullable: true
+        expiresIn:
+          type: integer
+          description: The lifetime of the access token, in seconds.
+          format: int32
+          nullable: true
+        refreshToken:
+          type: string
+          description: The refresh token used to obtain new access tokens.
+          nullable: true
+        idToken:
+          type: string
+          description: The OpenID Connect ID token.
+          nullable: true
+        tokenType:
+          type: string
+          description: The type of the issued token.
+          nullable: true
+        scope:
+          type: string
+          description: The scopes granted to the issued token.
+          nullable: true
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

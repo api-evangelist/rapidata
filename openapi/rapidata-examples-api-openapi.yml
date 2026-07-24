@@ -1,0 +1,1227 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Examples API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Examples
+  x-displayName: Examples
+paths:
+  /audience/{audienceId}/example:
+    post:
+      tags:
+      - Examples
+      summary: Adds a new example to an audience.
+      parameters:
+      - name: audienceId
+        in: path
+        description: The unique identifier of the audience.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The example data to add.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddExampleToAudienceEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddExampleToAudienceEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /audience/example/{exampleId}:
+    delete:
+      tags:
+      - Examples
+      summary: Deletes the specified audience example.
+      parameters:
+      - name: exampleId
+        in: path
+        description: The unique identifier of the example to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteAudienceExampleEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /audience/{audienceId}/examples:
+    get:
+      tags:
+      - Examples
+      summary: Queries all examples for the specified audience.
+      parameters:
+      - name: audienceId
+        in: path
+        description: The unique identifier of the audience.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - sort_index
+            - -sort_index
+            type: string
+        x-parameter-group: sort
+      - name: visibility
+        in: query
+        description: Filter by visibility.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: is_common_sense
+        in: query
+        description: Filter by is_common_sense.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryExamplesForAudienceEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /audience/{audienceId}/example/{exampleId}:
+    patch:
+      tags:
+      - Examples
+      summary: Updates an example's properties within an audience.
+      parameters:
+      - name: audienceId
+        in: path
+        description: The unique identifier of the audience.
+        required: true
+        schema:
+          type: string
+      - name: exampleId
+        in: path
+        description: The unique identifier of the example to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The example properties to update.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAudienceExampleEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    IExampleTruthLineExampleTruth:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineExampleTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleBoxShape'
+          nullable: true
+        requiredPrecision:
+          type: number
+          format: double
+          nullable: true
+        requiredCompleteness:
+          type: number
+          format: double
+          nullable: true
+    IExamplePayloadTranscriptionExamplePayload:
+      required:
+      - title
+      - transcription
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionExamplePayload
+          type: string
+        title:
+          type: string
+        transcription:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleTranscriptionWord'
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    IExamplePayloadScrubExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubExamplePayload
+          type: string
+        target:
+          type: string
+    IExamplePayloadLocateExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateExamplePayload
+          type: string
+        target:
+          type: string
+    IExamplePayloadClassifyExamplePayload:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyExamplePayload
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleCategory'
+        title:
+          type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IExampleTruthScrubExampleTruth:
+      required:
+      - validRanges
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubExampleTruth
+          type: string
+        validRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleScrubRange'
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type: string
+          nullable: true
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IExampleTruth:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IExampleTruthClassifyExampleTruth'
+      - $ref: '#/components/schemas/IExampleTruthCompareExampleTruth'
+      - $ref: '#/components/schemas/IExampleTruthLineExampleTruth'
+      - $ref: '#/components/schemas/IExampleTruthLocateExampleTruth'
+      - $ref: '#/components/schemas/IExampleTruthScrubExampleTruth'
+      - $ref: '#/components/schemas/IExampleTruthTranscriptionExampleTruth'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyExampleTruth: '#/components/schemas/IExampleTruthClassifyExampleTruth'
+          CompareExampleTruth: '#/components/schemas/IExampleTruthCompareExampleTruth'
+          LineExampleTruth: '#/components/schemas/IExampleTruthLineExampleTruth'
+          LocateExampleTruth: '#/components/schemas/IExampleTruthLocateExampleTruth'
+          ScrubExampleTruth: '#/components/schemas/IExampleTruthScrubExampleTruth'
+          TranscriptionExampleTruth: '#/components/schemas/IExampleTruthTranscriptionExampleTruth'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IExampleTruthClassifyExampleTruth:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyExampleTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    ExampleBoxShape:
+      type: object
+      properties:
+        xMin:
+          type: number
+          format: double
+          nullable: true
+        yMin:
+          type: number
+          format: double
+          nullable: true
+        xMax:
+          type: number
+          format: double
+          nullable: true
+        yMax:
+          type: number
+          format: double
+          nullable: true
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    UpdateAudienceExampleEndpoint_Input:
+      type: object
+      properties:
+        truth:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The truth for the example.
+          nullable: true
+        explanation:
+          type: string
+          description: The optional explanation that will be shown to the user when answering wrong.
+          nullable: true
+        context:
+          type: string
+          description: An optional text context that will be shown to the user.
+          nullable: true
+        contextAsset:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that will be used as context to show to the user.
+          nullable: true
+        randomCorrectProbability:
+          type: number
+          description: The probability that if the user answers at random that they'll be correct.
+          format: double
+          nullable: true
+        isCommonSense:
+          type: boolean
+          description: Whether this example should be treated as commonsense validation.
+          nullable: true
+        sortIndex:
+          type: integer
+          description: The sort index that controls the serving order of this example.
+          format: int32
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins."
+      description: Input model for updating an audience example.
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    IExamplePayloadCompareExamplePayload:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareExamplePayload
+          type: string
+        criteria:
+          type: string
+    AddExampleToAudienceEndpoint_Input:
+      required:
+      - asset
+      - payload
+      - randomCorrectProbability
+      type: object
+      properties:
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset to use for the example.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IExamplePayload'
+          description: The payload to use for the example.
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The ground truth for the example.
+        randomCorrectProbability:
+          type: number
+          description: The probability for an answer to be correct when randomly guessing.
+          format: double
+        explanation:
+          type: string
+          description: An explanation for the users if they answer the example incorrectly.
+          nullable: true
+        context:
+          type: string
+          description: An optional textual context that provides additional information to the user.
+          nullable: true
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that provides additional context to the user.
+        sortIndex:
+          type: integer
+          description: "The sort index that controls the serving order of this example within the audience.\n When null, the next sort index is automatically calculated."
+          format: int32
+          nullable: true
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+            nullable: true
+          description: The feature flags to enable for the example.
+        isCommonSense:
+          type: boolean
+          description: "Whether this example should be treated as commonsense validation.\n When true, incorrect answers are not accepted and the example affects global score.\n When null, AI auto-detection will determine if the example is common sense."
+          nullable: true
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins.\n Defaults to Private."
+      description: Input model for adding an example to an audience.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    DeleteAudienceExampleEndpoint_Output:
+      type: object
+      properties:
+        recalculationId:
+          type: string
+          description: "The id of the audience state recalculation dispatched as a result of this deletion.\n Null when the deletion cannot transition any user's state (e.g. the audience still has\n more examples than MaxDistillingResponses + 1 after the delete)."
+          nullable: true
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    QueryExamplesForAudienceEndpoint_Output:
+      required:
+      - id
+      - asset
+      - payload
+      - correctCount
+      - incorrectCount
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the example.
+        rapidId:
+          type: string
+          description: The ID of the rapid associated with this example.
+          nullable: true
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with this example.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IExamplePayload'
+          description: The payload of the example.
+        correctCount:
+          type: integer
+          description: The number of correct responses.
+          format: int32
+        incorrectCount:
+          type: integer
+          description: The number of incorrect responses.
+          format: int32
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The truth value of the example.
+        context:
+          type: string
+          description: The context text for the example.
+          nullable: true
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The context asset for the example.
+        explanation:
+          type: string
+          description: The explanation for the example.
+          nullable: true
+        randomCorrectProbability:
+          type: number
+          description: The probability of a random correct answer.
+          format: double
+        isCommonSense:
+          type: boolean
+          description: Whether this example is common sense.
+          nullable: true
+        sortIndex:
+          type: integer
+          description: The sort index that controls serving order.
+          format: int32
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: The visibility of this example. Public examples are visible to all customers.
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type: string
+          nullable: true
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    AddExampleToAudienceEndpoint_Output:
+      type: object
+      properties:
+        recalculationId:
+          type: string
+          description: "The id of the audience state recalculation dispatched as a result of adding this example.\n Null when the example addition cannot transition any user's state (e.g. the audience\n already has more examples than MaxDistillingResponses + 1)."
+          nullable: true
+    QueryExamplesForAudienceEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryExamplesForAudienceEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IExampleTruthTranscriptionExampleTruth:
+      required:
+      - correctWords
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionExampleTruth
+          type: string
+        correctWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleTranscriptionWord'
+        strictGrading:
+          type: boolean
+          nullable: true
+        requiredPrecision:
+          type: number
+          format: double
+          nullable: true
+        requiredCompleteness:
+          type: number
+          format: double
+          nullable: true
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IExampleTruthCompareExampleTruth:
+      required:
+      - winnerId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareExampleTruth
+          type: string
+        winnerId:
+          type: string
+    IExampleTruthLocateExampleTruth:
+      required:
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateExampleTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleBoxShape'
+        requiredPrecision:
+          type: number
+          format: double
+          nullable: true
+        requiredCompleteness:
+          type: number
+          format: double
+          nullable: true
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    ExampleVisibility:
+      enum:
+      - Private
+      - Public
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    ExampleCategory:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    ExampleTranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IExamplePayload:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadCompareExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadLineExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadLocateExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadScrubExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyExamplePayload: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
+          CompareExamplePayload: '#/components/schemas/IExamplePayloadCompareExamplePayload'
+          LineExamplePayload: '#/components/schemas/IExamplePayloadLineExamplePayload'
+          LocateExamplePayload: '#/components/schemas/IExamplePayloadLocateExamplePayload'
+          ScrubExamplePayload: '#/components/schemas/IExamplePayloadScrubExamplePayload'
+          TranscriptionExamplePayload: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IExamplePayloadLineExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineExamplePayload
+          type: string
+        target:
+          type: string
+    ExampleScrubRange:
+      required:
+      - start
+      - end
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

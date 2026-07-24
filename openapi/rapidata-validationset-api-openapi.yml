@@ -1,0 +1,2396 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset ValidationSet API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: ValidationSet
+  x-displayName: ValidationSet
+paths:
+  /validation-set/{validationSetId}/rapid:
+    post:
+      tags:
+      - ValidationSet
+      summary: Adds a new validation rapid to a validation set using a JSON body.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The validation set to add a rapid to.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The validation rapid data including asset, payload, and metadata.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddValidationRapidEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set:
+    post:
+      tags:
+      - ValidationSet
+      summary: Creates a new empty validation set.
+      requestBody:
+        description: The body describing the validation set to create.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateValidationSetEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateValidationSetEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}:
+    delete:
+      tags:
+      - ValidationSet
+      summary: Deletes a validation set by id.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - ValidationSet
+      summary: Gets a validation set by id.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to get.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetValidationSetByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    patch:
+      tags:
+      - ValidationSet
+      summary: Updates different characteristics of a validation set using patch semantics.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The patch payload describing which fields should change.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateValidationSetEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/export:
+    get:
+      tags:
+      - ValidationSet
+      summary: Exports all rapids of a validation set to a file.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to export.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-sets/available:
+    get:
+      tags:
+      - ValidationSet
+      summary: Gets the available validation sets for the current user.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetAvailableValidationSetsEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-sets/compatible:
+    get:
+      tags:
+      - ValidationSet
+      summary: Gets all validation sets available to the user that a rapid with the provided parameters can be added to.
+      description: "Matching is strict: a validation set is only returned when its asset type, modality, and prompt type\n equal the provided parameters exactly — the same constraint enforced when actually adding a rapid.\n This differs from /validation-set/recommended, which uses loose overlap matching and may return\n sets that then reject the rapid. Returns an empty array when no compatible set exists."
+      parameters:
+      - name: assetType
+        in: query
+        description: "The asset type that the validation set must contain.\n An asset type can be an image, video, audio, text, or any combination of these."
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: modality
+        in: query
+        description: "The rapid modality that the validation set must contain.\n The modality is the type of rapid such as classify, compare, locate, etc."
+        schema:
+          $ref: '#/components/schemas/RapidModality'
+      - name: promptType
+        in: query
+        description: "The prompt type that the validation set must contain.\n A prompt type is the additional information that is presented to the user when solving a rapid.\n For example, a prompt type can be either text or an asset if the context is an image or video."
+        schema:
+          $ref: '#/components/schemas/PromptType'
+      - name: instruction
+        in: query
+        description: "An instruction used to find validation sets that have the same instruction.\n An instruction is a text that is presented to the user when solving a rapid that explains how to solve the rapid."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetCompatibleValidationSetsEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/recommended:
+    get:
+      tags:
+      - ValidationSet
+      summary: Gets a validation set that is available to the user and best matches the provided parameters.
+      parameters:
+      - name: assetType
+        in: query
+        description: "The types of assets that the validation set should contain.\n An asset type can be an image, video, audio, text, or any combination of these.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified asset types."
+        schema:
+          $ref: '#/components/schemas/AssetType'
+      - name: modality
+        in: query
+        description: "The rapid modalities that the validation set should contain.\n The modality is the type of rapid such as classify, compare, locate, etc.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified modalities."
+        schema:
+          $ref: '#/components/schemas/RapidModality'
+      - name: promptType
+        in: query
+        description: "The prompt types that the validation set should contain.\n A prompt type is the additional information that is presented to the user when solving a rapid.\n For example, a prompt type can be either text or an asset if the context is an image or video.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified prompt types."
+        schema:
+          $ref: '#/components/schemas/PromptType'
+      - name: instruction
+        in: query
+        description: "An instruction used to find validation sets that have similar instructions.\n An instruction is a text that is presented to the user when solving a rapid that explains how to solve the rapid."
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetRecommendedValidationSetEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/rapids:
+    get:
+      tags:
+      - ValidationSet
+      summary: Queries the validation rapids for a specific validation set.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The validation set to query.
+        required: true
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - id
+            - -id
+            - correct_validation_count
+            - -correct_validation_count
+            - invalid_validation_count
+            - -invalid_validation_count
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: type
+        in: query
+        description: Filter by type.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: state
+        in: query
+        description: Filter by state.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetValidationRapidsEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-sets:
+    get:
+      tags:
+      - ValidationSet
+      summary: Queries available validation sets based on the provided filter, paging and sorting criteria.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - name
+            - -name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: id
+        in: query
+        description: Filter by id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: name
+        in: query
+        description: Filter by name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: asset_type
+        in: query
+        description: Filter by asset_type.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: modality
+        in: query
+        description: Filter by modality.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: prompt_type
+        in: query
+        description: Filter by prompt_type.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: is_public
+        in: query
+        description: Filter by is_public.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_id
+        in: query
+        description: Filter by owner_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: owner_mail
+        in: query
+        description: Filter by owner_mail.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryValidationSetsEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/update-labeling-hints:
+    post:
+      tags:
+      - ValidationSet
+      summary: Refreshes the labeling hints for a validation set.
+      description: This endpoint is a no-op. Labeling hints are now managed automatically.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to update the labeling hints for.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/dimensions:
+    patch:
+      tags:
+      - ValidationSet
+      summary: Updates the dimensions of all rapids within a validation set.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to update the dimensions for.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The body describing the new dimensions.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateValidationSetDimensionsEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/shouldAlert:
+    patch:
+      tags:
+      - ValidationSet
+      summary: Updates the shouldAlert field on all rapids within a validation set.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to update.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The body describing the new shouldAlert value.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateValidationSetShouldAlertEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /validation-set/{validationSetId}/visibility:
+    patch:
+      tags:
+      - ValidationSet
+      summary: Updates the visibility of a validation set.
+      description: Public validation sets are used to automatically add a validation set to an order if no validation set is specified.
+      parameters:
+      - name: validationSetId
+        in: path
+        description: The id of the validation set to update the visibility for.
+        required: true
+        schema:
+          type: string
+      - name: isPublic
+        in: query
+        description: Whether the validation set should be public or private.
+        required: true
+        schema:
+          type: boolean
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel:
+      required:
+      - id
+      - name
+      - ownerId
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+          format: uuid
+    LocateBoxTruthModel_Box:
+      type: object
+      properties:
+        xMin:
+          type: number
+          format: double
+          nullable: true
+        yMin:
+          type: number
+          format: double
+          nullable: true
+        xMax:
+          type: number
+          format: double
+          nullable: true
+        yMax:
+          type: number
+          format: double
+          nullable: true
+    TranscriptionPayloadModel_TranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IValidationTruthModelEmptyValidationTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - EmptyValidationTruth
+          type: string
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type: string
+          nullable: true
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    ClassifyPayloadModel_Category:
+      required:
+      - label
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+          nullable: true
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IValidationTruthModelLocateBoxTruthModel:
+      required:
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBoxTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocateBoxTruthModel_Box'
+        requiredPrecision:
+          type: number
+          format: double
+        requiredCompleteness:
+          type: number
+          format: double
+    GetValidationRapidsEndpoint_Output:
+      required:
+      - id
+      - type
+      - asset
+      - payload
+      - correctValidationCount
+      - invalidValidationCount
+      - state
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the rapid.
+        type:
+          type: string
+          description: The type of the rapid.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with the rapid.
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IValidationTruthModel'
+          description: The truth of the rapid.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IRapidPayloadModel'
+          description: The payload of the rapid.
+        context:
+          type: string
+          description: The optional textual context of the rapid.
+          nullable: true
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The optional asset shown as context to the user.
+        correctValidationCount:
+          type: integer
+          description: The number of correct validations received.
+          format: int32
+        invalidValidationCount:
+          type: integer
+          description: The number of invalid validations received.
+          format: int32
+        explanation:
+          type: string
+          description: The explanation shown when users answer incorrectly.
+          nullable: true
+        randomCorrectProbability:
+          type: number
+          description: The probability of a random correct answer.
+          format: double
+          nullable: true
+        state:
+          allOf:
+          - $ref: '#/components/schemas/RapidStateModel'
+          description: The state of the rapid.
+    IRapidPayloadModelBoundingBoxPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxPayload
+          type: string
+        target:
+          type: string
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    PromptType:
+      type: array
+      items:
+        enum:
+        - None
+        - Text
+        - Asset
+        type: string
+    IValidationTruthModelBoundingBoxTruthModel:
+      required:
+      - xMin
+      - yMin
+      - xMax
+      - yMax
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxTruth
+          type: string
+        xMin:
+          type: number
+          format: double
+        yMin:
+          type: number
+          format: double
+        xMax:
+          type: number
+          format: double
+        yMax:
+          type: number
+          format: double
+    GetCompatibleValidationSetsEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel'
+          description: The validation sets that the rapid can be added to.
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IRapidPayloadModelLocatePayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocatePayload
+          type: string
+        target:
+          type: string
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    GetRecommendedValidationSetEndpoint_ValidationSetOutputModel:
+      required:
+      - id
+      - name
+      - assetType
+      - modality
+      - promptType
+      - dimensions
+      - isPublic
+      - ownerId
+      - ownerMail
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        modality:
+          $ref: '#/components/schemas/RapidModality'
+        promptType:
+          $ref: '#/components/schemas/PromptType'
+        dimensions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isPublic:
+          type: boolean
+        ownerId:
+          type: string
+          format: uuid
+        ownerMail:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    RapidStateModel:
+      enum:
+      - Labeling
+      - Paused
+      - Incomplete
+      - Flagged
+      - Done
+      - None
+      - Rejected
+    IRapidPayloadModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BoundingBoxPayload: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+          ClassifyPayload: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+          ComparePayload: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+          FreeTextPayload: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+          LinePayload: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+          LocatePayload: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+          NamedEntityPayload: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+          PolygonPayload: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+          ScrubPayload: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+          TranscriptionPayload: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    GetAvailableValidationSetsEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel'
+          description: The validation sets available to the current user.
+    ScrubTruthModel_ScrubRange:
+      required:
+      - start
+      - end
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+    UpdateValidationSetEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the validation set.
+        dimensions:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The new dimensions of the validation set.
+        shouldAlert:
+          type: boolean
+          description: Whether users should be alerted if they answer incorrectly.
+        isPublic:
+          type: boolean
+          description: Whether the validation set should be public.
+        isFlagOverruled:
+          type: boolean
+          description: Whether flags on validation rapids should be overruled.
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IRapidPayloadModelPolygonPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonPayload
+          type: string
+        target:
+          type: string
+    CreateValidationSetEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the validation set.
+    IRapidPayloadModelClassifyPayloadModel:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyPayload
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
+        title:
+          type: string
+    IValidationTruthModelTranscriptionTruthModel:
+      required:
+      - correctWords
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionTruth
+          type: string
+        correctWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionTruthModel_TranscriptionWord'
+        strictGrading:
+          type: boolean
+          nullable: true
+        requiredPrecision:
+          type: number
+          format: double
+          nullable: true
+        requiredCompleteness:
+          type: number
+          format: double
+          nullable: true
+    IRapidPayloadModelFreeTextPayloadModel:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextPayload
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type: boolean
+        validationSystemPrompt:
+          type: string
+          nullable: true
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IValidationTruthModelNamedEntityTruthModel:
+      required:
+      - classifications
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityTruth
+          type: string
+        classifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedEntityTruthModel_NamedClassification'
+    IValidationTruthModelLineTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineTruth
+          type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IRapidPayloadModelNamedEntityPayloadModel:
+      required:
+      - target
+      - classes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityPayload
+          type: string
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type: string
+          nullable: true
+    IValidationTruthModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelCompareTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelLineTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelScrubTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelSkipTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AttachCategoryTruth: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
+          BoundingBoxTruth: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
+          ClassifyTruth: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
+          CompareTruth: '#/components/schemas/IValidationTruthModelCompareTruthModel'
+          EmptyValidationTruth: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
+          LineTruth: '#/components/schemas/IValidationTruthModelLineTruthModel'
+          LocateBoxTruth: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
+          MultiCompareTruth: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
+          NamedEntityTruth: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
+          PolygonTruth: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
+          ScrubTruth: '#/components/schemas/IValidationTruthModelScrubTruthModel'
+          SkipTruth: '#/components/schemas/IValidationTruthModelSkipTruthModel'
+          TranscriptionTruth: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
+    IValidationTruthModelClassifyTruthModel:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    CreateValidationSetEndpoint_Output:
+      required:
+      - validationSetId
+      type: object
+      properties:
+        validationSetId:
+          type: string
+          description: The id of the created validation set.
+    IValidationTruthModelCompareTruthModel:
+      required:
+      - winnerId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareTruth
+          type: string
+        winnerId:
+          type: string
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    AssetType:
+      type: array
+      items:
+        enum:
+        - None
+        - Image
+        - Video
+        - Audio
+        - Text
+        type: string
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    TranscriptionTruthModel_TranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    GetValidationRapidsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetValidationRapidsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    IValidationTruthModelAttachCategoryTruthModel:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - AttachCategoryTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IRapidPayloadModelLinePayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LinePayload
+          type: string
+        target:
+          type: string
+    UpdateValidationSetShouldAlertEndpoint_Input:
+      required:
+      - shouldAlert
+      type: object
+      properties:
+        shouldAlert:
+          type: boolean
+          description: A flag indicating whether users should be alerted if they answer incorrectly.
+    IRapidPayloadModelComparePayloadModel:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - ComparePayload
+          type: string
+        criteria:
+          type: string
+    NamedEntityTruthModel_NamedClassification:
+      required:
+      - start
+      - end
+      - classification
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+        classification:
+          type: string
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    RapidModality:
+      type: array
+      items:
+        enum:
+        - None
+        - BoundingBox
+        - Classify
+        - Compare
+        - FreeText
+        - Line
+        - Locate
+        - NamedEntity
+        - Polygon
+        - Scrub
+        - Transcription
+        type: string
+    GetRecommendedValidationSetEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetRecommendedValidationSetEndpoint_ValidationSetOutputModel'
+          description: The validation sets that best match the provided parameters.
+    IValidationTruthModelSkipTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - SkipTruth
+          type: string
+    GetValidationSetByIdEndpoint_Output:
+      required:
+      - id
+      - name
+      - isPublic
+      - ownerMail
+      - ownerId
+      - dimensions
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the validation set.
+        name:
+          type: string
+          description: The name of the validation set.
+        isPublic:
+          type: boolean
+          description: Whether the validation set is public.
+        ownerMail:
+          type: string
+          description: The mail of the owning customer.
+        ownerId:
+          type: string
+          description: The id of the owning customer.
+          format: uuid
+        dimensions:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The dimensions shared across all rapids in the validation set.
+        createdAt:
+          type: string
+          description: The time at which the validation set was created.
+          format: date-time
+    QueryValidationSetsEndpoint_Output:
+      required:
+      - id
+      - name
+      - assetType
+      - modality
+      - promptType
+      - dimensions
+      - isPublic
+      - ownerId
+      - ownerMail
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the validation set.
+        name:
+          type: string
+          description: The name of the validation set.
+        assetType:
+          allOf:
+          - $ref: '#/components/schemas/AssetType'
+          description: The asset types contained in the validation set.
+        modality:
+          allOf:
+          - $ref: '#/components/schemas/RapidModality'
+          description: The rapid modalities contained in the validation set.
+        promptType:
+          allOf:
+          - $ref: '#/components/schemas/PromptType'
+          description: The prompt types contained in the validation set.
+        dimensions:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: The dimensions shared across all rapids in the validation set.
+        isPublic:
+          type: boolean
+          description: Whether the validation set is public.
+        ownerId:
+          type: string
+          description: The id of the owning customer.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the owning customer.
+        createdAt:
+          type: string
+          description: The time at which the validation set was created.
+          format: date-time
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IRapidPayloadModelScrubPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubPayload
+          type: string
+        target:
+          type: string
+    IValidationTruthModelMultiCompareTruthModel:
+      required:
+      - correctCombinations
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiCompareTruth
+          type: string
+        correctCombinations:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    AddValidationRapidEndpoint_Input:
+      required:
+      - asset
+      - payload
+      type: object
+      properties:
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset to use for the rapid.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IRapidPayloadModel'
+          description: The payload to use for the rapid.
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IValidationTruthModel'
+          description: The ground truth for the rapid.
+        randomCorrectProbability:
+          type: number
+          description: The probability for an answer to be correct when randomly guessing.
+          format: double
+          nullable: true
+        explanation:
+          type: string
+          description: An explanation shown to the users if they answer the rapid incorrectly.
+          nullable: true
+        context:
+          type: string
+          description: An optional textual context that provides additional information to the user about the rapid.
+          nullable: true
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that provides additional context to the user about the rapid.
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+            nullable: true
+          description: The feature flags to enable for the rapid.
+    IValidationTruthModelScrubTruthModel:
+      required:
+      - validRanges
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubTruth
+          type: string
+        validRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScrubTruthModel_ScrubRange'
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    IRapidPayloadModelTranscriptionPayloadModel:
+      required:
+      - title
+      - transcription
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionPayload
+          type: string
+        title:
+          type: string
+        transcription:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionPayloadModel_TranscriptionWord'
+    GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel:
+      required:
+      - id
+      - name
+      - assetType
+      - modality
+      - promptType
+      - dimensions
+      - isPublic
+      - ownerId
+      - ownerMail
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        modality:
+          $ref: '#/components/schemas/RapidModality'
+        promptType:
+          $ref: '#/components/schemas/PromptType'
+        dimensions:
+          type: array
+          items:
+            type: string
+          nullable: true
+        isPublic:
+          type: boolean
+        ownerId:
+          type: string
+          format: uuid
+        ownerMail:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+          nullable: true
+        identifier:
+          type: string
+          nullable: true
+    IValidationTruthModelPolygonTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonTruth
+          type: string
+    UpdateValidationSetDimensionsEndpoint_Input:
+      required:
+      - dimensions
+      type: object
+      properties:
+        dimensions:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The dimensions to set on all rapids within the validation set.
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    QueryValidationSetsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryValidationSetsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

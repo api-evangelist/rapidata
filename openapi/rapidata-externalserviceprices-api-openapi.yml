@@ -1,0 +1,203 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset ExternalServicePrices API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: ExternalServicePrices
+  x-displayName: ExternalServicePrices
+paths:
+  /billing/external-service-prices:
+    post:
+      tags:
+      - ExternalServicePrices
+      summary: Creates a rate-card price for an external service.
+      requestBody:
+        description: The external-service price data.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateExternalServicePriceEndpoint_Input'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    ExternalServiceKind:
+      enum:
+      - ContextShortening
+      - ImageGeneration
+    CreateExternalServicePriceEndpoint_Input:
+      required:
+      - serviceKind
+      - pricingKey
+      - unitPrice
+      type: object
+      properties:
+        serviceKind:
+          allOf:
+          - $ref: '#/components/schemas/ExternalServiceKind'
+          description: The service this price applies to.
+        pricingKey:
+          type: string
+          description: Hierarchical variant key (e.g. reve, replicate/flux-1.1-pro).
+        customerId:
+          type: string
+          description: Null for the global default; set to scope the price to one customer.
+          format: uuid
+          nullable: true
+        unitPrice:
+          type: number
+          description: Price per unit (per image / per shortening).
+          format: double
+        priority:
+          type: integer
+          description: Priority; defaults to the configured global/customer default if unset.
+          format: int32
+          nullable: true
+        validFrom:
+          type: string
+          description: The start of the validity window.
+          format: date-time
+          nullable: true
+        validTo:
+          type: string
+          description: The end of the validity window.
+          format: date-time
+          nullable: true
+      description: The external-service price input data.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

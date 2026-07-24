@@ -1,0 +1,1120 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Pipeline API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Pipeline
+  x-displayName: Pipeline
+paths:
+  /pipeline/{pipelineId}:
+    get:
+      tags:
+      - Pipeline
+      summary: Gets a pipeline by its id.
+      parameters:
+      - name: pipelineId
+        in: path
+        description: The id of the pipeline to get.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetPipelineByIdEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /pipeline/preliminary-download/{preliminaryDownloadId}:
+    get:
+      tags:
+      - Pipeline
+      summary: Streams the preliminary download file when ready.
+      description: Returns 202 while the download is still processing.
+      parameters:
+      - name: preliminaryDownloadId
+        in: path
+        description: The id of the preliminary download to get.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+        '202':
+          description: Accepted
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /pipeline/{pipelineId}/preliminary-download:
+    post:
+      tags:
+      - Pipeline
+      summary: Initiates a preliminary download of the pipeline.
+      parameters:
+      - name: pipelineId
+        in: path
+        description: The id of the pipeline to initiate the download for.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: Whether to email the caller when the download is ready.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StartPreliminaryDownloadEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StartPreliminaryDownloadEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    StartPreliminaryDownloadEndpoint_Input:
+      type: object
+      properties:
+        sendEmail:
+          type: boolean
+          description: Whether to email the user when the download is ready.
+    IWorkflowConfigGroupedRankingWorkflowConfig:
+      required:
+      - criteria
+      - referee
+      - targetCountryCodes
+      - maxParallelism
+      - pairMakerConfig
+      - _t
+      properties:
+        _t:
+          enum:
+          - GroupedRankingWorkflowConfig
+          type: string
+        criteria:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        targetCountryCodes:
+          type: array
+          items:
+            type: string
+        maxParallelism:
+          type: integer
+          format: int32
+        rankingConfig:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IRankingConfig'
+          nullable: true
+        pairMakerConfig:
+          $ref: '#/components/schemas/IPairMakerConfig'
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+          nullable: true
+    IRankingConfigEloRankingConfig:
+      required:
+      - startingElo
+      - kFactor
+      - scalingFactor
+      - _t
+      properties:
+        _t:
+          enum:
+          - EloRankingConfig
+          type: string
+        startingElo:
+          type: integer
+          format: int32
+        kFactor:
+          type: integer
+          format: int32
+        scalingFactor:
+          type: integer
+          format: int32
+    IMetadataImageDimensionMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IArtifactModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IArtifactModelCampaignArtifactModel'
+      - $ref: '#/components/schemas/IArtifactModelDatasetArtifactModel'
+      - $ref: '#/components/schemas/IArtifactModelFileArtifactModel'
+      - $ref: '#/components/schemas/IArtifactModelWorkflowArtifactModel'
+      - $ref: '#/components/schemas/IArtifactModelWorkflowConfigArtifactModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          CampaignArtifactModel: '#/components/schemas/IArtifactModelCampaignArtifactModel'
+          DatasetArtifactModel: '#/components/schemas/IArtifactModelDatasetArtifactModel'
+          FileArtifactModel: '#/components/schemas/IArtifactModelFileArtifactModel'
+          WorkflowArtifactModel: '#/components/schemas/IArtifactModelWorkflowArtifactModel'
+          WorkflowConfigArtifactModel: '#/components/schemas/IArtifactModelWorkflowConfigArtifactModel'
+    StartPreliminaryDownloadEndpoint_Output:
+      required:
+      - downloadId
+      type: object
+      properties:
+        downloadId:
+          type: string
+          description: The id of the preliminary download that was initiated.
+    IArtifactModelFileArtifactModel:
+      required:
+      - fileName
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileArtifactModel
+          type: string
+        fileName:
+          type: string
+        identifier:
+          type: string
+    IArtifactModelWorkflowArtifactModel:
+      required:
+      - workflowId
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - WorkflowArtifactModel
+          type: string
+        workflowId:
+          type: string
+        identifier:
+          type: string
+    IArtifactModelWorkflowConfigArtifactModel:
+      required:
+      - workflowConfig
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - WorkflowConfigArtifactModel
+          type: string
+        workflowConfig:
+          $ref: '#/components/schemas/IWorkflowConfig'
+        identifier:
+          type: string
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    GetPipelineByIdEndpoint_Output:
+      required:
+      - artifacts
+      - featureFlags
+      type: object
+      properties:
+        artifacts:
+          allOf:
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/IArtifactModel'
+          description: The artifacts attached to the pipeline, keyed by their role.
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags enabled for the pipeline.
+    IRapidBlueprint:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyBlueprint: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+          BoundingBoxBlueprint: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+          CompareBlueprint: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+          FreeTextBlueprint: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+          LineBlueprint: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+          LocateBlueprint: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+          NamedEntityBlueprint: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+          PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+          ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+          TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IRapidBlueprintAttachCategoryRapidBlueprint:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyBlueprint
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
+        possibleCategories:
+          type: array
+          items:
+            type: string
+          nullable: true
+        title:
+          type: string
+    IMetadataDurationMetadata:
+      required:
+      - duration
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - DurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IMetadataFileTypeMetadata:
+      required:
+      - fileType
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IArtifactModelCampaignArtifactModel:
+      required:
+      - campaignId
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - CampaignArtifactModel
+          type: string
+        campaignId:
+          type: string
+        identifier:
+          type: string
+    IPairMakerConfigFullPermutationPairMakerConfig:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - FullPermutationPairMakerConfig
+          type: string
+    AttachCategoryRapidBlueprint_Category:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    IAssetTextAsset:
+      required:
+      - text
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IRapidBlueprintPolygonRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonBlueprint
+          type: string
+        target:
+          type: string
+    IRankingConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
+      - $ref: '#/components/schemas/IRankingConfigEloRankingConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
+          EloRankingConfig: '#/components/schemas/IRankingConfigEloRankingConfig'
+    IRefereeConfigQuorumRefereeConfig:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumRefereeConfig
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
+    IMetadataStreamsMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasAudio:
+          type: boolean
+        hasVideo:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IRapidBlueprintBoundingBoxRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxBlueprint
+          type: string
+        target:
+          type: string
+    IRapidBlueprintFreeTextRapidBlueprint:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextBlueprint
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type: boolean
+          nullable: true
+        validationSystemPrompt:
+          type: string
+          nullable: true
+    IRapidBlueprintNamedEntityRapidBlueprint:
+      required:
+      - target
+      - classes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityBlueprint
+          type: string
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+    IWorkflowConfigEvaluationWorkflowConfig:
+      required:
+      - validationSetId
+      - referee
+      - shouldAcceptIncorrect
+      - _t
+      properties:
+        _t:
+          enum:
+          - EvaluationWorkflowConfig
+          type: string
+        validationSetId:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        shouldAcceptIncorrect:
+          type: boolean
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+          nullable: true
+    IAssetMultiAsset:
+      required:
+      - assets
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAsset'
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IRankingConfigBradleyTerryRankingConfig:
+      required:
+      - startingScore
+      - _t
+      properties:
+        _t:
+          enum:
+          - BradleyTerryRankingConfig
+          type: string
+        startingScore:
+          type: integer
+          format: int32
+    IArtifactModelDatasetArtifactModel:
+      required:
+      - datasetId
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - DatasetArtifactModel
+          type: string
+        datasetId:
+          type: string
+        identifier:
+          type: string
+    IRapidBlueprintCompareRapidBlueprint:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareBlueprint
+          type: string
+        criteria:
+          type: string
+        indexIdentifiers:
+          type: array
+          items:
+            type: string
+          nullable: true
+    IWorkflowConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          EvaluationWorkflowConfig: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
+          GroupedRankingWorkflowConfig: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
+          RankingWorkflowConfig: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
+          SimpleWorkflowConfig: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
+    IRefereeConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BudgetRefereeConfig: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
+          NaiveRefereeConfig: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
+          NeverEndingRefereeConfig: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
+          ProbabilisticAttachCategoryRefereeConfig: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
+          QuorumRefereeConfig: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
+    IAsset:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetFileAsset'
+      - $ref: '#/components/schemas/IAssetMultiAsset'
+      - $ref: '#/components/schemas/IAssetNullAsset'
+      - $ref: '#/components/schemas/IAssetTextAsset'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetFileAsset'
+          MultiAsset: '#/components/schemas/IAssetMultiAsset'
+          NullAsset: '#/components/schemas/IAssetNullAsset'
+          TextAsset: '#/components/schemas/IAssetTextAsset'
+    IRefereeConfigNaiveRefereeConfig:
+      required:
+      - responsesRequired
+      - _t
+      properties:
+        _t:
+          enum:
+          - NaiveRefereeConfig
+          type: string
+        responsesRequired:
+          type: integer
+          format: int32
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IWorkflowConfigRankingWorkflowConfig:
+      required:
+      - criteria
+      - referee
+      - pairMakerConfig
+      - _t
+      properties:
+        _t:
+          enum:
+          - RankingWorkflowConfig
+          type: string
+        criteria:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        context:
+          type: string
+          nullable: true
+        contextAsset:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IAsset'
+          nullable: true
+        rankingConfig:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/IRankingConfig'
+          nullable: true
+        pairMakerConfig:
+          $ref: '#/components/schemas/IPairMakerConfig'
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+          nullable: true
+    IMetadataClassificationMetadata:
+      required:
+      - classification
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IRapidBlueprintLocateRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBlueprint
+          type: string
+        target:
+          type: string
+    IPairMakerConfigOnlinePairMakerConfig:
+      required:
+      - randomMatchesRatio
+      - totalComparisonBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - OnlinePairMakerConfig
+          type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
+    IRefereeConfigProbabilisticAttachCategoryRefereeConfig:
+      required:
+      - threshold
+      - maxVotes
+      - _t
+      properties:
+        _t:
+          enum:
+          - ProbabilisticAttachCategoryRefereeConfig
+          type: string
+        threshold:
+          type: number
+          format: double
+        maxVotes:
+          type: integer
+          format: int32
+    IRefereeConfigNeverEndingRefereeConfig:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - NeverEndingRefereeConfig
+          type: string
+    IRapidBlueprintTranscriptionRapidBlueprint:
+      required:
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionBlueprint
+          type: string
+        title:
+          type: string
+    IMetadataCountMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IMetadataSourceUrlMetadata:
+      required:
+      - url
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadata
+          type: string
+        url:
+          type: string
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IMetadataOriginalFilenameMetadata:
+      required:
+      - originalFilename
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetFileAsset:
+      required:
+      - fileName
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IRapidBlueprintScrubRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubBlueprint
+          type: string
+        target:
+          type: string
+    IMetadataTextMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type: string
+          nullable: true
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetNullAsset:
+      required:
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IMetadata:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataClassificationMetadata'
+      - $ref: '#/components/schemas/IMetadataCountMetadata'
+      - $ref: '#/components/schemas/IMetadataDurationMetadata'
+      - $ref: '#/components/schemas/IMetadataFileTypeMetadata'
+      - $ref: '#/components/schemas/IMetadataImageDimensionMetadata'
+      - $ref: '#/components/schemas/IMetadataLocationMetadata'
+      - $ref: '#/components/schemas/IMetadataOriginalFilenameMetadata'
+      - $ref: '#/components/schemas/IMetadataSourceUrlMetadata'
+      - $ref: '#/components/schemas/IMetadataStreamsMetadata'
+      - $ref: '#/components/schemas/IMetadataTextMetadata'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataClassificationMetadata'
+          CountMetadata: '#/components/schemas/IMetadataCountMetadata'
+          DurationMetadata: '#/components/schemas/IMetadataDurationMetadata'
+          FileTypeMetadata: '#/components/schemas/IMetadataFileTypeMetadata'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataImageDimensionMetadata'
+          LocationMetadata: '#/components/schemas/IMetadataLocationMetadata'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataOriginalFilenameMetadata'
+          SourceUrlMetadata: '#/components/schemas/IMetadataSourceUrlMetadata'
+          StreamsMetadata: '#/components/schemas/IMetadataStreamsMetadata'
+          TextMetadata: '#/components/schemas/IMetadataTextMetadata'
+    IWorkflowConfigSimpleWorkflowConfig:
+      required:
+      - referee
+      - blueprint
+      - _t
+      properties:
+        _t:
+          enum:
+          - SimpleWorkflowConfig
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        blueprint:
+          $ref: '#/components/schemas/IRapidBlueprint'
+        batchSize:
+          type: integer
+          format: int32
+          nullable: true
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+          nullable: true
+    IPairMakerConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
+      - $ref: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMakerConfig: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
+          OnlinePairMakerConfig: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
+    IRefereeConfigBudgetRefereeConfig:
+      required:
+      - totalBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - BudgetRefereeConfig
+          type: string
+        totalBudget:
+          type: integer
+          format: int32
+        totalServeBudget:
+          type: integer
+          format: int32
+          nullable: true
+    IRapidBlueprintLineRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineBlueprint
+          type: string
+        target:
+          type: string
+    IMetadataLocationMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

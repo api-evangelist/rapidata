@@ -1,0 +1,710 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Client API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Client
+  x-displayName: Client
+paths:
+  /client:
+    post:
+      tags:
+      - Client
+      summary: Creates a new client for the current customer.
+      requestBody:
+        description: The client creation payload.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateClientEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateClientEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /client/{clientId}:
+    delete:
+      tags:
+      - Client
+      summary: Deletes a client.
+      parameters:
+      - name: clientId
+        in: path
+        description: The id of the client to delete.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    get:
+      tags:
+      - Client
+      summary: Gets the details of a specific client.
+      operationId: Identity.GetClient
+      parameters:
+      - name: clientId
+        in: path
+        description: The id of the client to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClientModel'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /clients:
+    get:
+      tags:
+      - Client
+      summary: Queries clients for the current customer.
+      description: Clients are service credentials that allow automated processes to authenticate against the API.
+      parameters:
+      - name: page
+        in: query
+        description: The 1-based page index.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: page_size
+        in: query
+        description: The number of items per page.
+        schema:
+          type: integer
+        x-parameter-group: page
+      - name: sort
+        in: query
+        description: Sort fields. Prefix with - for descending order (e.g. -created_at).
+        schema:
+          type: array
+          items:
+            enum:
+            - display_name
+            - -display_name
+            - created_at
+            - -created_at
+            type: string
+        x-parameter-group: sort
+      - name: client_id
+        in: query
+        description: Filter by client_id.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: display_name
+        in: query
+        description: Filter by display_name.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: created_at
+        in: query
+        description: Filter by created_at.
+        style: deepObject
+        explode: true
+        schema:
+          type: object
+          properties:
+            eq:
+              type: string
+            neq:
+              type: string
+            gt:
+              type: string
+            gte:
+              type: string
+            lt:
+              type: string
+            lte:
+              type: string
+            contains:
+              type: string
+            starts_with:
+              type: string
+            ends_with:
+              type: string
+            in:
+              type: array
+              items:
+                type: string
+            not_contains:
+              type: string
+        x-parameter-group: filters
+      - name: logic
+        in: query
+        description: 'How to combine the field filters: "and" (default) requires every filter to match, "or" requires any of them to match.'
+        schema:
+          enum:
+          - and
+          - or
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryClientsEndpoint_PagedResultOfOutput'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /client/register:
+    post:
+      tags:
+      - Client
+      summary: Registers a new client using the OpenID Connect Dynamic Client Registration protocol.
+      description: Follows RFC 7591.
+      requestBody:
+        description: The dynamic client registration request.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DynamicClientRegistrationRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    JsonWebKeySet:
+      type: object
+      properties:
+        keys:
+          type: array
+          items:
+            $ref: '#/components/schemas/JsonWebKey'
+          nullable: true
+    DynamicClientRegistrationRequest:
+      type: object
+      properties:
+        redirect_uris:
+          type: array
+          items:
+            type: string
+          nullable: true
+        grant_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+        response_types:
+          type: array
+          items:
+            type: string
+          nullable: true
+        client_id:
+          type: string
+          nullable: true
+        client_name:
+          type: string
+          nullable: true
+        client_uri:
+          type: string
+          nullable: true
+        logo_uri:
+          type: string
+          nullable: true
+        scope:
+          type: string
+          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
+          nullable: true
+        contacts:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
+        tos_uri:
+          type: string
+          nullable: true
+        policy_uri:
+          type: string
+          nullable: true
+        jwks_uri:
+          type: string
+          nullable: true
+        jwks:
+          allOf:
+          - $ref: '#/components/schemas/JsonWebKeySet'
+          description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
+      description: The request body for dynamic client registration.
+    QueryClientsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryClientsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    CreateClientEndpoint_Output:
+      required:
+      - clientId
+      - clientSecret
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The id of the created client.
+        clientSecret:
+          type: string
+          description: The secret of the created client.
+    ClientModel:
+      required:
+      - client_id
+      - client_secret
+      - client_id_issued_at
+      - client_secret_expires_at
+      - redirect_uris
+      - grant_types
+      - response_types
+      - client_name
+      - client_uri
+      - logo_uri
+      - scope
+      - contacts
+      - tos_uri
+      - policy_uri
+      - jwks_uri
+      - jwks
+      type: object
+      properties:
+        client_id:
+          type: string
+        client_secret:
+          type: string
+          nullable: true
+        client_id_issued_at:
+          type: integer
+          format: int64
+          nullable: true
+        client_secret_expires_at:
+          type: integer
+          format: int64
+          nullable: true
+        redirect_uris:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          nullable: true
+        grant_types:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          nullable: true
+        response_types:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+          nullable: true
+        client_name:
+          type: string
+          nullable: true
+        client_uri:
+          type: string
+          nullable: true
+        logo_uri:
+          type: string
+          nullable: true
+        scope:
+          type: string
+          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
+          nullable: true
+        contacts:
+          allOf:
+          - type: array
+            items:
+              type: string
+            nullable: true
+          description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
+        tos_uri:
+          type: string
+          nullable: true
+        policy_uri:
+          type: string
+          nullable: true
+        jwks_uri:
+          type: string
+          nullable: true
+        jwks:
+          type: object
+          oneOf:
+          - $ref: '#/components/schemas/JsonWebKeySet'
+          nullable: true
+      description: "The response containing the id and secret of a dynamically registered client.\n Additionally, it contains all registered metadata for the client."
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateClientEndpoint_Input:
+      type: object
+      properties:
+        displayName:
+          type: string
+          description: An optional display name for the client.
+          nullable: true
+    QueryClientsEndpoint_Output:
+      required:
+      - clientId
+      - displayName
+      - createdAt
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The id of the client.
+          nullable: true
+        displayName:
+          type: string
+          description: The optional display name of the client.
+          nullable: true
+        createdAt:
+          type: string
+          description: The time at which the client was created.
+          format: date-time
+          nullable: true
+    JsonWebKey:
+      type: object
+      properties:
+        alg:
+          type: string
+          nullable: true
+        crv:
+          type: string
+          nullable: true
+        d:
+          type: string
+          nullable: true
+        dp:
+          type: string
+          nullable: true
+        dq:
+          type: string
+          nullable: true
+        e:
+          type: string
+          nullable: true
+        k:
+          type: string
+          nullable: true
+        key_ops:
+          type: array
+          items:
+            type: string
+          nullable: true
+        kid:
+          type: string
+          nullable: true
+        kty:
+          type: string
+          nullable: true
+        n:
+          type: string
+          nullable: true
+        oth:
+          type: array
+          items:
+            type: string
+          nullable: true
+        p:
+          type: string
+          nullable: true
+        q:
+          type: string
+          nullable: true
+        qi:
+          type: string
+          nullable: true
+        use:
+          type: string
+          nullable: true
+        x:
+          type: string
+          nullable: true
+        x5c:
+          type: array
+          items:
+            type: string
+          nullable: true
+        x5t:
+          type: string
+          nullable: true
+        x5t#S256:
+          type: string
+          nullable: true
+        x5u:
+          type: string
+          nullable: true
+        y:
+          type: string
+          nullable: true
+        pub:
+          type: string
+          nullable: true
+        priv:
+          type: string
+          nullable: true
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

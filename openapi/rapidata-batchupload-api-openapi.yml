@@ -1,0 +1,407 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset BatchUpload API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: BatchUpload
+  x-displayName: BatchUpload
+paths:
+  /asset/batch-upload/{batchUploadId}/abort:
+    post:
+      tags:
+      - BatchUpload
+      summary: Aborts the specified batch upload.
+      description: URLs already processed will not be reverted. Only remaining URLs are prevented from processing.
+      parameters:
+      - name: batchUploadId
+        in: path
+        description: The identifier of the batch upload to abort.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /asset/batch-upload:
+    post:
+      tags:
+      - BatchUpload
+      summary: Creates a batch upload and queues processing for each URL.
+      description: Each URL is processed asynchronously. Use the batch upload status or result endpoints to track progress.
+      requestBody:
+        description: The list of URLs to include in the batch upload.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBatchUploadEndpoint_Input'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateBatchUploadEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /asset/batch-upload/{batchUploadId}:
+    get:
+      tags:
+      - BatchUpload
+      summary: Gets the full result of a batch upload including all items.
+      parameters:
+      - name: batchUploadId
+        in: path
+        description: The identifier of the batch upload to retrieve.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBatchUploadResultEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /asset/batch-upload/status:
+    get:
+      tags:
+      - BatchUpload
+      summary: Gets aggregated status for batch uploads identified by IDs or a correlation ID.
+      parameters:
+      - name: batchUploadIds
+        in: query
+        description: The identifiers of the batch uploads to query.
+        schema:
+          type: array
+          items:
+            type: string
+      - name: correlationId
+        in: query
+        description: A client-supplied identifier to look up related batch uploads.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetBatchUploadStatusEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    CreateBatchUploadEndpoint_Output:
+      required:
+      - batchUploadId
+      type: object
+      properties:
+        batchUploadId:
+          type: string
+          description: The identifier of the created batch upload.
+    BatchUploadUrlStatus:
+      enum:
+      - Pending
+      - Completed
+      - Failed
+    GetBatchUploadResultEndpoint_UrlOutput:
+      required:
+      - url
+      - status
+      type: object
+      properties:
+        url:
+          type: string
+        fileName:
+          type: string
+          nullable: true
+        status:
+          $ref: '#/components/schemas/BatchUploadUrlStatus'
+        errorMessage:
+          type: string
+          nullable: true
+    GetBatchUploadStatusEndpoint_Output:
+      required:
+      - status
+      - totalCount
+      - completedCount
+      - failedCount
+      - completedBatches
+      type: object
+      properties:
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BatchUploadStatus'
+          description: The aggregated status across all queried batch uploads.
+        totalCount:
+          type: integer
+          description: The total number of URLs across all queried batches.
+          format: int32
+        completedCount:
+          type: integer
+          description: The number of URLs that have been successfully processed.
+          format: int32
+        failedCount:
+          type: integer
+          description: The number of URLs that failed to process.
+          format: int32
+        completedBatches:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The identifiers of batch uploads that have fully completed.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    BatchUploadStatus:
+      enum:
+      - Processing
+      - Completed
+      - Aborted
+    CreateBatchUploadEndpoint_Input:
+      required:
+      - urls
+      type: object
+      properties:
+        urls:
+          allOf:
+          - type: array
+            items:
+              type: string
+              format: uri
+          description: The URLs to download and process.
+        correlationId:
+          type: string
+          description: Optional client-supplied identifier to group related batch uploads.
+          nullable: true
+        compression:
+          allOf:
+          - $ref: '#/components/schemas/CompressionOverride'
+          description: "Optional per-call override for image compression applied to every URL in the batch.\n Null means use the configured defaults."
+    GetBatchUploadResultEndpoint_Output:
+      required:
+      - batchUploadId
+      - status
+      - totalCount
+      - completedCount
+      - failedCount
+      - items
+      type: object
+      properties:
+        batchUploadId:
+          type: string
+          description: The identifier of the batch upload.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BatchUploadStatus'
+          description: The current status of the batch upload.
+        totalCount:
+          type: integer
+          description: The total number of URLs in the batch.
+          format: int32
+        completedCount:
+          type: integer
+          description: The number of URLs that have been successfully processed.
+          format: int32
+        failedCount:
+          type: integer
+          description: The number of URLs that failed to process.
+          format: int32
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBatchUploadResultEndpoint_UrlOutput'
+          description: The individual results for each URL in the batch.
+    CompressionOverride:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          nullable: true
+        quality:
+          type: integer
+          format: int32
+          nullable: true
+        maxDimension:
+          type: integer
+          format: int32
+          nullable: true
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow

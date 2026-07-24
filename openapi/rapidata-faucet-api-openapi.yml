@@ -1,0 +1,434 @@
+openapi: 3.0.4
+info:
+  title: Rapidata Asset Faucet API
+  description: The API for the Rapidata Asset service
+  version: v1
+servers:
+- url: https://api.rapidata.ai/
+tags:
+- name: Faucet
+  x-displayName: Faucet
+paths:
+  /leaderboard/faucet/replicate/models/{modelOwner}/{modelName}:
+    get:
+      tags:
+      - Faucet
+      summary: Returns a single Replicate model with its input parameter schema.
+      description: "When supportsImageReference is true the model accepts a reference image that the\n platform auto-fills with a prompt's attached media; that input is excluded from the returned\n parameters and must not be configured by the customer."
+      parameters:
+      - name: modelOwner
+        in: path
+        description: The owner of the hosted model.
+        required: true
+        schema:
+          type: string
+      - name: modelName
+        in: path
+        description: The model name.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetReplicateModelEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /leaderboard/faucet/replicate/models:
+    get:
+      tags:
+      - Faucet
+      summary: Searches Replicate models by free-text term.
+      description: "Results are cursor-paginated: pass the returned nextCursor back as cursor to\n fetch the next page."
+      parameters:
+      - name: search
+        in: query
+        description: The free-text term to search models by.
+        required: true
+        schema:
+          type: string
+      - name: cursor
+        in: query
+        description: Cursor continuing a previous search; omit for the first page.
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Output'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+  /participant/{participantId}/faucet:
+    delete:
+      tags:
+      - Faucet
+      summary: Removes the faucet configuration from a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant.
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+    put:
+      tags:
+      - Faucet
+      summary: Sets the faucet used to auto-generate samples for a participant.
+      parameters:
+      - name: participantId
+        in: path
+        description: The id of the participant whose faucet to set.
+        required: true
+        schema:
+          type: string
+      requestBody:
+        description: The faucet configuration payload.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IFaucetInput'
+        required: true
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationProblemDetails'
+        '401':
+          description: Unauthenticated
+        '403':
+          description: Forbidden
+      security:
+      - OpenIdConnect:
+        - openid
+        - profile
+        - email
+        - offline_access
+components:
+  schemas:
+    GetReplicateModelEndpoint_Output:
+      required:
+      - modelOwner
+      - modelName
+      - supportsImageReference
+      - parameters
+      type: object
+      properties:
+        modelOwner:
+          type: string
+          description: The owner of the hosted model.
+        modelName:
+          type: string
+          description: The model name.
+        description:
+          type: string
+          description: A short description of the model.
+          nullable: true
+        coverImageUrl:
+          type: string
+          description: URL of a representative cover image, if available.
+          nullable: true
+        runCount:
+          type: integer
+          description: Total number of times the model has been run on Replicate, if known.
+          format: int64
+          nullable: true
+        latestVersion:
+          type: string
+          description: The model's latest version id, if reported by Replicate.
+          nullable: true
+        supportsImageReference:
+          type: boolean
+          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
+        parameters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
+          description: The model's configurable input parameters, ordered for rendering.
+    ReplicateModelParameterType:
+      enum:
+      - String
+      - Integer
+      - Number
+      - Boolean
+      - Uri
+    SearchReplicateModelsEndpoint_Output:
+      required:
+      - models
+      type: object
+      properties:
+        models:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
+          description: The matching models for this page.
+        nextCursor:
+          type: string
+          description: Cursor to fetch the next page, or null when there are no more results.
+          nullable: true
+    SearchReplicateModelsEndpoint_Model:
+      required:
+      - modelOwner
+      - modelName
+      type: object
+      properties:
+        modelOwner:
+          type: string
+        modelName:
+          type: string
+        description:
+          type: string
+          nullable: true
+        coverImageUrl:
+          type: string
+          nullable: true
+        runCount:
+          type: integer
+          format: int64
+          nullable: true
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type: string
+          nullable: true
+        title:
+          type: string
+          nullable: true
+        status:
+          type: integer
+          format: int32
+          nullable: true
+        detail:
+          type: string
+          nullable: true
+        instance:
+          type: string
+          nullable: true
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IFaucetInputReplicateFaucetInput:
+      required:
+      - modelOwner
+      - modelName
+      - _t
+      properties:
+        _t:
+          enum:
+          - Replicate
+          type: string
+        modelOwner:
+          type: string
+          description: The owner of the hosted model (e.g. "stability-ai").
+        modelName:
+          type: string
+          description: The model name (e.g. "sdxl").
+        modelVersion:
+          type: string
+          description: Optional pinned model version hash.
+          nullable: true
+        additionalInputs:
+          type: object
+          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
+      description: Configures a faucet that generates samples via the Replicate API.
+    IFaucetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
+      discriminator:
+        propertyName: _t
+        mapping:
+          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+    GetReplicateModelEndpoint_Parameter:
+      required:
+      - key
+      - type
+      - required
+      - enumValues
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        type:
+          $ref: '#/components/schemas/ReplicateModelParameterType'
+        required:
+          type: boolean
+        default: {}
+        enumValues:
+          type: array
+          items:
+            type: string
+        minimum:
+          type: number
+          format: double
+          nullable: true
+        maximum:
+          type: number
+          format: double
+          nullable: true
+        order:
+          type: integer
+          format: int32
+          nullable: true
+  securitySchemes:
+    OpenIdConnect:
+      type: openIdConnect
+      description: OpenID Connect connection flow
+      openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+x-tagGroups:
+- name: Rapidata Asset API
+  tags:
+  - Asset
+  - BatchUpload
+- name: Rapidata Audience API
+  tags:
+  - Audience
+  - Examples
+- name: Rapidata Campaign API
+  tags:
+  - Cache
+  - Campaign
+  - ExternalAudience
+- name: Rapidata Dataset API
+  tags:
+  - ContextShortening
+  - Datapoints
+  - Dataset
+  - DatasetGroup
+- name: Rapidata Flow API
+  tags:
+  - Flow
+  - FlowItem
+  - RankingFlow
+  - RankingFlowItem
+- name: Rapidata Identity API
+  tags:
+  - Rapidata.Identity.API
+  - Client
+  - Customer
+  - Identity
+  - Newsletter
+  - Organization
+  - Survey
+- name: Rapidata Leaderboard API
+  tags:
+  - Benchmark
+  - SampleGeneration
+  - Faucet
+  - Replicate
+  - Leaderboard
+  - Participant
+  - Prompt
+  - Sample
+- name: Rapidata Order API
+  tags:
+  - Feedback
+  - Job
+  - Order
+- name: Rapidata Payment API
+  tags:
+  - Billing
+  - ExternalServicePrices
+  - Reconciliation
+  - Settings
+  - VolumeDiscount
+  - BillingAccount
+  - Invoice
+  - Payment
+- name: Rapidata Pipeline API
+  tags:
+  - Pipeline
+- name: Rapidata Rapid API
+  tags:
+  - CustomerRapid
+  - GlobalText
+  - Rapid
+  - UserRapid
+  - ValidationFeedback
+- name: Rapidata Signal API
+  tags:
+  - Signal
+- name: Rapidata Translation API
+  tags:
+  - Translation
+- name: Rapidata Validation API
+  tags:
+  - ValidationSet
+- name: Rapidata Workflow API
+  tags:
+  - Evaluation
+  - GroupedRanking
+  - Ranking
+  - SimpleWorkflow
+  - Workflow
