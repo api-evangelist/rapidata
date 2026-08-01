@@ -1,0 +1,16 @@
+generated: '2026-07-20'
+method: searched
+source: https://pypi.org/project/rapidata/
+packages:
+- language: python
+  registry: pypi
+  name: rapidata
+  url: https://pypi.org/project/rapidata/
+  install: pip install rapidata
+  repository: https://github.com/RapidataAI/rapidata-python-sdk
+  license: Apache-2.0
+  publisher: Rapidata AG
+  official: true
+  notes: >-
+    Official Python client for the Rapidata API (RapidataClient). Verified
+    PyPI maintainer. Python >=3.10,<4. Current version 3.16.7 (2026-07-18).

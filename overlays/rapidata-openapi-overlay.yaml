@@ -1,0 +1,17 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Rapidata API
+  version: 1.0.0
+extends: openapi/rapidata-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: rapidata
+    x-apievangelist-category: human-feedback
+    x-apievangelist-auth: oauth2-oidc-client-credentials
+    x-apievangelist-error-format: rfc7807
+    x-apievangelist-pagination: page-based
+    x-apievangelist-agent-skill: https://github.com/RapidataAI/skills
+- target: $.servers
+  update:
+    description: Production Rapidata API host.

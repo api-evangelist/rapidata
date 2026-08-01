@@ -1,0 +1,40 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rapidata-openapi-original.json
+docs: https://docs.rapidata.ai/latest/authentication/
+authentication:
+  style: oauth2
+  detail: >-
+    OAuth 2.0 / OpenID Connect. Client-credentials flow with a client ID/secret
+    created at https://app.rapidata.ai/settings/tokens; token endpoint
+    https://auth.rapidata.ai/connect/token. See authentication/ and scopes/.
+  ref: authentication/rapidata-authentication.yml
+idempotency:
+  supported: false
+  detail: >-
+    No documented idempotency-key header or parameter observed in the OpenAPI
+    or docs.
+pagination:
+  style: page-based
+  params: [page, pageSize, page_size, limit, cursor]
+  detail: >-
+    List endpoints accept page/pageSize (and in places limit/cursor) query
+    parameters. Derived from OpenAPI query parameters.
+error_envelope:
+  format: rfc7807
+  media_type: application/json
+  schemas: [ProblemDetails, ValidationProblemDetails]
+  detail: >-
+    Errors return an RFC 7807 problem-details object (type, title, status,
+    detail, instance); validation errors extend it with an errors map.
+  ref: errors/rapidata-problem-types.yml
+versioning:
+  scheme: uri-path
+  current: v1
+  detail: API version v1 (info.version in OpenAPI). SDK versioned semver.
+  ref: lifecycle/rapidata-lifecycle.yml
+rate_limit_signal:
+  documented: false
+  detail: No rate-limit response headers documented in OpenAPI or docs at capture time.
+request_tracing:
+  documented: false

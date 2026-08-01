@@ -1,0 +1,38 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rapidata-openapi-original.json
+format: rfc7807
+envelope:
+  media_type: application/json
+  schemas: [ProblemDetails, ValidationProblemDetails]
+  fields: [type, title, status, detail, instance]
+problems:
+- status: 400
+  title: Bad Request
+  schema: ValidationProblemDetails
+  occurrences: 304
+  remediation: >-
+    Request failed validation. Inspect the errors map in the
+    ValidationProblemDetails body for the offending fields.
+- status: 401
+  title: Unauthenticated
+  occurrences: 307
+  remediation: >-
+    Missing or invalid access token. Obtain a token via the OAuth 2.0
+    client-credentials flow (auth.rapidata.ai/connect/token).
+- status: 403
+  title: Forbidden
+  occurrences: 307
+  remediation: >-
+    Authenticated but not authorized for this resource/scope. Verify the token
+    carries the required scope (see scopes/).
+- status: 404
+  title: Not Found
+  occurrences: 1
+  remediation: The referenced resource does not exist or is not visible to the caller.
+- status: 409
+  title: Conflict
+  occurrences: 2
+  remediation: >-
+    The request conflicts with the current state of the resource (e.g. a
+    duplicate or concurrent modification).

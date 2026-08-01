@@ -1,7 +1,17 @@
 aid: rapidata
 name: Rapidata
-description: Rapidata is a company surfaced as a portfolio company of canaan-partners and added to the
-  API Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Rapidata provides human feedback at scale — crowd-sourced labeling, model
+  evaluation, ranking, and preference data (RLHF-style) collected from real
+  people worldwide. Teams use the Rapidata API and Python SDK to run online
+  RLHF, refine model behavior, and evaluate model outputs (image, video, audio,
+  and text) with pairwise A/B comparisons, ranking, and leaderboards, as well as
+  to collect targeted human annotations (classification, locating, bounding,
+  transcription, free text, select-words) by country, language, or demographic,
+  with built-in quality control and confidence-based early stopping. The REST
+  API is OAuth 2.0 / OpenID Connect secured and reaches thousands of
+  high-quality annotations per minute. Rapidata AG is a portfolio company of
+  Canaan Partners.
 url: https://raw.githubusercontent.com/api-evangelist/rapidata/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,14 +19,1198 @@ x-backed-by:
 - canaan-partners
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
+image: https://rapidata.ai/media/rapidata.svg
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Human Feedback
+- Data Labeling
+- Annotation
+- RLHF
+- Model Evaluation
+- Machine Learning
+- AI
+- Crowdsourcing
+- Preference Data
+apis:
+- aid: rapidata:rapidata-asset-api
+  name: Rapidata Asset API
+  description: The Asset API from Rapidata — 3 operation(s) for asset.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Asset
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-asset-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-audience-api
+  name: Rapidata Audience API
+  description: The Audience API from Rapidata — 19 operation(s) for audience.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Audience
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-audience-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-batchupload-api
+  name: Rapidata BatchUpload API
+  description: The BatchUpload API from Rapidata — 4 operation(s) for batchupload.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - BatchUpload
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-batchupload-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-benchmark-api
+  name: Rapidata Benchmark API
+  description: The Benchmark API from Rapidata — 19 operation(s) for benchmark.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Benchmark
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-benchmark-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-billing-api
+  name: Rapidata Billing API
+  description: The Billing API from Rapidata — 24 operation(s) for billing.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Billing
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-billing-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-billingaccount-api
+  name: Rapidata BillingAccount API
+  description: The BillingAccount API from Rapidata — 6 operation(s) for billingaccount.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - BillingAccount
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-billingaccount-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-cache-api
+  name: Rapidata Cache API
+  description: The Cache API from Rapidata — 2 operation(s) for cache.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Cache
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-cache-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-campaign-api
+  name: Rapidata Campaign API
+  description: The Campaign API from Rapidata — 12 operation(s) for campaign.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Campaign
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-campaign-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-client-api
+  name: Rapidata Client API
+  description: The Client API from Rapidata — 4 operation(s) for client.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Client
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-client-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-contextshortening-api
+  name: Rapidata ContextShortening API
+  description: The ContextShortening API from Rapidata — 1 operation(s) for contextshortening.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - ContextShortening
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-contextshortening-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-customer-api
+  name: Rapidata Customer API
+  description: The Customer API from Rapidata — 1 operation(s) for customer.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Customer
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-customer-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-customerrapid-api
+  name: Rapidata CustomerRapid API
+  description: The CustomerRapid API from Rapidata — 8 operation(s) for customerrapid.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - CustomerRapid
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-customerrapid-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-datapoints-api
+  name: Rapidata Datapoints API
+  description: The Datapoints API from Rapidata — 4 operation(s) for datapoints.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Datapoints
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-datapoints-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-dataset-api
+  name: Rapidata Dataset API
+  description: The Dataset API from Rapidata — 4 operation(s) for dataset.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Dataset
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-dataset-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-datasetgroup-api
+  name: Rapidata DatasetGroup API
+  description: The DatasetGroup API from Rapidata — 1 operation(s) for datasetgroup.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - DatasetGroup
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-datasetgroup-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-evaluation-api
+  name: Rapidata Evaluation API
+  description: The Evaluation API from Rapidata — 1 operation(s) for evaluation.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Evaluation
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-evaluation-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-examples-api
+  name: Rapidata Examples API
+  description: The Examples API from Rapidata — 4 operation(s) for examples.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Examples
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-examples-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-externalaudience-api
+  name: Rapidata ExternalAudience API
+  description: The ExternalAudience API from Rapidata — 2 operation(s) for externalaudience.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - ExternalAudience
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-externalaudience-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-externalserviceprices-api
+  name: Rapidata ExternalServicePrices API
+  description: The ExternalServicePrices API from Rapidata — 1 operation(s) for externalserviceprices.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - ExternalServicePrices
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-externalserviceprices-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-faucet-api
+  name: Rapidata Faucet API
+  description: The Faucet API from Rapidata — 3 operation(s) for faucet.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Faucet
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-faucet-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-feedback-api
+  name: Rapidata Feedback API
+  description: The Feedback API from Rapidata — 1 operation(s) for feedback.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Feedback
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-feedback-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-flow-api
+  name: Rapidata Flow API
+  description: The Flow API from Rapidata — 6 operation(s) for flow.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Flow
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-flow-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-flowitem-api
+  name: Rapidata FlowItem API
+  description: The FlowItem API from Rapidata — 1 operation(s) for flowitem.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - FlowItem
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-flowitem-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-globaltext-api
+  name: Rapidata GlobalText API
+  description: The GlobalText API from Rapidata — 2 operation(s) for globaltext.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - GlobalText
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-globaltext-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-groupedranking-api
+  name: Rapidata GroupedRanking API
+  description: The GroupedRanking API from Rapidata — 1 operation(s) for groupedranking.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - GroupedRanking
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-groupedranking-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-identity-api
+  name: Rapidata Identity API
+  description: The Identity API from Rapidata — 3 operation(s) for identity.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Identity
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-identity-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-invoice-api
+  name: Rapidata Invoice API
+  description: The Invoice API from Rapidata — 5 operation(s) for invoice.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Invoice
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-invoice-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-job-api
+  name: Rapidata Job API
+  description: The Job API from Rapidata — 21 operation(s) for job.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Job
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-job-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-leaderboard-api
+  name: Rapidata Leaderboard API
+  description: The Leaderboard API from Rapidata — 14 operation(s) for leaderboard.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Leaderboard
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-leaderboard-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-newsletter-api
+  name: Rapidata Newsletter API
+  description: The Newsletter API from Rapidata — 2 operation(s) for newsletter.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Newsletter
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-newsletter-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-order-api
+  name: Rapidata Order API
+  description: The Order API from Rapidata — 19 operation(s) for order.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Order
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-order-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-organization-api
+  name: Rapidata Organization API
+  description: The Organization API from Rapidata — 8 operation(s) for organization.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Organization
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-organization-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-participant-api
+  name: Rapidata Participant API
+  description: The Participant API from Rapidata — 9 operation(s) for participant.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Participant
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-participant-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-payment-api
+  name: Rapidata Payment API
+  description: The Payment API from Rapidata — 4 operation(s) for payment.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Payment
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-payment-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-pipeline-api
+  name: Rapidata Pipeline API
+  description: The Pipeline API from Rapidata — 3 operation(s) for pipeline.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Pipeline
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-pipeline-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-prompt-api
+  name: Rapidata Prompt API
+  description: The Prompt API from Rapidata — 2 operation(s) for prompt.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Prompt
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-prompt-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-ranking-api
+  name: Rapidata Ranking API
+  description: The Ranking API from Rapidata — 1 operation(s) for ranking.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Ranking
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-ranking-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-rankingflow-api
+  name: Rapidata RankingFlow API
+  description: The RankingFlow API from Rapidata — 2 operation(s) for rankingflow.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - RankingFlow
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-rankingflow-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-rankingflowitem-api
+  name: Rapidata RankingFlowItem API
+  description: The RankingFlowItem API from Rapidata — 4 operation(s) for rankingflowitem.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - RankingFlowItem
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-rankingflowitem-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-rapid-api
+  name: Rapidata Rapid API
+  description: The Rapid API from Rapidata — 3 operation(s) for rapid.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Rapid
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-rapid-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-rapidata-identity-api-api
+  name: Rapidata Rapidata.Identity.API API
+  description: The Rapidata.Identity.API API from Rapidata — 1 operation(s) for rapidata.identity.api.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Rapidata.Identity.API
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-rapidata-identity-api-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-reconciliation-api
+  name: Rapidata Reconciliation API
+  description: The Reconciliation API from Rapidata — 4 operation(s) for reconciliation.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Reconciliation
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-reconciliation-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-replicate-api
+  name: Rapidata Replicate API
+  description: The Replicate API from Rapidata — 2 operation(s) for replicate.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Replicate
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-replicate-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-sample-api
+  name: Rapidata Sample API
+  description: The Sample API from Rapidata — 4 operation(s) for sample.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Sample
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-sample-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-samplegeneration-api
+  name: Rapidata SampleGeneration API
+  description: The SampleGeneration API from Rapidata — 5 operation(s) for samplegeneration.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - SampleGeneration
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-samplegeneration-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-settings-api
+  name: Rapidata Settings API
+  description: The Settings API from Rapidata — 7 operation(s) for settings.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-settings-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-signal-api
+  name: Rapidata Signal API
+  description: The Signal API from Rapidata — 7 operation(s) for signal.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Signal
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-signal-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-simpleworkflow-api
+  name: Rapidata SimpleWorkflow API
+  description: The SimpleWorkflow API from Rapidata — 1 operation(s) for simpleworkflow.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - SimpleWorkflow
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-simpleworkflow-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-survey-api
+  name: Rapidata Survey API
+  description: The Survey API from Rapidata — 1 operation(s) for survey.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Survey
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-survey-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-translation-api
+  name: Rapidata Translation API
+  description: The Translation API from Rapidata — 2 operation(s) for translation.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Translation
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-translation-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-userrapid-api
+  name: Rapidata UserRapid API
+  description: The UserRapid API from Rapidata — 5 operation(s) for userrapid.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - UserRapid
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-userrapid-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-validationfeedback-api
+  name: Rapidata ValidationFeedback API
+  description: The ValidationFeedback API from Rapidata — 1 operation(s) for validationfeedback.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - ValidationFeedback
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-validationfeedback-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-validationset-api
+  name: Rapidata ValidationSet API
+  description: The ValidationSet API from Rapidata — 13 operation(s) for validationset.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - ValidationSet
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-validationset-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-volumediscount-api
+  name: Rapidata VolumeDiscount API
+  description: The VolumeDiscount API from Rapidata — 1 operation(s) for volumediscount.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - VolumeDiscount
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-volumediscount-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-workflow-api
+  name: Rapidata Workflow API
+  description: The Workflow API from Rapidata — 5 operation(s) for workflow.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Workflow
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-workflow-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+common:
+- type: DeveloperPortal
+  url: https://docs.rapidata.ai/developers/
+- type: Documentation
+  url: https://docs.rapidata.ai/
+- type: APIReference
+  url: https://docs.rapidata.ai/latest/api/
+- type: GettingStarted
+  url: https://docs.rapidata.ai/latest/quickstart/
+- type: Authentication
+  url: authentication/rapidata-authentication.yml
+- type: OAuthScopes
+  url: scopes/rapidata-scopes.yml
+- type: Conventions
+  url: conventions/rapidata-conventions.yml
+- type: ErrorCatalog
+  url: errors/rapidata-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/rapidata-lifecycle.yml
+- type: Conformance
+  url: conformance/rapidata-conformance.yml
+- type: DataModel
+  url: data-model/rapidata-data-model.yml
+- type: Overlay
+  url: overlays/rapidata-openapi-overlay.yaml
+- type: Packages
+  url: packages/rapidata-packages.yml
+- type: SDKs
+  url: packages/rapidata-packages.yml
+- type: WellKnown
+  url: well-known/rapidata-well-known.yml
+- type: MCPServer
+  url: mcp/rapidata-mcp.yml
+- type: LLMsTxt
+  url: llms/rapidata-llms.txt
+- type: DomainSecurity
+  url: security/rapidata-domain-security.yml
+- type: ChangeLog
+  url: changelog/rapidata-changelog.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: GitHubOrganization
+  url: https://github.com/RapidataAI
+- type: Blog
+  url: https://rapidata.ai/blog
+- type: Pricing
+  url: https://rapidata.ai/pricing
+- type: SignUp
+  url: https://app.rapidata.ai
+- type: Login
+  url: https://app.rapidata.ai
+- type: Support
+  url: https://rapidata.ai/contact
+- type: TermsOfService
+  url: https://rapidata.ai/terms
+- type: PrivacyPolicy
+  url: https://rapidata.ai/privacy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 20
+  pass: local-v1

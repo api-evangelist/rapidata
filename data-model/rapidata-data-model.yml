@@ -1,0 +1,85 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rapidata-openapi-original.json
+notes: >-
+  Entity list derived from the 54 OpenAPI resource tags and path structure of
+  the Rapidata API. Relationships reflect the labeling/evaluation domain
+  (orders and workflows produce feedback over datasets and audiences).
+entities:
+- name: Order
+  description: A labeling or evaluation job requested by a customer.
+- name: Workflow
+  description: Configured pipeline (SimpleWorkflow/RankingFlow) that produces feedback.
+- name: Dataset
+  description: A collection of datapoints/assets to be labeled or evaluated.
+- name: DatasetGroup
+  description: A grouping of datasets.
+- name: Datapoint
+  description: An individual asset (image/video/audio/text) within a dataset.
+- name: Asset
+  description: Uploaded media backing datapoints (BatchUpload).
+- name: Audience
+  description: Targeted pool of human annotators (by country/language/expertise).
+- name: Campaign
+  description: A running data-collection campaign.
+- name: Feedback
+  description: Human responses/annotations collected for datapoints.
+- name: Benchmark
+  description: Model benchmark comparing outputs via human preference.
+- name: Leaderboard
+  description: Ranked results across models/prompts.
+- name: Ranking
+  description: Pairwise/grouped ranking results.
+- name: Prompt
+  description: A prompt used to generate samples for evaluation.
+- name: Sample
+  description: A generated model output to be evaluated.
+- name: Customer
+  description: The account owning orders and datasets.
+- name: Organization
+  description: Org grouping of customers/clients.
+- name: BillingAccount
+  description: Billing entity holding invoices and payments.
+- name: Invoice
+  description: A billing invoice.
+- name: Payment
+  description: A payment against a billing account.
+relationships:
+- from: Customer
+  to: Order
+  type: has_many
+- from: Order
+  to: Workflow
+  type: has_one
+- from: Dataset
+  to: Datapoint
+  type: has_many
+  via: dataset
+- from: DatasetGroup
+  to: Dataset
+  type: has_many
+- from: Datapoint
+  to: Asset
+  type: has_one
+- from: Workflow
+  to: Feedback
+  type: has_many
+- from: Feedback
+  to: Audience
+  type: belongs_to
+  via: audience
+- from: Benchmark
+  to: Leaderboard
+  type: has_one
+- from: Benchmark
+  to: Ranking
+  type: has_many
+- from: Organization
+  to: Customer
+  type: has_many
+- from: BillingAccount
+  to: Invoice
+  type: has_many
+- from: BillingAccount
+  to: Payment
+  type: has_many

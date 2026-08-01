@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.rapidata.ai/
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.rapidata.ai/latest/
+deprecation:
+  policy_url: null
+  sunset_header: false
+  detail: No published deprecation policy or Sunset/Deprecation header support found at capture time.
+sla:
+  url: null
+status_page: null
+sdk:
+  scheme: semver
+  current: 3.16.7
+  releases: https://github.com/RapidataAI/rapidata-python-sdk/releases
+deprecated_operations: []
+notes: >-
+  No dedicated status page (status.rapidata.ai does not resolve to a valid
+  certificate) and no docs changelog page were found. SDK release history is on
+  GitHub (see changelog/).

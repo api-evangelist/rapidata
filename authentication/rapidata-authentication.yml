@@ -1,0 +1,13 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rapidata-openapi-original.json
+summary:
+  types:
+  - openIdConnect
+schemes:
+- name: OpenIdConnect
+  type: openIdConnect
+  openIdConnectUrl: https://auth.rapidata.ai/.well-known/openid-configuration
+  description: OpenID Connect connection flow
+  sources:
+  - openapi/rapidata-openapi-original.json

@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+hosts:
+- host: https://auth.rapidata.ai
+  documents:
+  - path: /.well-known/openid-configuration
+    status: 200
+    file: rapidata-openid-configuration.json
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: rapidata-oauth-authorization-server.json
+- host: https://api.rapidata.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://rapidata.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+- host: https://docs.rapidata.ai
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

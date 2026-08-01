@@ -1,0 +1,18 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/RapidataAI/skills
+notes: >-
+  Rapidata publishes an official Agent Skill (Claude Code / Cursor / Copilot /
+  Cline / Codex / Gemini CLI) that teaches coding agents to write Rapidata
+  Python SDK integrations. Install with `npx skills add RapidataAI/skills` or
+  `/install-plugin https://github.com/RapidataAI/skills`. Saved verbatim below.
+skills:
+- file: rapidata-official-skill.md
+  name: rapidata
+  description: >-
+    Use the Rapidata API to get real, fast human annotations — create labeling
+    tasks, compare models, collect human feedback, integrate the Python SDK.
+  api: openapi/rapidata-openapi-original.json
+  source: https://raw.githubusercontent.com/RapidataAI/skills/main/plugins/rapidata-sdk-plugin/skills/rapidata/SKILL.md
+  official: true
+  supplement: rapidata-official-reference.md

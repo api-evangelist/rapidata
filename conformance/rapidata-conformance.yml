@@ -1,0 +1,28 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/rapidata-openapi-original.json
+standards:
+- id: oauth2
+  conforms: true
+  evidence: OpenID Connect / OAuth 2.0 client-credentials flow via auth.rapidata.ai
+- id: oidc
+  conforms: true
+  evidence: securityScheme type openIdConnect with published /.well-known/openid-configuration
+- id: rfc8414-oauth-authorization-server
+  conforms: true
+  evidence: /.well-known/oauth-authorization-server returns 200
+- id: rfc7807-problem-details
+  conforms: true
+  evidence: error responses use ProblemDetails/ValidationProblemDetails schemas
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: responses use application/json (not application/problem+json media type)
+- id: openapi-3
+  conforms: true
+  evidence: OpenAPI 3.0.4 document published at docs.rapidata.ai/openapi.json
+- id: fhir
+  conforms: false
+- id: fapi
+  conforms: false
+- id: scim
+  conforms: false

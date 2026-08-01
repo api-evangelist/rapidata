@@ -1,0 +1,21 @@
+generated: '2026-07-20'
+method: searched
+source: https://github.com/RapidataAI/rapidata-python-sdk/releases
+scheme: semver
+subject: rapidata-python-sdk
+current: 3.16.7
+notes: >-
+  Rapidata publishes no dated API changelog page; the Python SDK release history
+  on GitHub is the source of truth. Release notes bodies are empty (tag + date
+  only). Recent window captured below.
+entries:
+- version: v3.16.7
+  date: '2026-07-18'
+- version: v3.16.6
+  date: '2026-07-17'
+- version: v3.16.5
+  date: '2026-07-14'
+- version: v3.16.4
+  date: '2026-07-10'
+- version: v3.16.3
+  date: '2026-07-10'
