@@ -1,0 +1,2376 @@
+{
+  "item": [
+    {
+      "id": "bb040bc7-ade6-45a9-9fcb-6b94f83b4f65",
+      "name": "Flow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d2f7abd-169b-453e-8aa0-6fc635461ac9",
+          "name": "Deletes a flow.",
+          "request": {
+            "name": "Deletes a flow.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                ":flowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "21639c6a-cade-4ad2-856f-d123cf16b19a",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56698bdf-c5ed-40d3-967e-38350fb26d6d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6008,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3096e143-bda3-45f4-9094-58533065afcf",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "497cb4a1-6dcf-48a9-aac0-796ae4ea2434",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "56953a5b-2ce7-4645-981f-c2d4d4cafd8c",
+          "name": "Retrieves a flow by its ID.",
+          "request": {
+            "name": "Retrieves a flow by its ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                ":flowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "afdbac21-11f7-4b0e-8e39-4897750dd8c1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"campaignId\": \"string\",\n  \"flowItemCount\": 4926,\n  \"targetResponseCount\": 7179,\n  \"pidProportionalGain\": 2336.192974542016,\n  \"pidIntegralGain\": 8190.731793913937,\n  \"pidDerivativeGain\": 2728.6874441296736,\n  \"pidOutputOffset\": 9913.886473716977,\n  \"pidMinSessionsPerMinute\": 8046,\n  \"pidMaxSessionsPerMinute\": 8703,\n  \"pidBatchMode\": \"string\",\n  \"serveTimeoutSeconds\": 7067,\n  \"drainDurationSeconds\": 4216,\n  \"serveToResponseRatio\": 4115.036676181869,\n  \"criteria\": \"string\",\n  \"startingElo\": 5804,\n  \"minResponses\": 7308,\n  \"maxResponses\": 5734,\n  \"serveResponses\": 271,\n  \"featureFlags\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"ownerId\": \"61408939-7db6-208c-2069-9b24800a1170\",\n  \"ownerMail\": \"string\",\n  \"createdAt\": \"1992-01-29T21:49:21.417Z\",\n  \"_t\": \"RankingFlow\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c0c662c-7e48-42a7-aa99-2fe646b598da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "267eb841-ba2f-48f2-9ef9-e9e86e00aee5",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fe7daacc-b06c-42ee-ac48-626646238046",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    ":flowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1747b3b-d6db-49cc-8f1f-02fa243530a5",
+          "name": "Returns the distribution of completion durations (in seconds) per completed flow item.",
+          "request": {
+            "name": "Returns the distribution of completion durations (in seconds) per completed flow item.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking",
+                ":flowId",
+                "completion-time-histogram"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Optional start of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Optional end of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bucketCount",
+                  "value": "<integer>",
+                  "description": "Number of histogram buckets (default 10, max 100)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "82962500-c6e3-4cfc-9720-49f261a385d8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "completion-time-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"buckets\": [\n    {\n      \"lowerBound\": 6780.144585927876,\n      \"upperBound\": 5212.168170634131,\n      \"count\": 8026\n    },\n    {\n      \"lowerBound\": 5653.435884267298,\n      \"upperBound\": 4738.624287578774,\n      \"count\": 4914\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0746c33-fa0c-49b5-bcc2-80f9f04ad1fb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "completion-time-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bd4d44a-448e-4b2c-afab-be6dd7b2eee1",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "completion-time-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "251fbcc3-308e-418a-b064-d534a520e454",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "completion-time-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05798df4-fa62-4f9b-bd27-a770dfe1911b",
+          "name": "Returns flow item creation counts bucketed over time.",
+          "request": {
+            "name": "Returns flow item creation counts bucketed over time.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking",
+                ":flowId",
+                "flow-item-creation-timeseries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Optional start of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Optional end of the date range filter (exclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "datapoints",
+                  "value": "<integer>",
+                  "description": "Number of time buckets (default 100, max 1000)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2b05baad-21ce-4a3c-8d77-ef390dfbeb35",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "flow-item-creation-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"datapoints\": [\n    {\n      \"timestamp\": \"1949-02-09T05:37:00.094Z\",\n      \"count\": 7812\n    },\n    {\n      \"timestamp\": \"1977-07-05T18:48:01.984Z\",\n      \"count\": 6247\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5459ae6a-f627-47b6-a467-6650e84cda6d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "flow-item-creation-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "330bb616-3996-4306-8175-1c9d7c9fd498",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "flow-item-creation-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "39f704ca-1005-41f4-b049-bc8582477f4f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "flow-item-creation-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7ffa3d4f-57ff-4b81-81b5-12b45e121160",
+          "name": "Returns the distribution of total votes per completed flow item.",
+          "request": {
+            "name": "Returns the distribution of total votes per completed flow item.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking",
+                ":flowId",
+                "response-count-histogram"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Optional start of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Optional end of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "bucketCount",
+                  "value": "<integer>",
+                  "description": "Number of histogram buckets (default 10, max 100)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "856ad5f5-cca6-4494-b20d-93dd790333ec",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"buckets\": [\n    {\n      \"lowerBound\": 6780.144585927876,\n      \"upperBound\": 5212.168170634131,\n      \"count\": 8026\n    },\n    {\n      \"lowerBound\": 5653.435884267298,\n      \"upperBound\": 4738.624287578774,\n      \"count\": 4914\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c2678a-a72f-46ee-bb20-3f763d02f7e2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2bfec563-543d-4c3a-84dd-ee631f590fb5",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "17e194c8-8287-4e51-aae3-efa3f78759cb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-histogram"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "bucketCount",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bfd459d-e599-47c3-856f-cfd2615ee564",
+          "name": "Returns average response counts bucketed over time for completed flow items.",
+          "request": {
+            "name": "Returns average response counts bucketed over time for completed flow items.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking",
+                ":flowId",
+                "response-count-timeseries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<dateTime>",
+                  "description": "Optional start of the date range filter (inclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<dateTime>",
+                  "description": "Optional end of the date range filter (exclusive)."
+                },
+                {
+                  "disabled": false,
+                  "key": "datapoints",
+                  "value": "<integer>",
+                  "description": "Number of time buckets (default 100, max 1000)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the flow."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "305365ea-3448-4914-ad32-d1e70096f581",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"datapoints\": [\n    {\n      \"timestamp\": \"2012-07-25T20:00:31.159Z\",\n      \"averageResponseCount\": 8289.765453076488\n    },\n    {\n      \"timestamp\": \"1957-02-09T07:27:51.615Z\",\n      \"averageResponseCount\": 4984.031888094663\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae29ab5c-07a7-4fce-9391-56dc2dfdd7b5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9ea6a7b-cae6-441a-bc50-ff5e89bacfb7",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "71814b30-4bd3-42cc-89f8-cee6b0571b9f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "response-count-timeseries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "datapoints",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the flow."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dd778b7-ee4f-44cc-909d-74c3d08e52bc",
+          "name": "Queries flows with filtering and pagination.",
+          "request": {
+            "name": "Queries flows with filtering and pagination.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "16a8bc6f-330c-4d21-9e5a-e1d6fd44cae7",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1284,\n  \"page\": 2121,\n  \"pageSize\": 3510,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"ownerId\": \"de3aa077-6d42-e153-c993-63c04dcd9930\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"1974-01-05T08:35:06.328Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"type\": \"string\",\n      \"ownerId\": \"917ff1ad-c782-a6a2-4784-817fd8322d4a\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"2001-10-04T01:52:28.422Z\"\n    }\n  ],\n  \"totalPages\": 9605\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cee9d37-d678-4720-a725-a646b2aaa8bf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3577,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "654177c0-129e-4b54-bfc2-99a1a0106bee",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "68d7f7ce-3fa1-4696-a190-db38e91dfaa0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c9b168be-4eb2-4bf5-a666-e006eb8944d5",
+    "name": "Rapidata Asset Flow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

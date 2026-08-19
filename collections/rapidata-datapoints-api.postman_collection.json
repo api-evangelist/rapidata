@@ -1,0 +1,1757 @@
+{
+  "item": [
+    {
+      "id": "f9136ebf-a475-4816-925b-d930c7396b64",
+      "name": "Datapoints",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be7e1722-77c6-4964-abdf-527d18c5b017",
+          "name": "Creates a new datapoint in the specified dataset.",
+          "request": {
+            "name": "Creates a new datapoint in the specified dataset.",
+            "description": {},
+            "url": {
+              "path": [
+                "dataset",
+                ":datasetId",
+                "datapoint"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetId",
+                  "description": "(Required) The id of the dataset to create the datapoint in."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<long>\",\n  \"group\": \"<string>\",\n  \"transcription\": \"<string>\",\n  \"privateMetadata\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "619f3c7b-3251-4cc8-af73-a2a31b5f2d3f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to create the datapoint in."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<long>\",\n  \"group\": \"<string>\",\n  \"transcription\": \"<string>\",\n  \"privateMetadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"datapointId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "207859b4-eacc-46c1-bd1c-d220668056a1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to create the datapoint in."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<long>\",\n  \"group\": \"<string>\",\n  \"transcription\": \"<string>\",\n  \"privateMetadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7211,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6d214dec-25d8-4c67-ae45-40e0ae8722d0",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to create the datapoint in."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<long>\",\n  \"group\": \"<string>\",\n  \"transcription\": \"<string>\",\n  \"privateMetadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf0c8003-7800-4ce0-8185-c155a45a2785",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoint"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to create the datapoint in."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<long>\",\n  \"group\": \"<string>\",\n  \"transcription\": \"<string>\",\n  \"privateMetadata\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ca80e9f-4e80-4cc6-b808-bf906dc2ce7c",
+          "name": "Deletes the specified datapoint.",
+          "request": {
+            "name": "Deletes the specified datapoint.",
+            "description": {},
+            "url": {
+              "path": [
+                "datapoint",
+                ":datapointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datapointId",
+                  "description": "(Required) The unique identifier of the datapoint to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "b2735d5b-f9e5-45e9-8574-a33ba3453023",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The unique identifier of the datapoint to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1a2ed80e-4790-4fdf-bb15-3e4556648378",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The unique identifier of the datapoint to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 98,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b4fd41dd-fbca-4d6c-b566-b9934cf96c61",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The unique identifier of the datapoint to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d0ec84a3-9cb9-426e-9581-dd8467f71001",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The unique identifier of the datapoint to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c9904d07-c7e7-403a-968c-c0ee17cc4fab",
+          "name": "Gets the details of a datapoint by its id.",
+          "request": {
+            "name": "Gets the details of a datapoint by its id.",
+            "description": {},
+            "url": {
+              "path": [
+                "datapoint",
+                ":datapointId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datapointId",
+                  "description": "(Required) The id of the datapoint to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "28230fe0-bf4e-4f66-bf41-a6b429e51ba1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The id of the datapoint to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"datasetId\": \"string\",\n  \"state\": \"string\",\n  \"asset\": {\n    \"fileName\": \"string\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"string\",\n    \"_t\": \"FileAsset\"\n  },\n  \"createdAt\": \"1964-03-15T17:03:31.587Z\",\n  \"sortIndex\": 9596\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8224c1f-5e06-4448-8c93-e39e2948ae15",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The id of the datapoint to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 98,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5fa6aa2-dfa1-4577-8e0e-4b630e5648bf",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The id of the datapoint to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5ae7ed50-e22e-405b-b326-510bbb4c2041",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "datapoint",
+                    ":datapointId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datapointId",
+                      "description": "(Required) The id of the datapoint to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f15ba0c-f198-4a5f-82b8-339fab3ab77f",
+          "name": "Gets a list of all datapoints that failed to upload.",
+          "request": {
+            "name": "Gets a list of all datapoints that failed to upload.",
+            "description": {
+              "content": "A datapoint usually fails to upload when using a deferred upload mechanism such as when providing a URL\n and the URL is not accessible.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataset",
+                ":datasetId",
+                "datapoints",
+                "failed"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetId",
+                  "description": "(Required) The id of the dataset to get the failed datapoints of."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "860558c8-a6e6-419c-902f-41611a374374",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints",
+                    "failed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the failed datapoints of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"datapoints\": [\n    {\n      \"id\": \"string\",\n      \"datasetId\": \"string\",\n      \"sortIndex\": 4653,\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"createdAt\": \"2000-02-02T16:53:48.483Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"datasetId\": \"string\",\n      \"sortIndex\": 4767,\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"createdAt\": \"1948-05-13T14:18:00.670Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bb9c7eb-6d30-4b89-a487-1a50aad4e4f0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints",
+                    "failed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the failed datapoints of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 98,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0335d9a2-0f68-463f-b648-cbaeba1b5d5a",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints",
+                    "failed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the failed datapoints of."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "acff9a12-b66a-48de-a8f5-732995afa7b3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints",
+                    "failed"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the failed datapoints of."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c4dc2e6-c7c1-4896-b5fc-f0ef3b13ac1c",
+          "name": "Queries all datapoints of a dataset.",
+          "request": {
+            "name": "Queries all datapoints of a dataset.",
+            "description": {},
+            "url": {
+              "path": [
+                "dataset",
+                ":datasetId",
+                "datapoints"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetId",
+                  "description": "(Required) The id of the dataset to get the datapoints of."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "1997fba5-6aeb-41af-a27e-6453d060ee57",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the datapoints of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 379,\n  \"page\": 7876,\n  \"pageSize\": 5423,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"datasetId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"datasetId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      }\n    }\n  ],\n  \"totalPages\": 3358\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c8613206-ff01-40da-b54d-97550fca8939",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the datapoints of."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 98,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b84fd57-516d-4ad6-a0a8-580d82fee750",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the datapoints of."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0dce53c-f025-4c43-a436-bf6a6c6f6475",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataset",
+                    ":datasetId",
+                    "datapoints"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetId",
+                      "description": "(Required) The id of the dataset to get the datapoints of."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "3f0a61d9-1908-4572-921e-06bd40c47824",
+    "name": "Rapidata Asset Datapoints API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

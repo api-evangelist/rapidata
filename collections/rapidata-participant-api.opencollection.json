@@ -1,0 +1,266 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Participant API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participant",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds a sample to a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/participant/:participantId/sample",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to add the sample to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a sample to a participant."
+        },
+        {
+          "info": {
+            "name": "Adds a sample to a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/participant/:participantId/sample-new",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to add the sample to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a sample to a participant."
+        },
+        {
+          "info": {
+            "name": "Gets a participant by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/participant/:participantId",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to query."
+              }
+            ]
+          },
+          "docs": "Gets a participant by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a participant using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/participant/:participantId",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a participant using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/participant/:participantId",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a participant."
+        },
+        {
+          "info": {
+            "name": "Deletes a participant sample.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/participant-sample/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a participant sample."
+        },
+        {
+          "info": {
+            "name": "Disables a participant in a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/participant/:participantId/disable",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to disable."
+              }
+            ]
+          },
+          "docs": "Disables a participant in a benchmark."
+        },
+        {
+          "info": {
+            "name": "Enables a previously disabled participant in a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/participant/:participantId/enable",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to enable."
+              }
+            ]
+          },
+          "docs": "Fails with 400 if the participant is not currently disabled."
+        },
+        {
+          "info": {
+            "name": "Sets the faucet used to auto-generate samples for a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/participant/:participantId/faucet",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant whose faucet to set."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the faucet used to auto-generate samples for a participant."
+        },
+        {
+          "info": {
+            "name": "Removes the faucet configuration from a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/participant/:participantId/faucet",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant."
+              }
+            ]
+          },
+          "docs": "Removes the faucet configuration from a participant."
+        },
+        {
+          "info": {
+            "name": "Submits a participant to a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/participants/:participantId/submit",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to submit."
+              }
+            ]
+          },
+          "docs": "Submits a participant to a benchmark."
+        },
+        {
+          "info": {
+            "name": "Updates the name of a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/participant/:participantId/name",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant whose name should be updated."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of a participant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,383 @@
+{
+  "item": [
+    {
+      "id": "9d94ce61-4094-42e5-9474-393df3f27aa8",
+      "name": "SimpleWorkflow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7fe81061-bf8c-46b1-8fd4-fde6af35398d",
+          "name": "Gets the result overview for a simple workflow.",
+          "request": {
+            "name": "Gets the result overview for a simple workflow.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                "simple",
+                ":workflowId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Optional list of rapid states to include in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Optional list of rapid states to include in the results."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to get the results for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5a8e8052-bcc9-4570-aed3-2e18c1bb6c55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "simple",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6187,\n  \"page\": 8471,\n  \"pageSize\": 8150,\n  \"items\": [\n    {\n      \"rapidId\": \"string\",\n      \"payload\": {\n        \"target\": \"string\",\n        \"_t\": \"BoundingBoxPayload\"\n      },\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"responses\": [\n        {\n          \"id\": \"string\",\n          \"userId\": \"string\",\n          \"country\": \"string\",\n          \"language\": \"string\",\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userScore\": 8741.558242916919,\n          \"userScores\": {\n            \"key_0\": 4755.960094383515,\n            \"key_1\": 1908.3450794610324,\n            \"key_2\": 8848.1339378995,\n            \"key_3\": 5767.713754205336\n          },\n          \"demographicInformation\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\",\n            \"key_2\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"userId\": \"string\",\n          \"country\": \"string\",\n          \"language\": \"string\",\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userScore\": 8359.871711342032,\n          \"userScores\": {\n            \"key_0\": 1025.2856801761523,\n            \"key_1\": 7330.088327128509,\n            \"key_2\": 9920.36588343222,\n            \"key_3\": 983.8910289484882\n          },\n          \"demographicInformation\": {\n            \"key_0\": \"string\"\n          }\n        }\n      ],\n      \"totalResponseCount\": 5090,\n      \"state\": \"<string>\",\n      \"context\": \"string\",\n      \"contextAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"decisiveness\": 1754.2921780904464,\n      \"aggregation\": {\n        \"categoryTallies\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_1\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"key_2\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"_t\": \"ClassifyAggregation\"\n      }\n    },\n    {\n      \"rapidId\": \"string\",\n      \"payload\": {\n        \"target\": \"string\",\n        \"_t\": \"BoundingBoxPayload\"\n      },\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"responses\": [\n        {\n          \"id\": \"string\",\n          \"userId\": \"string\",\n          \"country\": \"string\",\n          \"language\": \"string\",\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userScore\": 9506.839488596925,\n          \"userScores\": {\n            \"key_0\": 5440.950809770582\n          },\n          \"demographicInformation\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        },\n        {\n          \"id\": \"string\",\n          \"userId\": \"string\",\n          \"country\": \"string\",\n          \"language\": \"string\",\n          \"result\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"userScore\": 9525.262971400169,\n          \"userScores\": {\n            \"key_0\": 8262.908738449933,\n            \"key_1\": 9719.14664825465,\n            \"key_2\": 8883.615006670747\n          },\n          \"demographicInformation\": {\n            \"key_0\": \"string\",\n            \"key_1\": \"string\"\n          }\n        }\n      ],\n      \"totalResponseCount\": 2637,\n      \"state\": \"<string>\",\n      \"context\": \"string\",\n      \"contextAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"decisiveness\": 8719.247087597474,\n      \"aggregation\": {\n        \"categoryTallies\": {\n          \"key_0\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"_t\": \"ClassifyAggregation\"\n      }\n    }\n  ],\n  \"totalPages\": 6374\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88f5c7c6-43aa-49e0-8f1e-70c8e40caa0b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "simple",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5177,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e99a460e-a591-48c6-a26b-991a89782d70",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "simple",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5bebb31e-a8cc-46b0-8877-a90ae7b22252",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "simple",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e5cc195-2991-45c1-97b8-26a83a14eec5",
+    "name": "Rapidata Asset SimpleWorkflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

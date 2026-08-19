@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset RankingFlowItem API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RankingFlowItem",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries flow items for a flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/item",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow to query items for."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries flow items for a flow."
+        },
+        {
+          "info": {
+            "name": "Creates a new flow item for the specified flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/item",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow to create the item in."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new flow item for the specified flow."
+        },
+        {
+          "info": {
+            "name": "Retrieves a flow item by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/item/:flowItemId",
+            "params": [
+              {
+                "name": "flowItemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow item to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves a flow item by its ID."
+        },
+        {
+          "info": {
+            "name": "Returns ranking results with Elo scores for a completed flow item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/item/:flowItemId/results",
+            "params": [
+              {
+                "name": "flowItemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow item to get results for."
+              }
+            ]
+          },
+          "docs": "Returns 409 Conflict if the flow item is not yet completed or has no associated workflow."
+        },
+        {
+          "info": {
+            "name": "Retrieves the pairwise vote matrix for a completed flow item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/item/:flowItemId/vote-matrix",
+            "params": [
+              {
+                "name": "flowItemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow item to get the vote matrix for."
+              }
+            ]
+          },
+          "docs": "Returns 409 Conflict if the flow item is not completed or has no associated workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

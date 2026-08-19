@@ -1,0 +1,2733 @@
+{
+  "item": [
+    {
+      "id": "d9265fcb-5690-43e6-9e40-fb60932b73f1",
+      "name": "SampleGeneration",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7a5f469c-4350-4bee-a0d5-3ca0d600a1bd",
+          "name": "Starts an asynchronous sample generation run.",
+          "request": {
+            "name": "Starts an asynchronous sample generation run.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark",
+                ":benchmarkId",
+                "sample-generation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "benchmarkId",
+                  "description": "(Required) The benchmark whose participants should run their faucets."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"samplesPerPrompt\": \"<integer>\",\n  \"participantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"promptIdentifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "144bcc92-c0e6-4838-b54b-9b7a0d0f80ce",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The benchmark whose participants should run their faucets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"samplesPerPrompt\": \"<integer>\",\n  \"participantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"promptIdentifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"totalCount\": 7056,\n  \"skippedParticipantIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17eea6fc-3c27-471b-bdc6-2808b025d18c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The benchmark whose participants should run their faucets."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"samplesPerPrompt\": \"<integer>\",\n  \"participantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"promptIdentifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4888,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c73f27fa-2a31-4241-aa1a-ee503676757f",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The benchmark whose participants should run their faucets."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"samplesPerPrompt\": \"<integer>\",\n  \"participantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"promptIdentifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0b65e85-9a75-46f9-af82-ca318ea45ef4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The benchmark whose participants should run their faucets."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"samplesPerPrompt\": \"<integer>\",\n  \"participantIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"promptIdentifiers\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bc3b8052-7619-47c8-98ab-ce6f260f9a9b",
+          "name": "Returns the current status and progress of a sample generation request.",
+          "request": {
+            "name": "Returns the current status and progress of a sample generation request.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark",
+                "sample-generation",
+                ":sampleGenerationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleGenerationId",
+                  "description": "(Required) The id of the sample generation request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c74ce3c6-0705-4cba-8b1c-4ae9ae33c322",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"benchmarkId\": \"string\",\n  \"status\": \"string\",\n  \"samplesPerPrompt\": 836,\n  \"totalCount\": 2500,\n  \"completedCount\": 4233,\n  \"failedCount\": 9336,\n  \"ownerId\": \"f0317409-747f-3da6-32f0-922b898cffce\",\n  \"ownerMail\": \"string\",\n  \"createdAt\": \"1971-03-20T04:43:05.635Z\",\n  \"participantIdFilter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"promptIdentifierFilter\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tagsFilter\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbf39af1-37c9-4086-823b-3e3394249bd4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2647,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a09284d3-b7f3-4b2b-b744-8102604524a5",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d16f16c7-15c8-4fdc-88d2-96e2a4e9bf53",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df70e636-a0e9-454d-815f-5b801dc3103c",
+          "name": "Returns the per-item audit trail for a sample generation request.",
+          "request": {
+            "name": "Returns the per-item audit trail for a sample generation request.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark",
+                "sample-generation",
+                ":sampleGenerationId",
+                "items"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[eq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[neq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[eq]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[neq]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[gt]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[gte]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[lt]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[lte]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[contains]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "prompt_identifier[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by prompt_identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleGenerationId",
+                  "description": "(Required) The id of the sample generation request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "4269ff39-6d02-4327-938c-6660cecf16a9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6455,\n  \"page\": 1054,\n  \"pageSize\": 946,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"sampleGenerationId\": \"string\",\n      \"participantId\": \"string\",\n      \"benchmarkPromptId\": \"string\",\n      \"promptIdentifier\": \"string\",\n      \"sampleCount\": 1131,\n      \"status\": \"string\",\n      \"attemptCount\": 213,\n      \"sampleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1985-09-12T15:33:07.074Z\",\n      \"providerRequestId\": \"string\",\n      \"failureReason\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"sampleGenerationId\": \"string\",\n      \"participantId\": \"string\",\n      \"benchmarkPromptId\": \"string\",\n      \"promptIdentifier\": \"string\",\n      \"sampleCount\": 2678,\n      \"status\": \"string\",\n      \"attemptCount\": 4604,\n      \"sampleIds\": [\n        \"string\",\n        \"string\"\n      ],\n      \"createdAt\": \"1956-08-19T00:45:30.681Z\",\n      \"providerRequestId\": \"string\",\n      \"failureReason\": \"string\"\n    }\n  ],\n  \"totalPages\": 6925\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75cec08e-2a87-459b-9303-33808ab4cdce",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2647,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc8dce9f-62de-4316-99d1-d905d1e6aa17",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e133744e-60cd-4984-b409-8ef029aefea7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "items"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "prompt_identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "099fd63f-cdd1-40e8-9ce9-7825ee68d168",
+          "name": "Lists historical sample generation runs for the given benchmark.",
+          "request": {
+            "name": "Lists historical sample generation runs for the given benchmark.",
+            "description": {
+              "content": "Results are sorted by creation time (newest first) by default.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "benchmark",
+                ":benchmarkId",
+                "sample-generations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[eq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[neq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "benchmarkId",
+                  "description": "(Required) The id of the benchmark whose sample generations should be listed."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "29ea9962-c802-4f3e-a7a4-d85078214b03",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark whose sample generations should be listed."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6757,\n  \"page\": 533,\n  \"pageSize\": 3304,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"benchmarkId\": \"string\",\n      \"status\": \"string\",\n      \"samplesPerPrompt\": 3216,\n      \"totalCount\": 7926,\n      \"completedCount\": 2814,\n      \"failedCount\": 3118,\n      \"ownerId\": \"37d156a0-5026-b813-4579-4a604a47ac32\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"1970-06-01T20:49:11.279Z\",\n      \"participantIdFilter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"promptIdentifierFilter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tagsFilter\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"benchmarkId\": \"string\",\n      \"status\": \"string\",\n      \"samplesPerPrompt\": 8562,\n      \"totalCount\": 1856,\n      \"completedCount\": 2270,\n      \"failedCount\": 1298,\n      \"ownerId\": \"22b69675-c6e3-1563-9168-c2836bf826ef\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"2004-11-25T14:29:30.763Z\",\n      \"participantIdFilter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"promptIdentifierFilter\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tagsFilter\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ],\n  \"totalPages\": 2318\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8e06621-8bce-4672-84fb-7a88bae01d45",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark whose sample generations should be listed."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2647,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c60d54e-1454-4bb2-997f-ee85c6aedad3",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark whose sample generations should be listed."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99445244-2797-4243-b2bd-2fd2f9917cb5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "sample-generations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark whose sample generations should be listed."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2216bf53-1ccf-4b80-9907-8a229f9dfa4e",
+          "name": "Re-queues failed items of a sample generation so they run again.",
+          "request": {
+            "name": "Re-queues failed items of a sample generation so they run again.",
+            "description": {
+              "content": "When no item ids are supplied, every failed item of the generation is retried. Item ids that\n do not belong to the generation or are not in a failed state are ignored. Returns the ids\n that were re-queued; a generation with no failed items yields an empty result.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "benchmark",
+                "sample-generation",
+                ":sampleGenerationId",
+                "retry"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleGenerationId",
+                  "description": "(Required) The id of the sample generation request."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"itemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4cdb654a-f075-4db8-8071-139c172b6aaf",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"retriedCount\": 3276,\n  \"retriedItemIds\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f63f9b1c-7215-4da9-ac69-c99e89014bb0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2647,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "738eabb6-d801-4bc1-b4e9-5039a2eeeb78",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ecdcc72f-257a-49c1-9f35-524846b16b6d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    "sample-generation",
+                    ":sampleGenerationId",
+                    "retry"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleGenerationId",
+                      "description": "(Required) The id of the sample generation request."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"itemIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2e459be6-bdfa-4392-a185-c521f77ef3fd",
+    "name": "Rapidata Asset SampleGeneration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

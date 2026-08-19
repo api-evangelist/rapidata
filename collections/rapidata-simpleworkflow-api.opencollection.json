@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset SimpleWorkflow API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SimpleWorkflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the result overview for a simple workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflow/simple/:workflowId/results",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workflow to get the results for."
+              },
+              {
+                "name": "states",
+                "value": "",
+                "type": "query",
+                "description": "Optional list of rapid states to include in the results."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              }
+            ]
+          },
+          "docs": "Gets the result overview for a simple workflow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

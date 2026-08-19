@@ -1,0 +1,1635 @@
+{
+  "item": [
+    {
+      "id": "6244568b-693d-48c2-8370-1815e6aede9e",
+      "name": "Examples",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e55f97a1-fe6e-409c-bb7d-9c108a532105",
+          "name": "Adds a new example to an audience.",
+          "request": {
+            "name": "Adds a new example to an audience.",
+            "description": {},
+            "url": {
+              "path": [
+                "audience",
+                ":audienceId",
+                "example"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audienceId",
+                  "description": "(Required) The unique identifier of the audience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"payload\": {\n    \"categories\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"_t\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"isCommonSense\": \"<boolean>\",\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b394f8e-9a5f-41fd-b221-cc4e17a8ad9e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"payload\": {\n    \"categories\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"_t\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_3\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"isCommonSense\": \"<boolean>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recalculationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5b40c87-226e-4b29-b301-a98d8b9ad55a",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"payload\": {\n    \"categories\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"_t\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_3\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"isCommonSense\": \"<boolean>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1711,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b79a8e4-7bf4-48f7-a419-4abe96f58845",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"payload\": {\n    \"categories\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"_t\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_3\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"isCommonSense\": \"<boolean>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bd4e23f6-cfe5-473a-98ea-9d3df1e8c8d5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"asset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"payload\": {\n    \"categories\": [\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"label\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"title\": \"<string>\",\n    \"_t\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_3\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"sortIndex\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"isCommonSense\": \"<boolean>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b4adedee-6375-4717-98af-5939b1f55dcb",
+          "name": "Deletes the specified audience example.",
+          "request": {
+            "name": "Deletes the specified audience example.",
+            "description": {},
+            "url": {
+              "path": [
+                "audience",
+                "example",
+                ":exampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exampleId",
+                  "description": "(Required) The unique identifier of the example to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "9acb0728-6c4f-4756-9792-c7ed76e8585e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"recalculationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e7807e6-2142-4ad1-ab5b-83e8bbbf2737",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7715,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d1c8ec3-71f5-4db2-88aa-0ed86eefaea9",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "90d73a83-a1ad-42ba-91e1-8145a672e5cf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d534289-4648-444b-9393-5c184f42d002",
+          "name": "Queries all examples for the specified audience.",
+          "request": {
+            "name": "Queries all examples for the specified audience.",
+            "description": {},
+            "url": {
+              "path": [
+                "audience",
+                ":audienceId",
+                "examples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[eq]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[neq]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[gt]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[gte]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[lt]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[lte]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[contains]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "visibility[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by visibility."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[eq]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[neq]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[gt]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[gte]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[lt]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[lte]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[contains]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "is_common_sense[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by is_common_sense."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audienceId",
+                  "description": "(Required) The unique identifier of the audience."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "b4663a12-3277-479c-ab4d-6093a3b37608",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 9801,\n  \"page\": 4283,\n  \"pageSize\": 1513,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"payload\": {\n        \"categories\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"title\": \"<string>\",\n        \"_t\": \"<string>\"\n      },\n      \"correctCount\": 2652,\n      \"incorrectCount\": 6476,\n      \"rapidId\": \"string\",\n      \"truth\": {\n        \"correctCategories\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"_t\": \"<string>\"\n      },\n      \"context\": \"string\",\n      \"contextAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"explanation\": \"string\",\n      \"randomCorrectProbability\": 2843.582907649572,\n      \"isCommonSense\": false,\n      \"sortIndex\": 5063,\n      \"visibility\": \"<string>\"\n    },\n    {\n      \"id\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"payload\": {\n        \"categories\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"title\": \"<string>\",\n        \"_t\": \"<string>\"\n      },\n      \"correctCount\": 3877,\n      \"incorrectCount\": 7554,\n      \"rapidId\": \"string\",\n      \"truth\": {\n        \"correctCategories\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"_t\": \"<string>\"\n      },\n      \"context\": \"string\",\n      \"contextAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"explanation\": \"string\",\n      \"randomCorrectProbability\": 4715.743179314722,\n      \"isCommonSense\": false,\n      \"sortIndex\": 3554,\n      \"visibility\": \"<string>\"\n    }\n  ],\n  \"totalPages\": 8819\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f977f3e-393d-49f8-8ff4-3a7daba87213",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7715,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "adcab8b1-73d9-45f4-bc7b-fa6301500015",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c5697d20-413e-4d92-9f5f-454473c3ef25",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "examples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "visibility[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "is_common_sense[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32322ca5-e186-4eb5-b4ca-a309674acedf",
+          "name": "Updates an example's properties within an audience.",
+          "request": {
+            "name": "Updates an example's properties within an audience.",
+            "description": {},
+            "url": {
+              "path": [
+                "audience",
+                ":audienceId",
+                "example",
+                ":exampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "audienceId",
+                  "description": "(Required) The unique identifier of the audience."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exampleId",
+                  "description": "(Required) The unique identifier of the example to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"isCommonSense\": \"<boolean>\",\n  \"sortIndex\": \"<integer>\",\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "543b3c18-a1f5-476f-91fc-6d569c8ce94e",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"isCommonSense\": \"<boolean>\",\n  \"sortIndex\": \"<integer>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c9eb5753-bd70-4c9c-adae-b519b76c5e6c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"isCommonSense\": \"<boolean>\",\n  \"sortIndex\": \"<integer>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7715,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26cadf16-c4cd-44ea-8db3-31c7987675d7",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"isCommonSense\": \"<boolean>\",\n  \"sortIndex\": \"<integer>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1032f880-a0b1-4cf4-8afd-39b1cac69ede",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "audience",
+                    ":audienceId",
+                    "example",
+                    ":exampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "audienceId",
+                      "description": "(Required) The unique identifier of the audience."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exampleId",
+                      "description": "(Required) The unique identifier of the example to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"truth\": {\n    \"correctCategories\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"_t\": \"<string>\"\n  },\n  \"explanation\": \"<string>\",\n  \"context\": \"<string>\",\n  \"contextAsset\": {\n    \"name\": \"<string>\",\n    \"_t\": \"<string>\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"<string>\"\n  },\n  \"randomCorrectProbability\": \"<double>\",\n  \"isCommonSense\": \"<boolean>\",\n  \"sortIndex\": \"<integer>\",\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "714b153e-e1e7-4448-8447-41774d4f5deb",
+    "name": "Rapidata Asset Examples API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

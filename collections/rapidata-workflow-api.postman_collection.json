@@ -1,0 +1,2467 @@
+{
+  "item": [
+    {
+      "id": "4c05fd31-04e3-4782-8557-5e82ffae22ec",
+      "name": "Workflow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d590a3d0-38e8-48af-a168-cae92a39d42e",
+          "name": "Deletes a workflow by its id.",
+          "request": {
+            "name": "Deletes a workflow by its id.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "19d748f4-9e95-49ec-ac25-491f86e39699",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8517a640-71a4-4991-84e4-4482844f8257",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5934,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e3e052ea-8a9a-4c83-a6c5-9fc7f9821eba",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7a8d3ccf-a02e-443b-b2b9-285c0880e0a2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0794841-f128-4eaf-b772-33caa9f58dc8",
+          "name": "Returns the workflow identified by workflowId.",
+          "request": {
+            "name": "Returns the workflow identified by workflowId.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) Identifier of the workflow to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "ac2129ba-0805-47ed-bb83-65d12a12b8c2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Identifier of the workflow to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflow\": {\n    \"id\": \"string\",\n    \"validationSetId\": \"string\",\n    \"state\": \"string\",\n    \"referee\": {\n      \"totalBudget\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"totalServeBudget\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"name\": \"string\",\n    \"ownerMail\": \"string\",\n    \"_t\": \"EvaluationWorkflow\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69916125-ec82-412a-a0fb-01e5374b3a92",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Identifier of the workflow to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9426,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c05b3852-d165-413c-b6a8-694c7fc121be",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Identifier of the workflow to fetch."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9d826b4a-a95d-4f0a-9b89-cc47ba4c2ce6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) Identifier of the workflow to fetch."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "441b8c70-ebf3-4b9d-8380-29ebd60d0e0c",
+          "name": "Returns the number of times each asset index won across the workflow's rapids.",
+          "request": {
+            "name": "Returns the number of times each asset index won across the workflow's rapids.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "compare-ab-summary"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "useUserScore",
+                  "value": "false",
+                  "description": "Whether to use the user score to determine the winner."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to get the summary for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7c41abb0-45c2-4bc0-ba14-9222eff0114b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "compare-ab-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useUserScore",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the summary for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"winCounter\": {\n    \"key_0\": 6060.655721866992\n  },\n  \"allTargetGroupsCompleted\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "548a445e-53ac-4f64-badf-e4f2c2acd388",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "compare-ab-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useUserScore",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the summary for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9426,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ab74f7b-32b0-48f0-97c0-227b5cc373a3",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "compare-ab-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useUserScore",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the summary for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "508a94ee-9245-40db-a435-45cbd720e896",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "compare-ab-summary"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useUserScore",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the summary for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64d3bc72-d49f-4249-9622-4555ba385fd8",
+          "name": "Gets the progress of a workflow.",
+          "request": {
+            "name": "Gets the progress of a workflow.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "progress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to get the progress for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "f191dd32-5a13-481a-938a-59ce362e0c71",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the progress for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"completionPercentage\": 6061.192217279891,\n  \"total\": 6370,\n  \"completed\": 4412,\n  \"state\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4408d2f-d780-424f-87f0-42f94d9b3d3d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the progress for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9426,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6e52513-575f-4a13-96b8-be439ca5d020",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the progress for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb8cc480-a579-45c0-b27c-0c61049fafc0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "progress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the progress for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "536c76f7-6900-4724-9c48-1ea81114cbca",
+          "name": "Gets the most recent or oldest responses for a workflow, across any rapid.",
+          "request": {
+            "name": "Gets the most recent or oldest responses for a workflow, across any rapid.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                ":workflowId",
+                "responses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100",
+                  "description": "The maximum number of responses to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Whether the oldest or most recent responses should be returned."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to get the responses for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "17e73d59-bc7e-44f2-b37d-39c1f1accf10",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the responses for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responses\": [\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"country\": \"string\",\n      \"language\": \"string\",\n      \"result\": {\n        \"category\": \"string\",\n        \"rapidId\": \"string\",\n        \"_t\": \"AttachCategoryResult\"\n      },\n      \"userScore\": 3345.7020439004204,\n      \"userScores\": {\n        \"key_0\": 2073.503309230018\n      },\n      \"demographicInformation\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"country\": \"string\",\n      \"language\": \"string\",\n      \"result\": {\n        \"category\": \"string\",\n        \"rapidId\": \"string\",\n        \"_t\": \"AttachCategoryResult\"\n      },\n      \"userScore\": 3636.292221701899,\n      \"userScores\": {\n        \"key_0\": 751.241015413533\n      },\n      \"demographicInformation\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b70cbb5-7610-40b9-bbb2-02774d178b4e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the responses for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9426,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08dbc60f-705a-413f-a01a-843f7fbff32a",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the responses for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "15008369-be1e-43ec-ae46-95c882c66fbf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    ":workflowId",
+                    "responses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the responses for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66e127d9-5c50-4b56-926a-3029216ce203",
+          "name": "Queries workflows based on the provided filter, page, and sort criteria.",
+          "request": {
+            "name": "Queries workflows based on the provided filter, page, and sort criteria.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[eq]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[neq]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[gt]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[gte]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[lt]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[lte]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[contains]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[eq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[neq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[gt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[gte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[lt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[lte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c655d52f-0332-4485-8660-9a6d3c591df0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 446,\n  \"page\": 1721,\n  \"pageSize\": 9592,\n  \"items\": [\n    {\n      \"workflow\": {\n        \"id\": \"string\",\n        \"validationSetId\": \"string\",\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"referee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"ownerMail\": \"string\",\n        \"_t\": \"EvaluationWorkflow\"\n      }\n    },\n    {\n      \"workflow\": {\n        \"id\": \"string\",\n        \"validationSetId\": \"string\",\n        \"state\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"referee\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"name\": \"string\",\n        \"ownerMail\": \"string\",\n        \"_t\": \"EvaluationWorkflow\"\n      }\n    }\n  ],\n  \"totalPages\": 3449\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "81242061-9ee0-4a79-a524-2f0dc18e59d0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9426,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc5c9cf0-9262-4561-b14b-8dbf0e24909e",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a47437ac-b0e5-4a26-b840-b0447a7323bb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "086eac99-e2d3-4878-bcbe-f9d8405849fa",
+    "name": "Rapidata Asset Workflow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,102 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset ValidationFeedback API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ValidationFeedback",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries validation feedbacks for a rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/validation-feedback",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the rapid to query feedbacks for."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "user_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by user_id."
+              },
+              {
+                "name": "feedback",
+                "value": "",
+                "type": "query",
+                "description": "Filter by feedback."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries validation feedbacks for a rapid."
+        },
+        {
+          "info": {
+            "name": "Submits feedback for a validation rapid outcome.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/validation-feedback",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the rapid to provide feedback for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits feedback for a validation rapid outcome."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Translation API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Translation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ensures the provided text is in English, returning a suggested English text when it isn't.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/translation/ensure-english",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Ensures the provided text is in English, returning a suggested English text when it isn't."
+        },
+        {
+          "info": {
+            "name": "Translates text from one language to another using the specified translator.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/translation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Translates text from one language to another using the specified translator."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

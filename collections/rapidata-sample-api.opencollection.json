@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Sample API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sample",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a benchmark sample by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark-sample/:sampleId",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample to be retrieved."
+              }
+            ]
+          },
+          "docs": "Gets a benchmark sample by its id."
+        },
+        {
+          "info": {
+            "name": "Gets navigation context (previous, next, related samples) for a sample.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark-sample/:sampleId/navigation",
+            "params": [
+              {
+                "name": "sampleId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample to anchor navigation on."
+              }
+            ]
+          },
+          "docs": "Gets navigation context (previous, next, related samples) for a sample."
+        },
+        {
+          "info": {
+            "name": "Returns the paged samples of a benchmark filtered by an identifier.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/samples/:identifier",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to query."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "path",
+                "description": "The identifier to filter all samples for."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Returns the paged samples of a benchmark filtered by an identifier."
+        },
+        {
+          "info": {
+            "name": "Queries all samples of a participant.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/participant/:participantId/samples",
+            "params": [
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to query samples for."
+              },
+              {
+                "name": "fillMissing",
+                "value": "",
+                "type": "query",
+                "description": "Whether to fill missing samples with placeholders."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "The tags to filter the samples by; a sample matches when any of its prompt tags is in this list."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by identifier."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all samples of a participant."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

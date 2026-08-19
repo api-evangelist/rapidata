@@ -1,0 +1,494 @@
+{
+  "item": [
+    {
+      "id": "0580312b-96b6-44b5-8d60-ff80adc7b6c0",
+      "name": "RankingFlow",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8637f26-d6c0-4355-8c92-136b949a383c",
+          "name": "Creates a new ranking flow.",
+          "request": {
+            "name": "Creates a new ranking flow.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"audienceId\": \"<string>\",\n  \"validationSetId\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\",\n  \"drainDurationSeconds\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2456590c-2a19-4bf5-908e-8b0b85ee2f55",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"audienceId\": \"<string>\",\n  \"validationSetId\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\",\n  \"drainDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"flowId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41532485-b464-4b9e-aff9-9936b784e07c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"audienceId\": \"<string>\",\n  \"validationSetId\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\",\n  \"drainDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8787,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a33fa421-9514-43fb-bed3-1a11d478d3e9",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"audienceId\": \"<string>\",\n  \"validationSetId\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\",\n  \"drainDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a14626d8-b6d9-4a9d-842f-9e8018a28fbb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"audienceId\": \"<string>\",\n  \"validationSetId\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\",\n  \"drainDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "27e63121-cd03-401d-bcb1-a75c0b29acfb",
+          "name": "Updates the configuration of a ranking flow.",
+          "request": {
+            "name": "Updates the configuration of a ranking flow.",
+            "description": {},
+            "url": {
+              "path": [
+                "flow",
+                "ranking",
+                ":flowId",
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "flowId",
+                  "description": "(Required) The ID of the ranking flow to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"audienceId\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5d994820-df90-4b0a-a47f-b6a9c04052d2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the ranking flow to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audienceId\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d3311c9-44e0-40ed-ab7d-3b9f5ba4dcd0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the ranking flow to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audienceId\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7791,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_3\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86a60e6c-e8c6-43c4-a2da-1a4e0bfc9407",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the ranking flow to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audienceId\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f28adaa0-0774-459a-8ef8-3228f155b998",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "flow",
+                    "ranking",
+                    ":flowId",
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "flowId",
+                      "description": "(Required) The ID of the ranking flow to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"audienceId\": \"<string>\",\n  \"criteria\": \"<string>\",\n  \"startingElo\": \"<integer>\",\n  \"minResponses\": \"<integer>\",\n  \"maxResponses\": \"<integer>\",\n  \"serveResponses\": \"<integer>\",\n  \"serveToResponseRatio\": \"<double>\",\n  \"serveTimeoutSeconds\": \"<integer>\",\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"targetResponseCount\": \"<integer>\",\n  \"pidProportionalGain\": \"<double>\",\n  \"pidIntegralGain\": \"<double>\",\n  \"pidDerivativeGain\": \"<double>\",\n  \"pidOutputOffset\": \"<double>\",\n  \"pidMinSessionsPerMinute\": \"<integer>\",\n  \"pidMaxSessionsPerMinute\": \"<integer>\",\n  \"pidBatchMode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "28e8e61c-4432-471b-a272-e9e176f90f9a",
+    "name": "Rapidata Asset RankingFlow API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

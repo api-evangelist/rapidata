@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Datapoints API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datapoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new datapoint in the specified dataset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/datapoint",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to create the datapoint in."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new datapoint in the specified dataset."
+        },
+        {
+          "info": {
+            "name": "Gets the details of a datapoint by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/datapoint/:datapointId",
+            "params": [
+              {
+                "name": "datapointId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the datapoint to get."
+              }
+            ]
+          },
+          "docs": "Gets the details of a datapoint by its id."
+        },
+        {
+          "info": {
+            "name": "Deletes the specified datapoint.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/datapoint/:datapointId",
+            "params": [
+              {
+                "name": "datapointId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the datapoint to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified datapoint."
+        },
+        {
+          "info": {
+            "name": "Gets a list of all datapoints that failed to upload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/datapoints/failed",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to get the failed datapoints of."
+              }
+            ]
+          },
+          "docs": "A datapoint usually fails to upload when using a deferred upload mechanism such as when providing a URL\n and the URL is not accessible."
+        },
+        {
+          "info": {
+            "name": "Queries all datapoints of a dataset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/datapoints",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to get the datapoints of."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all datapoints of a dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

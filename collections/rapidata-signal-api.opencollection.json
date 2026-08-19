@@ -1,0 +1,334 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Signal API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Signal",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries the signals visible to the current caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/signal",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "audience_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by audience_id."
+              },
+              {
+                "name": "job_definition_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job_definition_id."
+              },
+              {
+                "name": "is_paused",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_paused."
+              },
+              {
+                "name": "is_public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_public."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "next_run_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by next_run_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the signals visible to the current caller."
+        },
+        {
+          "info": {
+            "name": "Creates a new signal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/signal",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new signal."
+        },
+        {
+          "info": {
+            "name": "Gets a signal by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/signal/:signalId",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a signal by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a signal using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/signal/:signalId",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a signal using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a signal by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/signal/:signalId",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to delete."
+              }
+            ]
+          },
+          "docs": "Soft-deleted signals (and every run they spawned) are hidden from all view / list\n endpoints — including admin endpoints — per the cascade policy."
+        },
+        {
+          "info": {
+            "name": "Gets a single signal run by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/signal/run/:runId",
+            "params": [
+              {
+                "name": "runId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the run to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a single signal run by its id."
+        },
+        {
+          "info": {
+            "name": "Pauses a signal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/signal/:signalId/pause",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to pause."
+              }
+            ]
+          },
+          "docs": "Manual triggers still fire on a paused signal — pause only affects the scheduler."
+        },
+        {
+          "info": {
+            "name": "Queries the runs spawned by a signal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/signal/:signalId/run",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal whose runs to query."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "trigger_source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by trigger_source."
+              },
+              {
+                "name": "started_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by started_at."
+              },
+              {
+                "name": "completed_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by completed_at."
+              },
+              {
+                "name": "audience_job_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by audience_job_id."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the runs spawned by a signal."
+        },
+        {
+          "info": {
+            "name": "Resumes a paused signal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/signal/:signalId/resume",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to resume."
+              }
+            ]
+          },
+          "docs": "Resumes a paused signal."
+        },
+        {
+          "info": {
+            "name": "Manually triggers a signal.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/signal/:signalId/trigger",
+            "params": [
+              {
+                "name": "signalId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the signal to trigger."
+              }
+            ]
+          },
+          "docs": "Manual triggers fire even when the signal is paused. They are queued via the broker\n and will be skipped (with a recorded reason) if another run is already in flight."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

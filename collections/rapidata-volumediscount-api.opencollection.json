@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset VolumeDiscount API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "VolumeDiscount",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all volume discount brackets for a billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId/volume-discounts",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The billing period to get volume discounts for."
+              }
+            ]
+          },
+          "docs": "Gets all volume discount brackets for a billing period."
+        },
+        {
+          "info": {
+            "name": "Creates a volume discount bracket for a billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId/volume-discounts",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The billing period to add the volume discount to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a volume discount bracket for a billing period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

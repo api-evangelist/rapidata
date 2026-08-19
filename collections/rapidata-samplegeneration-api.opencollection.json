@@ -1,0 +1,199 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset SampleGeneration API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SampleGeneration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Starts an asynchronous sample generation run.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/sample-generation",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The benchmark whose participants should run their faucets."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts an asynchronous sample generation run."
+        },
+        {
+          "info": {
+            "name": "Returns the current status and progress of a sample generation request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/sample-generation/:sampleGenerationId",
+            "params": [
+              {
+                "name": "sampleGenerationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample generation request."
+              }
+            ]
+          },
+          "docs": "Returns the current status and progress of a sample generation request."
+        },
+        {
+          "info": {
+            "name": "Returns the per-item audit trail for a sample generation request.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/sample-generation/:sampleGenerationId/items",
+            "params": [
+              {
+                "name": "sampleGenerationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample generation request."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Returns the per-item audit trail for a sample generation request."
+        },
+        {
+          "info": {
+            "name": "Lists historical sample generation runs for the given benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/sample-generations",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark whose sample generations should be listed."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Results are sorted by creation time (newest first) by default."
+        },
+        {
+          "info": {
+            "name": "Re-queues failed items of a sample generation so they run again.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/sample-generation/:sampleGenerationId/retry",
+            "params": [
+              {
+                "name": "sampleGenerationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the sample generation request."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "When no item ids are supplied, every failed item of the generation is retried. Item ids that\n do not belong to the generation or are not in a failed state are ignored. Returns the ids\n that were re-queued; a generation with no failed items yields an empty result."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

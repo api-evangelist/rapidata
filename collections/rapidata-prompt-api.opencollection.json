@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Prompt API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Prompt",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Deletes a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/benchmark-prompt/:promptId",
+            "params": [
+              {
+                "name": "promptId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the prompt to delete."
+              }
+            ]
+          },
+          "docs": "Also removes every sample generated for the prompt across the benchmark."
+        },
+        {
+          "info": {
+            "name": "Updates the tags associated with a prompt.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/benchmark-prompt/:promptId/tags",
+            "params": [
+              {
+                "name": "promptId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the prompt to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the tags associated with a prompt."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

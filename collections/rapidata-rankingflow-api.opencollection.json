@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset RankingFlow API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RankingFlow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new ranking flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/flow/ranking",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ranking flow."
+        },
+        {
+          "info": {
+            "name": "Updates the configuration of a ranking flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/config",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the ranking flow to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the configuration of a ranking flow."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

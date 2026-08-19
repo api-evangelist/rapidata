@@ -2,14 +2,11 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/rapidata-openapi-original.json
-notes: >-
-  Rapidata does not publish a hosted MCP server. Its documented agent path is an
-  official Agent Skill (RapidataAI/skills, `npx skills add RapidataAI/skills`)
-  that teaches coding agents to write Rapidata Python SDK integrations — see
-  skills/. Notably the OpenID Connect authorization server advertises an `mcp`
-  scope, indicating MCP access may be planned. This candidate tool list is
-  derived from the OpenAPI operation surface (285 paths / 315 operations across
-  54 resource tags) and is NOT an official server.
+notes: Rapidata does not publish a hosted MCP server. Its documented agent path is an official Agent Skill
+  (RapidataAI/skills, `npx skills add RapidataAI/skills`) that teaches coding agents to write Rapidata
+  Python SDK integrations — see skills/. Notably the OpenID Connect authorization server advertises an
+  `mcp` scope, indicating MCP access may be planned. This candidate tool list is derived from the OpenAPI
+  operation surface (285 paths / 315 operations across 54 resource tags) and is NOT an official server.
 server:
   name: rapidata
   transport: http
@@ -30,3 +27,9 @@ tools:
 - name: get_results
   description: Retrieve feedback/results for a workflow (candidate — Feedback/Workflow tags)
   source_operation: openapi/rapidata-openapi-original.json#Feedback
+deployment:
+  mode: none
+  verified: derived
+  tools: 5
+  checked: '2026-08-12'
+  source: catalog MCP census

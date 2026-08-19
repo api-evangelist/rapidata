@@ -1,0 +1,780 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Job API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Job",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approves a job in manual review so its pipeline can start processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/:jobId/approve",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job to approve."
+              }
+            ]
+          },
+          "docs": "Approves a job in manual review so its pipeline can start processing."
+        },
+        {
+          "info": {
+            "name": "Creates a new job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/definition",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A preview pipeline is automatically created and returned in the response."
+        },
+        {
+          "info": {
+            "name": "Creates a new job from a job definition and audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "If the audience is not already recruiting, recruiting is started automatically.\n The RecruitingStarted field indicates whether this happened."
+        },
+        {
+          "info": {
+            "name": "Gets the latest revision for a job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/revision",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition."
+              }
+            ]
+          },
+          "docs": "Gets the latest revision for a job definition."
+        },
+        {
+          "info": {
+            "name": "Creates a new revision for an existing job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/revision",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition to create a revision for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unspecified fields are inherited from the previous revision. Workflow and Referee must be\n provided together if either is specified."
+        },
+        {
+          "info": {
+            "name": "Gets a job definition by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a job definition by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a job definition."
+        },
+        {
+          "info": {
+            "name": "Deletes a job definition and all its revisions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a job definition and all its revisions."
+        },
+        {
+          "info": {
+            "name": "Gets a job by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a job by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a job."
+        },
+        {
+          "info": {
+            "name": "Deletes a job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/job/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a job."
+        },
+        {
+          "info": {
+            "name": "Downloads the results of a job as a file attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/:jobId/download-results",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to download results for."
+              }
+            ]
+          },
+          "docs": "Downloads the results of a job as a file attachment."
+        },
+        {
+          "info": {
+            "name": "Estimates the cost of running a job to completion.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/:jobId/cost-estimate",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to estimate."
+              }
+            ]
+          },
+          "docs": "The estimate multiplies a representative per-response cost sampled from the job's rapids by\n the total number of responses its referee requires. Returns 409 while the estimate is not\n yet available because the job has no rapids, or when the referee is unbounded."
+        },
+        {
+          "info": {
+            "name": "Estimates the cost of running a job definition's latest revision to completion.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/cost-estimate",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition to estimate."
+              }
+            ]
+          },
+          "docs": "The estimate multiplies a representative per-response cost sampled from the definition's\n rapids by the total number of responses its referee requires. Returns 409 while the estimate\n is not yet available because no rapids exist, or when the referee is unbounded."
+        },
+        {
+          "info": {
+            "name": "Gets the results of a job as a JSON string.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/:jobId/results",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job to get results for."
+              }
+            ]
+          },
+          "docs": "For file download, use the download-results endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Gets a specific revision for a job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/revision/:revisionNumber",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition."
+              },
+              {
+                "name": "revisionNumber",
+                "value": "",
+                "type": "path",
+                "description": "The revision number to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a specific revision for a job definition."
+        },
+        {
+          "info": {
+            "name": "Pauses a job, stopping all of its campaigns from processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/:jobId/pause",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job to pause."
+              }
+            ]
+          },
+          "docs": "Pauses a job, stopping all of its campaigns from processing."
+        },
+        {
+          "info": {
+            "name": "Retrieves jobs aggregated by customer with total counts and most recent job information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/jobs/aggregated-overview",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "last_job_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by last_job_date."
+              },
+              {
+                "name": "last_job_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by last_job_name."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Retrieves jobs aggregated by customer with total counts and most recent job information."
+        },
+        {
+          "info": {
+            "name": "Queries job definitions visible to the caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definitions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "definition_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition_id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "definition_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition_type."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Results are scoped to the caller's customer unless the caller is allowed to view all job definitions."
+        },
+        {
+          "info": {
+            "name": "Queries the revisions of a specific job definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/revisions",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the job definition."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "revision_number",
+                "value": "",
+                "type": "query",
+                "description": "Filter by revision_number."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the revisions of a specific job definition."
+        },
+        {
+          "info": {
+            "name": "Queries jobs visible to the caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/jobs",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "job_definition_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job_definition_id."
+              },
+              {
+                "name": "audience_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by audience_id."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Results are scoped to the caller's customer unless the caller is allowed to view all jobs."
+        },
+        {
+          "info": {
+            "name": "Queries job definitions that have been shared publicly, regardless of owner, so they can be\n reused as templates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/job/definitions/public",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "definition_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition_id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "definition_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition_type."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries job definitions that have been shared publicly, regardless of owner, so they can be\n reused as templates."
+        },
+        {
+          "info": {
+            "name": "Resumes a job, restarting all of its campaigns.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/:jobId/resume",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job to resume."
+              }
+            ]
+          },
+          "docs": "Resumes a job, restarting all of its campaigns."
+        },
+        {
+          "info": {
+            "name": "Retries processing of a failed job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/job/:jobId/retry",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job to retry."
+              }
+            ]
+          },
+          "docs": "Retries processing of a failed job."
+        },
+        {
+          "info": {
+            "name": "Marks or unmarks a job definition as a public template that other users can discover and run.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/job/definition/:definitionId/share",
+            "params": [
+              {
+                "name": "definitionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job definition."
+              },
+              {
+                "name": "isPublic",
+                "value": "",
+                "type": "query",
+                "description": "Whether to mark or unmark the definition as public."
+              }
+            ]
+          },
+          "docs": "Marks or unmarks a job definition as a public template that other users can discover and run."
+        },
+        {
+          "info": {
+            "name": "Marks or unmarks a job as public so its results can be shared with other users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/job/:jobId/share",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the job."
+              },
+              {
+                "name": "isPublic",
+                "value": "",
+                "type": "query",
+                "description": "Whether to mark or unmark the job as public."
+              }
+            ]
+          },
+          "docs": "Marks or unmarks a job as public so its results can be shared with other users."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

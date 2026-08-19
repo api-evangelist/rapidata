@@ -1,0 +1,751 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Leaderboard API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leaderboard",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Boosts a subset of participants within a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/boost",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to boost."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Boosts a subset of participants within a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Creates a new leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/leaderboard",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new leaderboard."
+        },
+        {
+          "info": {
+            "name": "Queries all participants connected to a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/participants",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard whose participants should be queried."
+              }
+            ]
+          },
+          "docs": "Queries all participants connected to a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Creates a participant in a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/participants",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard the participant will be added to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a participant in a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Adds a new prompt to a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/prompts",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to add the prompt to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new prompt to a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Gets a leaderboard by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets a leaderboard by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a leaderboard using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a leaderboard using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a leaderboard by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a leaderboard by its id."
+        },
+        {
+          "info": {
+            "name": "Queries the combined win matrix of multiple leaderboards.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/combined-matrix/query",
+            "params": [
+              {
+                "name": "leaderboardIds",
+                "value": "",
+                "type": "query",
+                "description": "The identifiers of the leaderboards to combine."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries the combined standings of multiple leaderboards.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/combined-standings/query",
+            "params": [
+              {
+                "name": "leaderboardIds",
+                "value": "",
+                "type": "query",
+                "description": "The identifiers of the leaderboards to combine."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries the runs related to a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/runs",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard whose runs should be queried."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the runs related to a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Queries all leaderboards accessible to the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboards",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "benchmark_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by benchmark_id."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all leaderboards accessible to the current user."
+        },
+        {
+          "info": {
+            "name": "Queries the win matrix of a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/matrix/query",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries the standings of a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/standings/query",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Submits a participant to a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/participants/:participantId/submit",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard the participant belongs to."
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to submit."
+              }
+            ]
+          },
+          "docs": "Submits a participant to a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Updates the name of a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/name",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of a leaderboard."
+        },
+        {
+          "info": {
+            "name": "Updates the response configuration of a leaderboard.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/leaderboard/:leaderboardId/response-config",
+            "params": [
+              {
+                "name": "leaderboardId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the leaderboard to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the response configuration of a leaderboard."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

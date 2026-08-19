@@ -1,0 +1,203 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset BillingAccount API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BillingAccount",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries vouchers with filtering, sorting, and pagination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/vouchers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "customer_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer_id."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "source",
+                "value": "",
+                "type": "query",
+                "description": "Filter by source."
+              },
+              {
+                "name": "expires_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by expires_at."
+              },
+              {
+                "name": "issued_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by issued_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries vouchers with filtering, sorting, and pagination."
+        },
+        {
+          "info": {
+            "name": "Grants a voucher to a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/vouchers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Provide exactly one of validity (a duration from now) or expiresAt (an\n explicit instant) — not both, not neither. The grant immediately raises the customer's\n serve allowance."
+        },
+        {
+          "info": {
+            "name": "Revokes a voucher.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/vouchers/:voucherId/revoke",
+            "params": [
+              {
+                "name": "voucherId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the voucher to revoke."
+              }
+            ]
+          },
+          "docs": "Lowers the owning customer's serve allowance by the voucher's remaining grant."
+        },
+        {
+          "info": {
+            "name": "Sets the spend limit for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/customer/:customerId/credit-line",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer whose credit line to set."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets the spend limit for a customer."
+        },
+        {
+          "info": {
+            "name": "Sets the minimum spend commitment for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/customer/:customerId/minimum-spend-commitment",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer whose minimum spend commitment to set."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "At invoice time, if the period's measured spend is below the commitment, a top-up charge for\n the shortfall is added so the usage-side bill reaches the commitment. Setting it to 0\n removes the commitment."
+        },
+        {
+          "info": {
+            "name": "Sets the platform fee for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/customer/:customerId/platform-fee",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer whose platform fee to set."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The fee is automatically applied as a charge to the customer's current open billing period\n and to every future period. Setting it to null removes the platform-fee charge from\n the current open period; 0 keeps an explicit $0 charge that is still shown."
+        },
+        {
+          "info": {
+            "name": "Unsubscribes the current customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/customer/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unsubscribes the current customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

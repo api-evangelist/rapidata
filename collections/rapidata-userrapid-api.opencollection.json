@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset UserRapid API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserRapid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submits a response for a rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/response",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a response for a rapid."
+        },
+        {
+          "info": {
+            "name": "Inspects a report's dump so that it can be replayed or restored.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/report/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the report to inspect."
+              }
+            ]
+          },
+          "docs": "Inspects a report's dump so that it can be replayed or restored."
+        },
+        {
+          "info": {
+            "name": "Returns whether the rapid bag associated with the current user is still valid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/rapid-bag/is-valid"
+          },
+          "docs": "Returns whether the rapid bag associated with the current user is still valid."
+        },
+        {
+          "info": {
+            "name": "Reports an issue with a rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/report",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The rapid to report."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Reports an issue with a rapid."
+        },
+        {
+          "info": {
+            "name": "Records that the user skipped the specified rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/skip",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records that the user skipped the specified rapid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

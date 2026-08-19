@@ -1,0 +1,223 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Organization API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Accepts the invitation identified by the token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/organizations/accept-invitation",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Responds with 409 when the invitation is expired, already used, or was issued to a different\n email than the calling customer's."
+        },
+        {
+          "info": {
+            "name": "Returns a paged list of organizations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/organizations",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query",
+                "description": "Filter by domain."
+              },
+              {
+                "name": "owner",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Returns a paged list of organizations."
+        },
+        {
+          "info": {
+            "name": "Creates an organization and makes the calling customer its owner.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/organizations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The calling customer becomes both the owner and the billing customer. Responds with 400 when\n the slug is already taken."
+        },
+        {
+          "info": {
+            "name": "Returns the organization resolved from the calling customer's email domain.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/organizations/mine"
+          },
+          "docs": "Responds with 404 when the caller's email domain does not match a registered organization."
+        },
+        {
+          "info": {
+            "name": "Returns the organization with the given id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/organizations/:organizationId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the organization to retrieve."
+              }
+            ]
+          },
+          "docs": "Returns the organization with the given id."
+        },
+        {
+          "info": {
+            "name": "Creates an invitation to join the organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/organizations/:organizationId/invitations",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the organization to invite into."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a single-use token the invitee presents to the accept-invitation endpoint."
+        },
+        {
+          "info": {
+            "name": "Returns the members of the given organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/organizations/:organizationId/members",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the organization whose members to list."
+              }
+            ]
+          },
+          "docs": "Returns the members of the given organization."
+        },
+        {
+          "info": {
+            "name": "Removes the given customer's membership from the organization.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/organizations/:organizationId/members/:customerId",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the organization."
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the customer to remove."
+              }
+            ]
+          },
+          "docs": "Responds with 404 when the customer is not a member and 409 when removing the organization's\n last owner."
+        },
+        {
+          "info": {
+            "name": "Sets the support Slack channel URL for the organization owned by the given customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/organizations/:owner/support-slack-channel",
+            "params": [
+              {
+                "name": "owner",
+                "value": "",
+                "type": "path",
+                "description": "The customer ID that owns the organization."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A null or empty URL clears the channel. Responds with 404 when no organization is owned by the given customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

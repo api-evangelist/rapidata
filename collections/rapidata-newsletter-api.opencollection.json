@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Newsletter API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Newsletter",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Signs an email address up to the newsletter.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/newsletter/subscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Signs an email address up to the newsletter."
+        },
+        {
+          "info": {
+            "name": "Removes an email address from the newsletter.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/newsletter/unsubscribe",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Removes an email address from the newsletter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

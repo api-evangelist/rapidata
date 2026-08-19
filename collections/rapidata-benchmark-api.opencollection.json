@@ -1,0 +1,1034 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Benchmark API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Benchmark",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a benchmark."
+        },
+        {
+          "info": {
+            "name": "Queries all participants within a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/participants",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark whose participants will be returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all participants within a benchmark."
+        },
+        {
+          "info": {
+            "name": "Creates a participant in a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/participants",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark the participant will be added to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a participant in a benchmark."
+        },
+        {
+          "info": {
+            "name": "Adds a new prompt to a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/prompt",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to add the prompt to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new prompt to a benchmark."
+        },
+        {
+          "info": {
+            "name": "Returns a single benchmark by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to load."
+              }
+            ]
+          },
+          "docs": "Returns a single benchmark by its id."
+        },
+        {
+          "info": {
+            "name": "Updates a benchmark using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a benchmark using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a benchmark."
+        },
+        {
+          "info": {
+            "name": "Deletes a participant on a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/participant/:participantId",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark the participant belongs to."
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a participant on a benchmark."
+        },
+        {
+          "info": {
+            "name": "Creates a copy of a public benchmark and all of its related entities.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/fork",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to fork."
+              }
+            ]
+          },
+          "docs": "Creates a copy of a public benchmark and all of its related entities."
+        },
+        {
+          "info": {
+            "name": "Returns the paged prompts of a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/prompts",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to query."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by identifier."
+              },
+              {
+                "name": "english_prompt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by english_prompt."
+              },
+              {
+                "name": "original_prompt",
+                "value": "",
+                "type": "query",
+                "description": "Filter by original_prompt."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Returns the paged prompts of a benchmark."
+        },
+        {
+          "info": {
+            "name": "Queries all benchmarks of the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmarks",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all benchmarks of the current user."
+        },
+        {
+          "info": {
+            "name": "Queries the combined win matrix of multiple benchmarks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/combined-matrix/query",
+            "params": [
+              {
+                "name": "benchmarkIds",
+                "value": "",
+                "type": "query",
+                "description": "The identifiers of the benchmarks to combine."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "leaderboard_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leaderboard_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries the combined standings of multiple benchmarks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/combined-standings/query",
+            "params": [
+              {
+                "name": "benchmarkIds",
+                "value": "",
+                "type": "query",
+                "description": "The identifiers of the benchmarks to combine."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "leaderboard_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leaderboard_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries all leaderboards for the given benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/leaderboards",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark whose leaderboards will be returned."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all leaderboards for the given benchmark."
+        },
+        {
+          "info": {
+            "name": "Queries the curated benchmarks available to every customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmarks/managed",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the curated benchmarks available to every customer."
+        },
+        {
+          "info": {
+            "name": "Queries the win matrix of a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/matrix/query",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "leaderboard_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leaderboard_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries the benchmarks surfaced in the public benchmark repository.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmarks/published",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the benchmarks surfaced in the public benchmark repository."
+        },
+        {
+          "info": {
+            "name": "Queries the standings of a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/standings/query",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark."
+              },
+              {
+                "name": "useWeightedScoring",
+                "value": "",
+                "type": "query",
+                "description": "Whether to apply weighted scoring based on user scores."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter by country."
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "Filter by language."
+              },
+              {
+                "name": "gender",
+                "value": "",
+                "type": "query",
+                "description": "Filter by gender."
+              },
+              {
+                "name": "age_bucket",
+                "value": "",
+                "type": "query",
+                "description": "Filter by age_bucket."
+              },
+              {
+                "name": "occupation",
+                "value": "",
+                "type": "query",
+                "description": "Filter by occupation."
+              },
+              {
+                "name": "tags",
+                "value": "",
+                "type": "query",
+                "description": "Filter by tags."
+              },
+              {
+                "name": "participant_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by participant_id."
+              },
+              {
+                "name": "leaderboard_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by leaderboard_id."
+              },
+              {
+                "name": "run_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by run_id."
+              },
+              {
+                "name": "prompt_identifier",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_identifier."
+              },
+              {
+                "name": "voted_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by voted_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Filters apply to the underlying votes. Benchmarks without granular vote storage evaluate\n only the filters their aggregated data can answer (tags, participants, leaderboards, runs,\n prompt identifiers); demographic and vote-time filters require granular vote storage."
+        },
+        {
+          "info": {
+            "name": "Queries all tags within a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/tags",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark whose tags will be returned."
+              }
+            ]
+          },
+          "docs": "Queries all tags within a benchmark."
+        },
+        {
+          "info": {
+            "name": "Starts an asynchronous sample generation run.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/sample-generation",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The benchmark whose participants should run their faucets."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts an asynchronous sample generation run."
+        },
+        {
+          "info": {
+            "name": "Submits a participant to a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/participants/:participantId/submit",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark the participant belongs to."
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the participant to submit."
+              }
+            ]
+          },
+          "docs": "Submits a participant to a benchmark."
+        },
+        {
+          "info": {
+            "name": "Updates the name of a benchmark.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/benchmark/:benchmarkId/name",
+            "params": [
+              {
+                "name": "benchmarkId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the benchmark to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of a benchmark."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,19 @@
+[
+  {
+    "repo": "rapidata",
+    "captured_at": "2026-08-17T081442",
+    "source_url": "https://docs.rapidata.ai/developers/",
+    "source_type": "DeveloperPortal",
+    "file": "rapidata-2026-08-17T081442.png",
+    "bytes": 88700
+  },
+  {
+    "repo": "rapidata",
+    "captured_at": "2026-08-17T083202",
+    "source_url": "https://rapidata.ai",
+    "source_type": "root-domain",
+    "file": "rapidata-2026-08-17T083202.png",
+    "bytes": 123879,
+    "capture": "playwright-local"
+  }
+]

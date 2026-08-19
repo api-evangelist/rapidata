@@ -1,0 +1,131 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Asset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Compresses an uploaded image and returns the WebP result.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/asset/compress",
+            "params": [
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "The compression quality from 1 to 100."
+              },
+              {
+                "name": "maxdim",
+                "value": "",
+                "type": "query",
+                "description": "The maximum dimension (width or height) of the output image."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Compression metrics are returned in response headers: X-Original-Size, X-Compressed-Size,\n X-Processing-Time-Ms, X-Original-Dimensions, X-Output-Dimensions."
+        },
+        {
+          "info": {
+            "name": "Uploads a file to our system and returns the new file name used internally.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/asset/file",
+            "params": [
+              {
+                "name": "compress",
+                "value": "",
+                "type": "query",
+                "description": "When set, forces image compression on or off for this upload, overriding the configured default."
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "WebP quality (1..100) to use when compression runs. Falls back to the configured default when null."
+              },
+              {
+                "name": "maxdim",
+                "value": "",
+                "type": "query",
+                "description": "Maximum width or height in pixels when compression runs. Falls back to the configured default when null."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a file to our system and returns the new file name used internally."
+        },
+        {
+          "info": {
+            "name": "Downloads a file from the provided URL, stores it in our system and returns the new file name used internally.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/asset/url",
+            "params": [
+              {
+                "name": "url",
+                "value": "",
+                "type": "query",
+                "description": "The url of the file to upload."
+              },
+              {
+                "name": "compress",
+                "value": "",
+                "type": "query",
+                "description": "When set, forces image compression on or off for this upload, overriding the configured default."
+              },
+              {
+                "name": "quality",
+                "value": "",
+                "type": "query",
+                "description": "WebP quality (1..100) to use when compression runs. Falls back to the configured default when null."
+              },
+              {
+                "name": "maxdim",
+                "value": "",
+                "type": "query",
+                "description": "Maximum width or height in pixels when compression runs. Falls back to the configured default when null."
+              }
+            ]
+          },
+          "docs": "Downloads a file from the provided URL, stores it in our system and returns the new file name used internally."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

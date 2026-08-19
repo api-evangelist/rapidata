@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset ExternalServicePrices API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExternalServicePrices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a rate-card price for an external service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/external-service-prices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a rate-card price for an external service."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

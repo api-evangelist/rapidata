@@ -1,0 +1,28 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Rapidata.Identity.API API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rapidata.Identity.API",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/"
+          }
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

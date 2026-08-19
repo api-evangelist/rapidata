@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Reconciliation API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reconciliation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the aggregated status and results of all reconciliation jobs in a bulk operation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/reconciliation/bulk/:bulkReconciliationId",
+            "params": [
+              {
+                "name": "bulkReconciliationId",
+                "value": "",
+                "type": "path",
+                "description": "The correlation identifier returned from the bulk reconcile endpoint."
+              }
+            ]
+          },
+          "docs": "Returns the aggregated status and results of all reconciliation jobs in a bulk operation."
+        },
+        {
+          "info": {
+            "name": "Returns the status and results of a reconciliation job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/reconciliation/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reconciliation job."
+              }
+            ]
+          },
+          "docs": "Returns the status and results of a reconciliation job."
+        },
+        {
+          "info": {
+            "name": "Redispatches the individual reconciliations contained in the given bulk reconciliation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/reconciliation/bulk/:bulkReconciliationId/redispatch",
+            "params": [
+              {
+                "name": "bulkReconciliationId",
+                "value": "",
+                "type": "path",
+                "description": "The bulk reconciliation to redispatch."
+              }
+            ]
+          },
+          "docs": "Redispatches the individual reconciliations contained in the given bulk reconciliation."
+        },
+        {
+          "info": {
+            "name": "Starts reconciliation for a single billing item, all items for a customer, or all items in a billing group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/reconcile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.\n Date range filtering is only available with CustomerId or BillingGroupId.\n Returns a correlation ID that can be used to track progress of the bulk operation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Rapid API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rapid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the anchor rapid and its surrounding rapids within the results slice, in the order\n and filter the results grid renders, so the explorer can step neighbour-to-neighbour.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/navigation",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The rapid to anchor navigation on."
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "The correlation id whose result slice to navigate."
+              },
+              {
+                "name": "states",
+                "value": "",
+                "type": "query",
+                "description": "Optional rapid states to filter by; all states are included when omitted."
+              },
+              {
+                "name": "window",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of neighbours to return on each side."
+              },
+              {
+                "name": "includeNotAccepted",
+                "value": "",
+                "type": "query",
+                "description": "When true, not-accepted responses count toward the anchor's sample and aggregation."
+              },
+              {
+                "name": "includeOverflow",
+                "value": "",
+                "type": "query",
+                "description": "When true, overflow responses count toward the anchor's sample and aggregation."
+              }
+            ]
+          },
+          "docs": "Navigation follows the grid's default order (flagged rapids first, then by id) over the\n given correlation slice. Returns 404 when the rapid is not part of the filtered slice."
+        },
+        {
+          "info": {
+            "name": "Recalculates the compare AB summary counters of a correlation from scratch.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/compare-ab-summary/:correlationId/recalculate",
+            "params": [
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "path",
+                "description": "The correlation (workflow) id to recalculate."
+              }
+            ]
+          },
+          "docs": "Admin-only verification/repair tool. The counters are normally maintained by rapid\n completion and rejection events; this overwrites them with freshly aggregated values."
+        },
+        {
+          "info": {
+            "name": "Rejects a completed rapid, marking its results as invalid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/reject",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the rapid to reject."
+              }
+            ]
+          },
+          "docs": "The rapid must be in the Done state. Rejection propagates staleness to dependent entities."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

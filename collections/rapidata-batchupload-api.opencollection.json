@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset BatchUpload API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BatchUpload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Aborts the specified batch upload.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/asset/batch-upload/:batchUploadId/abort",
+            "params": [
+              {
+                "name": "batchUploadId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the batch upload to abort."
+              }
+            ]
+          },
+          "docs": "URLs already processed will not be reverted. Only remaining URLs are prevented from processing."
+        },
+        {
+          "info": {
+            "name": "Creates a batch upload and queues processing for each URL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/asset/batch-upload",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Each URL is processed asynchronously. Use the batch upload status or result endpoints to track progress."
+        },
+        {
+          "info": {
+            "name": "Gets the full result of a batch upload including all items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/asset/batch-upload/:batchUploadId",
+            "params": [
+              {
+                "name": "batchUploadId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the batch upload to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets the full result of a batch upload including all items."
+        },
+        {
+          "info": {
+            "name": "Gets aggregated status for batch uploads identified by IDs or a correlation ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/asset/batch-upload/status",
+            "params": [
+              {
+                "name": "batchUploadIds",
+                "value": "",
+                "type": "query",
+                "description": "The identifiers of the batch uploads to query."
+              },
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "query",
+                "description": "A client-supplied identifier to look up related batch uploads."
+              }
+            ]
+          },
+          "docs": "Gets aggregated status for batch uploads identified by IDs or a correlation ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

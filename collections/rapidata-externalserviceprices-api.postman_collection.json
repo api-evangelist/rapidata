@@ -1,0 +1,235 @@
+{
+  "item": [
+    {
+      "id": "c71040e9-fbf6-4cf5-ae44-0a049893e727",
+      "name": "ExternalServicePrices",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e7802857-533b-4dbd-98f8-cc47726f83ef",
+          "name": "Creates a rate-card price for an external service.",
+          "request": {
+            "name": "Creates a rate-card price for an external service.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "external-service-prices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"serviceKind\": \"<string>\",\n  \"pricingKey\": \"<string>\",\n  \"unitPrice\": \"<double>\",\n  \"customerId\": \"<uuid>\",\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc0b4666-86f2-4671-a4b2-79dbc54fbc56",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "external-service-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceKind\": \"<string>\",\n  \"pricingKey\": \"<string>\",\n  \"unitPrice\": \"<double>\",\n  \"customerId\": \"<uuid>\",\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "439439df-12ce-4cc7-a2e0-14716968da68",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "external-service-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceKind\": \"<string>\",\n  \"pricingKey\": \"<string>\",\n  \"unitPrice\": \"<double>\",\n  \"customerId\": \"<uuid>\",\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 1930,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92a56f38-daf2-4f62-892e-84765f6fe3c9",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "external-service-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceKind\": \"<string>\",\n  \"pricingKey\": \"<string>\",\n  \"unitPrice\": \"<double>\",\n  \"customerId\": \"<uuid>\",\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "55d35d92-d2c1-4b3a-b94c-5caf62bff48c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "external-service-prices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"serviceKind\": \"<string>\",\n  \"pricingKey\": \"<string>\",\n  \"unitPrice\": \"<double>\",\n  \"customerId\": \"<uuid>\",\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f29523f5-ada2-4c38-9ca8-9a52fa509e47",
+    "name": "Rapidata Asset ExternalServicePrices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

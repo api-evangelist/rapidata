@@ -1,0 +1,694 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Billing API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a manual charge billing item for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/manual-charge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a manual charge billing item for a customer."
+        },
+        {
+          "info": {
+            "name": "Creates a rate-card price for an external service.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/external-service-prices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a rate-card price for an external service."
+        },
+        {
+          "info": {
+            "name": "Gets the paged billing groups for the active billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/active/billing-items",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Optional customer ID. Admins can specify any customer; non-admins see their own."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              }
+            ]
+          },
+          "docs": "Gets the paged billing groups for the active billing period."
+        },
+        {
+          "info": {
+            "name": "Gets the overview for the active billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/active",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Optional customer ID. Admins can specify any customer; non-admins see their own."
+              }
+            ]
+          },
+          "docs": "Gets the overview for the active billing period."
+        },
+        {
+          "info": {
+            "name": "Gets the paged billing groups for a billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId/billing-items",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the billing period."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              }
+            ]
+          },
+          "docs": "Gets the paged billing groups for a billing period."
+        },
+        {
+          "info": {
+            "name": "Gets the overview for a billing period by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the billing period to retrieve."
+              }
+            ]
+          },
+          "docs": "Gets the overview for a billing period by its ID."
+        },
+        {
+          "info": {
+            "name": "Gets the current-period usage and applicable limit for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/summary",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "The id of the customer to get the billing summary for."
+              }
+            ]
+          },
+          "docs": "Defaults to the authenticated customer when no customerId is provided."
+        },
+        {
+          "info": {
+            "name": "Gets the billing cost time series.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/cost/time-series",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "grouping",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerMail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeNonBillable",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Gets the billing cost time series."
+        },
+        {
+          "info": {
+            "name": "Queries billing periods accessible to the current customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-periods",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by start_date."
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by end_date."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries billing periods accessible to the current customer."
+        },
+        {
+          "info": {
+            "name": "Returns billing costs aggregated per customer, ranked by cost.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/costs/customers",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerMail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeNonBillable",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns billing costs aggregated per customer, ranked by cost."
+        },
+        {
+          "info": {
+            "name": "Returns billing costs aggregated per billing group, ranked by cost.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/costs/groups",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerMail",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeNonBillable",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              }
+            ]
+          },
+          "docs": "Returns billing costs aggregated per billing group, ranked by cost."
+        },
+        {
+          "info": {
+            "name": "Returns billing costs aggregated per organization, ranked by cost.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/costs/organizations",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "includeNonBillable",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns billing costs aggregated per organization, ranked by cost."
+        },
+        {
+          "info": {
+            "name": "Returns the aggregated status and results of all reconciliation jobs in a bulk operation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/reconciliation/bulk/:bulkReconciliationId",
+            "params": [
+              {
+                "name": "bulkReconciliationId",
+                "value": "",
+                "type": "path",
+                "description": "The correlation identifier returned from the bulk reconcile endpoint."
+              }
+            ]
+          },
+          "docs": "Returns the aggregated status and results of all reconciliation jobs in a bulk operation."
+        },
+        {
+          "info": {
+            "name": "Returns the status and results of a reconciliation job.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/reconciliation/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the reconciliation job."
+              }
+            ]
+          },
+          "docs": "Returns the status and results of a reconciliation job."
+        },
+        {
+          "info": {
+            "name": "Redispatches the individual reconciliations contained in the given bulk reconciliation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/reconciliation/bulk/:bulkReconciliationId/redispatch",
+            "params": [
+              {
+                "name": "bulkReconciliationId",
+                "value": "",
+                "type": "path",
+                "description": "The bulk reconciliation to redispatch."
+              }
+            ]
+          },
+          "docs": "Redispatches the individual reconciliations contained in the given bulk reconciliation."
+        },
+        {
+          "info": {
+            "name": "Starts reconciliation for a single billing item, all items for a customer, or all items in a billing group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/reconcile",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.\n Date range filtering is only available with CustomerId or BillingGroupId.\n Returns a correlation ID that can be used to track progress of the bulk operation."
+        },
+        {
+          "info": {
+            "name": "Creates a billing setting for a billing item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/billing-item/:billingItemId/settings",
+            "params": [
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "path",
+                "description": "The billing item identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a billing setting for a billing item."
+        },
+        {
+          "info": {
+            "name": "Creates a billing setting for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/customer/:customerId/settings",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The customer identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a billing setting for a customer."
+        },
+        {
+          "info": {
+            "name": "Creates a global billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a global billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a billing item billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/billing-item/:billingItemId/settings/:settingId",
+            "params": [
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "path",
+                "description": "The billing item identifier."
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a billing item billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a customer billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/customer/:customerId/settings/:settingId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The customer identifier."
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a customer billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a global billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/settings/:settingId",
+            "params": [
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a global billing setting."
+        },
+        {
+          "info": {
+            "name": "Gets the billing settings timeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/settings/timeline",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Optional customer identifier to scope the timeline."
+              },
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "query",
+                "description": "Optional billing item identifier to scope the timeline."
+              }
+            ]
+          },
+          "docs": "Gets the billing settings timeline."
+        },
+        {
+          "info": {
+            "name": "Gets all volume discount brackets for a billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId/volume-discounts",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The billing period to get volume discounts for."
+              }
+            ]
+          },
+          "docs": "Gets all volume discount brackets for a billing period."
+        },
+        {
+          "info": {
+            "name": "Creates a volume discount bracket for a billing period.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing-period/:billingPeriodId/volume-discounts",
+            "params": [
+              {
+                "name": "billingPeriodId",
+                "value": "",
+                "type": "path",
+                "description": "The billing period to add the volume discount to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a volume discount bracket for a billing period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,90 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Identity API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reads the bridge token keys for a given read key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/identity/bridge-token",
+            "params": [
+              {
+                "name": "readKey",
+                "value": "",
+                "type": "query",
+                "description": "The read key to read the bridge token keys for."
+              }
+            ]
+          },
+          "docs": "Returns 200 with the keys when available, 202 when they are not yet available, or 404 when not found."
+        },
+        {
+          "info": {
+            "name": "Creates a pair of read and write bridge token keys for a client.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/identity/bridge-token",
+            "params": [
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "query",
+                "description": "The client ID to create the keys for."
+              }
+            ]
+          },
+          "docs": "The write key stores the authentication result and the read key retrieves it."
+        },
+        {
+          "info": {
+            "name": "Signs in a user using a token received from Google One Tap.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/identity/google-one-tap",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Redirects to the register confirmation page when the account requires email confirmation."
+        },
+        {
+          "info": {
+            "name": "Stores the referrer in a cookie for later use during sign-up.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/identity/referrer",
+            "params": [
+              {
+                "name": "referrer",
+                "value": "",
+                "type": "query",
+                "description": "The referrer value to store."
+              }
+            ]
+          },
+          "docs": "Stores the referrer in a cookie for later use during sign-up."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

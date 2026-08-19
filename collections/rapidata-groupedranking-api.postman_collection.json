@@ -1,0 +1,1153 @@
+{
+  "item": [
+    {
+      "id": "d20cc0cf-f433-4d76-b8e0-f25559837e17",
+      "name": "GroupedRanking",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "40a958bd-115b-428b-bcb5-e1846f1699f2",
+          "name": "Gets the result overview for a grouped ranking workflow.",
+          "request": {
+            "name": "Gets the result overview for a grouped ranking workflow.",
+            "description": {},
+            "url": {
+              "path": [
+                "workflow",
+                "grouped-ranking",
+                ":workflowId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[eq]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[neq]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[gt]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[gte]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[lt]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[lte]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[contains]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "state[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by state."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) The ID of the workflow to get the results for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "aa974445-0b90-4011-91db-f75eccca1c76",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "grouped-ranking",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 5949,\n  \"page\": 7447,\n  \"pageSize\": 9922,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"pairMakerInformation\": {\n        \"_t\": \"FullPermutationPairMakerInformation\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"state\": \"string\",\n      \"pairMakerInformation\": {\n        \"_t\": \"FullPermutationPairMakerInformation\"\n      }\n    }\n  ],\n  \"totalPages\": 8432\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efd3f527-15c4-4432-9c61-0ec6dff3cc03",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "grouped-ranking",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9039,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc67ea8a-9b21-4c3d-bfe6-843344f6ad86",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "grouped-ranking",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fba6971a-2f68-4c0a-80f3-2a43535a665f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workflow",
+                    "grouped-ranking",
+                    ":workflowId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) The ID of the workflow to get the results for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2b40bc7a-e9c3-47e4-8091-e7a190d0a8eb",
+    "name": "Rapidata Asset GroupedRanking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

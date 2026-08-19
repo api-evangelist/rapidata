@@ -1,0 +1,4492 @@
+{
+  "item": [
+    {
+      "id": "32e0423c-8245-4743-9859-c317abfe342c",
+      "name": "Campaign",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4a3adc2f-00ea-4543-ae3c-61d7ff5bdc7e",
+          "name": "Creates a program campaign from the given stream program.",
+          "request": {
+            "name": "Creates a program campaign from the given stream program.",
+            "description": {
+              "content": "The program is validated before the campaign is persisted; a malformed graph\n (missing root, dangling references, cycles, unreachable nodes) is rejected. The\n campaign starts in the Created status; move it to Active to start serving sessions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaign",
+                "program"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f99d0e3c-7159-4560-b739-95224c9c749d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"campaignId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff19f296-e522-4737-b723-1e043000b383",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6530,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc0ca928-9528-4241-a1b8-3818d09832b6",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e5c1646-742f-4dac-a1dc-038c2dc9b50d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d994e05-34c0-41f0-9209-7adef014b619",
+          "name": "Returns an attributed view of the aggregated boosting profile.",
+          "request": {
+            "name": "Returns an attributed view of the aggregated boosting profile.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                "insights"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "13cf1b84-29ac-4499-aeba-cf6facfb6154",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"mode\": \"string\",\n  \"manualOverrideLevel\": 2366,\n  \"globalBoost\": {\n    \"effectiveLevel\": 2705,\n    \"contributors\": [\n      {\n        \"campaignId\": \"string\",\n        \"campaignName\": \"string\",\n        \"level\": 9719\n      },\n      {\n        \"campaignId\": \"string\",\n        \"campaignName\": \"string\",\n        \"level\": 9469\n      }\n    ]\n  },\n  \"prospectBlacklist\": [\n    {\n      \"externalAudienceId\": 6007,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\"\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\"\n        }\n      ]\n    },\n    {\n      \"externalAudienceId\": 9563,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\"\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"distillingBoosts\": [\n    {\n      \"externalAudienceId\": 7236,\n      \"effectiveLevel\": 1474,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 455\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 1889\n        }\n      ]\n    },\n    {\n      \"externalAudienceId\": 4095,\n      \"effectiveLevel\": 781,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 2644\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 3119\n        }\n      ]\n    }\n  ],\n  \"labelingBoosts\": [\n    {\n      \"externalAudienceId\": 5540,\n      \"effectiveLevel\": 4472,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 3851\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 6608\n        }\n      ]\n    },\n    {\n      \"externalAudienceId\": 2608,\n      \"effectiveLevel\": 5106,\n      \"contributors\": [\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 3317\n        },\n        {\n          \"campaignId\": \"string\",\n          \"campaignName\": \"string\",\n          \"level\": 412\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f80646bd-9777-4cd0-9dff-49d91cc7b4ce",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1355450-ea2e-48fc-a631-f2cd8e56fb68",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd4f11f2-9add-4f68-b066-eb0cc15d821d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "insights"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "67b887a2-8ee0-4841-95af-ce27453aabf5",
+          "name": "Returns the current boost status including active and inactive campaigns.",
+          "request": {
+            "name": "Returns the current boost status including active and inactive campaigns.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "262ff5ae-55d5-4aba-9484-9be7ef8c1736",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"string\",\n  \"mode\": \"string\",\n  \"activeCampaigns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"inactiveCampaigns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"unknownCampaigns\": [\n    9230,\n    6794\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dfedd37-78b3-441d-9862-7088f1ebf665",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0092d08f-41b0-46d5-9717-7611cda322d3",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bc7032b5-46fb-4ae3-a9b6-d97d17022414",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14f09c86-36d2-4a9e-af6a-f3fc66306e33",
+          "name": "Retrieves the details of a specific campaign.",
+          "request": {
+            "name": "Retrieves the details of a specific campaign.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The ID of the campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c45bf59e-34e0-4c2e-a1ed-c8d85338f80f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"status\": \"string\",\n  \"priority\": 8863,\n  \"boostingProfile\": {\n    \"globalBoostLevel\": 184,\n    \"prospectBlacklist\": [\n      8167,\n      3409\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": 8684,\n        \"level\": 6050\n      },\n      {\n        \"externalAudienceId\": 90,\n        \"level\": 3325\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": 8694,\n        \"level\": 4548\n      },\n      {\n        \"externalAudienceId\": 9320,\n        \"level\": 6196\n      }\n    ],\n    \"minAutoAdjustLevel\": 3265,\n    \"maxAutoAdjustLevel\": 1675\n  },\n  \"boostingControlMode\": \"string\",\n  \"hasBooster\": true,\n  \"boostLevel\": 1604,\n  \"stickyConfig\": {\n    \"isEnabled\": true,\n    \"bypassFilters\": true,\n    \"bypassPrioritySelection\": true,\n    \"blockOtherStickyCampaigns\": true,\n    \"clearOnPause\": false,\n    \"dimension\": \"string\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"AndFilter\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"AndFilter\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"AbTestSelection\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"AbTestSelection\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    },\n    {\n      \"key\": \"string\",\n      \"value\": \"string\"\n    }\n  ],\n  \"ownerMail\": \"string\",\n  \"createdAt\": \"2012-11-03T23:15:48.141Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efe5435f-134f-4fa5-bc30-7566497512a8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0bc2703-3047-442d-afb8-fc49f22b4fef",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "40cc5794-24a6-42ad-bae4-5617e66d46c0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The ID of the campaign."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d347fa87-3acd-4481-b046-879763adb403",
+          "name": "Updates the specified campaign's properties.",
+          "request": {
+            "name": "Updates the specified campaign's properties.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                ":campaignId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The identifier of the campaign to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"boostLevel\": \"<integer>\",\n  \"boostingProfile\": {\n    \"globalBoostLevel\": \"<integer>\",\n    \"prospectBlacklist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"minAutoAdjustLevel\": \"<integer>\",\n    \"maxAutoAdjustLevel\": \"<integer>\"\n  },\n  \"stickyConfig\": {\n    \"isEnabled\": \"<boolean>\",\n    \"bypassFilters\": \"<boolean>\",\n    \"bypassPrioritySelection\": \"<boolean>\",\n    \"blockOtherStickyCampaigns\": \"<boolean>\",\n    \"clearOnPause\": \"<boolean>\",\n    \"dimension\": \"<string>\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c8a46a6d-5277-4797-b7e7-74ba9bf5fa10",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"boostLevel\": \"<integer>\",\n  \"boostingProfile\": {\n    \"globalBoostLevel\": \"<integer>\",\n    \"prospectBlacklist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"minAutoAdjustLevel\": \"<integer>\",\n    \"maxAutoAdjustLevel\": \"<integer>\"\n  },\n  \"stickyConfig\": {\n    \"isEnabled\": \"<boolean>\",\n    \"bypassFilters\": \"<boolean>\",\n    \"bypassPrioritySelection\": \"<boolean>\",\n    \"blockOtherStickyCampaigns\": \"<boolean>\",\n    \"clearOnPause\": \"<boolean>\",\n    \"dimension\": \"<string>\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "476e5770-6e01-4f62-bf0d-7efda628f968",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"boostLevel\": \"<integer>\",\n  \"boostingProfile\": {\n    \"globalBoostLevel\": \"<integer>\",\n    \"prospectBlacklist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"minAutoAdjustLevel\": \"<integer>\",\n    \"maxAutoAdjustLevel\": \"<integer>\"\n  },\n  \"stickyConfig\": {\n    \"isEnabled\": \"<boolean>\",\n    \"bypassFilters\": \"<boolean>\",\n    \"bypassPrioritySelection\": \"<boolean>\",\n    \"blockOtherStickyCampaigns\": \"<boolean>\",\n    \"clearOnPause\": \"<boolean>\",\n    \"dimension\": \"<string>\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64719253-9978-408f-adc2-a127470e5d6a",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"boostLevel\": \"<integer>\",\n  \"boostingProfile\": {\n    \"globalBoostLevel\": \"<integer>\",\n    \"prospectBlacklist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"minAutoAdjustLevel\": \"<integer>\",\n    \"maxAutoAdjustLevel\": \"<integer>\"\n  },\n  \"stickyConfig\": {\n    \"isEnabled\": \"<boolean>\",\n    \"bypassFilters\": \"<boolean>\",\n    \"bypassPrioritySelection\": \"<boolean>\",\n    \"blockOtherStickyCampaigns\": \"<boolean>\",\n    \"clearOnPause\": \"<boolean>\",\n    \"dimension\": \"<string>\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9cf61cef-48d8-438d-aacf-c140e272461b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to update."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"priority\": \"<integer>\",\n  \"boostLevel\": \"<integer>\",\n  \"boostingProfile\": {\n    \"globalBoostLevel\": \"<integer>\",\n    \"prospectBlacklist\": [\n      \"<integer>\",\n      \"<integer>\"\n    ],\n    \"distillingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"labelingBoosts\": [\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      },\n      {\n        \"externalAudienceId\": \"<integer>\",\n        \"level\": \"<integer>\"\n      }\n    ],\n    \"minAutoAdjustLevel\": \"<integer>\",\n    \"maxAutoAdjustLevel\": \"<integer>\"\n  },\n  \"stickyConfig\": {\n    \"isEnabled\": \"<boolean>\",\n    \"bypassFilters\": \"<boolean>\",\n    \"bypassPrioritySelection\": \"<boolean>\",\n    \"blockOtherStickyCampaigns\": \"<boolean>\",\n    \"clearOnPause\": \"<boolean>\",\n    \"dimension\": \"<string>\"\n  },\n  \"filters\": [\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"filters\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignFilterModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"selections\": [\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    },\n    {\n      \"a\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"b\": [\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        },\n        {\n          \"value\": \"<Circular reference to #/components/schemas/ICampaignSelectionModel detected>\"\n        }\n      ],\n      \"_t\": \"<string>\"\n    }\n  ],\n  \"featureFlags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a6ad2cb6-477f-4db6-be00-f7e23df9f997",
+          "name": "Returns the fast bid multiplier currently applied to an external booster campaign.",
+          "request": {
+            "name": "Returns the fast bid multiplier currently applied to an external booster campaign.",
+            "description": {
+              "content": "Returns the downstream system's default (1.0) if the multiplier has never been set\n for the campaign.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                ":externalCampaignId",
+                "fast-bid-multiplier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "externalCampaignId",
+                  "description": "(Required) The external booster campaign id to read."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c6eb1d33-dac5-4010-9ebd-b1353774b7ab",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to read."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalCampaignId\": 5620,\n  \"bidMultiplierValue\": 4728.078694266561\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87799d31-374b-4660-b6e8-d0fcf0f19065",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to read."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2ed16e3-ce7b-455f-8d18-ef8ff6ecb29b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to read."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2373ccb2-4d24-413e-9067-fce1e05a5a8c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to read."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "88875dd9-b331-4b9a-9e45-1d13728b96c4",
+          "name": "Sets the fast bid multiplier for a single external booster campaign to an arbitrary value.",
+          "request": {
+            "name": "Sets the fast bid multiplier for a single external booster campaign to an arbitrary value.",
+            "description": {
+              "content": "Bypasses the level→multiplier mapping. Intended for live testing and one-off\n operational tweaks. Value must be in [0, 50]; 0 effectively pauses delivery on the\n campaign without changing its status. The response reports the multiplier the\n downstream system confirms is applied.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                ":externalCampaignId",
+                "fast-bid-multiplier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "externalCampaignId",
+                  "description": "(Required) The external booster campaign id to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"multiplier\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "11a2a3f6-2973-41cc-8d7e-a636adc08e0d",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"multiplier\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"externalCampaignId\": 567,\n  \"appliedMultiplier\": 4226.753719131721\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c43747ee-b007-4e91-8f8e-eb30616417bd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"multiplier\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "230872a1-cb9f-4a40-b7eb-90f330e8f9d0",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to update."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"multiplier\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ae35efc-c2cf-4830-bbdc-dfa64aa35de5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    ":externalCampaignId",
+                    "fast-bid-multiplier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "externalCampaignId",
+                      "description": "(Required) The external booster campaign id to update."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"multiplier\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d969ba47-9600-45c1-941e-0e88f3098ffd",
+          "name": "Exercises the rapid-bag pipeline with a synthetic user profile so the health of\n the campaign monitoring path can be probed externally.",
+          "request": {
+            "name": "Exercises the rapid-bag pipeline with a synthetic user profile so the health of\n the campaign monitoring path can be probed externally.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                "monitor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3762eae3-9963-41c7-bf9e-812e49c58ea3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f4121d69-c01d-4bbe-be5c-cb630a196c41",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "monitor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab1d9b99-dab3-4909-8acf-f71ed756e4c1",
+          "name": "Pauses the specified campaign.",
+          "request": {
+            "name": "Pauses the specified campaign.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                ":campaignId",
+                "pause"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The identifier of the campaign to pause."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "37edd61b-6150-4d5d-b288-c839387b8586",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to pause."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ca6b94ec-03fe-46bd-9a77-61391e4f5119",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to pause."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98818a99-d88f-4dce-88ca-5281e84d1e70",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to pause."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb85ddb5-71dc-4fc7-900d-e526b5870d21",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "pause"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to pause."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5be6b3ac-56d4-43c6-8016-c6a31e3c7bc1",
+          "name": "Triggers a preheat pass for the boost subsystem so warm caches are ready before\n traffic spikes.",
+          "request": {
+            "name": "Triggers a preheat pass for the boost subsystem so warm caches are ready before\n traffic spikes.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                "preheat"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "c7d236cb-d520-4569-969f-7d618f247dc6",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "preheat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "086c1927-cd5c-4592-bb90-0ae3c280bdae",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "preheat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1252b593-6c3b-454e-b133-e3f53c0e9f74",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "preheat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ec830dc9-39a5-4d76-8445-609914f0c524",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "preheat"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6736c19c-bf1c-4a8d-840c-6ccaf08fca4f",
+          "name": "Queries campaigns with optional filtering, sorting, and pagination.",
+          "request": {
+            "name": "Queries campaigns with optional filtering, sorting, and pagination.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaigns"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[eq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[neq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[eq]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[neq]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[gt]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[gte]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[lt]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[lte]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[contains]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "priority[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by priority."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[eq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[neq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[gt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[gte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[lt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[lte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_mail[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_mail."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a00f9274-5392-4a35-9c4e-2e9d8c89eeed",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 9957,\n  \"page\": 3439,\n  \"pageSize\": 6544,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"priority\": 7892,\n      \"hasBooster\": false,\n      \"boostLevel\": 969,\n      \"boostingControlMode\": \"string\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"1961-09-06T10:27:39.545Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"status\": \"string\",\n      \"priority\": 2046,\n      \"hasBooster\": true,\n      \"boostLevel\": 147,\n      \"boostingControlMode\": \"string\",\n      \"ownerMail\": \"string\",\n      \"createdAt\": \"1998-03-18T05:39:45.223Z\"\n    }\n  ],\n  \"totalPages\": 172\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb83a610-eba8-4eec-9dcf-dd211b4fa157",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a256b028-c7ca-41b2-85c5-c9f8fff96d04",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "56013fb4-acdd-4a1d-9820-ac4f6ad225cd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaigns"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "priority[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_mail[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a83b315a-4139-4ace-87b9-f50230cc003c",
+          "name": "Resumes the specified campaign.",
+          "request": {
+            "name": "Resumes the specified campaign.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                ":campaignId",
+                "resume"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The identifier of the campaign to resume."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "c8839fdc-c7b6-414a-9737-31f00f6ce99b",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to resume."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1466b437-1c09-4631-ae62-9d3f426b94b4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to resume."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d04e2b4-f6b3-48bc-97d4-3e1f225366d2",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to resume."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2df362e2-41c4-489a-80ed-5f8ffb4ed0c9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "resume"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the campaign to resume."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a8031cb7-4c00-49a4-9105-c308cc007aa0",
+          "name": "Sets or clears the manual global boost level.",
+          "request": {
+            "name": "Sets or clears the manual global boost level.",
+            "description": {},
+            "url": {
+              "path": [
+                "campaign",
+                "boost",
+                "global-level"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"level\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf59a33c-f0ce-4420-a032-8b1939408ca2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "global-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"level\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4ee4f580-4387-4a22-9a2c-bcc1e5c41a31",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "global-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"level\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2499c23a-1037-4542-9ce4-57132f3d09e5",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "global-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"level\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "892b207e-9a4f-48ae-8907-8eb9d6f19a16",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    "boost",
+                    "global-level"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"level\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6284f60-c564-461d-9698-c8043bcd48b5",
+          "name": "Replaces the campaign's stream program.",
+          "request": {
+            "name": "Replaces the campaign's stream program.",
+            "description": {
+              "content": "The program is validated before it is persisted; a malformed graph is rejected.\n The program's version is bumped and republished — running sessions pick up the new\n program on their next response.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "campaign",
+                ":campaignId",
+                "program"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "campaignId",
+                  "description": "(Required) The identifier of the program campaign."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "84cbdd3f-f9ba-4dc9-bb72-aed5915d4980",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the program campaign."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_2\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_3\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "05e11681-456b-427c-8905-0afbf6c7e3de",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the program campaign."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_2\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_3\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 180,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ead83d-43ab-46b5-a32b-141abab63728",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the program campaign."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_2\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_3\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7279489c-7f7f-4216-bb4c-9f374082048d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "campaign",
+                    ":campaignId",
+                    "program"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "campaignId",
+                      "description": "(Required) The identifier of the program campaign."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"rootNodeId\": \"<string>\",\n  \"nodes\": {\n    \"key_0\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_1\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_2\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    },\n    \"key_3\": {\n      \"action\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"_t\": \"<string>\"\n    }\n  },\n  \"maxRapids\": \"<integer>\",\n  \"maxDurationSeconds\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8f115fca-22e7-4556-bf82-cd2b778afe26",
+    "name": "Rapidata Asset Campaign API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset ExternalAudience API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ExternalAudience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Queries the cached external audiences available for targeting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/external-audiences",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Filter by count."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the cached external audiences available for targeting."
+        },
+        {
+          "info": {
+            "name": "Enqueues a background job that synchronises external audiences with the cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/campaign/external-audiences/sync"
+          },
+          "docs": "Enqueues a background job that synchronises external audiences with the cache."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

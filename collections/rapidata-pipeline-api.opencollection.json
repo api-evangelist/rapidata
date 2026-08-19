@@ -1,0 +1,79 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Pipeline API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pipeline",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a pipeline by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/pipeline/:pipelineId",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the pipeline to get."
+              }
+            ]
+          },
+          "docs": "Gets a pipeline by its id."
+        },
+        {
+          "info": {
+            "name": "Streams the preliminary download file when ready.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/pipeline/preliminary-download/:preliminaryDownloadId",
+            "params": [
+              {
+                "name": "preliminaryDownloadId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the preliminary download to get."
+              }
+            ]
+          },
+          "docs": "Returns 202 while the download is still processing."
+        },
+        {
+          "info": {
+            "name": "Initiates a preliminary download of the pipeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/pipeline/:pipelineId/preliminary-download",
+            "params": [
+              {
+                "name": "pipelineId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the pipeline to initiate the download for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Initiates a preliminary download of the pipeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

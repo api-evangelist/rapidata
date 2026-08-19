@@ -1,0 +1,2851 @@
+{
+  "item": [
+    {
+      "id": "022d95d7-4a89-430f-bf9b-1c739436096f",
+      "name": "Organization",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d68f36d6-f919-40bd-bc9c-f466a61fe54f",
+          "name": "Accepts the invitation identified by the token.",
+          "request": {
+            "name": "Accepts the invitation identified by the token.",
+            "description": {
+              "content": "Responds with 409 when the invitation is expired, already used, or was issued to a different\n email than the calling customer's.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "accept-invitation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"token\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fc4c0dd7-7c8e-490e-ac07-caa2f222562e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "accept-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organizationId\": \"string\",\n  \"membershipId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf5c858-a4c7-4943-8173-6ab5ea325b3d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "accept-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 4782,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c22d5ebf-6150-429f-ad2a-4733ec8ae744",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "accept-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "624a564b-56b6-4c65-91c0-e3ebbb8c4a52",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "accept-invitation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"token\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65ed5ec2-c208-4d0d-a213-f63e2c8789d3",
+          "name": "Creates an organization and makes the calling customer its owner.",
+          "request": {
+            "name": "Creates an organization and makes the calling customer its owner.",
+            "description": {
+              "content": "The calling customer becomes both the owner and the billing customer. Responds with 400 when\n the slug is already taken.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"primaryDomain\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9de432f3-8478-4d94-adf6-7d8315115427",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"primaryDomain\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organizationId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "27d39afd-8bd9-4146-8157-a540087e2c43",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"primaryDomain\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1f747d3-678d-4d6b-9a68-fb8e8fbf3ce7",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"primaryDomain\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "21b71d07-07e4-440f-81f4-9c1b93ff3132",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"primaryDomain\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2792c742-3ba7-44a5-9276-37108441758d",
+          "name": "Returns a paged list of organizations.",
+          "request": {
+            "name": "Returns a paged list of organizations.",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by name."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[eq]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[neq]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[gt]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[gte]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[lt]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[lte]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[contains]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "domain[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by domain."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[eq]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[neq]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[gt]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[gte]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[lt]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[lte]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "54af11b5-b648-4229-bae2-86659e5a02ae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 2428,\n  \"page\": 5085,\n  \"pageSize\": 9060,\n  \"items\": [\n    {\n      \"owner\": \"ef63c11e-87f0-26f2-deb7-528008f5a69b\",\n      \"name\": \"string\",\n      \"domain\": \"string\"\n    },\n    {\n      \"owner\": \"03c1eba3-89b4-e492-e163-2d80ee8ad807\",\n      \"name\": \"string\",\n      \"domain\": \"string\"\n    }\n  ],\n  \"totalPages\": 9670\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4e33e7c-2c5b-43fe-8fc0-60de33e9a7a1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fef0a54-dcc0-493f-8c52-2bd1aef5e431",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b510598f-e898-4843-b768-451093660db5",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "495e5c94-b18f-4433-98d0-ab89298fcde8",
+          "name": "Returns the organization resolved from the calling customer's email domain.",
+          "request": {
+            "name": "Returns the organization resolved from the calling customer's email domain.",
+            "description": {
+              "content": "Responds with 404 when the caller's email domain does not match a registered organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                "mine"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d0f8b112-7d79-4d2f-a698-c6c9bd1640aa",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "mine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"string\",\n  \"supportSlackChannelUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ed13ba16-b19f-43f6-a6f2-bb7acdf6fab3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "mine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9691b701-7a00-4e58-a407-fe3905068ec9",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "mine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b97f7c43-9a51-4e17-acce-9b3bbe1ba504",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    "mine"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "64e1e45b-3c80-4f24-ae3e-be3800114578",
+          "name": "Returns the organization with the given id.",
+          "request": {
+            "name": "Returns the organization with the given id.",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The id of the organization to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9f531ea4-3c37-4fed-ab30-38a7baa548e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"billingCustomerId\": \"0116e2ca-1e12-390e-40f8-5f5626a50943\",\n  \"primaryDomain\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75770c26-4007-4f49-9f28-92788ede7fbf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fee16de5-ace7-46e3-9a57-2bad8ceddc10",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4679f1a3-19fe-4e4a-97b0-98f059c8805c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e8574b1f-ddb2-426f-9b55-ddfaadfedb8b",
+          "name": "Creates an invitation to join the organization.",
+          "request": {
+            "name": "Creates an invitation to join the organization.",
+            "description": {
+              "content": "Returns a single-use token the invitee presents to the accept-invitation endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId",
+                "invitations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The id of the organization to invite into."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce9ee2a2-aa00-4b6c-b82b-ca85392d4927",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to invite into."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invitationId\": \"string\",\n  \"token\": \"string\",\n  \"expiresAt\": \"1985-12-06T11:51:37.107Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c803635b-7c96-450e-bf7b-f6bcc0fc3624",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to invite into."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78187fbd-6f6c-4982-a1b6-24c1d9ec7a6d",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to invite into."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2ccf9b70-3297-4b9c-9167-8c91b283cd2a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "invitations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization to invite into."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"email\": \"<string>\",\n  \"role\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5e0301c-3b6f-4a05-bc14-51428a7615bd",
+          "name": "Returns the members of the given organization.",
+          "request": {
+            "name": "Returns the members of the given organization.",
+            "description": {},
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId",
+                "members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The id of the organization whose members to list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c69327ea-5d45-4b22-9353-717acbf721d1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization whose members to list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"members\": [\n    {\n      \"customerId\": \"de58bacf-ec4b-f95d-d1f6-fb9df58d76d1\",\n      \"email\": \"string\",\n      \"role\": \"<string>\",\n      \"status\": \"string\"\n    },\n    {\n      \"customerId\": \"2b1dc769-44d3-ee1e-364f-68667d90be3b\",\n      \"email\": \"string\",\n      \"role\": \"<string>\",\n      \"status\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69790789-7cbc-4b78-8130-76b920443e8d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization whose members to list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fe1a701-03d8-4ee2-a2cd-26c121abefd5",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization whose members to list."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "84bf6c78-364f-4329-bd55-470e5f91786c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization whose members to list."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "85b3db24-330c-416c-9822-e4c44134832a",
+          "name": "Removes the given customer's membership from the organization.",
+          "request": {
+            "name": "Removes the given customer's membership from the organization.",
+            "description": {
+              "content": "Responds with 404 when the customer is not a member and 409 when removing the organization's\n last owner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":organizationId",
+                "members",
+                ":customerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "organizationId",
+                  "description": "(Required) The id of the organization."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The id of the customer to remove."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "039a2a54-4e8b-4b97-a03a-e13e534ca9dd",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer to remove."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fea5f6af-d112-4f27-aaa0-91ae53fadfc3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer to remove."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a63b0562-5052-42e1-a0a0-3ae53f6d194c",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer to remove."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f0efdaf8-9afd-4c7a-88fe-5ac472878593",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":organizationId",
+                    "members",
+                    ":customerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "organizationId",
+                      "description": "(Required) The id of the organization."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer to remove."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c00d6776-e9de-4715-b07e-77e1a04f05bd",
+          "name": "Sets the support Slack channel URL for the organization owned by the given customer.",
+          "request": {
+            "name": "Sets the support Slack channel URL for the organization owned by the given customer.",
+            "description": {
+              "content": "A null or empty URL clears the channel. Responds with 404 when no organization is owned by the given customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "organizations",
+                ":owner",
+                "support-slack-channel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "owner",
+                  "description": "(Required) The customer ID that owns the organization."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe86f680-f3f0-4b6b-846d-a2935c26af27",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":owner",
+                    "support-slack-channel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "owner",
+                      "description": "(Required) The customer ID that owns the organization."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e30ca2b4-a5ce-4d59-b3f8-a4a8e51fa08e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":owner",
+                    "support-slack-channel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "owner",
+                      "description": "(Required) The customer ID that owns the organization."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5157,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "397cc10d-ed39-4193-8403-85f5624abe5b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":owner",
+                    "support-slack-channel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "owner",
+                      "description": "(Required) The customer ID that owns the organization."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "deb96fa8-17e8-4493-9a8d-b10690bfa054",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "organizations",
+                    ":owner",
+                    "support-slack-channel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "owner",
+                      "description": "(Required) The customer ID that owns the organization."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"url\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "f90010e6-13bf-4316-8e29-dc70adde47c6",
+    "name": "Rapidata Asset Organization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

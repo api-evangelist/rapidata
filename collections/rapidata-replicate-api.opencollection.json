@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Replicate API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Replicate",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a single Replicate model with its input parameter schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/faucet/replicate/models/:modelOwner/:modelName",
+            "params": [
+              {
+                "name": "modelOwner",
+                "value": "",
+                "type": "path",
+                "description": "The owner of the hosted model."
+              },
+              {
+                "name": "modelName",
+                "value": "",
+                "type": "path",
+                "description": "The model name."
+              }
+            ]
+          },
+          "docs": "When supportsImageReference is true the model accepts a reference image that the\n platform auto-fills with a prompt's attached media; that input is excluded from the returned\n parameters and must not be configured by the customer."
+        },
+        {
+          "info": {
+            "name": "Searches Replicate models by free-text term.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/leaderboard/faucet/replicate/models",
+            "params": [
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "The free-text term to search models by."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "Cursor continuing a previous search; omit for the first page."
+              }
+            ]
+          },
+          "docs": "Results are cursor-paginated: pass the returned nextCursor back as cursor to\n fetch the next page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,88 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Payment API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Payment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new Stripe checkout session for the given price.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/payment/checkout",
+            "params": [
+              {
+                "name": "priceId",
+                "value": "",
+                "type": "query",
+                "description": "The Stripe price id to check out."
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query",
+                "description": "The mode in which the payment should be done."
+              }
+            ]
+          },
+          "docs": "Creates a new Stripe checkout session for the given price."
+        },
+        {
+          "info": {
+            "name": "Creates a hosted checkout session for the authenticated customer to add the given amount to\n their prepaid balance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/payment/topup",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rejected for non-prepaid customers and for amounts below the configured minimum. On\n successful payment a voucher for the amount is minted, which raises the customer's balance."
+        },
+        {
+          "info": {
+            "name": "Gets the current status of a checkout session.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/payment/session/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the checkout session to get the status for."
+              }
+            ]
+          },
+          "docs": "Used to check whether the payment was successful or is still pending."
+        },
+        {
+          "info": {
+            "name": "Processes an incoming Stripe webhook event.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/payment/webhook"
+          },
+          "docs": "Reads the raw request body and the Stripe-Signature header, then dispatches a\n ProcessPaymentEventCommand."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

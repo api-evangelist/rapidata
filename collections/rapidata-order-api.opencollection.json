@@ -1,0 +1,509 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Order API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Order",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Approves a submitted order so the pipeline can start processing it.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/approve",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to approve."
+              }
+            ]
+          },
+          "docs": "Approves a submitted order so the pipeline can start processing it."
+        },
+        {
+          "info": {
+            "name": "Clones an existing public order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/clone",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to clone."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The order to clone must be marked as public."
+        },
+        {
+          "info": {
+            "name": "Creates a new order with a custom pipeline configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/complex",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new order with a custom pipeline configuration."
+        },
+        {
+          "info": {
+            "name": "Creates a new order with the given configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Once created, use the returned dataset ID to fill the dataset with datapoints,\n then submit the order for processing."
+        },
+        {
+          "info": {
+            "name": "Creates a notification for an unsupported order type.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/unsupported",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a notification for an unsupported order type."
+        },
+        {
+          "info": {
+            "name": "Retrieves the details of a specific order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/order/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific order."
+        },
+        {
+          "info": {
+            "name": "Updates the name or preceding order of an order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/order/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name or preceding order of an order."
+        },
+        {
+          "info": {
+            "name": "Deletes an order and its associated resources.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/order/:orderId",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to delete."
+              }
+            ]
+          },
+          "docs": "Deletes an order and its associated resources."
+        },
+        {
+          "info": {
+            "name": "Aggregates the results of an order and returns them as a file attachment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/order/:orderId/download-results",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "Aggregates the results of an order and returns them as a file attachment."
+        },
+        {
+          "info": {
+            "name": "Aggregates the results of an order and returns them as a JSON string.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/order/:orderId/results",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              }
+            ]
+          },
+          "docs": "For file download, use the download-results endpoint instead."
+        },
+        {
+          "info": {
+            "name": "Retrieves all publicly available orders.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/orders/public"
+          },
+          "docs": "Retrieves all publicly available orders."
+        },
+        {
+          "info": {
+            "name": "Marks or unmarks an order as a demo.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/order/:orderId/demo",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "isDemo",
+                "value": "",
+                "type": "query",
+                "description": "Whether to mark or unmark the order as a demo."
+              }
+            ]
+          },
+          "docs": "Marks or unmarks an order as a demo."
+        },
+        {
+          "info": {
+            "name": "Pauses an order, stopping all campaigns from processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/pause",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to pause."
+              }
+            ]
+          },
+          "docs": "Pauses an order, stopping all campaigns from processing."
+        },
+        {
+          "info": {
+            "name": "Starts preview mode for an order so labelers' experience can be inspected.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/preview",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to preview."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Starts preview mode for an order so labelers' experience can be inspected."
+        },
+        {
+          "info": {
+            "name": "Retrieves orders aggregated by customer with total amounts and most recent order information.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/orders/aggregated-overview",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "customer_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer_mail."
+              },
+              {
+                "name": "last_order_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by last_order_date."
+              },
+              {
+                "name": "last_order_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by last_order_name."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Retrieves orders aggregated by customer with total amounts and most recent order information."
+        },
+        {
+          "info": {
+            "name": "Queries orders with filtering and pagination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/orders",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "order_name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order_name."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "order_date",
+                "value": "",
+                "type": "query",
+                "description": "Filter by order_date."
+              },
+              {
+                "name": "customer_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by customer_mail."
+              },
+              {
+                "name": "is_public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_public."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries orders with filtering and pagination."
+        },
+        {
+          "info": {
+            "name": "Resumes a paused order, restarting all campaigns.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/resume",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to resume."
+              }
+            ]
+          },
+          "docs": "Resumes a paused order, restarting all campaigns."
+        },
+        {
+          "info": {
+            "name": "Retries processing of a failed order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/retry",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to retry."
+              }
+            ]
+          },
+          "docs": "Retries processing of a failed order."
+        },
+        {
+          "info": {
+            "name": "Marks or unmarks an order as public.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/order/:orderId/share",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order."
+              },
+              {
+                "name": "isPublic",
+                "value": "",
+                "type": "query",
+                "description": "Whether to mark or unmark the order as public."
+              }
+            ]
+          },
+          "docs": "Marks or unmarks an order as public."
+        },
+        {
+          "info": {
+            "name": "Submits an order for processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/submit",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to submit."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Once submitted, the order will be locked and no further changes can be made."
+        },
+        {
+          "info": {
+            "name": "Unlocks a cloned order so it can be modified.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/order/:orderId/unlock",
+            "params": [
+              {
+                "name": "orderId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the order to unlock."
+              }
+            ]
+          },
+          "docs": "Unlocking clones the entire dataset and its datapoints."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

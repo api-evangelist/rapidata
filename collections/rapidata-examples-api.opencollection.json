@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Examples API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Examples",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds a new example to an audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/example",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new example to an audience."
+        },
+        {
+          "info": {
+            "name": "Deletes the specified audience example.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/audience/example/:exampleId",
+            "params": [
+              {
+                "name": "exampleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the example to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified audience example."
+        },
+        {
+          "info": {
+            "name": "Queries all examples for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId/examples",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "visibility",
+                "value": "",
+                "type": "query",
+                "description": "Filter by visibility."
+              },
+              {
+                "name": "is_common_sense",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_common_sense."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all examples for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Updates an example's properties within an audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/audience/:audienceId/example/:exampleId",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              },
+              {
+                "name": "exampleId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the example to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an example's properties within an audience."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

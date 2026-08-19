@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset ContextShortening API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ContextShortening",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Shortens each context to the parts relevant to its question, returning results in input order.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/datasets/shorten-context",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Results are cached per (context, question, prompt version), so repeated requests do not re-call the model."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

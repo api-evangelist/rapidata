@@ -1,0 +1,33 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Survey API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Survey",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Submits a survey for the calling customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/identity/survey",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a survey for the calling customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

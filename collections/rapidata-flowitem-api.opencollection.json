@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset FlowItem API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FlowItem",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stops the specified flow item and triggers partial result processing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/flow/item/:flowItemId/stop",
+            "params": [
+              {
+                "name": "flowItemId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow item to stop."
+              }
+            ]
+          },
+          "docs": "Stops the specified flow item and triggers partial result processing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

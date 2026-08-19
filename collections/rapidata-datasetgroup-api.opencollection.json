@@ -1,0 +1,41 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset DatasetGroup API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DatasetGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new dataset group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/group",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to create the group for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new dataset group."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

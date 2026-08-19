@@ -1,0 +1,173 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Settings API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a billing setting for a billing item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/billing-item/:billingItemId/settings",
+            "params": [
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "path",
+                "description": "The billing item identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a billing setting for a billing item."
+        },
+        {
+          "info": {
+            "name": "Creates a billing setting for a customer.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/customer/:customerId/settings",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The customer identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a billing setting for a customer."
+        },
+        {
+          "info": {
+            "name": "Creates a global billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/billing/settings",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a global billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a billing item billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/billing-item/:billingItemId/settings/:settingId",
+            "params": [
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "path",
+                "description": "The billing item identifier."
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a billing item billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a customer billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/customer/:customerId/settings/:settingId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path",
+                "description": "The customer identifier."
+              },
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a customer billing setting."
+        },
+        {
+          "info": {
+            "name": "Deletes a global billing setting.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/billing/settings/:settingId",
+            "params": [
+              {
+                "name": "settingId",
+                "value": "",
+                "type": "path",
+                "description": "The billing setting identifier."
+              }
+            ]
+          },
+          "docs": "Deletes a global billing setting."
+        },
+        {
+          "info": {
+            "name": "Gets the billing settings timeline.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/billing/settings/timeline",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query",
+                "description": "Optional customer identifier to scope the timeline."
+              },
+              {
+                "name": "billingItemId",
+                "value": "",
+                "type": "query",
+                "description": "Optional billing item identifier to scope the timeline."
+              }
+            ]
+          },
+          "docs": "Gets the billing settings timeline."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

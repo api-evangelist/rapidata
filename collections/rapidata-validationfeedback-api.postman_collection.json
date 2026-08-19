@@ -1,0 +1,1396 @@
+{
+  "item": [
+    {
+      "id": "8f1f13d1-4411-496b-b647-901aed8fc675",
+      "name": "ValidationFeedback",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f54397dc-f970-45ea-ac33-d5562668a3e8",
+          "name": "Submits feedback for a validation rapid outcome.",
+          "request": {
+            "name": "Submits feedback for a validation rapid outcome.",
+            "description": {},
+            "url": {
+              "path": [
+                "rapid",
+                ":rapidId",
+                "validation-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rapidId",
+                  "description": "(Required) The ID of the rapid to provide feedback for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"feedback\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "83f705aa-62aa-4c60-a9c2-78ed7bc099a2",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to provide feedback for."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2978426-2c67-4265-91d5-c9bf3e3a5d43",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to provide feedback for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6185,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52015800-fe0d-4d87-a579-07def86bbc82",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to provide feedback for."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ecd1e5ce-bb02-4451-8ff9-30702081c7d0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to provide feedback for."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"feedback\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6ccafcf9-ac21-43bc-bbc5-626d894e32d7",
+          "name": "Queries validation feedbacks for a rapid.",
+          "request": {
+            "name": "Queries validation feedbacks for a rapid.",
+            "description": {},
+            "url": {
+              "path": [
+                "rapid",
+                ":rapidId",
+                "validation-feedback"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "user_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by user_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[eq]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[neq]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[gt]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[gte]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[lt]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[lte]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[contains]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "feedback[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by feedback."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rapidId",
+                  "description": "(Required) The ID of the rapid to query feedbacks for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "51f39815-3fc1-4e39-bd06-5665d981af80",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to query feedbacks for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8126,\n  \"page\": 6252,\n  \"pageSize\": 5857,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"sessionId\": \"string\",\n      \"feedback\": \"string\",\n      \"createdAt\": \"1987-04-21T19:41:42.039Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"userId\": \"string\",\n      \"sessionId\": \"string\",\n      \"feedback\": \"string\",\n      \"createdAt\": \"1983-02-26T14:28:04.528Z\"\n    }\n  ],\n  \"totalPages\": 4979\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a33ab3f3-b0f7-4e52-a0cf-841b828e73b6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to query feedbacks for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 9486,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f6b5688-ab10-4599-bf6a-635ed1857b76",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to query feedbacks for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6ff374f2-a830-4135-8282-184306c150b9",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "validation-feedback"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "user_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "feedback[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The ID of the rapid to query feedbacks for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "821f86ee-71cf-4ca3-b32c-510b5961651f",
+    "name": "Rapidata Asset ValidationFeedback API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

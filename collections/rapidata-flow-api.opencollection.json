@@ -1,0 +1,253 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Flow API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Flow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieves a flow by its ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/:flowId",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow to retrieve."
+              }
+            ]
+          },
+          "docs": "Retrieves a flow by its ID."
+        },
+        {
+          "info": {
+            "name": "Deletes a flow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/flow/:flowId",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a flow."
+        },
+        {
+          "info": {
+            "name": "Returns the distribution of completion durations (in seconds) per completed flow item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/completion-time-histogram",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Optional start of the date range filter (inclusive)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Optional end of the date range filter (inclusive)."
+              },
+              {
+                "name": "bucketCount",
+                "value": "",
+                "type": "query",
+                "description": "Number of histogram buckets (default 10, max 100)."
+              }
+            ]
+          },
+          "docs": "Returns the distribution of completion durations (in seconds) per completed flow item."
+        },
+        {
+          "info": {
+            "name": "Returns flow item creation counts bucketed over time.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/flow-item-creation-timeseries",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Optional start of the date range filter (inclusive)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Optional end of the date range filter (exclusive)."
+              },
+              {
+                "name": "datapoints",
+                "value": "",
+                "type": "query",
+                "description": "Number of time buckets (default 100, max 1000)."
+              }
+            ]
+          },
+          "docs": "Returns flow item creation counts bucketed over time."
+        },
+        {
+          "info": {
+            "name": "Returns the distribution of total votes per completed flow item.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/response-count-histogram",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Optional start of the date range filter (inclusive)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Optional end of the date range filter (inclusive)."
+              },
+              {
+                "name": "bucketCount",
+                "value": "",
+                "type": "query",
+                "description": "Number of histogram buckets (default 10, max 100)."
+              }
+            ]
+          },
+          "docs": "Returns the distribution of total votes per completed flow item."
+        },
+        {
+          "info": {
+            "name": "Returns average response counts bucketed over time for completed flow items.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow/ranking/:flowId/response-count-timeseries",
+            "params": [
+              {
+                "name": "flowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the flow."
+              },
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Optional start of the date range filter (inclusive)."
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Optional end of the date range filter (exclusive)."
+              },
+              {
+                "name": "datapoints",
+                "value": "",
+                "type": "query",
+                "description": "Number of time buckets (default 100, max 1000)."
+              }
+            ]
+          },
+          "docs": "Returns average response counts bucketed over time for completed flow items."
+        },
+        {
+          "info": {
+            "name": "Queries flows with filtering and pagination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/flow",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries flows with filtering and pagination."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

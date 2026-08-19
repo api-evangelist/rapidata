@@ -1,0 +1,310 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Campaign API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Campaign",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a program campaign from the given stream program.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/campaign/program",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The program is validated before the campaign is persisted; a malformed graph\n (missing root, dangling references, cycles, unreachable nodes) is rejected. The\n campaign starts in the Created status; move it to Active to start serving sessions."
+        },
+        {
+          "info": {
+            "name": "Returns an attributed view of the aggregated boosting profile.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/boost/insights"
+          },
+          "docs": "Returns an attributed view of the aggregated boosting profile."
+        },
+        {
+          "info": {
+            "name": "Returns the current boost status including active and inactive campaigns.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/boost/status"
+          },
+          "docs": "Returns the current boost status including active and inactive campaigns."
+        },
+        {
+          "info": {
+            "name": "Retrieves the details of a specific campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the campaign."
+              }
+            ]
+          },
+          "docs": "Retrieves the details of a specific campaign."
+        },
+        {
+          "info": {
+            "name": "Updates the specified campaign's properties.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/campaign/:campaignId",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the campaign to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified campaign's properties."
+        },
+        {
+          "info": {
+            "name": "Returns the fast bid multiplier currently applied to an external booster campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/boost/:externalCampaignId/fast-bid-multiplier",
+            "params": [
+              {
+                "name": "externalCampaignId",
+                "value": "",
+                "type": "path",
+                "description": "The external booster campaign id to read."
+              }
+            ]
+          },
+          "docs": "Returns the downstream system's default (1.0) if the multiplier has never been set\n for the campaign."
+        },
+        {
+          "info": {
+            "name": "Sets the fast bid multiplier for a single external booster campaign to an arbitrary value.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/campaign/boost/:externalCampaignId/fast-bid-multiplier",
+            "params": [
+              {
+                "name": "externalCampaignId",
+                "value": "",
+                "type": "path",
+                "description": "The external booster campaign id to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bypasses the level→multiplier mapping. Intended for live testing and one-off\n operational tweaks. Value must be in [0, 50]; 0 effectively pauses delivery on the\n campaign without changing its status. The response reports the multiplier the\n downstream system confirms is applied."
+        },
+        {
+          "info": {
+            "name": "Exercises the rapid-bag pipeline with a synthetic user profile so the health of\n the campaign monitoring path can be probed externally.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/monitor"
+          },
+          "docs": "Exercises the rapid-bag pipeline with a synthetic user profile so the health of\n the campaign monitoring path can be probed externally."
+        },
+        {
+          "info": {
+            "name": "Pauses the specified campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/campaign/:campaignId/pause",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the campaign to pause."
+              }
+            ]
+          },
+          "docs": "Pauses the specified campaign."
+        },
+        {
+          "info": {
+            "name": "Triggers a preheat pass for the boost subsystem so warm caches are ready before\n traffic spikes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/campaign/boost/preheat"
+          },
+          "docs": "Triggers a preheat pass for the boost subsystem so warm caches are ready before\n traffic spikes."
+        },
+        {
+          "info": {
+            "name": "Queries campaigns with optional filtering, sorting, and pagination.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaigns",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "priority",
+                "value": "",
+                "type": "query",
+                "description": "Filter by priority."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries campaigns with optional filtering, sorting, and pagination."
+        },
+        {
+          "info": {
+            "name": "Resumes the specified campaign.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/campaign/:campaignId/resume",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the campaign to resume."
+              }
+            ]
+          },
+          "docs": "Resumes the specified campaign."
+        },
+        {
+          "info": {
+            "name": "Sets or clears the manual global boost level.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/campaign/boost/global-level",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sets or clears the manual global boost level."
+        },
+        {
+          "info": {
+            "name": "Replaces the campaign's stream program.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.rapidata.ai/campaign/:campaignId/program",
+            "params": [
+              {
+                "name": "campaignId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the program campaign."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The program is validated before it is persisted; a malformed graph is rejected.\n The program's version is bumped and republished — running sessions pick up the new\n program on their next response."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

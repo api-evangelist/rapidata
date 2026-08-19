@@ -1,0 +1,1365 @@
+{
+  "item": [
+    {
+      "id": "07ae622a-814c-456b-8f85-6642c979296b",
+      "name": "Customer",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2ed8d048-4d8e-4b8b-8e69-4c8d9b4301a8",
+          "name": "Queries customers with filtering and pagination.",
+          "request": {
+            "name": "Queries customers with filtering and pagination.",
+            "description": {
+              "content": "Results are scoped to customers that belong to the caller's organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[eq]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[neq]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[gt]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[gte]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[lt]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[lte]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[contains]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "email[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by email."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by organization_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "organization_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by organization_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "e52d3c38-afce-44e9-be18-d8d13e9061e2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 1163,\n  \"page\": 5068,\n  \"pageSize\": 4082,\n  \"items\": [\n    {\n      \"id\": \"b2ae67fc-5f1f-0f4f-342a-8676c2ccb35a\",\n      \"email\": \"string\",\n      \"organizationName\": \"string\",\n      \"organizationId\": \"2a5fbf7e-5cee-0777-a23e-474c5a7c4e65\"\n    },\n    {\n      \"id\": \"d81a7f8c-118d-c673-a30c-518309965612\",\n      \"email\": \"string\",\n      \"organizationName\": \"string\",\n      \"organizationId\": \"26c75114-6ee6-e580-1042-ae3524447aba\"\n    }\n  ],\n  \"totalPages\": 8085\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37f031b7-5d1a-4ba2-9457-f9f45d8db402",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7732,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9bc3654-8905-4d47-8bd1-b76340c14e10",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b5191e23-1486-4ff8-b606-05e0c7005a68",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "organization_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4e6d4a5-9733-499f-8007-0930f24cbc3d",
+    "name": "Rapidata Asset Customer API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

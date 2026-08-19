@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Dataset API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dataset",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new empty dataset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/dataset",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new empty dataset."
+        },
+        {
+          "info": {
+            "name": "Gets a dataset by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/dataset/:datasetId",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to get."
+              }
+            ]
+          },
+          "docs": "Gets a dataset by its id."
+        },
+        {
+          "info": {
+            "name": "Gets the upload progress of a dataset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/progress",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to get the progress of."
+              }
+            ]
+          },
+          "docs": "Gets the upload progress of a dataset."
+        },
+        {
+          "info": {
+            "name": "Updates the name of a dataset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/dataset/:datasetId/name",
+            "params": [
+              {
+                "name": "datasetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dataset to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the name of a dataset."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

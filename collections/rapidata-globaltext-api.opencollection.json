@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset GlobalText API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GlobalText",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns every global text entry.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/global-text"
+          },
+          "docs": "Returns every global text entry."
+        },
+        {
+          "info": {
+            "name": "Creates a new global text entry.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/global-text",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new global text entry."
+        },
+        {
+          "info": {
+            "name": "Updates a global text entry using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/global-text/:globalTextId",
+            "params": [
+              {
+                "name": "globalTextId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the global text entry to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates a global text entry using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a global text entry.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/global-text/:globalTextId",
+            "params": [
+              {
+                "name": "globalTextId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the global text entry to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a global text entry."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

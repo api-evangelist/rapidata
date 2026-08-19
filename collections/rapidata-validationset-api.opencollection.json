@@ -1,0 +1,463 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset ValidationSet API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ValidationSet",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Adds a new validation rapid to a validation set using a JSON body.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/rapid",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The validation set to add a rapid to."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Adds a new validation rapid to a validation set using a JSON body."
+        },
+        {
+          "info": {
+            "name": "Creates a new empty validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/validation-set",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new empty validation set."
+        },
+        {
+          "info": {
+            "name": "Gets a validation set by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to get."
+              }
+            ]
+          },
+          "docs": "Gets a validation set by id."
+        },
+        {
+          "info": {
+            "name": "Updates different characteristics of a validation set using patch semantics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates different characteristics of a validation set using patch semantics."
+        },
+        {
+          "info": {
+            "name": "Deletes a validation set by id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a validation set by id."
+        },
+        {
+          "info": {
+            "name": "Exports all rapids of a validation set to a file.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/export",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to export."
+              }
+            ]
+          },
+          "docs": "Exports all rapids of a validation set to a file."
+        },
+        {
+          "info": {
+            "name": "Gets the available validation sets for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-sets/available"
+          },
+          "docs": "Gets the available validation sets for the current user."
+        },
+        {
+          "info": {
+            "name": "Gets all validation sets available to the user that a rapid with the provided parameters can be added to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-sets/compatible",
+            "params": [
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "query",
+                "description": "The asset type that the validation set must contain.\n An asset type can be an image, video, audio, text, or any combination of these."
+              },
+              {
+                "name": "modality",
+                "value": "",
+                "type": "query",
+                "description": "The rapid modality that the validation set must contain.\n The modality is the type of rapid such as classify, compare, locate, etc."
+              },
+              {
+                "name": "promptType",
+                "value": "",
+                "type": "query",
+                "description": "The prompt type that the validation set must contain.\n A prompt type is the additional information that is presented to the user when solving a rapid.\n For example, a prompt type can be either text or an asset if the context is an image or video."
+              },
+              {
+                "name": "instruction",
+                "value": "",
+                "type": "query",
+                "description": "An instruction used to find validation sets that have the same instruction.\n An instruction is a text that is presented to the user when solving a rapid that explains how to solve the rapid."
+              }
+            ]
+          },
+          "docs": "Matching is strict: a validation set is only returned when its asset type, modality, and prompt type\n equal the provided parameters exactly — the same constraint enforced when actually adding a rapid.\n This differs from /validation-set/recommended, which uses loose overlap matching and may return\n sets that then reject the rapid. Returns an empty array when no compatible set exists."
+        },
+        {
+          "info": {
+            "name": "Gets a validation set that is available to the user and best matches the provided parameters.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-set/recommended",
+            "params": [
+              {
+                "name": "assetType",
+                "value": "",
+                "type": "query",
+                "description": "The types of assets that the validation set should contain.\n An asset type can be an image, video, audio, text, or any combination of these.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified asset types."
+              },
+              {
+                "name": "modality",
+                "value": "",
+                "type": "query",
+                "description": "The rapid modalities that the validation set should contain.\n The modality is the type of rapid such as classify, compare, locate, etc.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified modalities."
+              },
+              {
+                "name": "promptType",
+                "value": "",
+                "type": "query",
+                "description": "The prompt types that the validation set should contain.\n A prompt type is the additional information that is presented to the user when solving a rapid.\n For example, a prompt type can be either text or an asset if the context is an image or video.\n \n This parameter is a flag, meaning that it can be null or contain multiple values.\n If multiple values are provided, a validation set will be chosen that contains at least one of the specified prompt types."
+              },
+              {
+                "name": "instruction",
+                "value": "",
+                "type": "query",
+                "description": "An instruction used to find validation sets that have similar instructions.\n An instruction is a text that is presented to the user when solving a rapid that explains how to solve the rapid."
+              }
+            ]
+          },
+          "docs": "Gets a validation set that is available to the user and best matches the provided parameters."
+        },
+        {
+          "info": {
+            "name": "Queries the validation rapids for a specific validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/rapids",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The validation set to query."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by type."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries the validation rapids for a specific validation set."
+        },
+        {
+          "info": {
+            "name": "Queries available validation sets based on the provided filter, paging and sorting criteria.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/validation-sets",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "asset_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by asset_type."
+              },
+              {
+                "name": "modality",
+                "value": "",
+                "type": "query",
+                "description": "Filter by modality."
+              },
+              {
+                "name": "prompt_type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by prompt_type."
+              },
+              {
+                "name": "is_public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_public."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries available validation sets based on the provided filter, paging and sorting criteria."
+        },
+        {
+          "info": {
+            "name": "Refreshes the labeling hints for a validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/update-labeling-hints",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to update the labeling hints for."
+              }
+            ]
+          },
+          "docs": "This endpoint is a no-op. Labeling hints are now managed automatically."
+        },
+        {
+          "info": {
+            "name": "Updates the dimensions of all rapids within a validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/dimensions",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to update the dimensions for."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the dimensions of all rapids within a validation set."
+        },
+        {
+          "info": {
+            "name": "Updates the shouldAlert field on all rapids within a validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/shouldAlert",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the shouldAlert field on all rapids within a validation set."
+        },
+        {
+          "info": {
+            "name": "Updates the visibility of a validation set.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/validation-set/:validationSetId/visibility",
+            "params": [
+              {
+                "name": "validationSetId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the validation set to update the visibility for."
+              },
+              {
+                "name": "isPublic",
+                "value": "",
+                "type": "query",
+                "description": "Whether the validation set should be public or private."
+              }
+            ]
+          },
+          "docs": "Public validation sets are used to automatically add a validation set to an order if no validation set is specified."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

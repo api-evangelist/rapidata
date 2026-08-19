@@ -1,0 +1,2519 @@
+{
+  "item": [
+    {
+      "id": "1bccd6f4-cd78-43b9-828e-72abedb18a27",
+      "name": "Sample",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2707ea0-d373-45ca-a2c5-236d245c13f4",
+          "name": "Gets a benchmark sample by its id.",
+          "request": {
+            "name": "Gets a benchmark sample by its id.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark-sample",
+                ":sampleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) The id of the sample to be retrieved."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "437fb03d-d1eb-4165-a807-27dcfcd5bc3f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"identifier\": \"string\",\n  \"participantId\": \"string\",\n  \"participantName\": \"string\",\n  \"asset\": {\n    \"fileName\": \"string\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"string\",\n    \"_t\": \"FileAsset\"\n  },\n  \"tags\": [\n    \"string\",\n    \"string\"\n  ],\n  \"ownerMail\": \"string\",\n  \"englishPrompt\": \"string\",\n  \"originalPrompt\": \"string\",\n  \"promptAsset\": {\n    \"fileName\": \"string\",\n    \"metadata\": {\n      \"key_0\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_1\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_2\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_3\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"key_4\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      }\n    },\n    \"identifier\": \"string\",\n    \"_t\": \"FileAsset\"\n  },\n  \"createdAt\": \"1967-12-04T08:27:20.945Z\",\n  \"ownerId\": \"ca263532-a2b8-2b5f-8144-cd0b1f79ae0d\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a195f34-9ee8-42d4-8255-113deac39ec8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to be retrieved."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5830,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "398bcff5-7a17-405c-bb7d-0ac7576989ea",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to be retrieved."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "445f5517-28dd-4e26-9ef3-e2170e56d85f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to be retrieved."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c74a15ce-cd11-4ae3-8ee1-bad206a21df3",
+          "name": "Gets navigation context (previous, next, related samples) for a sample.",
+          "request": {
+            "name": "Gets navigation context (previous, next, related samples) for a sample.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark-sample",
+                ":sampleId",
+                "navigation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "sampleId",
+                  "description": "(Required) The id of the sample to anchor navigation on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "eb732704-8c43-4da8-9b98-e328d2f8b4f8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to anchor navigation on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current\": {\n    \"id\": \"string\",\n    \"identifier\": \"string\",\n    \"participantId\": \"string\",\n    \"participantName\": \"string\",\n    \"asset\": {\n      \"fileName\": \"string\",\n      \"metadata\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"identifier\": \"string\",\n      \"_t\": \"FileAsset\"\n    },\n    \"tags\": [\n      \"string\",\n      \"string\"\n    ],\n    \"ownerMail\": \"string\",\n    \"englishPrompt\": \"string\",\n    \"originalPrompt\": \"string\",\n    \"promptAsset\": {\n      \"fileName\": \"string\",\n      \"metadata\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"identifier\": \"string\",\n      \"_t\": \"FileAsset\"\n    },\n    \"createdAt\": \"1947-04-02T03:05:50.980Z\",\n    \"ownerId\": \"d20c0ee3-5072-e765-6433-da80fb111036\"\n  },\n  \"previous\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"2021-04-26T13:36:36.579Z\",\n      \"ownerId\": \"be128cdc-9adf-efbb-3002-1ef996d1b9e4\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"1963-04-12T15:05:57.621Z\",\n      \"ownerId\": \"bcb21e69-9e3c-333b-1940-55d688b1e457\"\n    }\n  ],\n  \"next\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"1971-10-28T15:07:10.635Z\",\n      \"ownerId\": \"ab9c1777-1589-8466-524b-5044463a9d86\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"1988-09-19T11:38:47.644Z\",\n      \"ownerId\": \"2cac8d17-417a-4e9a-0565-8e31b7bc6262\"\n    }\n  ],\n  \"related\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"1965-05-07T08:05:34.352Z\",\n      \"ownerId\": \"adb0c4fd-6be1-492f-151e-244ff8e3f62e\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"_t\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"createdAt\": \"1961-07-18T04:36:25.508Z\",\n      \"ownerId\": \"1501c888-cb4b-55f5-02b0-73a781c66b59\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af714778-0a58-4513-b19a-cb193f327d7d",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to anchor navigation on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8780,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f101605-b0d2-4102-878c-265fb216d0f1",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to anchor navigation on."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5fe0dab9-743e-4e7d-b3c9-7c12ade0e63a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark-sample",
+                    ":sampleId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "sampleId",
+                      "description": "(Required) The id of the sample to anchor navigation on."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5aedc4ee-35b5-46d9-afce-73b153260abe",
+          "name": "Returns the paged samples of a benchmark filtered by an identifier.",
+          "request": {
+            "name": "Returns the paged samples of a benchmark filtered by an identifier.",
+            "description": {},
+            "url": {
+              "path": [
+                "benchmark",
+                ":benchmarkId",
+                "samples",
+                ":identifier"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "participant_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by participant_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "benchmarkId",
+                  "description": "(Required) The id of the benchmark to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier",
+                  "description": "(Required) The identifier to filter all samples for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5706105d-3239-4890-bc33-69bbad8eb80a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "samples",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier to filter all samples for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 4923,\n  \"page\": 304,\n  \"pageSize\": 2008,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"createdAt\": \"1948-04-06T20:34:38.193Z\",\n      \"ownerId\": \"f6d02339-3fd0-3ee8-b9d6-9875e1e4b14c\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"participantId\": \"string\",\n      \"participantName\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"createdAt\": \"1993-01-02T00:47:32.449Z\",\n      \"ownerId\": \"d4d3981d-67eb-7695-a0f3-8467ba9cf592\"\n    }\n  ],\n  \"totalPages\": 8023\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e5e51ba4-4c2b-4e77-8c4f-76f6506fb3cb",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "samples",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier to filter all samples for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8780,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1752c878-59b5-4d92-9968-5f3325be4979",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "samples",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier to filter all samples for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "521acf8c-ab7f-43aa-9241-bdfe83836d5b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "benchmark",
+                    ":benchmarkId",
+                    "samples",
+                    ":identifier"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "participant_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "benchmarkId",
+                      "description": "(Required) The id of the benchmark to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier",
+                      "description": "(Required) The identifier to filter all samples for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7f105512-8cde-4255-86c6-8a2d11b29e53",
+          "name": "Queries all samples of a participant.",
+          "request": {
+            "name": "Queries all samples of a participant.",
+            "description": {},
+            "url": {
+              "path": [
+                "participant",
+                ":participantId",
+                "samples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "fillMissing",
+                  "value": "false",
+                  "description": "Whether to fill missing samples with placeholders."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "The tags to filter the samples by; a sample matches when any of its prompt tags is in this list."
+                },
+                {
+                  "disabled": false,
+                  "key": "tags",
+                  "value": "<string>",
+                  "description": "The tags to filter the samples by; a sample matches when any of its prompt tags is in this list."
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[eq]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[neq]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[gt]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[gte]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[lt]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[lte]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[contains]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "identifier[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by identifier."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "participantId",
+                  "description": "(Required) The id of the participant to query samples for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "93d4691b-3782-4b20-940b-451ee5706cfd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "participant",
+                    ":participantId",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fillMissing",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) The id of the participant to query samples for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 3739,\n  \"page\": 1423,\n  \"pageSize\": 2437,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"asset\": {\n        \"description\": \"The asset associated with the sample.\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"_t\": \"SampleOutput\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"description\": \"An optional prompt asset associated with the sample.\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"createdAt\": \"2016-04-28T09:59:53.748Z\",\n      \"ownerId\": \"b71f10af-d8ee-cdfb-e6fd-a673c2b28af5\"\n    },\n    {\n      \"id\": \"string\",\n      \"identifier\": \"string\",\n      \"asset\": {\n        \"description\": \"The asset associated with the sample.\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"tags\": [\n        \"string\",\n        \"string\"\n      ],\n      \"ownerMail\": \"string\",\n      \"_t\": \"SampleOutput\",\n      \"englishPrompt\": \"string\",\n      \"originalPrompt\": \"string\",\n      \"promptAsset\": {\n        \"description\": \"An optional prompt asset associated with the sample.\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"createdAt\": \"1981-05-20T23:09:01.652Z\",\n      \"ownerId\": \"04792b63-1f2e-d52a-8a9d-3f100e877423\"\n    }\n  ],\n  \"totalPages\": 7774\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1c4d117-65f1-4b90-8f7f-0df244804ca4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "participant",
+                    ":participantId",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fillMissing",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) The id of the participant to query samples for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8780,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e3d7df9-9ac8-434a-8556-feac223eebb3",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "participant",
+                    ":participantId",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fillMissing",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) The id of the participant to query samples for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99946982-e7f3-44a1-861b-84458c36abad",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "participant",
+                    ":participantId",
+                    "samples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "fillMissing",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tags",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "identifier[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantId",
+                      "description": "(Required) The id of the participant to query samples for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "799c932a-6d01-45ec-a534-4d407eae89f0",
+    "name": "Rapidata Asset Sample API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

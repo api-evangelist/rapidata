@@ -1,0 +1,192 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Workflow API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workflow",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the workflow identified by workflowId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "Identifier of the workflow to fetch."
+              }
+            ]
+          },
+          "docs": "Returns the workflow identified by workflowId."
+        },
+        {
+          "info": {
+            "name": "Deletes a workflow by its id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/workflow/:workflowId",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workflow to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a workflow by its id."
+        },
+        {
+          "info": {
+            "name": "Returns the number of times each asset index won across the workflow's rapids.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflow/:workflowId/compare-ab-summary",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workflow to get the summary for."
+              },
+              {
+                "name": "useUserScore",
+                "value": "",
+                "type": "query",
+                "description": "Whether to use the user score to determine the winner."
+              }
+            ]
+          },
+          "docs": "Returns the number of times each asset index won across the workflow's rapids."
+        },
+        {
+          "info": {
+            "name": "Gets the progress of a workflow.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflow/:workflowId/progress",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workflow to get the progress for."
+              }
+            ]
+          },
+          "docs": "Gets the progress of a workflow."
+        },
+        {
+          "info": {
+            "name": "Gets the most recent or oldest responses for a workflow, across any rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflow/:workflowId/responses",
+            "params": [
+              {
+                "name": "workflowId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the workflow to get the responses for."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The maximum number of responses to return."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Whether the oldest or most recent responses should be returned."
+              }
+            ]
+          },
+          "docs": "Gets the most recent or oldest responses for a workflow, across any rapid."
+        },
+        {
+          "info": {
+            "name": "Queries workflows based on the provided filter, page, and sort criteria.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/workflows",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "state",
+                "value": "",
+                "type": "query",
+                "description": "Filter by state."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries workflows based on the provided filter, page, and sort criteria."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,1658 @@
+{
+  "item": [
+    {
+      "id": "9937c275-fa0e-4154-8566-ce6311d883e3",
+      "name": "Settings",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0bffd48f-fd80-4390-a304-2cdb1b9a285c",
+          "name": "Creates a billing setting for a billing item.",
+          "request": {
+            "name": "Creates a billing setting for a billing item.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "billing-item",
+                ":billingItemId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "billingItemId",
+                  "description": "(Required) The billing item identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e024622b-7c08-424f-add0-c6c9f9ebe20f",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5f31f51f-8b82-4c19-abf0-fa43bcd0ccb6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2902,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63296c5f-9c62-471c-abf1-a3e1c4d23284",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3046c5c-f7a1-4fdb-9552-637638f96af1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "da530a81-631a-4b12-a60b-4918121ad1e0",
+          "name": "Creates a billing setting for a customer.",
+          "request": {
+            "name": "Creates a billing setting for a customer.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "customer",
+                ":customerId",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The customer identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d6859d28-6f24-42a8-9606-1147366d0764",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9af7e499-c392-48f5-a827-01e74715f9e2",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33db413a-e659-4f85-bd6c-15944eed296d",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "33be62f1-95b5-4083-bbe5-e647b317e2cc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4836dd0d-0afe-4b34-be4b-cc9b5e1dc7f0",
+          "name": "Creates a global billing setting.",
+          "request": {
+            "name": "Creates a global billing setting.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "settings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79e1c440-c66a-43de-b692-82b5f92e7f1c",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0ee89489-f78f-4dd7-9e57-b468b05406fd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b0d9b43-2e0f-45a5-b733-e1f5d9cdf400",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "930aae03-1a37-4f58-b2c8-e8277504453c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"priority\": \"<integer>\",\n  \"validFrom\": \"<dateTime>\",\n  \"validTo\": \"<dateTime>\",\n  \"costPerResponseFreeText\": \"<double>\",\n  \"costPerResponseImage\": \"<double>\",\n  \"costPerResponseMediaPerSecond\": \"<double>\",\n  \"costPerResponseMediaMinimum\": \"<double>\",\n  \"costPerResponseTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextPer50Chars\": \"<double>\",\n  \"costPerResponseContextTextMinimum\": \"<double>\",\n  \"costPerResponseContextImage\": \"<double>\",\n  \"costPerResponseContextVideoPerSecond\": \"<double>\",\n  \"costPerResponseContextVideoMinimum\": \"<double>\",\n  \"discountRatio\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35b78bb1-0c42-4bc6-b2b8-e74725ee08c4",
+          "name": "Deletes a billing item billing setting.",
+          "request": {
+            "name": "Deletes a billing item billing setting.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "billing-item",
+                ":billingItemId",
+                "settings",
+                ":settingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "billingItemId",
+                  "description": "(Required) The billing item identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "settingId",
+                  "description": "(Required) The billing setting identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "1d061019-e1bc-47f5-a659-8b46e8cfd5e3",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "fd9e591d-bfda-48c1-ad10-22db9b5254f3",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f82364d6-2ff7-49bf-a66c-863d04756820",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8e332908-699e-45b2-972b-1a4990a11536",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "billing-item",
+                    ":billingItemId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "billingItemId",
+                      "description": "(Required) The billing item identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19e14792-cdb4-47d7-bb55-33aabc7f8014",
+          "name": "Deletes a customer billing setting.",
+          "request": {
+            "name": "Deletes a customer billing setting.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "customer",
+                ":customerId",
+                "settings",
+                ":settingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The customer identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "settingId",
+                  "description": "(Required) The billing setting identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "fb157a79-0dbe-4f99-8c40-b6c9234179bb",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "630cc31e-334f-425b-a71e-6c9fcf0e9931",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15a8f33c-3d21-45d0-9e8f-e4b5e3ed8914",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3095c28-f52d-44d2-b987-e10533e6c353",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "customer",
+                    ":customerId",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The customer identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f0545641-6960-4c97-80a2-fcf171ef9b83",
+          "name": "Deletes a global billing setting.",
+          "request": {
+            "name": "Deletes a global billing setting.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "settings",
+                ":settingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "settingId",
+                  "description": "(Required) The billing setting identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "93a2c9a0-0e9f-4c4a-a857-c785258c3e3c",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4f918592-eda4-4129-a9f6-9e168d3b4cab",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe04f07-1222-4ea3-a1d3-a12a84fe7515",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c3349b02-aebf-4b8f-91a2-2735641a44ee",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    ":settingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "settingId",
+                      "description": "(Required) The billing setting identifier."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72091e82-1811-4f33-ab6d-326313379f4e",
+          "name": "Gets the billing settings timeline.",
+          "request": {
+            "name": "Gets the billing settings timeline.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "settings",
+                "timeline"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<uuid>",
+                  "description": "Optional customer identifier to scope the timeline."
+                },
+                {
+                  "disabled": false,
+                  "key": "billingItemId",
+                  "value": "<string>",
+                  "description": "Optional billing item identifier to scope the timeline."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "6c566439-8773-4a2e-8cc8-468ecce6f8eb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "billingItemId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"intervals\": [\n    {\n      \"costPerResponseFreeText\": 5818.864802534946,\n      \"costPerResponseImage\": 6357.275840462066,\n      \"costPerResponseMediaPerSecond\": 5727.267501041473,\n      \"costPerResponseMediaMinimum\": 9684.767011560345,\n      \"costPerResponseTextPer50Chars\": 5025.990008410897,\n      \"costPerResponseContextTextPer50Chars\": 3468.6697437976322,\n      \"costPerResponseContextTextMinimum\": 2351.355889110864,\n      \"costPerResponseContextImage\": 3594.603779329558,\n      \"costPerResponseContextVideoPerSecond\": 1474.3152580997187,\n      \"costPerResponseContextVideoMinimum\": 387.55221928743146,\n      \"discountRatio\": 21.965020121836876,\n      \"from\": \"1966-05-23T11:47:09.271Z\",\n      \"to\": \"1959-06-14T15:11:07.179Z\"\n    },\n    {\n      \"costPerResponseFreeText\": 9622.834731389963,\n      \"costPerResponseImage\": 5913.049808543335,\n      \"costPerResponseMediaPerSecond\": 5874.15547877379,\n      \"costPerResponseMediaMinimum\": 8819.335188719333,\n      \"costPerResponseTextPer50Chars\": 4962.258967457339,\n      \"costPerResponseContextTextPer50Chars\": 1659.8047019768514,\n      \"costPerResponseContextTextMinimum\": 7187.718192528631,\n      \"costPerResponseContextImage\": 8494.374427638377,\n      \"costPerResponseContextVideoPerSecond\": 7712.384745124983,\n      \"costPerResponseContextVideoMinimum\": 4060.6788222275504,\n      \"discountRatio\": 4533.431110581137,\n      \"from\": \"1954-11-01T03:10:29.627Z\",\n      \"to\": \"1998-09-01T20:15:05.537Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1c4f712a-0f23-479c-b2c5-cb8c3a59476e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "billingItemId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7736,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8112432e-e6b3-4632-931b-e6520aa2940b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "billingItemId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "eccdc5fc-47e1-40cd-a616-318cb2fd4709",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "settings",
+                    "timeline"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "customerId",
+                      "value": "<uuid>"
+                    },
+                    {
+                      "key": "billingItemId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "648572c7-f38c-454a-b842-e856f757646c",
+    "name": "Rapidata Asset Settings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

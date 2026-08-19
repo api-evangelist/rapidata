@@ -1,0 +1,798 @@
+{
+  "item": [
+    {
+      "id": "3e0dd242-a46d-4310-ae9b-3dbccaeeacb5",
+      "name": "Rapid",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "98d8a5cf-34c0-4971-98d9-a9a5ae60b6c8",
+          "name": "Gets the anchor rapid and its surrounding rapids within the results slice, in the order\n and filter the results grid renders, so the explorer can step neighbour-to-neighbour.",
+          "request": {
+            "name": "Gets the anchor rapid and its surrounding rapids within the results slice, in the order\n and filter the results grid renders, so the explorer can step neighbour-to-neighbour.",
+            "description": {
+              "content": "Navigation follows the grid's default order (flagged rapids first, then by id) over the\n given correlation slice. Returns 404 when the rapid is not part of the filtered slice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rapid",
+                ":rapidId",
+                "navigation"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "correlationId",
+                  "value": "<string>",
+                  "description": "(Required) The correlation id whose result slice to navigate."
+                },
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Optional rapid states to filter by; all states are included when omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "states",
+                  "value": "<string>",
+                  "description": "Optional rapid states to filter by; all states are included when omitted."
+                },
+                {
+                  "disabled": false,
+                  "key": "window",
+                  "value": "3",
+                  "description": "The maximum number of neighbours to return on each side."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeNotAccepted",
+                  "value": "false",
+                  "description": "When true, not-accepted responses count toward the anchor's sample and aggregation."
+                },
+                {
+                  "disabled": false,
+                  "key": "includeOverflow",
+                  "value": "false",
+                  "description": "When true, overflow responses count toward the anchor's sample and aggregation."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rapidId",
+                  "description": "(Required) The rapid to anchor navigation on."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2297da78-2663-4196-a133-389a0d2e36f0",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "window",
+                      "value": "3"
+                    },
+                    {
+                      "key": "includeNotAccepted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOverflow",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The rapid to anchor navigation on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"current\": {\n    \"rapidId\": \"string\",\n    \"asset\": {\n      \"fileName\": \"string\",\n      \"metadata\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"key_2\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"identifier\": \"string\",\n      \"_t\": \"FileAsset\"\n    },\n    \"state\": \"<string>\",\n    \"payload\": {\n      \"target\": \"string\",\n      \"_t\": \"BoundingBoxPayload\"\n    },\n    \"responses\": [\n      {\n        \"id\": \"string\",\n        \"userId\": \"string\",\n        \"country\": \"string\",\n        \"language\": \"string\",\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userScore\": 6922.27343494776,\n        \"userScores\": {\n          \"key_0\": 706.1014701643697,\n          \"key_1\": 2105.607899448654,\n          \"key_2\": 920.8554693988891\n        },\n        \"demographicInformation\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"userId\": \"string\",\n        \"country\": \"string\",\n        \"language\": \"string\",\n        \"result\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"userScore\": 9050.65110159527,\n        \"userScores\": {\n          \"key_0\": 8220.273539819402,\n          \"key_1\": 5152.2918913283265,\n          \"key_2\": 233.955945901414,\n          \"key_3\": 1032.9693182263989\n        },\n        \"demographicInformation\": {\n          \"key_0\": \"string\",\n          \"key_1\": \"string\"\n        }\n      }\n    ],\n    \"totalResponseCount\": 6705,\n    \"context\": \"string\",\n    \"contextAsset\": {\n      \"fileName\": \"string\",\n      \"metadata\": {\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"identifier\": \"string\",\n      \"_t\": \"FileAsset\"\n    },\n    \"decisiveness\": 1356.7711393037441,\n    \"aggregation\": {\n      \"categoryTallies\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"_t\": \"ClassifyAggregation\"\n    }\n  },\n  \"previous\": [\n    {\n      \"rapidId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"state\": \"<string>\"\n    },\n    {\n      \"rapidId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"state\": \"<string>\"\n    }\n  ],\n  \"next\": [\n    {\n      \"rapidId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"state\": \"<string>\"\n    },\n    {\n      \"rapidId\": \"string\",\n      \"asset\": {\n        \"fileName\": \"string\",\n        \"metadata\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"identifier\": \"string\",\n        \"_t\": \"FileAsset\"\n      },\n      \"state\": \"<string>\"\n    }\n  ],\n  \"index\": 4508,\n  \"total\": 5517\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8128fc85-5a12-4539-8556-afa53dfb77e6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "window",
+                      "value": "3"
+                    },
+                    {
+                      "key": "includeNotAccepted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOverflow",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The rapid to anchor navigation on."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 7238,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7e1a9c4f-2d42-4086-b668-d438756a157e",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "window",
+                      "value": "3"
+                    },
+                    {
+                      "key": "includeNotAccepted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOverflow",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The rapid to anchor navigation on."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7b0a07b5-64bd-4be5-9eae-84c5becec6d3",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "navigation"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "correlationId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "states",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "window",
+                      "value": "3"
+                    },
+                    {
+                      "key": "includeNotAccepted",
+                      "value": "false"
+                    },
+                    {
+                      "key": "includeOverflow",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The rapid to anchor navigation on."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c8da1c1-734a-4492-ab32-0fa1703d617f",
+          "name": "Recalculates the compare AB summary counters of a correlation from scratch.",
+          "request": {
+            "name": "Recalculates the compare AB summary counters of a correlation from scratch.",
+            "description": {
+              "content": "Admin-only verification/repair tool. The counters are normally maintained by rapid\n completion and rejection events; this overwrites them with freshly aggregated values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rapid",
+                "compare-ab-summary",
+                ":correlationId",
+                "recalculate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "correlationId",
+                  "description": "(Required) The correlation (workflow) id to recalculate."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "d84d4870-09fd-4a2f-963e-206d33de11ea",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    "compare-ab-summary",
+                    ":correlationId",
+                    "recalculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "correlationId",
+                      "description": "(Required) The correlation (workflow) id to recalculate."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9ab15dc3-3e0d-4d68-85ef-a30038ec92c8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    "compare-ab-summary",
+                    ":correlationId",
+                    "recalculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "correlationId",
+                      "description": "(Required) The correlation (workflow) id to recalculate."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8135,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "312bea7f-f958-4aba-a7bb-3dbf25deec7f",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    "compare-ab-summary",
+                    ":correlationId",
+                    "recalculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "correlationId",
+                      "description": "(Required) The correlation (workflow) id to recalculate."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c44c8153-0cf7-426d-b75e-7edb141b28ab",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    "compare-ab-summary",
+                    ":correlationId",
+                    "recalculate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "correlationId",
+                      "description": "(Required) The correlation (workflow) id to recalculate."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f6ab0324-3659-49f5-89b0-a99d676abdd8",
+          "name": "Rejects a completed rapid, marking its results as invalid.",
+          "request": {
+            "name": "Rejects a completed rapid, marking its results as invalid.",
+            "description": {
+              "content": "The rapid must be in the Done state. Rejection propagates staleness to dependent entities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rapid",
+                ":rapidId",
+                "reject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "rapidId",
+                  "description": "(Required) The identifier of the rapid to reject."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "7d671002-5784-43b5-9dd6-031c80a153f5",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The identifier of the rapid to reject."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "315e2ab7-2e5c-4cc7-a221-e9f0a2575440",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The identifier of the rapid to reject."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 8135,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff1a17fe-4b07-45da-95da-94aaf224043b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The identifier of the rapid to reject."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6d70ae6c-c4b5-4298-ac75-18938922f4c2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rapid",
+                    ":rapidId",
+                    "reject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "rapidId",
+                      "description": "(Required) The identifier of the rapid to reject."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "408d34d7-9daa-40b5-9bd7-997f2f4141bd",
+    "name": "Rapidata Asset Rapid API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,581 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Audience API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audience",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Changes the owner of the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/audience/:audienceId/owner",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Changes the owner of the specified audience."
+        },
+        {
+          "info": {
+            "name": "Creates a new empty audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new empty audience."
+        },
+        {
+          "info": {
+            "name": "Creates a filtered view on the given base audience by applying a filter on top of its\n graduates. Returns an audience id that can be used in job creation just like a regular\n audience id; no new onboarding is required.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:baseAudienceId/filter",
+            "params": [
+              {
+                "name": "baseAudienceId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the dimension audience whose graduates the filter is applied on top of."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a filtered view on the given base audience by applying a filter on top of its\n graduates. Returns an audience id that can be used in job creation just like a regular\n audience id; no new onboarding is required."
+        },
+        {
+          "info": {
+            "name": "Returns the audience with the specified id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Returns the audience with the specified id."
+        },
+        {
+          "info": {
+            "name": "Patches an existing audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/audience/:audienceId",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patches an existing audience."
+        },
+        {
+          "info": {
+            "name": "Deletes the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/audience/:audienceId",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience to delete."
+              }
+            ]
+          },
+          "docs": "Deletes the specified audience."
+        },
+        {
+          "info": {
+            "name": "Returns the audience inactivity sync with the given id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/inactivity-sync/:syncId",
+            "params": [
+              {
+                "name": "syncId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the inactivity sync."
+              }
+            ]
+          },
+          "docs": "Returns the audience inactivity sync with the given id."
+        },
+        {
+          "info": {
+            "name": "Returns the audience state recalculation with the given id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/state-recalculation/:recalculationId",
+            "params": [
+              {
+                "name": "recalculationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the recalculation."
+              }
+            ]
+          },
+          "docs": "Returns the audience state recalculation with the given id."
+        },
+        {
+          "info": {
+            "name": "Gets the count of users in each state for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId/user-metrics",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Gets the count of users in each state for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Returns the most recent audience inactivity sync for the given audience, regardless of state.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId/inactivity-sync",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Returns the most recent audience inactivity sync for the given audience, regardless of state."
+        },
+        {
+          "info": {
+            "name": "Starts a new inactivity sync for the given audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/inactivity-sync",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Returns 400 if the audience does not have inactivity drop days configured.\n If a sync is already Pending for this audience, its id is returned and no new run is\n created. If one is currently Processing, it is aborted and replaced. Failed,\n Completed, and Aborted runs are left untouched and a fresh run is created."
+        },
+        {
+          "info": {
+            "name": "Returns the most recent audience state recalculation for the given audience, regardless of state.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId/state-recalculation",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Returns the most recent audience state recalculation for the given audience, regardless of state."
+        },
+        {
+          "info": {
+            "name": "Starts a new audience state recalculation for the given audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/state-recalculation",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "If a recalculation is already Pending for this audience, its id is returned and no new\n run is created. If one is currently Processing, it is aborted and replaced. Failed,\n Completed, and Aborted runs are left untouched and a fresh run is created."
+        },
+        {
+          "info": {
+            "name": "Uploads a CSV file containing user IDs and scores, then processes it in the background\n to seed the audience with those users.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/initialize-users",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience to initialize."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Uploads a CSV file containing user IDs and scores, then processes it in the background\n to seed the audience with those users."
+        },
+        {
+          "info": {
+            "name": "Pauses the distillation campaign for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/pause-distillation",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Pauses the distillation campaign for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Queries jobs for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audience/:audienceId/jobs",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "job_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job_id."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "definition_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by definition_id."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries jobs for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Queries all audiences visible to the caller.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/audiences",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filter by name."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by status."
+              },
+              {
+                "name": "is_public",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_public."
+              },
+              {
+                "name": "is_distilling",
+                "value": "",
+                "type": "query",
+                "description": "Filter by is_distilling."
+              },
+              {
+                "name": "owner_mail",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_mail."
+              },
+              {
+                "name": "created_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by created_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all audiences visible to the caller."
+        },
+        {
+          "info": {
+            "name": "Rebuilds the distilling campaign for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/rebuild-distilling-campaign",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Recalculates campaign filters and selections based on the audience's current settings\n (demographic filters, exit conditions, etc.)."
+        },
+        {
+          "info": {
+            "name": "Enqueues a background job that reconciles audience-row state derived\n from audience_state_counts.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/reconcile-user-counts"
+          },
+          "docs": "Enqueues a background job that reconciles audience-row state derived\n from audience_state_counts."
+        },
+        {
+          "info": {
+            "name": "Recreates external audiences for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/recreate-external-audiences",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Recreates external audiences for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Resumes the distillation campaign for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/resume-distillation",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Resumes the distillation campaign for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Starts recruiting users for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/audience/:audienceId/recruit",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ]
+          },
+          "docs": "Starts recruiting users for the specified audience."
+        },
+        {
+          "info": {
+            "name": "Updates the boost configuration for the specified audience.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/audience/:audienceId/boost-config",
+            "params": [
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier of the audience."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the boost configuration for the specified audience."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

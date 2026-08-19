@@ -1,0 +1,2992 @@
+{
+  "item": [
+    {
+      "id": "9b4004a9-d0a8-4f44-bb1c-3cc6e93a2a4f",
+      "name": "BillingAccount",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6dea5cde-0a2a-4fe9-bf73-e034e225a4c2",
+          "name": "Grants a voucher to a customer.",
+          "request": {
+            "name": "Grants a voucher to a customer.",
+            "description": {
+              "content": "Provide exactly one of validity (a duration from now) or expiresAt (an\n explicit instant) — not both, not neither. The grant immediately raises the customer's\n serve allowance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<double>\",\n  \"validity\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a7ce6a8b-9a99-43b9-8bd7-da3f5d927fe8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<double>\",\n  \"validity\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"voucherId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5a213e8-16cb-470a-af81-2ee63206512c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<double>\",\n  \"validity\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3509,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c17e337-b286-4e3a-944c-d55495dd2c9e",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<double>\",\n  \"validity\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "19e77c33-2138-4c87-8b09-3ccd80880036",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerId\": \"<uuid>\",\n  \"amount\": \"<double>\",\n  \"validity\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e3dec891-ea88-4a3c-8150-a5e5c574b2b4",
+          "name": "Queries vouchers with filtering, sorting, and pagination.",
+          "request": {
+            "name": "Queries vouchers with filtering, sorting, and pagination.",
+            "description": {},
+            "url": {
+              "path": [
+                "vouchers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "customer_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by customer_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[eq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[neq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[eq]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[neq]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[gt]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[gte]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[lt]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[lte]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[contains]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "source[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by source."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "expires_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by expires_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "issued_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by issued_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "135594c4-8d6e-494b-ab9d-fb78d1709677",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6874,\n  \"page\": 2224,\n  \"pageSize\": 826,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"amount\": 7341.163351752493,\n      \"used\": 1286.237020135843,\n      \"remaining\": 2050.666718062032,\n      \"issuedAt\": \"1951-01-31T19:32:30.933Z\",\n      \"expiresAt\": \"2011-02-03T01:55:29.003Z\",\n      \"status\": \"string\",\n      \"source\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"amount\": 8324.685847040693,\n      \"used\": 5451.899055886614,\n      \"remaining\": 3831.401063760318,\n      \"issuedAt\": \"2012-01-07T00:13:31.755Z\",\n      \"expiresAt\": \"1995-07-17T11:41:02.482Z\",\n      \"status\": \"string\",\n      \"source\": \"string\"\n    }\n  ],\n  \"totalPages\": 7353\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "898244f5-7a60-413d-84b0-0b1eaba67339",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73e8a848-2826-47ac-9a68-696b92daaa6b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cfe1b81c-b61a-4744-91d5-59826c285dba",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customer_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "source[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "expires_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "issued_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4ef58ef2-d1a5-4eee-9335-0a2bdb680275",
+          "name": "Revokes a voucher.",
+          "request": {
+            "name": "Revokes a voucher.",
+            "description": {
+              "content": "Lowers the owning customer's serve allowance by the voucher's remaining grant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vouchers",
+                ":voucherId",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "voucherId",
+                  "description": "(Required) The id of the voucher to revoke."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "2a978e6d-05d8-40af-a1db-8487390203ae",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    ":voucherId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "voucherId",
+                      "description": "(Required) The id of the voucher to revoke."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "2d060696-c707-4cf9-8096-0c5622484b78",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    ":voucherId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "voucherId",
+                      "description": "(Required) The id of the voucher to revoke."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e20fc338-6f2a-4beb-af33-51a2d96e8ed3",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    ":voucherId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "voucherId",
+                      "description": "(Required) The id of the voucher to revoke."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "72dfe4c6-6541-417d-90b7-b40925b4669e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vouchers",
+                    ":voucherId",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "voucherId",
+                      "description": "(Required) The id of the voucher to revoke."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8d30792-2ef5-4353-912f-ef1876541b02",
+          "name": "Sets the spend limit for a customer.",
+          "request": {
+            "name": "Sets the spend limit for a customer.",
+            "description": {},
+            "url": {
+              "path": [
+                "customer",
+                ":customerId",
+                "credit-line"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The id of the customer whose credit line to set."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"creditLine\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cbdc875-efa4-4356-8d41-2ce7c53a1835",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "credit-line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose credit line to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditLine\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5e4b93a0-31a6-431d-a138-ff277a42de39",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "credit-line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose credit line to set."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditLine\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c85e5825-3ab6-48a6-979d-5ef908b338f8",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "credit-line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose credit line to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditLine\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "36813774-71fd-450b-8d5f-8c91398a623a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "credit-line"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose credit line to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"creditLine\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bcf5b82-73f7-4a82-9901-d1a847f7356a",
+          "name": "Sets the minimum spend commitment for a customer.",
+          "request": {
+            "name": "Sets the minimum spend commitment for a customer.",
+            "description": {
+              "content": "At invoice time, if the period's measured spend is below the commitment, a top-up charge for\n the shortfall is added so the usage-side bill reaches the commitment. Setting it to 0\n removes the commitment.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customer",
+                ":customerId",
+                "minimum-spend-commitment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The id of the customer whose minimum spend commitment to set."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"minimumSpendCommitment\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1d9930d1-657c-42e0-b17b-14f1f45840c3",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "minimum-spend-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose minimum spend commitment to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"minimumSpendCommitment\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0114950c-b61b-4bd0-840c-a131f1ed7bcf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "minimum-spend-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose minimum spend commitment to set."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"minimumSpendCommitment\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d53f1232-a3a6-430e-b874-c36daadbd566",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "minimum-spend-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose minimum spend commitment to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"minimumSpendCommitment\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "340d0ea3-3446-43fb-b921-144e487ed907",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "minimum-spend-commitment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose minimum spend commitment to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"minimumSpendCommitment\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "651a54e6-326d-49cb-a0a7-2feb10d4393d",
+          "name": "Sets the platform fee for a customer.",
+          "request": {
+            "name": "Sets the platform fee for a customer.",
+            "description": {
+              "content": "The fee is automatically applied as a charge to the customer's current open billing period\n and to every future period. Setting it to null removes the platform-fee charge from\n the current open period; 0 keeps an explicit $0 charge that is still shown.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "customer",
+                ":customerId",
+                "platform-fee"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "customerId",
+                  "description": "(Required) The id of the customer whose platform fee to set."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"platformFee\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "28d56b08-6c67-4f30-a5e6-e2312a870139",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "platform-fee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose platform fee to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platformFee\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cb6b76ff-5cb4-44c2-b5b8-7cb099dc0e49",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "platform-fee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose platform fee to set."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platformFee\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a316ffdc-f1e7-4be3-9c3d-7f37feea7b33",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "platform-fee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose platform fee to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platformFee\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1f14243-3f51-4710-87ac-dbe8ab7e9ca8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    ":customerId",
+                    "platform-fee"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "customerId",
+                      "description": "(Required) The id of the customer whose platform fee to set."
+                    }
+                  ]
+                },
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"platformFee\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a0c3373-3bd0-4cc2-ad79-090015d7098c",
+          "name": "Unsubscribes the current customer.",
+          "request": {
+            "name": "Unsubscribes the current customer.",
+            "description": {},
+            "url": {
+              "path": [
+                "customer",
+                "unsubscribe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "381aeea4-d880-44f6-ae02-e636a9cc9f9b",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "99fa0566-c35c-41de-8e83-48694d7259f0",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5861,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5f2ccb6e-d9b6-4e03-8e42-ac93c5ef991b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c6bd21ff-1227-4eae-a7fa-41cd363d2499",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "customer",
+                    "unsubscribe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "de351776-b5ad-43a3-b262-2512fc76a5b4",
+    "name": "Rapidata Asset BillingAccount API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

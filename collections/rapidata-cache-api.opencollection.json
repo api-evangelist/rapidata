@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset Cache API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cache",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns the current state of the in-memory campaign cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/cache/campaigns"
+          },
+          "docs": "Returns the current state of the in-memory campaign cache."
+        },
+        {
+          "info": {
+            "name": "Returns the current state of the in-memory default user score cache.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/campaign/cache/user-scores"
+          },
+          "docs": "Returns the current state of the in-memory default user score cache."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

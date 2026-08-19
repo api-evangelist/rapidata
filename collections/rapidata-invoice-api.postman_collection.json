@@ -1,0 +1,2181 @@
+{
+  "item": [
+    {
+      "id": "bc2df218-d30e-4e24-a84a-f24f8da0a942",
+      "name": "Invoice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a718b40-05dd-42ec-b9cf-33d4a7cdc882",
+          "name": "Creates a Stripe draft invoice for a billing period.",
+          "request": {
+            "name": "Creates a Stripe draft invoice for a billing period.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "invoice"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"billingPeriodId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "73afab33-62bf-460d-850e-7f1e50eb5681",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8fe9ba23-a35f-4d6c-94cc-172af66ed1cd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 2630,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_2\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "37953671-3d4e-4850-a52b-7f016239142a",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8c67d62f-f612-4e36-bfc3-7e3b538534cd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "billing",
+                    "invoice"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"billingPeriodId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d65dafd-f763-49e9-9aa6-01d5c487626e",
+          "name": "Finalizes a draft invoice.",
+          "request": {
+            "name": "Finalizes a draft invoice.",
+            "description": {},
+            "url": {
+              "path": [
+                "invoice",
+                ":invoiceId",
+                "finalize"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) The invoice to finalize."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "76e0376a-6077-44e9-a829-8b03df979fe7",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to finalize."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7415a815-49ca-43f1-94a2-29e917cfc01c",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to finalize."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5885,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c43e8da1-07eb-41d8-a64f-f58e18d58381",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to finalize."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "717d139d-a8a0-438d-ae57-06d6afa2af38",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "finalize"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to finalize."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "408336f1-3ed3-4aa1-8fcc-cec4892e1bb9",
+          "name": "Gets an invoice by ID.",
+          "request": {
+            "name": "Gets an invoice by ID.",
+            "description": {},
+            "url": {
+              "path": [
+                "invoice",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) The invoice ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "97a03a05-4897-47a6-8da5-891cfe51ce69",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"billingPeriodId\": \"string\",\n  \"billingPeriodStart\": \"1989-03-21T12:08:41.525Z\",\n  \"billingPeriodEnd\": \"2011-07-08T11:44:34.047Z\",\n  \"status\": \"string\",\n  \"amountDue\": 7950,\n  \"createdAt\": \"1989-09-18T05:11:59.111Z\",\n  \"stripeInvoiceId\": \"string\",\n  \"currency\": \"string\",\n  \"finalizedAt\": \"1962-10-09T09:21:05.684Z\",\n  \"paidAt\": \"2007-01-11T14:22:02.771Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fb608482-599e-4c87-acec-f2f1762a8e07",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5885,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf6af843-4e5e-480f-abac-b704af3b941a",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5b796b67-9ae9-4f35-b150-7d91db810444",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice ID."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "486c6282-8853-445a-bf2a-bec5da07fcac",
+          "name": "Queries invoices with filtering, sorting, and pagination.",
+          "request": {
+            "name": "Queries invoices with filtering, sorting, and pagination.",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[eq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[neq]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[gte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lt]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[lte]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "status[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by status."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "owner_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by owner_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "billing_period_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by billing_period_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "92a1536b-24a4-43e1-aa13-abd0752eef9f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 8935,\n  \"page\": 390,\n  \"pageSize\": 9216,\n  \"items\": [\n    {\n      \"id\": \"string\",\n      \"billingPeriodId\": \"string\",\n      \"billingPeriodStart\": \"2016-05-03T13:40:50.216Z\",\n      \"billingPeriodEnd\": \"1980-04-17T01:19:27.016Z\",\n      \"status\": \"string\",\n      \"amountDue\": 1053,\n      \"ownerId\": \"152223fc-6842-607a-e9b0-04018db79f62\",\n      \"createdAt\": \"1963-05-28T00:13:57.126Z\",\n      \"stripeInvoiceId\": \"string\",\n      \"currency\": \"string\",\n      \"finalizedAt\": \"2024-09-04T06:17:48.353Z\",\n      \"paidAt\": \"2007-09-07T18:02:05.846Z\",\n      \"voidedAt\": \"2025-11-17T15:19:24.019Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"billingPeriodId\": \"string\",\n      \"billingPeriodStart\": \"1953-07-30T04:24:46.198Z\",\n      \"billingPeriodEnd\": \"1980-08-22T14:17:55.176Z\",\n      \"status\": \"string\",\n      \"amountDue\": 2324,\n      \"ownerId\": \"8277d803-01d1-713c-f83b-3a2400c40bd2\",\n      \"createdAt\": \"1989-12-25T23:33:21.603Z\",\n      \"stripeInvoiceId\": \"string\",\n      \"currency\": \"string\",\n      \"finalizedAt\": \"1975-03-17T18:56:42.587Z\",\n      \"paidAt\": \"1959-02-13T12:05:27.285Z\",\n      \"voidedAt\": \"1997-10-21T05:30:26.172Z\"\n    }\n  ],\n  \"totalPages\": 8230\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6055f5dc-cd95-4170-b37a-b44b9a731b99",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5885,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76d5543e-9d33-4693-af27-9ee8fa142b11",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48893f22-6375-45dd-a703-85349e70379c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "owner_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "billing_period_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7bf6eeec-9762-4425-9721-7c63f1705f46",
+          "name": "Voids an invoice.",
+          "request": {
+            "name": "Voids an invoice.",
+            "description": {},
+            "url": {
+              "path": [
+                "invoice",
+                ":invoiceId",
+                "void"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) The invoice to void."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST"
+          },
+          "response": [
+            {
+              "id": "42b6b1c3-4862-49d4-8162-d406174b92e4",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to void."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "52942743-efec-4fc5-b7c5-b626b03e2928",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to void."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 5885,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3d05a5ba-2e35-4429-b76d-98c3351a23fc",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to void."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f71643bf-0061-4153-8499-8b2394aa9819",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoice",
+                    ":invoiceId",
+                    "void"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) The invoice to void."
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "ff1665e3-33d5-4aaa-9de1-b90f124ddb39",
+    "name": "Rapidata Asset Invoice API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

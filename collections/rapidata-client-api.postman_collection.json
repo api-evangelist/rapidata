@@ -1,0 +1,1789 @@
+{
+  "item": [
+    {
+      "id": "504e630e-ad9c-47bb-b2f1-f8b2b0e2722d",
+      "name": "Client",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "64a841f3-9df9-4b80-bc26-227ad0960f3a",
+          "name": "Creates a new client for the current customer.",
+          "request": {
+            "name": "Creates a new client for the current customer.",
+            "description": {},
+            "url": {
+              "path": [
+                "client"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"displayName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5c89c043-6666-45d3-b8f1-9482ba75d590",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientId\": \"string\",\n  \"clientSecret\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "54f95383-a190-4f75-b40c-e27176b16f59",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 3100,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2833aea6-37eb-4861-90bb-8aae656c1953",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ba4b5a15-3a49-4410-a8dc-11cb57fa146a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"displayName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "272bccca-d19c-4a0a-a17a-e624d42074b0",
+          "name": "Deletes a client.",
+          "request": {
+            "name": "Deletes a client.",
+            "description": {},
+            "url": {
+              "path": [
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The id of the client to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "8c77e509-2d14-48ed-bbd8-12e3593219d8",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9c0c16e0-7496-48b5-8049-a28fa85eefab",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6216,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0088ce9b-272b-417b-9cc0-77115c6b6c67",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5a5b4506-143a-4880-9b1a-01fc9e1881f2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ae0879b-8370-428d-a61d-6b6850e6d51f",
+          "name": "Gets the details of a specific client.",
+          "request": {
+            "name": "Gets the details of a specific client.",
+            "description": {},
+            "url": {
+              "path": [
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) The id of the client to retrieve."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "7a51686e-778a-4c0e-8d1a-f57e2cef29ac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"string\",\n  \"client_secret\": \"string\",\n  \"client_id_issued_at\": 8110,\n  \"client_secret_expires_at\": 5034,\n  \"redirect_uris\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"grant_types\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"response_types\": [\n    [\n      \"string\",\n      \"string\"\n    ],\n    [\n      \"string\",\n      \"string\"\n    ]\n  ],\n  \"client_name\": \"string\",\n  \"client_uri\": \"string\",\n  \"logo_uri\": \"string\",\n  \"scope\": \"string\",\n  \"contacts\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tos_uri\": \"string\",\n  \"policy_uri\": \"string\",\n  \"jwks_uri\": \"string\",\n  \"jwks\": {\n    \"keys\": [\n      {\n        \"alg\": \"string\",\n        \"crv\": \"string\",\n        \"d\": \"string\",\n        \"dp\": \"string\",\n        \"dq\": \"string\",\n        \"e\": \"string\",\n        \"k\": \"string\",\n        \"key_ops\": [\n          \"string\",\n          \"string\"\n        ],\n        \"kid\": \"string\",\n        \"kty\": \"string\",\n        \"n\": \"string\",\n        \"oth\": [\n          \"string\",\n          \"string\"\n        ],\n        \"p\": \"string\",\n        \"q\": \"string\",\n        \"qi\": \"string\",\n        \"use\": \"string\",\n        \"x\": \"string\",\n        \"x5c\": [\n          \"string\",\n          \"string\"\n        ],\n        \"x5t\": \"string\",\n        \"x5t#S256\": \"string\",\n        \"x5u\": \"string\",\n        \"y\": \"string\",\n        \"pub\": \"string\",\n        \"priv\": \"string\"\n      },\n      {\n        \"alg\": \"string\",\n        \"crv\": \"string\",\n        \"d\": \"string\",\n        \"dp\": \"string\",\n        \"dq\": \"string\",\n        \"e\": \"string\",\n        \"k\": \"string\",\n        \"key_ops\": [\n          \"string\",\n          \"string\"\n        ],\n        \"kid\": \"string\",\n        \"kty\": \"string\",\n        \"n\": \"string\",\n        \"oth\": [\n          \"string\",\n          \"string\"\n        ],\n        \"p\": \"string\",\n        \"q\": \"string\",\n        \"qi\": \"string\",\n        \"use\": \"string\",\n        \"x\": \"string\",\n        \"x5c\": [\n          \"string\",\n          \"string\"\n        ],\n        \"x5t\": \"string\",\n        \"x5t#S256\": \"string\",\n        \"x5u\": \"string\",\n        \"y\": \"string\",\n        \"pub\": \"string\",\n        \"priv\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11a81b66-633c-426d-9d7b-15da5968cd66",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to retrieve."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6216,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a517054-2723-4253-8bba-3a0a088e406b",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d50ebc2d-f17a-4e22-8a50-d1cebc697783",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) The id of the client to retrieve."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3c5099af-ce2c-42ad-ab28-cc94ab2fa9f9",
+          "name": "Queries clients for the current customer.",
+          "request": {
+            "name": "Queries clients for the current customer.",
+            "description": {
+              "content": "Clients are service credentials that allow automated processes to authenticate against the API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>",
+                  "description": "The 1-based page index."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "<integer>",
+                  "description": "The number of items per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[eq]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[neq]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[gt]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[gte]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[lt]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[lte]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[contains]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by client_id."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[eq]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[neq]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[gt]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[gte]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[lt]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[lte]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[contains]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "display_name[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by display_name."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[eq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[neq]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[gte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lt]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[lte]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[starts_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[ends_with]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][0]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[in][1]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_at[not_contains]",
+                  "value": "<string>",
+                  "description": "Filter by created_at."
+                },
+                {
+                  "disabled": false,
+                  "key": "logic",
+                  "value": "<string>",
+                  "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2ba2fc1f-43eb-4bf6-baf7-b128a4d03059",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"total\": 6965,\n  \"page\": 4449,\n  \"pageSize\": 938,\n  \"items\": [\n    {\n      \"clientId\": \"string\",\n      \"displayName\": \"string\",\n      \"createdAt\": \"1993-04-28T19:43:31.904Z\"\n    },\n    {\n      \"clientId\": \"string\",\n      \"displayName\": \"string\",\n      \"createdAt\": \"2004-01-20T20:25:59.382Z\"\n    }\n  ],\n  \"totalPages\": 4084\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bf0288c-3eb8-41f1-b5c4-bb2901ef5d32",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"status\": 6216,\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"errors\": {\n    \"key_0\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_1\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64ab20a0-895f-4d91-bdc6-cbeb60c21977",
+              "name": "Unauthenticated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "c53d535f-080d-4d1c-ac5d-43a6a7ffc1b7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_id[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "display_name[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[eq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[neq]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[gte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lt]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[lte]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[starts_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[ends_with]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][0]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[in][1]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "created_at[not_contains]",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "logic",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65492cd1-2c59-4ac3-9568-dcaebce2fdea",
+          "name": "Registers a new client using the OpenID Connect Dynamic Client Registration protocol.",
+          "request": {
+            "name": "Registers a new client using the OpenID Connect Dynamic Client Registration protocol.",
+            "description": {
+              "content": "Follows RFC 7591.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "client",
+                "register"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"redirect_uris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<string>\",\n  \"logo_uri\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"contacts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tos_uri\": \"<string>\",\n  \"policy_uri\": \"<string>\",\n  \"jwks_uri\": \"<string>\",\n  \"jwks\": {\n    \"keys\": [\n      {\n        \"alg\": \"<string>\",\n        \"crv\": \"<string>\",\n        \"d\": \"<string>\",\n        \"dp\": \"<string>\",\n        \"dq\": \"<string>\",\n        \"e\": \"<string>\",\n        \"k\": \"<string>\",\n        \"key_ops\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"kid\": \"<string>\",\n        \"kty\": \"<string>\",\n        \"n\": \"<string>\",\n        \"oth\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"p\": \"<string>\",\n        \"q\": \"<string>\",\n        \"qi\": \"<string>\",\n        \"use\": \"<string>\",\n        \"x\": \"<string>\",\n        \"x5c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"x5t\": \"<string>\",\n        \"x5t#S256\": \"<string>\",\n        \"x5u\": \"<string>\",\n        \"y\": \"<string>\",\n        \"pub\": \"<string>\",\n        \"priv\": \"<string>\"\n      },\n      {\n        \"alg\": \"<string>\",\n        \"crv\": \"<string>\",\n        \"d\": \"<string>\",\n        \"dp\": \"<string>\",\n        \"dq\": \"<string>\",\n        \"e\": \"<string>\",\n        \"k\": \"<string>\",\n        \"key_ops\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"kid\": \"<string>\",\n        \"kty\": \"<string>\",\n        \"n\": \"<string>\",\n        \"oth\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"p\": \"<string>\",\n        \"q\": \"<string>\",\n        \"qi\": \"<string>\",\n        \"use\": \"<string>\",\n        \"x\": \"<string>\",\n        \"x5c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"x5t\": \"<string>\",\n        \"x5t#S256\": \"<string>\",\n        \"x5u\": \"<string>\",\n        \"y\": \"<string>\",\n        \"pub\": \"<string>\",\n        \"priv\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "239bfa6b-ac89-4ad6-ae94-b757a42032f2",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "client",
+                    "register"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"redirect_uris\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_uri\": \"<string>\",\n  \"logo_uri\": \"<string>\",\n  \"scope\": \"<string>\",\n  \"contacts\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"tos_uri\": \"<string>\",\n  \"policy_uri\": \"<string>\",\n  \"jwks_uri\": \"<string>\",\n  \"jwks\": {\n    \"keys\": [\n      {\n        \"alg\": \"<string>\",\n        \"crv\": \"<string>\",\n        \"d\": \"<string>\",\n        \"dp\": \"<string>\",\n        \"dq\": \"<string>\",\n        \"e\": \"<string>\",\n        \"k\": \"<string>\",\n        \"key_ops\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"kid\": \"<string>\",\n        \"kty\": \"<string>\",\n        \"n\": \"<string>\",\n        \"oth\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"p\": \"<string>\",\n        \"q\": \"<string>\",\n        \"qi\": \"<string>\",\n        \"use\": \"<string>\",\n        \"x\": \"<string>\",\n        \"x5c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"x5t\": \"<string>\",\n        \"x5t#S256\": \"<string>\",\n        \"x5u\": \"<string>\",\n        \"y\": \"<string>\",\n        \"pub\": \"<string>\",\n        \"priv\": \"<string>\"\n      },\n      {\n        \"alg\": \"<string>\",\n        \"crv\": \"<string>\",\n        \"d\": \"<string>\",\n        \"dp\": \"<string>\",\n        \"dq\": \"<string>\",\n        \"e\": \"<string>\",\n        \"k\": \"<string>\",\n        \"key_ops\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"kid\": \"<string>\",\n        \"kty\": \"<string>\",\n        \"n\": \"<string>\",\n        \"oth\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"p\": \"<string>\",\n        \"q\": \"<string>\",\n        \"qi\": \"<string>\",\n        \"use\": \"<string>\",\n        \"x\": \"<string>\",\n        \"x5c\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"x5t\": \"<string>\",\n        \"x5t#S256\": \"<string>\",\n        \"x5u\": \"<string>\",\n        \"y\": \"<string>\",\n        \"pub\": \"<string>\",\n        \"priv\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.rapidata.ai/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "6e37fd6a-4e41-4d0c-adc0-22082661f342",
+    "name": "Rapidata Asset Client API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API for the Rapidata Asset service",
+      "type": "text/plain"
+    }
+  }
+}

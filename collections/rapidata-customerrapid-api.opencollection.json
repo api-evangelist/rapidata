@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Rapidata Asset CustomerRapid API",
+    "version": "v1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CustomerRapid",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a new demographic rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/demographic",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new demographic rapid."
+        },
+        {
+          "info": {
+            "name": "Deletes a rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.rapidata.ai/rapid/:rapidId",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the rapid to delete."
+              }
+            ]
+          },
+          "docs": "Deletes a rapid."
+        },
+        {
+          "info": {
+            "name": "Gets the most recent public responses across all customers.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/global-responses"
+          },
+          "docs": "Gets the most recent public responses across all customers."
+        },
+        {
+          "info": {
+            "name": "Gets all responses for a given rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/responses",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The rapid to get the responses for."
+              }
+            ]
+          },
+          "docs": "Gets all responses for a given rapid."
+        },
+        {
+          "info": {
+            "name": "Queries all rapids that have been flagged.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapids/flagged",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort fields. Prefix with - for descending order (e.g. -created_at)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by id."
+              },
+              {
+                "name": "correlation_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by correlation_id."
+              },
+              {
+                "name": "owner_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by owner_id."
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Filter by key."
+              },
+              {
+                "name": "completed_at",
+                "value": "",
+                "type": "query",
+                "description": "Filter by completed_at."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries all rapids that have been flagged."
+        },
+        {
+          "info": {
+            "name": "Queries rapids that may be eligible for validation-set creation.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.rapidata.ai/rapid/:correlationId/validation-potential",
+            "params": [
+              {
+                "name": "correlationId",
+                "value": "",
+                "type": "path",
+                "description": "The correlation id whose rapids should be considered."
+              },
+              {
+                "name": "minResponses",
+                "value": "",
+                "type": "query",
+                "description": "The minimum response count for a rapid to qualify."
+              },
+              {
+                "name": "minConfidence",
+                "value": "",
+                "type": "query",
+                "description": "The minimum confidence for a rapid to qualify."
+              },
+              {
+                "name": "targetGroupId",
+                "value": "",
+                "type": "query",
+                "description": "An optional subgroup of rapids to restrict the query to."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "The 1-based page index."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "The number of items per page."
+              },
+              {
+                "name": "rapid_id",
+                "value": "",
+                "type": "query",
+                "description": "Filter by rapid_id."
+              },
+              {
+                "name": "response_count",
+                "value": "",
+                "type": "query",
+                "description": "Filter by response_count."
+              },
+              {
+                "name": "confidence",
+                "value": "",
+                "type": "query",
+                "description": "Filter by confidence."
+              },
+              {
+                "name": "logic",
+                "value": "",
+                "type": "query",
+                "description": "How to combine the field filters: \"and\" (default) requires every filter to match, \"or\" requires any of them to match."
+              }
+            ]
+          },
+          "docs": "Queries rapids that may be eligible for validation-set creation."
+        },
+        {
+          "info": {
+            "name": "Unflags a flagged rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.rapidata.ai/rapid/:rapidId/unflag",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the rapid to unflag."
+              }
+            ]
+          },
+          "docs": "The rapid is returned to the active labeling pool and cannot be flagged again."
+        },
+        {
+          "info": {
+            "name": "Updates the validation information of a rapid.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.rapidata.ai/rapid/validation/:rapidId",
+            "params": [
+              {
+                "name": "rapidId",
+                "value": "",
+                "type": "path",
+                "description": "The id of the rapid to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the validation information of a rapid."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
