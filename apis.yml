@@ -42,6 +42,17 @@ tags:
 - Annotation
 - RLHF
 - Model Evaluation
+- Machine-Learning
+- Artificial Intelligence
+- Crowdsourcing
+- Preference Data
+tags_raw:
+- Company
+- Human Feedback
+- Data Labeling
+- Annotation
+- RLHF
+- Model Evaluation
 - Machine Learning
 - AI
 - Crowdsourcing
@@ -93,6 +104,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Batch Upload
+  tags_raw:
   - BatchUpload
   properties:
   - type: OpenAPI
@@ -113,6 +126,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Benchmarks
+  tags_raw:
   - Benchmark
   properties:
   - type: OpenAPI
@@ -153,6 +168,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Billing Account
+  tags_raw:
   - BillingAccount
   properties:
   - type: OpenAPI
@@ -213,6 +230,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Clients
+  tags_raw:
   - Client
   properties:
   - type: OpenAPI
@@ -253,6 +272,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Customers
+  tags_raw:
   - Customer
   properties:
   - type: OpenAPI
@@ -833,6 +854,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - RAPID
+  tags_raw:
   - Rapid
   properties:
   - type: OpenAPI
@@ -1133,6 +1156,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Workflows
+  tags_raw:
   - Workflow
   properties:
   - type: OpenAPI
