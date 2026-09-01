@@ -116,7 +116,7 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
-  - BatchUpload
+  - Batch Upload
   tags_raw:
   - BatchUpload
   properties:
@@ -138,7 +138,7 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
-  - Benchmark
+  - Benchmarks
   tags_raw:
   - Benchmark
   properties:
@@ -180,7 +180,7 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
-  - BillingAccount
+  - Billing Account
   tags_raw:
   - BillingAccount
   properties:
@@ -866,7 +866,7 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
-  - Rapid
+  - RAPID
   tags_raw:
   - Rapid
   properties:
