@@ -1187,6 +1187,8 @@ apis:
   - type: DataModel
     url: data-model/rapidata-data-model.yml
 common:
+- type: Website
+  url: https://www.rapidata.ai/
 - type: CapabilityMap
   url: capabilities/rapidata-capability-edges.yml
   name: Rapidata Business Capability Map
