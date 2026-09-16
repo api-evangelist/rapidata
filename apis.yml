@@ -1,17 +1,13 @@
 aid: rapidata
 name: Rapidata
-description: >-
-  Rapidata provides human feedback at scale — crowd-sourced labeling, model
-  evaluation, ranking, and preference data (RLHF-style) collected from real
-  people worldwide. Teams use the Rapidata API and Python SDK to run online
-  RLHF, refine model behavior, and evaluate model outputs (image, video, audio,
-  and text) with pairwise A/B comparisons, ranking, and leaderboards, as well as
-  to collect targeted human annotations (classification, locating, bounding,
-  transcription, free text, select-words) by country, language, or demographic,
-  with built-in quality control and confidence-based early stopping. The REST
-  API is OAuth 2.0 / OpenID Connect secured and reaches thousands of
-  high-quality annotations per minute. Rapidata AG is a portfolio company of
-  Canaan Partners.
+description: Rapidata provides human feedback at scale — crowd-sourced labeling, model evaluation, ranking,
+  and preference data (RLHF-style) collected from real people worldwide. Teams use the Rapidata API and
+  Python SDK to run online RLHF, refine model behavior, and evaluate model outputs (image, video, audio,
+  and text) with pairwise A/B comparisons, ranking, and leaderboards, as well as to collect targeted human
+  annotations (classification, locating, bounding, transcription, free text, select-words) by country,
+  language, or demographic, with built-in quality control and confidence-based early stopping. The REST
+  API is OAuth 2.0 / OpenID Connect secured and reaches thousands of high-quality annotations per minute.
+  Rapidata AG is a portfolio company of Canaan Partners.
 url: https://raw.githubusercontent.com/api-evangelist/rapidata/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -48,7 +44,7 @@ accessModel:
 specificationVersion: '0.23'
 image: https://rapidata.ai/media/rapidata.svg
 created: '2026-07-17'
-modified: '2026-07-20'
+modified: '2026-09-16'
 tags:
 - Company
 - Human Feedback
@@ -885,7 +881,7 @@ apis:
   - type: DataModel
     url: data-model/rapidata-data-model.yml
 - aid: rapidata:rapidata-rapidata-identity-api-api
-  name: Rapidata Rapidata.Identity.API API
+  name: Rapidata.Identity.API
   description: The Rapidata.Identity.API API from Rapidata — 1 operation(s) for rapidata.identity.api.
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
@@ -1224,7 +1220,10 @@ common:
   url: well-known/rapidata-well-known.yml
 - type: X-MCPServerCandidate
   url: mcp/rapidata-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/rapidata-llms.txt
 - type: DomainSecurity
