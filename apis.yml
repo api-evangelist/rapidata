@@ -108,28 +108,6 @@ apis:
     url: errors/rapidata-problem-types.yml
   - type: DataModel
     url: data-model/rapidata-data-model.yml
-- aid: rapidata:rapidata-batchupload-api
-  name: Rapidata BatchUpload API
-  description: The BatchUpload API from Rapidata — 4 operation(s) for batchupload.
-  humanURL: https://docs.rapidata.ai/developers/
-  baseURL: https://api.rapidata.ai/
-  tags:
-  - Batch Upload
-  tags_raw:
-  - BatchUpload
-  properties:
-  - type: OpenAPI
-    url: openapi/rapidata-batchupload-api-openapi.yml
-  - type: Authentication
-    url: authentication/rapidata-authentication.yml
-  - type: OAuthScopes
-    url: scopes/rapidata-scopes.yml
-  - type: Conventions
-    url: conventions/rapidata-conventions.yml
-  - type: ErrorCatalog
-    url: errors/rapidata-problem-types.yml
-  - type: DataModel
-    url: data-model/rapidata-data-model.yml
 - aid: rapidata:rapidata-benchmark-api
   name: Rapidata Benchmark API
   description: The Benchmark API from Rapidata — 19 operation(s) for benchmark.
@@ -162,28 +140,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rapidata-billing-api-openapi.yml
-  - type: Authentication
-    url: authentication/rapidata-authentication.yml
-  - type: OAuthScopes
-    url: scopes/rapidata-scopes.yml
-  - type: Conventions
-    url: conventions/rapidata-conventions.yml
-  - type: ErrorCatalog
-    url: errors/rapidata-problem-types.yml
-  - type: DataModel
-    url: data-model/rapidata-data-model.yml
-- aid: rapidata:rapidata-billingaccount-api
-  name: Rapidata BillingAccount API
-  description: The BillingAccount API from Rapidata — 6 operation(s) for billingaccount.
-  humanURL: https://docs.rapidata.ai/developers/
-  baseURL: https://api.rapidata.ai/
-  tags:
-  - Billing Account
-  tags_raw:
-  - BillingAccount
-  properties:
-  - type: OpenAPI
-    url: openapi/rapidata-billingaccount-api-openapi.yml
   - type: Authentication
     url: authentication/rapidata-authentication.yml
   - type: OAuthScopes
@@ -1172,6 +1128,46 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/rapidata-workflow-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-batch-upload-api
+  name: Rapidata Batch Upload API
+  description: The Batch Upload API from Rapidata — 4 operation(s) for batch upload.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Batch Upload
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-batch-upload-api-openapi.yml
+  - type: Authentication
+    url: authentication/rapidata-authentication.yml
+  - type: OAuthScopes
+    url: scopes/rapidata-scopes.yml
+  - type: Conventions
+    url: conventions/rapidata-conventions.yml
+  - type: ErrorCatalog
+    url: errors/rapidata-problem-types.yml
+  - type: DataModel
+    url: data-model/rapidata-data-model.yml
+- aid: rapidata:rapidata-billing-account-api
+  name: Rapidata Billing Account API
+  description: The Billing Account API from Rapidata — 6 operation(s) for billing account.
+  humanURL: https://docs.rapidata.ai/developers/
+  baseURL: https://api.rapidata.ai/
+  tags:
+  - Billing Account
+  properties:
+  - type: OpenAPI
+    url: openapi/rapidata-billing-account-api-openapi.yml
   - type: Authentication
     url: authentication/rapidata-authentication.yml
   - type: OAuthScopes
