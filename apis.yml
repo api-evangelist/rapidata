@@ -94,6 +94,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Audiences
+  tags_raw:
   - Audience
   properties:
   - type: OpenAPI
@@ -300,6 +302,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Datasets
+  tags_raw:
   - Dataset
   properties:
   - type: OpenAPI
@@ -360,6 +364,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Example
+  tags_raw:
   - Examples
   properties:
   - type: OpenAPI
@@ -560,6 +566,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Invoices
+  tags_raw:
   - Invoice
   properties:
   - type: OpenAPI
@@ -600,6 +608,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Leaderboards
+  tags_raw:
   - Leaderboard
   properties:
   - type: OpenAPI
@@ -620,6 +630,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Newsletters
+  tags_raw:
   - Newsletter
   properties:
   - type: OpenAPI
@@ -700,6 +712,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Payments
+  tags_raw:
   - Payment
   properties:
   - type: OpenAPI
@@ -720,6 +734,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Pipelines
+  tags_raw:
   - Pipeline
   properties:
   - type: OpenAPI
@@ -760,6 +776,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Rankings
+  tags_raw:
   - Ranking
   properties:
   - type: OpenAPI
@@ -1002,6 +1020,8 @@ apis:
   humanURL: https://docs.rapidata.ai/developers/
   baseURL: https://api.rapidata.ai/
   tags:
+  - Surveys
+  tags_raw:
   - Survey
   properties:
   - type: OpenAPI
