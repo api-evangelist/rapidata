@@ -1,0 +1,38 @@
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.rapidata.ai/pricing
+sources:
+- https://www.rapidata.ai/pricing
+- https://rapidata.ai/pricing
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T120546
+  grounding: every price_text was found verbatim in the fetched page text
+audience: developer-api
+pricing_basis: per-call
+published: true
+note: Pay-as-you-go human data annotation pricing with free starter tier and negotiated custom tier.
+plan_count: 3
+currency: USD
+plans:
+- name: Starter Credits
+  price_text: Free
+  period: none
+  unit: credits
+  included_quota: 50 credits — up to 25,000 responses to test things out. No credit card required.
+- name: Usage-based
+  price_text: from $4 per 1k responses
+  price: 4
+  currency: USD
+  period: per-use
+  unit: 1k responses
+  included_quota: Ramp up responses as you need them
+- name: Custom
+  price_text: Talk to us
+  period: none
+  included_quota: Large-scale datasets, custom features, and anything else you need.
+rate_limit_statements:
+- 'Priority speed: up to 100,000 responses/hour'
+- Unlimited speed
+- Base speed
