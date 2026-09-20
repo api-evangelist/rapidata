@@ -11,6 +11,11 @@ provenance:
   grounding: every price_text was found verbatim in the fetched page text
 audience: developer-api
 pricing_basis: per-call
+delivery:
+  delivery: managed
+  method: page
+  read: '2026-09-20'
+  managed_tier: Usage-based
 published: true
 note: Pay-as-you-go human data annotation pricing with free starter tier and negotiated custom tier.
 plan_count: 3
