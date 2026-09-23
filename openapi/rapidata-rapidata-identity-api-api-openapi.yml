@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Rapidata.Identity.API API
+  title: Rapidata.Identity.API API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -22,6 +22,10 @@ paths:
         - profile
         - email
         - offline_access
+      summary: Get
+      x-summary-source: derived
+      operationId: getRoot
+      x-operation-id-source: derived
 components:
   securitySchemes:
     OpenIdConnect:

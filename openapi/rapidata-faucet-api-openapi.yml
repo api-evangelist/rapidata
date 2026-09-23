@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Faucet API
+  title: Rapidata Faucet API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,8 +13,12 @@ paths:
     get:
       tags:
       - Faucet
-      summary: Returns a single Replicate model with its input parameter schema.
-      description: "When supportsImageReference is true the model accepts a reference image that the\n platform auto-fills with a prompt's attached media; that input is excluded from the returned\n parameters and must not be configured by the customer."
+      summary: Returns a single Replicate model with its input parameter schema
+      description: 'When supportsImageReference is true the model accepts a reference image that the
+
+        platform auto-fills with a prompt''s attached media; that input is excluded from the returned
+
+        parameters and must not be configured by the customer.'
       parameters:
       - name: modelOwner
         in: path
@@ -51,12 +55,16 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getLeaderboardFaucetReplicateModelsByModelOwnerByModelName
+      x-operation-id-source: derived
   /leaderboard/faucet/replicate/models:
     get:
       tags:
       - Faucet
-      summary: Searches Replicate models by free-text term.
-      description: "Results are cursor-paginated: pass the returned nextCursor back as cursor to\n fetch the next page."
+      summary: Searches Replicate models by free-text term
+      description: 'Results are cursor-paginated: pass the returned nextCursor back as cursor to
+
+        fetch the next page.'
       parameters:
       - name: search
         in: query
@@ -92,11 +100,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getLeaderboardFaucetReplicateModels
+      x-operation-id-source: derived
   /participant/{participantId}/faucet:
     delete:
       tags:
       - Faucet
-      summary: Removes the faucet configuration from a participant.
+      summary: Removes the faucet configuration from a participant
       parameters:
       - name: participantId
         in: path
@@ -123,10 +133,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteParticipantByParticipantIdFaucet
+      x-operation-id-source: derived
     put:
       tags:
       - Faucet
-      summary: Sets the faucet used to auto-generate samples for a participant.
+      summary: Sets the faucet used to auto-generate samples for a participant
       parameters:
       - name: participantId
         in: path
@@ -160,55 +172,10 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: putParticipantByParticipantIdFaucet
+      x-operation-id-source: derived
 components:
   schemas:
-    GetReplicateModelEndpoint_Output:
-      required:
-      - modelOwner
-      - modelName
-      - supportsImageReference
-      - parameters
-      type: object
-      properties:
-        modelOwner:
-          type: string
-          description: The owner of the hosted model.
-        modelName:
-          type: string
-          description: The model name.
-        description:
-          type: string
-          description: A short description of the model.
-          nullable: true
-        coverImageUrl:
-          type: string
-          description: URL of a representative cover image, if available.
-          nullable: true
-        runCount:
-          type: integer
-          description: Total number of times the model has been run on Replicate, if known.
-          format: int64
-          nullable: true
-        latestVersion:
-          type: string
-          description: The model's latest version id, if reported by Replicate.
-          nullable: true
-        supportsImageReference:
-          type: boolean
-          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
-        parameters:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
-          description: The model's configurable input parameters, ordered for rendering.
-    ReplicateModelParameterType:
-      enum:
-      - String
-      - Integer
-      - Number
-      - Boolean
-      - Uri
     SearchReplicateModelsEndpoint_Output:
       required:
       - models
@@ -221,54 +188,10 @@ components:
               $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
           description: The matching models for this page.
         nextCursor:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Cursor to fetch the next page, or null when there are no more results.
-          nullable: true
-    SearchReplicateModelsEndpoint_Model:
-      required:
-      - modelOwner
-      - modelName
-      type: object
-      properties:
-        modelOwner:
-          type: string
-        modelName:
-          type: string
-        description:
-          type: string
-          nullable: true
-        coverImageUrl:
-          type: string
-          nullable: true
-        runCount:
-          type: integer
-          format: int64
-          nullable: true
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     IFaucetInputReplicateFaucetInput:
       required:
       - modelOwner
@@ -286,13 +209,118 @@ components:
           type: string
           description: The model name (e.g. "sdxl").
         modelVersion:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional pinned model version hash.
-          nullable: true
         additionalInputs:
           type: object
           description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
       description: Configures a faucet that generates samples via the Replicate API.
+    SearchReplicateModelsEndpoint_Model:
+      required:
+      - modelOwner
+      - modelName
+      type: object
+      properties:
+        modelOwner:
+          type: string
+        modelName:
+          type: string
+        description:
+          type:
+          - string
+          - 'null'
+        coverImageUrl:
+          type:
+          - string
+          - 'null'
+        runCount:
+          type:
+          - integer
+          - 'null'
+          format: int64
+    ReplicateModelParameterType:
+      enum:
+      - String
+      - Integer
+      - Number
+      - Boolean
+      - Uri
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    GetReplicateModelEndpoint_Output:
+      required:
+      - modelOwner
+      - modelName
+      - supportsImageReference
+      - parameters
+      type: object
+      properties:
+        modelOwner:
+          type: string
+          description: The owner of the hosted model.
+        modelName:
+          type: string
+          description: The model name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the model.
+        coverImageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of a representative cover image, if available.
+        runCount:
+          type:
+          - integer
+          - 'null'
+          description: Total number of times the model has been run on Replicate, if known.
+          format: int64
+        latestVersion:
+          type:
+          - string
+          - 'null'
+          description: The model's latest version id, if reported by Replicate.
+        supportsImageReference:
+          type: boolean
+          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
+        parameters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
+          description: The model's configurable input parameters, ordered for rendering.
     IFaucetInput:
       required:
       - _t
@@ -315,11 +343,13 @@ components:
         key:
           type: string
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         description:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         type:
           $ref: '#/components/schemas/ReplicateModelParameterType'
         required:
@@ -330,17 +360,20 @@ components:
           items:
             type: string
         minimum:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         maximum:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         order:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

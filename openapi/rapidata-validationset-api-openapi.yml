@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset ValidationSet API
+  title: Rapidata Validation Set API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - ValidationSet
-      summary: Adds a new validation rapid to a validation set using a JSON body.
+      summary: Adds a new validation rapid to a validation set using a JSON body
       parameters:
       - name: validationSetId
         in: path
@@ -47,11 +47,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postValidationSetByValidationSetIdRapid
+      x-operation-id-source: derived
   /validation-set:
     post:
       tags:
       - ValidationSet
-      summary: Creates a new empty validation set.
+      summary: Creates a new empty validation set
       requestBody:
         description: The body describing the validation set to create.
         content:
@@ -82,11 +84,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postValidationSet
+      x-operation-id-source: derived
   /validation-set/{validationSetId}:
     delete:
       tags:
       - ValidationSet
-      summary: Deletes a validation set by id.
+      summary: Deletes a validation set by id
       parameters:
       - name: validationSetId
         in: path
@@ -113,10 +117,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteValidationSetByValidationSetId
+      x-operation-id-source: derived
     get:
       tags:
       - ValidationSet
-      summary: Gets a validation set by id.
+      summary: Gets a validation set by id
       parameters:
       - name: validationSetId
         in: path
@@ -147,10 +153,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetByValidationSetId
+      x-operation-id-source: derived
     patch:
       tags:
       - ValidationSet
-      summary: Updates different characteristics of a validation set using patch semantics.
+      summary: Updates different characteristics of a validation set using patch semantics
       parameters:
       - name: validationSetId
         in: path
@@ -184,11 +192,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchValidationSetByValidationSetId
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/export:
     get:
       tags:
       - ValidationSet
-      summary: Exports all rapids of a validation set to a file.
+      summary: Exports all rapids of a validation set to a file
       parameters:
       - name: validationSetId
         in: path
@@ -205,11 +215,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetByValidationSetIdExport
+      x-operation-id-source: derived
   /validation-sets/available:
     get:
       tags:
       - ValidationSet
-      summary: Gets the available validation sets for the current user.
+      summary: Gets the available validation sets for the current user
       responses:
         '200':
           description: OK
@@ -233,12 +245,20 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetsAvailable
+      x-operation-id-source: derived
   /validation-sets/compatible:
     get:
       tags:
       - ValidationSet
-      summary: Gets all validation sets available to the user that a rapid with the provided parameters can be added to.
-      description: "Matching is strict: a validation set is only returned when its asset type, modality, and prompt type\n equal the provided parameters exactly — the same constraint enforced when actually adding a rapid.\n This differs from /validation-set/recommended, which uses loose overlap matching and may return\n sets that then reject the rapid. Returns an empty array when no compatible set exists."
+      summary: Gets all validation sets available to the user that a rapid with the provided…
+      description: 'Matching is strict: a validation set is only returned when its asset type, modality, and prompt type
+
+        equal the provided parameters exactly — the same constraint enforced when actually adding a rapid.
+
+        This differs from /validation-set/recommended, which uses loose overlap matching and may return
+
+        sets that then reject the rapid. Returns an empty array when no compatible set exists.'
       parameters:
       - name: assetType
         in: query
@@ -283,11 +303,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetsCompatible
+      x-operation-id-source: derived
   /validation-set/recommended:
     get:
       tags:
       - ValidationSet
-      summary: Gets a validation set that is available to the user and best matches the provided parameters.
+      summary: Gets a validation set that is available to the user and best matches the…
       parameters:
       - name: assetType
         in: query
@@ -332,11 +354,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetRecommended
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/rapids:
     get:
       tags:
       - ValidationSet
-      summary: Queries the validation rapids for a specific validation set.
+      summary: Queries the validation rapids for a specific validation set
       parameters:
       - name: validationSetId
         in: path
@@ -501,11 +525,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSetByValidationSetIdRapids
+      x-operation-id-source: derived
   /validation-sets:
     get:
       tags:
       - ValidationSet
-      summary: Queries available validation sets based on the provided filter, paging and sorting criteria.
+      summary: Queries available validation sets based on the provided filter, paging and…
       parameters:
       - name: page
         in: query
@@ -860,11 +886,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getValidationSets
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/update-labeling-hints:
     post:
       tags:
       - ValidationSet
-      summary: Refreshes the labeling hints for a validation set.
+      summary: Refreshes the labeling hints for a validation set
       description: This endpoint is a no-op. Labeling hints are now managed automatically.
       parameters:
       - name: validationSetId
@@ -882,11 +910,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postValidationSetByValidationSetIdUpdateLabelingHints
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/dimensions:
     patch:
       tags:
       - ValidationSet
-      summary: Updates the dimensions of all rapids within a validation set.
+      summary: Updates the dimensions of all rapids within a validation set
       parameters:
       - name: validationSetId
         in: path
@@ -920,11 +950,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchValidationSetByValidationSetIdDimensions
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/shouldAlert:
     patch:
       tags:
       - ValidationSet
-      summary: Updates the shouldAlert field on all rapids within a validation set.
+      summary: Updates the shouldAlert field on all rapids within a validation set
       parameters:
       - name: validationSetId
         in: path
@@ -958,11 +990,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchValidationSetByValidationSetIdShouldAlert
+      x-operation-id-source: derived
   /validation-set/{validationSetId}/visibility:
     patch:
       tags:
       - ValidationSet
-      summary: Updates the visibility of a validation set.
+      summary: Updates the visibility of a validation set
       description: Public validation sets are used to automatically add a validation set to an order if no validation set is specified.
       parameters:
       - name: validationSetId
@@ -996,80 +1030,54 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchValidationSetByValidationSetIdVisibility
+      x-operation-id-source: derived
 components:
   schemas:
-    IMetadataModelFileTypeMetadataModel:
+    IRapidPayloadModelNamedEntityPayloadModel:
       required:
-      - fileType
+      - target
+      - classes
       - _t
       properties:
         _t:
           enum:
-          - FileTypeMetadata
+          - NamedEntityPayload
           type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    IMetadataModel:
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+    IRapidPayloadModel:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
       discriminator:
         propertyName: _t
         mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel:
-      required:
-      - id
-      - name
-      - ownerId
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        ownerId:
-          type: string
-          format: uuid
-    LocateBoxTruthModel_Box:
-      type: object
-      properties:
-        xMin:
-          type: number
-          format: double
-          nullable: true
-        yMin:
-          type: number
-          format: double
-          nullable: true
-        xMax:
-          type: number
-          format: double
-          nullable: true
-        yMax:
-          type: number
-          format: double
-          nullable: true
+          BoundingBoxPayload: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+          ClassifyPayload: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+          ComparePayload: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+          FreeTextPayload: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+          LinePayload: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+          LocatePayload: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+          NamedEntityPayload: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+          PolygonPayload: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+          ScrubPayload: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+          TranscriptionPayload: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
     TranscriptionPayloadModel_TranscriptionWord:
       required:
       - word
@@ -1081,80 +1089,6 @@ components:
         wordIndex:
           type: integer
           format: int32
-    IValidationTruthModelEmptyValidationTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - EmptyValidationTruth
-          type: string
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type: string
-          nullable: true
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    ClassifyPayloadModel_Category:
-      required:
-      - label
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-          nullable: true
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IValidationTruthModelLocateBoxTruthModel:
-      required:
-      - boundingBoxes
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBoxTruth
-          type: string
-        boundingBoxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocateBoxTruthModel_Box'
-        requiredPrecision:
-          type: number
-          format: double
-        requiredCompleteness:
-          type: number
-          format: double
     GetValidationRapidsEndpoint_Output:
       required:
       - id
@@ -1185,9 +1119,10 @@ components:
           - $ref: '#/components/schemas/IRapidPayloadModel'
           description: The payload of the rapid.
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The optional textual context of the rapid.
-          nullable: true
         contextAsset:
           allOf:
           - $ref: '#/components/schemas/IAssetModel'
@@ -1201,41 +1136,104 @@ components:
           description: The number of invalid validations received.
           format: int32
         explanation:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The explanation shown when users answer incorrectly.
-          nullable: true
         randomCorrectProbability:
-          type: number
+          type:
+          - number
+          - 'null'
           description: The probability of a random correct answer.
           format: double
-          nullable: true
         state:
           allOf:
           - $ref: '#/components/schemas/RapidStateModel'
           description: The state of the rapid.
-    IRapidPayloadModelBoundingBoxPayloadModel:
+    ClassifyPayloadModel_Category:
+      required:
+      - label
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type:
+          - string
+          - 'null'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IValidationTruthModelCompareTruthModel:
+      required:
+      - winnerId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareTruth
+          type: string
+        winnerId:
+          type: string
+    IValidationTruthModelMultiCompareTruthModel:
+      required:
+      - correctCombinations
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiCompareTruth
+          type: string
+        correctCombinations:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    IRapidPayloadModelLinePayloadModel:
       required:
       - target
       - _t
       properties:
         _t:
           enum:
-          - BoundingBoxPayload
+          - LinePayload
           type: string
         target:
           type: string
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    PromptType:
-      type: array
-      items:
-        enum:
-        - None
-        - Text
-        - Asset
-        type: string
+    IValidationTruthModelAttachCategoryTruthModel:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - AttachCategoryTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
     IValidationTruthModelBoundingBoxTruthModel:
       required:
       - xMin
@@ -1260,53 +1258,6 @@ components:
         yMax:
           type: number
           format: double
-    GetCompatibleValidationSetsEndpoint_Output:
-      required:
-      - validationSets
-      type: object
-      properties:
-        validationSets:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel'
-          description: The validation sets that the rapid can be added to.
-    MetadataModelCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    IRapidPayloadModelLocatePayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocatePayload
-          type: string
-        target:
-          type: string
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
     IAssetModelNullAssetModel:
       required:
       - metadata
@@ -1321,7 +1272,36 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-    GetRecommendedValidationSetEndpoint_ValidationSetOutputModel:
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    AssetType:
+      type: array
+      items:
+        enum:
+        - None
+        - Image
+        - Video
+        - Audio
+        - Text
+        type: string
+    GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel:
       required:
       - id
       - name
@@ -1346,10 +1326,11 @@ components:
         promptType:
           $ref: '#/components/schemas/PromptType'
         dimensions:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             type: string
-          nullable: true
         isPublic:
           type: boolean
         ownerId:
@@ -1360,85 +1341,41 @@ components:
         createdAt:
           type: string
           format: date-time
-    RapidStateModel:
-      enum:
-      - Labeling
-      - Paused
-      - Incomplete
-      - Flagged
-      - Done
-      - None
-      - Rejected
-    IRapidPayloadModel:
+    IMetadataModelSourceUrlMetadataModel:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BoundingBoxPayload: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
-          ClassifyPayload: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
-          ComparePayload: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
-          FreeTextPayload: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
-          LinePayload: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
-          LocatePayload: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
-          NamedEntityPayload: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
-          PolygonPayload: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
-          ScrubPayload: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
-          TranscriptionPayload: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
+      - url
       - _t
       properties:
         _t:
           enum:
-          - VideoDurationMetadata
+          - SourceUrlMetadataModel
           type: string
-        duration:
+        url:
           type: string
-          format: date-time
-    IAssetInputTextAssetInput:
+    IValidationTruthModelClassifyTruthModel:
       required:
-      - text
+      - correctCategories
       - _t
       properties:
         _t:
           enum:
-          - TextAssetInput
+          - ClassifyTruth
           type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    GetAvailableValidationSetsEndpoint_Output:
+        correctCategories:
+          type: array
+          items:
+            type: string
+    UpdateValidationSetDimensionsEndpoint_Input:
       required:
-      - validationSets
+      - dimensions
       type: object
       properties:
-        validationSets:
+        dimensions:
           allOf:
           - type: array
             items:
-              $ref: '#/components/schemas/GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel'
-          description: The validation sets available to the current user.
+              type: string
+          description: The dimensions to set on all rapids within the validation set.
     ScrubTruthModel_ScrubRange:
       required:
       - start
@@ -1451,129 +1388,151 @@ components:
         end:
           type: integer
           format: int32
-    UpdateValidationSetEndpoint_Input:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The new name of the validation set.
-        dimensions:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The new dimensions of the validation set.
-        shouldAlert:
-          type: boolean
-          description: Whether users should be alerted if they answer incorrectly.
-        isPublic:
-          type: boolean
-          description: Whether the validation set should be public.
-        isFlagOverruled:
-          type: boolean
-          description: Whether flags on validation rapids should be overruled.
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    IRapidPayloadModelPolygonPayloadModel:
+    IRapidPayloadModelLocatePayloadModel:
       required:
       - target
       - _t
       properties:
         _t:
           enum:
-          - PolygonPayload
+          - LocatePayload
           type: string
         target:
           type: string
-    CreateValidationSetEndpoint_Input:
-      required:
-      - name
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    ValidationProblemDetails:
       type: object
       properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IValidationTruthModelLineTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineTruth
+          type: string
+    IRapidPayloadModelScrubPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubPayload
+          type: string
+        target:
+          type: string
+    TranscriptionTruthModel_TranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IRapidPayloadModelTranscriptionPayloadModel:
+      required:
+      - title
+      - transcription
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionPayload
+          type: string
+        title:
+          type: string
+        transcription:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionPayloadModel_TranscriptionWord'
+    QueryValidationSetsEndpoint_Output:
+      required:
+      - id
+      - name
+      - assetType
+      - modality
+      - promptType
+      - dimensions
+      - isPublic
+      - ownerId
+      - ownerMail
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the validation set.
         name:
           type: string
           description: The name of the validation set.
-    IRapidPayloadModelClassifyPayloadModel:
-      required:
-      - categories
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyPayload
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
-        title:
-          type: string
-    IValidationTruthModelTranscriptionTruthModel:
-      required:
-      - correctWords
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionTruth
-          type: string
-        correctWords:
-          type: array
-          items:
-            $ref: '#/components/schemas/TranscriptionTruthModel_TranscriptionWord'
-        strictGrading:
+        assetType:
+          allOf:
+          - $ref: '#/components/schemas/AssetType'
+          description: The asset types contained in the validation set.
+        modality:
+          allOf:
+          - $ref: '#/components/schemas/RapidModality'
+          description: The rapid modalities contained in the validation set.
+        promptType:
+          allOf:
+          - $ref: '#/components/schemas/PromptType'
+          description: The prompt types contained in the validation set.
+        dimensions:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              type: string
+          description: The dimensions shared across all rapids in the validation set.
+        isPublic:
           type: boolean
-          nullable: true
-        requiredPrecision:
-          type: number
-          format: double
-          nullable: true
-        requiredCompleteness:
-          type: number
-          format: double
-          nullable: true
-    IRapidPayloadModelFreeTextPayloadModel:
-      required:
-      - question
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextPayload
+          description: Whether the validation set is public.
+        ownerId:
           type: string
-        question:
+          description: The id of the owning customer.
+          format: uuid
+        ownerMail:
           type: string
-        shouldValidateResponse:
-          type: boolean
-        validationSystemPrompt:
+          description: The mail of the owning customer.
+        createdAt:
           type: string
-          nullable: true
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
+          description: The time at which the validation set was created.
+          format: date-time
     IMetadataInput:
       required:
       - _t
@@ -1584,54 +1543,30 @@ components:
         propertyName: _t
         mapping:
           TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IValidationTruthModelNamedEntityTruthModel:
-      required:
-      - classifications
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityTruth
-          type: string
-        classifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/NamedEntityTruthModel_NamedClassification'
-    IValidationTruthModelLineTruthModel:
+    IValidationTruthModelEmptyValidationTruthModel:
       required:
       - _t
       properties:
         _t:
           enum:
-          - LineTruth
+          - EmptyValidationTruth
           type: string
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    IRapidPayloadModelNamedEntityPayloadModel:
-      required:
-      - target
-      - classes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityPayload
-          type: string
-        target:
-          type: string
-        classes:
-          type: array
-          items:
-            type: string
+    RapidModality:
+      type: array
+      items:
+        enum:
+        - None
+        - BoundingBox
+        - Classify
+        - Compare
+        - FreeText
+        - Line
+        - Locate
+        - NamedEntity
+        - Polygon
+        - Scrub
+        - Transcription
+        type: string
     IMetadataModelTextMetadataModel:
       required:
       - text
@@ -1642,8 +1577,20 @@ components:
           - TextMetadata
           type: string
         text:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
     IValidationTruthModel:
       required:
       - _t
@@ -1678,125 +1625,519 @@ components:
           ScrubTruth: '#/components/schemas/IValidationTruthModelScrubTruthModel'
           SkipTruth: '#/components/schemas/IValidationTruthModelSkipTruthModel'
           TranscriptionTruth: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
-    IValidationTruthModelClassifyTruthModel:
+    IMetadataModelClassificationMetadataModel:
       required:
-      - correctCategories
+      - classification
       - _t
       properties:
         _t:
           enum:
-          - ClassifyTruth
+          - ClassificationMetadata
           type: string
-        correctCategories:
-          type: array
-          items:
-            type: string
-    CreateValidationSetEndpoint_Output:
-      required:
-      - validationSetId
-      type: object
-      properties:
-        validationSetId:
+        classification:
           type: string
-          description: The id of the created validation set.
-    IValidationTruthModelCompareTruthModel:
-      required:
-      - winnerId
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareTruth
-          type: string
-        winnerId:
-          type: string
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    AssetType:
+    PromptType:
       type: array
       items:
         enum:
         - None
-        - Image
-        - Video
-        - Audio
         - Text
+        - Asset
         type: string
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    TranscriptionTruthModel_TranscriptionWord:
+    IValidationTruthModelSkipTruthModel:
       required:
-      - word
-      - wordIndex
-      type: object
+      - _t
       properties:
-        word:
+        _t:
+          enum:
+          - SkipTruth
           type: string
-        wordIndex:
-          type: integer
-          format: int32
-    GetValidationRapidsEndpoint_PagedResultOfOutput:
+    GetRecommendedValidationSetEndpoint_ValidationSetOutputModel:
       required:
-      - total
-      - page
-      - pageSize
-      - items
+      - id
+      - name
+      - assetType
+      - modality
+      - promptType
+      - dimensions
+      - isPublic
+      - ownerId
+      - ownerMail
+      - createdAt
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
+        id:
+          type: string
+        name:
+          type: string
+        assetType:
+          $ref: '#/components/schemas/AssetType'
+        modality:
+          $ref: '#/components/schemas/RapidModality'
+        promptType:
+          $ref: '#/components/schemas/PromptType'
+        dimensions:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        isPublic:
+          type: boolean
+        ownerId:
+          type: string
+          format: uuid
+        ownerMail:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    UpdateValidationSetShouldAlertEndpoint_Input:
+      required:
+      - shouldAlert
+      type: object
+      properties:
+        shouldAlert:
+          type: boolean
+          description: A flag indicating whether users should be alerted if they answer incorrectly.
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IValidationTruthModelScrubTruthModel:
+      required:
+      - validRanges
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubTruth
+          type: string
+        validRanges:
           type: array
           items:
-            $ref: '#/components/schemas/GetValidationRapidsEndpoint_Output'
-        totalPages:
+            $ref: '#/components/schemas/ScrubTruthModel_ScrubRange'
+    GetAvailableValidationSetsEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel'
+          description: The validation sets available to the current user.
+    UpdateValidationSetEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the validation set.
+        dimensions:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The new dimensions of the validation set.
+        shouldAlert:
+          type: boolean
+          description: Whether users should be alerted if they answer incorrectly.
+        isPublic:
+          type: boolean
+          description: Whether the validation set should be public.
+        isFlagOverruled:
+          type: boolean
+          description: Whether flags on validation rapids should be overruled.
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    LocateBoxTruthModel_Box:
+      type: object
+      properties:
+        xMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        xMax:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMax:
+          type:
+          - number
+          - 'null'
+          format: double
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    CreateValidationSetEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the validation set.
+    IValidationTruthModelPolygonTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonTruth
+          type: string
+    IValidationTruthModelLocateBoxTruthModel:
+      required:
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBoxTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocateBoxTruthModel_Box'
+        requiredPrecision:
+          type: number
+          format: double
+        requiredCompleteness:
+          type: number
+          format: double
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
           type: integer
           format: int32
+    IRapidPayloadModelClassifyPayloadModel:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyPayload
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
+        title:
+          type: string
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    IRapidPayloadModelComparePayloadModel:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - ComparePayload
+          type: string
+        criteria:
+          type: string
+    IRapidPayloadModelFreeTextPayloadModel:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextPayload
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type: boolean
+        validationSystemPrompt:
+          type:
+          - string
+          - 'null'
+    GetCompatibleValidationSetsEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel'
+          description: The validation sets that the rapid can be added to.
+    GetRecommendedValidationSetEndpoint_Output:
+      required:
+      - validationSets
+      type: object
+      properties:
+        validationSets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetRecommendedValidationSetEndpoint_ValidationSetOutputModel'
+          description: The validation sets that best match the provided parameters.
+    AddValidationRapidEndpoint_Input:
+      required:
+      - asset
+      - payload
+      type: object
+      properties:
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset to use for the rapid.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IRapidPayloadModel'
+          description: The payload to use for the rapid.
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IValidationTruthModel'
+          description: The ground truth for the rapid.
+        randomCorrectProbability:
+          type:
+          - number
+          - 'null'
+          description: The probability for an answer to be correct when randomly guessing.
+          format: double
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: An explanation shown to the users if they answer the rapid incorrectly.
+        context:
+          type:
+          - string
+          - 'null'
+          description: An optional textual context that provides additional information to the user about the rapid.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that provides additional context to the user about the rapid.
+        featureFlags:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags to enable for the rapid.
+    RapidStateModel:
+      enum:
+      - Labeling
+      - Paused
+      - Incomplete
+      - Flagged
+      - Done
+      - None
+      - Rejected
+    IValidationTruthModelTranscriptionTruthModel:
+      required:
+      - correctWords
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionTruth
+          type: string
+        correctWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionTruthModel_TranscriptionWord'
+        strictGrading:
+          type:
+          - boolean
+          - 'null'
+        requiredPrecision:
+          type:
+          - number
+          - 'null'
+          format: double
+        requiredCompleteness:
+          type:
+          - number
+          - 'null'
+          format: double
     IMetadataModelImageDimensionMetadataModel:
       required:
       - _t
@@ -1811,61 +2152,6 @@ components:
         width:
           type: integer
           format: int32
-    IValidationTruthModelAttachCategoryTruthModel:
-      required:
-      - correctCategories
-      - _t
-      properties:
-        _t:
-          enum:
-          - AttachCategoryTruth
-          type: string
-        correctCategories:
-          type: array
-          items:
-            type: string
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-    IRapidPayloadModelLinePayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LinePayload
-          type: string
-        target:
-          type: string
-    UpdateValidationSetShouldAlertEndpoint_Input:
-      required:
-      - shouldAlert
-      type: object
-      properties:
-        shouldAlert:
-          type: boolean
-          description: A flag indicating whether users should be alerted if they answer incorrectly.
-    IRapidPayloadModelComparePayloadModel:
-      required:
-      - criteria
-      - _t
-      properties:
-        _t:
-          enum:
-          - ComparePayload
-          type: string
-        criteria:
-          type: string
     NamedEntityTruthModel_NamedClassification:
       required:
       - start
@@ -1881,91 +2167,16 @@ components:
           format: int32
         classification:
           type: string
-    IAssetInputMultiAssetInput:
+    IRapidPayloadModelPolygonPayloadModel:
       required:
-      - assets
+      - target
       - _t
       properties:
         _t:
           enum:
-          - MultiAssetInput
+          - PolygonPayload
           type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IAssetModelMultiAssetModel:
-      required:
-      - assets
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    RapidModality:
-      type: array
-      items:
-        enum:
-        - None
-        - BoundingBox
-        - Classify
-        - Compare
-        - FreeText
-        - Line
-        - Locate
-        - NamedEntity
-        - Polygon
-        - Scrub
-        - Transcription
-        type: string
-    GetRecommendedValidationSetEndpoint_Output:
-      required:
-      - validationSets
-      type: object
-      properties:
-        validationSets:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetRecommendedValidationSetEndpoint_ValidationSetOutputModel'
-          description: The validation sets that best match the provided parameters.
-    IValidationTruthModelSkipTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - SkipTruth
+        target:
           type: string
     GetValidationSetByIdEndpoint_Output:
       required:
@@ -2004,157 +2215,34 @@ components:
           type: string
           description: The time at which the validation set was created.
           format: date-time
-    QueryValidationSetsEndpoint_Output:
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    GetValidationRapidsEndpoint_PagedResultOfOutput:
       required:
-      - id
-      - name
-      - assetType
-      - modality
-      - promptType
-      - dimensions
-      - isPublic
-      - ownerId
-      - ownerMail
-      - createdAt
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the validation set.
-        name:
-          type: string
-          description: The name of the validation set.
-        assetType:
-          allOf:
-          - $ref: '#/components/schemas/AssetType'
-          description: The asset types contained in the validation set.
-        modality:
-          allOf:
-          - $ref: '#/components/schemas/RapidModality'
-          description: The rapid modalities contained in the validation set.
-        promptType:
-          allOf:
-          - $ref: '#/components/schemas/PromptType'
-          description: The prompt types contained in the validation set.
-        dimensions:
-          allOf:
-          - type: array
-            items:
-              type: string
-            nullable: true
-          description: The dimensions shared across all rapids in the validation set.
-        isPublic:
-          type: boolean
-          description: Whether the validation set is public.
-        ownerId:
-          type: string
-          description: The id of the owning customer.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The mail of the owning customer.
-        createdAt:
-          type: string
-          description: The time at which the validation set was created.
-          format: date-time
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IRapidPayloadModelScrubPayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubPayload
-          type: string
-        target:
-          type: string
-    IValidationTruthModelMultiCompareTruthModel:
-      required:
-      - correctCombinations
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiCompareTruth
-          type: string
-        correctCombinations:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
           type: array
           items:
-            type: array
-            items:
-              type: string
-    AddValidationRapidEndpoint_Input:
-      required:
-      - asset
-      - payload
-      type: object
-      properties:
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset to use for the rapid.
-        payload:
-          allOf:
-          - $ref: '#/components/schemas/IRapidPayloadModel'
-          description: The payload to use for the rapid.
-        truth:
-          allOf:
-          - $ref: '#/components/schemas/IValidationTruthModel'
-          description: The ground truth for the rapid.
-        randomCorrectProbability:
-          type: number
-          description: The probability for an answer to be correct when randomly guessing.
-          format: double
-          nullable: true
-        explanation:
-          type: string
-          description: An explanation shown to the users if they answer the rapid incorrectly.
-          nullable: true
-        context:
-          type: string
-          description: An optional textual context that provides additional information to the user about the rapid.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset that provides additional context to the user about the rapid.
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-            nullable: true
-          description: The feature flags to enable for the rapid.
-    IValidationTruthModelScrubTruthModel:
-      required:
-      - validRanges
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubTruth
-          type: string
-        validRanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScrubTruthModel_ScrubRange'
+            $ref: '#/components/schemas/GetValidationRapidsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
     IAssetInput:
       required:
       - _t
@@ -2169,116 +2257,35 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IRapidPayloadModelTranscriptionPayloadModel:
+    IValidationTruthModelNamedEntityTruthModel:
       required:
-      - title
-      - transcription
+      - classifications
       - _t
       properties:
         _t:
           enum:
-          - TranscriptionPayload
+          - NamedEntityTruth
           type: string
-        title:
-          type: string
-        transcription:
+        classifications:
           type: array
           items:
-            $ref: '#/components/schemas/TranscriptionPayloadModel_TranscriptionWord'
-    GetCompatibleValidationSetsEndpoint_ValidationSetOutputModel:
+            $ref: '#/components/schemas/NamedEntityTruthModel_NamedClassification'
+    IMetadataInputTextMetadataInput:
       required:
-      - id
-      - name
-      - assetType
-      - modality
-      - promptType
-      - dimensions
-      - isPublic
-      - ownerId
-      - ownerMail
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        assetType:
-          $ref: '#/components/schemas/AssetType'
-        modality:
-          $ref: '#/components/schemas/RapidModality'
-        promptType:
-          $ref: '#/components/schemas/PromptType'
-        dimensions:
-          type: array
-          items:
-            type: string
-          nullable: true
-        isPublic:
-          type: boolean
-        ownerId:
-          type: string
-          format: uuid
-        ownerMail:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-    IAssetInputExistingAssetInput:
-      required:
-      - name
+      - text
+      - visibilities
       - _t
       properties:
         _t:
           enum:
-          - ExistingAssetInput
+          - TextMetadataInput
           type: string
-        name:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IValidationTruthModelPolygonTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - PolygonTruth
-          type: string
-    UpdateValidationSetDimensionsEndpoint_Input:
-      required:
-      - dimensions
-      type: object
-      properties:
-        dimensions:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The dimensions to set on all rapids within the validation set.
-    IAssetModelFileAssetModel:
-      required:
-      - fileName
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
     QueryValidationSetsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -2303,6 +2310,67 @@ components:
         totalPages:
           type: integer
           format: int32
+    CreateValidationSetEndpoint_Output:
+      required:
+      - validationSetId
+      type: object
+      properties:
+        validationSetId:
+          type: string
+          description: The id of the created validation set.
+    GetAvailableValidationSetsEndpoint_ValidationSetOverviewOutputModel:
+      required:
+      - id
+      - name
+      - ownerId
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ownerId:
+          type: string
+          format: uuid
+    IRapidPayloadModelBoundingBoxPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxPayload
+          type: string
+        target:
+          type: string
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

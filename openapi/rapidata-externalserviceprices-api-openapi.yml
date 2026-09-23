@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset ExternalServicePrices API
+  title: Rapidata External Service Prices API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - ExternalServicePrices
-      summary: Creates a rate-card price for an external service.
+      summary: Creates a rate-card price for an external service
       requestBody:
         description: The external-service price data.
         content:
@@ -40,12 +40,40 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postBillingExternalServicePrices
+      x-operation-id-source: derived
 components:
   schemas:
-    ExternalServiceKind:
-      enum:
-      - ContextShortening
-      - ImageGeneration
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateExternalServicePriceEndpoint_Input:
       required:
       - serviceKind
@@ -61,55 +89,38 @@ components:
           type: string
           description: Hierarchical variant key (e.g. reve, replicate/flux-1.1-pro).
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Null for the global default; set to scope the price to one customer.
           format: uuid
-          nullable: true
         unitPrice:
           type: number
           description: Price per unit (per image / per shortening).
           format: double
         priority:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Priority; defaults to the configured global/customer default if unset.
           format: int32
-          nullable: true
         validFrom:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The start of the validity window.
           format: date-time
-          nullable: true
         validTo:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The end of the validity window.
           format: date-time
-          nullable: true
       description: The external-service price input data.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+    ExternalServiceKind:
+      enum:
+      - ContextShortening
+      - ImageGeneration
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

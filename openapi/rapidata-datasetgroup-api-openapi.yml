@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset DatasetGroup API
+  title: Rapidata Dataset Group API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - DatasetGroup
-      summary: Creates a new dataset group.
+      summary: Creates a new dataset group
       parameters:
       - name: datasetId
         in: path
@@ -47,8 +47,73 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postDatasetByDatasetIdGroup
+      x-operation-id-source: derived
 components:
   schemas:
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    CreateDatasetGroupEndpoint_Input:
+      required:
+      - group
+      type: object
+      properties:
+        group:
+          type: string
+          description: The name of the group.
+        context:
+          type:
+          - string
+          - 'null'
+          description: The optional text context for the group.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The optional asset context for the group.
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
     IMetadataInputTextMetadataInput:
       required:
       - text
@@ -60,10 +125,41 @@ components:
           - TextMetadataInput
           type: string
         text:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     IAssetInput:
       required:
       - _t
@@ -78,95 +174,6 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    CreateDatasetGroupEndpoint_Input:
-      required:
-      - group
-      type: object
-      properties:
-        group:
-          type: string
-          description: The name of the group.
-        context:
-          type: string
-          description: The optional text context for the group.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The optional asset context for the group.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
     MetadataVisibilities:
       type: array
       items:
@@ -178,6 +185,16 @@ components:
         - Dashboard
         - All
         type: string
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     IAssetInputMultiAssetInput:
       required:
       - assets
@@ -192,17 +209,15 @@ components:
           items:
             $ref: '#/components/schemas/IAssetInput'
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
         identifier:
-          type: string
-          nullable: true
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
+          type:
+          - string
+          - 'null'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

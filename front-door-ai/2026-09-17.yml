@@ -1,0 +1,32 @@
+# Front Door AI Index — rapidata — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: rapidata
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.rapidata.ai
+  final_host: www.rapidata.ai
+  ownership: own
+  owner: rapidata
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 7
+  host_score: 7
+  density: 7.35
+  words: 953
+  tiers:
+    agentic: 2
+    core: 3
+    model: 2
+  ambiguous: 5
+  top_terms:
+    intelligence: 3
+    automation: 2
+    prompts: 2
+    ChatGPT: 1
+    Claude: 1
+    gen ai: 1
+    large language model: 1
+    machine learning: 1

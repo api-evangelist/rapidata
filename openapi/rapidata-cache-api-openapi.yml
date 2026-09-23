@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Cache API
+  title: Rapidata Cache API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - Cache
-      summary: Returns the current state of the in-memory campaign cache.
+      summary: Returns the current state of the in-memory campaign cache
       responses:
         '200':
           description: OK
@@ -37,11 +37,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getCampaignCacheCampaigns
+      x-operation-id-source: derived
   /campaign/cache/user-scores:
     get:
       tags:
       - Cache
-      summary: Returns the current state of the in-memory default user score cache.
+      summary: Returns the current state of the in-memory default user score cache
       responses:
         '200':
           description: OK
@@ -65,8 +67,14 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getCampaignCacheUserScores
+      x-operation-id-source: derived
 components:
   schemas:
+    BoostingControlMode:
+      enum:
+      - Manual
+      - Automatic
     GetCampaignCacheEndpoint_Output:
       required:
       - count
@@ -83,61 +91,36 @@ components:
             items:
               $ref: '#/components/schemas/GetCampaignCacheEndpoint_CampaignEntry'
           description: The list of cached campaign summaries.
-    CampaignStatusModel:
-      enum:
-      - Created
-      - Preview
-      - Active
-      - Analysis
-      - Paused
-      - Completed
-      - SpendLimited
-    GetUserScoreCacheEndpoint_Output:
-      required:
-      - count
-      - scores
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The total number of cached user scores.
-          format: int32
-        scores:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: number
-              format: double
-          description: The cached dimension-to-score mappings.
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-    BoostingControlMode:
-      enum:
-      - Manual
-      - Automatic
     GetCampaignCacheEndpoint_CampaignEntry:
       required:
       - id
@@ -181,6 +164,32 @@ components:
           type: boolean
         boostingControlMode:
           $ref: '#/components/schemas/BoostingControlMode'
+    CampaignStatusModel:
+      enum:
+      - Created
+      - Preview
+      - Active
+      - Analysis
+      - Paused
+      - Completed
+      - SpendLimited
+    GetUserScoreCacheEndpoint_Output:
+      required:
+      - count
+      - scores
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The total number of cached user scores.
+          format: int32
+        scores:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: number
+              format: double
+          description: The cached dimension-to-score mappings.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

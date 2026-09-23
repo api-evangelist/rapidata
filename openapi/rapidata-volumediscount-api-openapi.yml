@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset VolumeDiscount API
+  title: Rapidata Volume Discount API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - VolumeDiscount
-      summary: Creates a volume discount bracket for a billing period.
+      summary: Creates a volume discount bracket for a billing period
       parameters:
       - name: billingPeriodId
         in: path
@@ -51,10 +51,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postBillingPeriodByBillingPeriodIdVolumeDiscounts
+      x-operation-id-source: derived
     get:
       tags:
       - VolumeDiscount
-      summary: Gets all volume discount brackets for a billing period.
+      summary: Gets all volume discount brackets for a billing period
       parameters:
       - name: billingPeriodId
         in: path
@@ -85,6 +87,8 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getBillingPeriodByBillingPeriodIdVolumeDiscounts
+      x-operation-id-source: derived
 components:
   schemas:
     GetVolumeDiscountsEndpoint_Output:
@@ -98,31 +102,6 @@ components:
             items:
               $ref: '#/components/schemas/GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem'
           description: The volume discount brackets.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     CreateVolumeDiscountEndpoint_Input:
       required:
       - minResponses
@@ -152,6 +131,36 @@ components:
         discountRatio:
           type: number
           format: double
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateVolumeDiscountEndpoint_Output:
       required:
       - id

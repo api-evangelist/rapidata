@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Flow API
+  title: Rapidata Flow API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     delete:
       tags:
       - Flow
-      summary: Deletes a flow.
+      summary: Deletes a flow
       parameters:
       - name: flowId
         in: path
@@ -40,10 +40,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteFlowByFlowId
+      x-operation-id-source: derived
     get:
       tags:
       - Flow
-      summary: Retrieves a flow by its ID.
+      summary: Retrieves a flow by its ID
       parameters:
       - name: flowId
         in: path
@@ -74,11 +76,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowByFlowId
+      x-operation-id-source: derived
   /flow/ranking/{flowId}/completion-time-histogram:
     get:
       tags:
       - Flow
-      summary: Returns the distribution of completion durations (in seconds) per completed flow item.
+      summary: Returns the distribution of completion durations (in seconds) per completed…
       parameters:
       - name: flowId
         in: path
@@ -127,11 +131,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingByFlowIdCompletionTimeHistogram
+      x-operation-id-source: derived
   /flow/ranking/{flowId}/flow-item-creation-timeseries:
     get:
       tags:
       - Flow
-      summary: Returns flow item creation counts bucketed over time.
+      summary: Returns flow item creation counts bucketed over time
       parameters:
       - name: flowId
         in: path
@@ -180,11 +186,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingByFlowIdFlowItemCreationTimeseries
+      x-operation-id-source: derived
   /flow/ranking/{flowId}/response-count-histogram:
     get:
       tags:
       - Flow
-      summary: Returns the distribution of total votes per completed flow item.
+      summary: Returns the distribution of total votes per completed flow item
       parameters:
       - name: flowId
         in: path
@@ -233,11 +241,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingByFlowIdResponseCountHistogram
+      x-operation-id-source: derived
   /flow/ranking/{flowId}/response-count-timeseries:
     get:
       tags:
       - Flow
-      summary: Returns average response counts bucketed over time for completed flow items.
+      summary: Returns average response counts bucketed over time for completed flow items
       parameters:
       - name: flowId
         in: path
@@ -286,11 +296,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingByFlowIdResponseCountTimeseries
+      x-operation-id-source: derived
   /flow:
     get:
       tags:
       - Flow
-      summary: Queries flows with filtering and pagination.
+      summary: Queries flows with filtering and pagination
       parameters:
       - name: page
         in: query
@@ -414,19 +426,41 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlow
+      x-operation-id-source: derived
 components:
   schemas:
-    GetCompletionTimeHistogramEndpoint_Output:
+    QueryFlowsEndpoint_Output:
       required:
-      - buckets
+      - id
+      - name
+      - type
+      - ownerId
+      - ownerMail
+      - createdAt
       type: object
       properties:
-        buckets:
+        id:
+          type: string
+          description: The unique identifier of the flow.
+        name:
+          type: string
+          description: The name of the flow.
+        type:
           allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output_Bucket'
-          description: The histogram buckets.
+          - $ref: '#/components/schemas/FlowType'
+          description: The type of the flow.
+        ownerId:
+          type: string
+          description: The ID of the customer who owns the flow.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the customer who owns the flow.
+        createdAt:
+          type: string
+          description: The timestamp when the flow was created.
+          format: date-time
     GetCompletionTimeHistogramEndpoint_Output_Bucket:
       required:
       - lowerBound
@@ -446,76 +480,34 @@ components:
     FlowType:
       enum:
       - Ranking
+    GetResponseCountTimeseriesEndpoint_Output:
+      required:
+      - datapoints
+      type: object
+      properties:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output_DataPoint'
+          description: The timeseries data points.
+    GetResponseCountTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - averageResponseCount
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        averageResponseCount:
+          type: number
+          format: double
     PidBatchMode:
       enum:
       - Total
       - PerBatch
       - PerBatchTimeWeighted
-    GetResponseCountHistogramEndpoint_Output_Bucket:
-      required:
-      - lowerBound
-      - upperBound
-      - count
-      type: object
-      properties:
-        lowerBound:
-          type: number
-          format: double
-        upperBound:
-          type: number
-          format: double
-        count:
-          type: integer
-          format: int32
-    QueryFlowsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryFlowsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     IFlowModelRankingFlowModel:
       required:
       - id
@@ -562,10 +554,11 @@ components:
           description: The total number of items that have been added to this flow. Incremented atomically on each item creation.
           format: int64
         targetResponseCount:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Target average response count per completed item. Enables PID-based automatic rate control when set. Null disables PID.
           format: int32
-          nullable: true
         pidProportionalGain:
           type: number
           description: PID proportional gain. Controls how strongly the rate reacts to the current error between target and actual response counts.
@@ -595,23 +588,26 @@ components:
           - $ref: '#/components/schemas/PidBatchMode'
           description: 'How the PID output maps to the campaign rate. Total: used directly. PerBatch: multiplied by active item count. PerBatchTimeWeighted: multiplied by time-weighted active item count based on remaining TTL.'
         serveTimeoutSeconds:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Maximum time in seconds a user has to submit an answer after loading the task. Null uses the system-wide default.
           format: int32
-          nullable: true
         drainDurationSeconds:
           type: integer
           description: Grace period in seconds after an item stops receiving new serves, allowing in-flight responses to complete.
           format: int32
         serveToResponseRatio:
-          type: number
+          type:
+          - number
+          - 'null'
           description: Ratio of serves to responses used to calculate how many tasks to serve per expected response.
           format: double
-          nullable: true
         criteria:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The comparison instruction shown to annotators during ranking tasks (e.g. "Which image is sharper?").
-          nullable: true
         startingElo:
           type: integer
           description: The initial Elo rating assigned to new items entering the ranking. Standard default is 1200.
@@ -621,15 +617,17 @@ components:
           description: Minimum number of responses a ranking item must receive before it is considered sufficiently evaluated.
           format: int32
         maxResponses:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Maximum number of responses a ranking item can receive before being removed from active ranking. Null allows unlimited responses.
           format: int32
-          nullable: true
         serveResponses:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Number of accepted responses per rapid at which to stop serving. Null defaults to MaxResponses.
           format: int32
-          nullable: true
         featureFlags:
           allOf:
           - type: array
@@ -647,29 +645,36 @@ components:
           type: string
           description: The timestamp when the flow was created.
           format: date-time
-    GetResponseCountTimeseriesEndpoint_Output_DataPoint:
-      required:
-      - timestamp
-      - averageResponseCount
+    ValidationProblemDetails:
       type: object
       properties:
-        timestamp:
-          type: string
-          format: date-time
-        averageResponseCount:
-          type: number
-          format: double
-    IFlowModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFlowModelRankingFlowModel'
-      description: "A flow definition exposed over the API, identified by a discriminator.\n Implementations describe the flow's type-specific configuration."
-      discriminator:
-        propertyName: _t
-        mapping:
-          RankingFlow: '#/components/schemas/IFlowModelRankingFlowModel'
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     GetFlowItemCreationTimeseriesEndpoint_Output:
       required:
       - datapoints
@@ -681,6 +686,80 @@ components:
             items:
               $ref: '#/components/schemas/GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint'
           description: The timeseries data points.
+    QueryFlowsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryFlowsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    GetResponseCountHistogramEndpoint_Output_Bucket:
+      required:
+      - lowerBound
+      - upperBound
+      - count
+      type: object
+      properties:
+        lowerBound:
+          type: number
+          format: double
+        upperBound:
+          type: number
+          format: double
+        count:
+          type: integer
+          format: int32
+    GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - count
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        count:
+          type: integer
+          format: int64
+    IFlowModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFlowModelRankingFlowModel'
+      description: "A flow definition exposed over the API, identified by a discriminator.\n Implementations describe the flow's type-specific configuration."
+      discriminator:
+        propertyName: _t
+        mapping:
+          RankingFlow: '#/components/schemas/IFlowModelRankingFlowModel'
+    GetCompletionTimeHistogramEndpoint_Output:
+      required:
+      - buckets
+      type: object
+      properties:
+        buckets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output_Bucket'
+          description: The histogram buckets.
     GetResponseCountHistogramEndpoint_Output:
       required:
       - buckets
@@ -702,60 +781,6 @@ components:
           type: string
         value:
           type: string
-    GetResponseCountTimeseriesEndpoint_Output:
-      required:
-      - datapoints
-      type: object
-      properties:
-        datapoints:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output_DataPoint'
-          description: The timeseries data points.
-    QueryFlowsEndpoint_Output:
-      required:
-      - id
-      - name
-      - type
-      - ownerId
-      - ownerMail
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the flow.
-        name:
-          type: string
-          description: The name of the flow.
-        type:
-          allOf:
-          - $ref: '#/components/schemas/FlowType'
-          description: The type of the flow.
-        ownerId:
-          type: string
-          description: The ID of the customer who owns the flow.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The email of the customer who owns the flow.
-        createdAt:
-          type: string
-          description: The timestamp when the flow was created.
-          format: date-time
-    GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint:
-      required:
-      - timestamp
-      - count
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        count:
-          type: integer
-          format: int64
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

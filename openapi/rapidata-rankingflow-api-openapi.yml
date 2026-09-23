@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset RankingFlow API
+  title: Rapidata Ranking Flow API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - RankingFlow
-      summary: Creates a new ranking flow.
+      summary: Creates a new ranking flow
       requestBody:
         description: The ranking flow creation parameters.
         content:
@@ -44,11 +44,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postFlowRanking
+      x-operation-id-source: derived
   /flow/ranking/{flowId}/config:
     patch:
       tags:
       - RankingFlow
-      summary: Updates the configuration of a ranking flow.
+      summary: Updates the configuration of a ranking flow
       parameters:
       - name: flowId
         in: path
@@ -82,6 +84,8 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchFlowRankingByFlowIdConfig
+      x-operation-id-source: derived
 components:
   schemas:
     PidBatchMode:
@@ -93,135 +97,40 @@ components:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-    CreateFlowEndpoint_Input:
-      required:
-      - name
-      - criteria
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the ranking flow.
-        criteria:
-          type: string
-          description: The ranking criteria used to compare items.
-        audienceId:
-          type: string
-          description: Optional audience ID. When provided, the flow will only be served to users in this audience.
-          nullable: true
-        validationSetId:
-          type: string
-          description: Optional ID of the validation set to use.
-          nullable: true
-        startingElo:
-          type: integer
-          description: Initial Elo rating for new items. Defaults to 1200.
-          format: int32
-          nullable: true
-        maxResponses:
-          type: integer
-          description: Maximum number of responses per comparison.
-          format: int32
-          nullable: true
-        serveResponses:
-          type: integer
-          description: Number of accepted responses per rapid at which to stop serving. When set, must be less than or equal to MaxResponses. Null defaults to MaxResponses.
-          format: int32
-          nullable: true
-        serveToResponseRatio:
-          type: number
-          description: Ratio of concurrent serves to max responses. When set, limits serving to avoid over-collection.
-          format: double
-          nullable: true
-        serveTimeoutSeconds:
-          type: integer
-          description: Time in seconds a user has to submit an answer after loading the task. When set, overrides the global default.
-          format: int32
-          nullable: true
-        minResponses:
-          type: integer
-          description: Minimum number of responses per comparison. Defaults to 20.
-          format: int32
-          nullable: true
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-            nullable: true
-          description: Optional feature flags to enable for this flow.
-        targetResponseCount:
-          type: integer
-          description: Target average response count per completed item. Enables PID control when set.
-          format: int32
-          nullable: true
-        pidProportionalGain:
-          type: number
-          description: PID proportional gain. Defaults to 0.
-          format: double
-          nullable: true
-        pidIntegralGain:
-          type: number
-          description: PID integral gain. Defaults to 0.003.
-          format: double
-          nullable: true
-        pidDerivativeGain:
-          type: number
-          description: PID derivative gain. Defaults to 0.
-          format: double
-          nullable: true
-        pidOutputOffset:
-          type: number
-          description: Constant offset added to the PID output before clamping, shifting the controller's operating point. Defaults to 25.
-          format: double
-          nullable: true
-        pidMinSessionsPerMinute:
-          type: integer
-          description: Minimum sessions per minute the PID can set. Defaults to 20.
-          format: int32
-          nullable: true
-        pidMaxSessionsPerMinute:
-          type: integer
-          description: Maximum sessions per minute the PID can set. Defaults to 50.
-          format: int32
-          nullable: true
-        pidBatchMode:
-          allOf:
-          - $ref: '#/components/schemas/PidBatchMode'
-          description: 'How PID output maps to campaign rate. Total: direct rate. PerBatch: multiplied by active batch count. PerBatchTimeWeighted: multiplied by time-weighted batch count. Defaults to Total.'
-        drainDurationSeconds:
-          type: integer
-          description: Duration in seconds for draining flow items. Defaults to 40.
-          format: int32
-          nullable: true
     UpdateConfigEndpoint_Input:
       type: object
       properties:
         audienceId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional audience ID. When provided, the flow will only serve items to users in this audience. Set to null to remove the audience restriction.
-          nullable: true
         criteria:
           type: string
           description: The ranking criteria used to compare items.
@@ -238,20 +147,23 @@ components:
           description: Maximum number of responses per comparison.
           format: int32
         serveResponses:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Number of accepted responses per rapid at which to stop serving. Set to null to remove. Must be less than or equal to MaxResponses when both are set.
           format: int32
-          nullable: true
         serveToResponseRatio:
-          type: number
+          type:
+          - number
+          - 'null'
           description: Ratio of concurrent serves to max responses. Set to null to remove the limit.
           format: double
-          nullable: true
         serveTimeoutSeconds:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Time in seconds a user has to submit an answer after loading the task. Set to null to use the global default.
           format: int32
-          nullable: true
         featureFlags:
           allOf:
           - type: array
@@ -259,10 +171,11 @@ components:
               $ref: '#/components/schemas/FeatureFlag'
           description: Feature flags to enable for this flow.
         targetResponseCount:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Target average response count per completed item. Set to null to disable PID control.
           format: int32
-          nullable: true
         pidProportionalGain:
           type: number
           description: PID proportional gain.
@@ -291,6 +204,132 @@ components:
           allOf:
           - $ref: '#/components/schemas/PidBatchMode'
           description: 'How PID output maps to campaign rate. Total: direct rate. PerBatch: multiplied by active batch count. PerBatchTimeWeighted: multiplied by time-weighted batch count.'
+    CreateFlowEndpoint_Input:
+      required:
+      - name
+      - criteria
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the ranking flow.
+        criteria:
+          type: string
+          description: The ranking criteria used to compare items.
+        audienceId:
+          type:
+          - string
+          - 'null'
+          description: Optional audience ID. When provided, the flow will only be served to users in this audience.
+        validationSetId:
+          type:
+          - string
+          - 'null'
+          description: Optional ID of the validation set to use.
+        startingElo:
+          type:
+          - integer
+          - 'null'
+          description: Initial Elo rating for new items. Defaults to 1200.
+          format: int32
+        maxResponses:
+          type:
+          - integer
+          - 'null'
+          description: Maximum number of responses per comparison.
+          format: int32
+        serveResponses:
+          type:
+          - integer
+          - 'null'
+          description: Number of accepted responses per rapid at which to stop serving. When set, must be less than or equal to MaxResponses. Null defaults to MaxResponses.
+          format: int32
+        serveToResponseRatio:
+          type:
+          - number
+          - 'null'
+          description: Ratio of concurrent serves to max responses. When set, limits serving to avoid over-collection.
+          format: double
+        serveTimeoutSeconds:
+          type:
+          - integer
+          - 'null'
+          description: Time in seconds a user has to submit an answer after loading the task. When set, overrides the global default.
+          format: int32
+        minResponses:
+          type:
+          - integer
+          - 'null'
+          description: Minimum number of responses per comparison. Defaults to 20.
+          format: int32
+        featureFlags:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: Optional feature flags to enable for this flow.
+        targetResponseCount:
+          type:
+          - integer
+          - 'null'
+          description: Target average response count per completed item. Enables PID control when set.
+          format: int32
+        pidProportionalGain:
+          type:
+          - number
+          - 'null'
+          description: PID proportional gain. Defaults to 0.
+          format: double
+        pidIntegralGain:
+          type:
+          - number
+          - 'null'
+          description: PID integral gain. Defaults to 0.003.
+          format: double
+        pidDerivativeGain:
+          type:
+          - number
+          - 'null'
+          description: PID derivative gain. Defaults to 0.
+          format: double
+        pidOutputOffset:
+          type:
+          - number
+          - 'null'
+          description: Constant offset added to the PID output before clamping, shifting the controller's operating point. Defaults to 25.
+          format: double
+        pidMinSessionsPerMinute:
+          type:
+          - integer
+          - 'null'
+          description: Minimum sessions per minute the PID can set. Defaults to 20.
+          format: int32
+        pidMaxSessionsPerMinute:
+          type:
+          - integer
+          - 'null'
+          description: Maximum sessions per minute the PID can set. Defaults to 50.
+          format: int32
+        pidBatchMode:
+          allOf:
+          - $ref: '#/components/schemas/PidBatchMode'
+          description: 'How PID output maps to campaign rate. Total: direct rate. PerBatch: multiplied by active batch count. PerBatchTimeWeighted: multiplied by time-weighted batch count. Defaults to Total.'
+        drainDurationSeconds:
+          type:
+          - integer
+          - 'null'
+          description: Duration in seconds for draining flow items. Defaults to 40.
+          format: int32
+    CreateFlowEndpoint_Output:
+      required:
+      - flowId
+      type: object
+      properties:
+        flowId:
+          type: string
+          description: The ID of the created ranking flow.
     FeatureFlag:
       required:
       - key
@@ -301,14 +340,6 @@ components:
           type: string
         value:
           type: string
-    CreateFlowEndpoint_Output:
-      required:
-      - flowId
-      type: object
-      properties:
-        flowId:
-          type: string
-          description: The ID of the created ranking flow.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

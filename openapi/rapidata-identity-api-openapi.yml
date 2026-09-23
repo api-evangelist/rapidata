@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Identity API
+  title: Rapidata Identity API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Identity
-      summary: Creates a pair of read and write bridge token keys for a client.
+      summary: Creates a pair of read and write bridge token keys for a client
       description: The write key stores the authentication result and the read key retrieves it.
       parameters:
       - name: clientId
@@ -45,10 +45,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postIdentityBridgeToken
+      x-operation-id-source: derived
     get:
       tags:
       - Identity
-      summary: Reads the bridge token keys for a given read key.
+      summary: Reads the bridge token keys for a given read key
       description: Returns 200 with the keys when available, 202 when they are not yet available, or 404 when not found.
       parameters:
       - name: readKey
@@ -82,11 +84,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getIdentityBridgeToken
+      x-operation-id-source: derived
   /identity/google-one-tap:
     post:
       tags:
       - Identity
-      summary: Signs in a user using a token received from Google One Tap.
+      summary: Signs in a user using a token received from Google One Tap
       description: Redirects to the register confirmation page when the account requires email confirmation.
       requestBody:
         description: The body of the request containing the id token.
@@ -118,11 +122,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postIdentityGoogleOneTap
+      x-operation-id-source: derived
   /identity/referrer:
     post:
       tags:
       - Identity
-      summary: Stores the referrer in a cookie for later use during sign-up.
+      summary: Stores the referrer in a cookie for later use during sign-up
       parameters:
       - name: referrer
         in: query
@@ -139,6 +145,8 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postIdentityReferrer
+      x-operation-id-source: derived
 components:
   schemas:
     ReadBridgeTokenEndpoint_NotAvailableOutput:
@@ -153,21 +161,26 @@ components:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
@@ -195,9 +208,10 @@ components:
           type: boolean
           description: Whether the account still requires email confirmation.
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The email of the signed-in user, if available.
-          nullable: true
     GoogleOneTapLoginEndpoint_Input:
       required:
       - idToken
@@ -217,30 +231,36 @@ components:
       type: object
       properties:
         accessToken:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The issued access token.
-          nullable: true
         expiresIn:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The lifetime of the access token, in seconds.
           format: int32
-          nullable: true
         refreshToken:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The refresh token used to obtain new access tokens.
-          nullable: true
         idToken:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The OpenID Connect ID token.
-          nullable: true
         tokenType:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The type of the issued token.
-          nullable: true
         scope:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The scopes granted to the issued token.
-          nullable: true
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

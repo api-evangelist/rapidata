@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset FlowItem API
+  title: Rapidata Flow Item API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - FlowItem
-      summary: Stops the specified flow item and triggers partial result processing.
+      summary: Stops the specified flow item and triggers partial result processing
       parameters:
       - name: flowItemId
         in: path
@@ -40,27 +40,34 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postFlowItemByFlowItemIdStop
+      x-operation-id-source: derived
 components:
   schemas:
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:

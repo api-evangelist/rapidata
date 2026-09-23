@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Newsletter API
+  title: Rapidata Newsletter API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Newsletter
-      summary: Signs an email address up to the newsletter.
+      summary: Signs an email address up to the newsletter
       requestBody:
         description: The email to subscribe and a recaptcha token.
         content:
@@ -40,11 +40,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postNewsletterSubscribe
+      x-operation-id-source: derived
   /newsletter/unsubscribe:
     post:
       tags:
       - Newsletter
-      summary: Removes an email address from the newsletter.
+      summary: Removes an email address from the newsletter
       requestBody:
         description: The email to unsubscribe and a recaptcha token.
         content:
@@ -71,8 +73,40 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postNewsletterUnsubscribe
+      x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     UnsubscribeFromNewsletterEndpoint_Input:
       required:
       - email
@@ -97,31 +131,6 @@ components:
         token:
           type: string
           description: The recaptcha token used to verify the caller is not a bot.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

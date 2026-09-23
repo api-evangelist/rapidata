@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Client API
+  title: Rapidata Client API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Client
-      summary: Creates a new client for the current customer.
+      summary: Creates a new client for the current customer
       requestBody:
         description: The client creation payload.
         content:
@@ -44,11 +44,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postClient
+      x-operation-id-source: derived
   /client/{clientId}:
     delete:
       tags:
       - Client
-      summary: Deletes a client.
+      summary: Deletes a client
       parameters:
       - name: clientId
         in: path
@@ -75,10 +77,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteClientByClientId
+      x-operation-id-source: derived
     get:
       tags:
       - Client
-      summary: Gets the details of a specific client.
+      summary: Gets the details of a specific client
       operationId: Identity.GetClient
       parameters:
       - name: clientId
@@ -114,7 +118,7 @@ paths:
     get:
       tags:
       - Client
-      summary: Queries clients for the current customer.
+      summary: Queries clients for the current customer
       description: Clients are service credentials that allow automated processes to authenticate against the API.
       parameters:
       - name: page
@@ -272,11 +276,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getClients
+      x-operation-id-source: derived
   /client/register:
     post:
       tags:
       - Client
-      summary: Registers a new client using the OpenID Connect Dynamic Client Registration protocol.
+      summary: Registers a new client using the OpenID Connect Dynamic Client Registration…
       description: Follows RFC 7591.
       requestBody:
         description: The dynamic client registration request.
@@ -294,71 +300,301 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postClientRegister
+      x-operation-id-source: derived
 components:
   schemas:
+    CreateClientEndpoint_Input:
+      type: object
+      properties:
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: An optional display name for the client.
     JsonWebKeySet:
       type: object
       properties:
         keys:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
             $ref: '#/components/schemas/JsonWebKey'
-          nullable: true
-    DynamicClientRegistrationRequest:
+    ClientModel:
+      required:
+      - client_id
+      - client_secret
+      - client_id_issued_at
+      - client_secret_expires_at
+      - redirect_uris
+      - grant_types
+      - response_types
+      - client_name
+      - client_uri
+      - logo_uri
+      - scope
+      - contacts
+      - tos_uri
+      - policy_uri
+      - jwks_uri
+      - jwks
       type: object
       properties:
-        redirect_uris:
-          type: array
-          items:
-            type: string
-          nullable: true
-        grant_types:
-          type: array
-          items:
-            type: string
-          nullable: true
-        response_types:
-          type: array
-          items:
-            type: string
-          nullable: true
         client_id:
           type: string
-          nullable: true
-        client_name:
-          type: string
-          nullable: true
-        client_uri:
-          type: string
-          nullable: true
-        logo_uri:
-          type: string
-          nullable: true
-        scope:
-          type: string
-          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
-          nullable: true
-        contacts:
-          allOf:
-          - type: array
+        client_secret:
+          type:
+          - string
+          - 'null'
+        client_id_issued_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        client_secret_expires_at:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        redirect_uris:
+          type:
+          - array
+          - 'null'
+          items:
+            type: array
             items:
               type: string
-            nullable: true
+        grant_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: array
+            items:
+              type: string
+        response_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: array
+            items:
+              type: string
+        client_name:
+          type:
+          - string
+          - 'null'
+        client_uri:
+          type:
+          - string
+          - 'null'
+        logo_uri:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
+        contacts:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              type: string
           description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
         tos_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         policy_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         jwks_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         jwks:
-          allOf:
+          type:
+          - object
+          - 'null'
+          oneOf:
           - $ref: '#/components/schemas/JsonWebKeySet'
-          description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
-      description: The request body for dynamic client registration.
+      description: "The response containing the id and secret of a dynamically registered client.\n Additionally, it contains all registered metadata for the client."
+    QueryClientsEndpoint_Output:
+      required:
+      - clientId
+      - displayName
+      - createdAt
+      type: object
+      properties:
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: The id of the client.
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The optional display name of the client.
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The time at which the client was created.
+          format: date-time
+    CreateClientEndpoint_Output:
+      required:
+      - clientId
+      - clientSecret
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The id of the created client.
+        clientSecret:
+          type: string
+          description: The secret of the created client.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    JsonWebKey:
+      type: object
+      properties:
+        alg:
+          type:
+          - string
+          - 'null'
+        crv:
+          type:
+          - string
+          - 'null'
+        d:
+          type:
+          - string
+          - 'null'
+        dp:
+          type:
+          - string
+          - 'null'
+        dq:
+          type:
+          - string
+          - 'null'
+        e:
+          type:
+          - string
+          - 'null'
+        k:
+          type:
+          - string
+          - 'null'
+        key_ops:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        kid:
+          type:
+          - string
+          - 'null'
+        kty:
+          type:
+          - string
+          - 'null'
+        n:
+          type:
+          - string
+          - 'null'
+        oth:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        p:
+          type:
+          - string
+          - 'null'
+        q:
+          type:
+          - string
+          - 'null'
+        qi:
+          type:
+          - string
+          - 'null'
+        use:
+          type:
+          - string
+          - 'null'
+        x:
+          type:
+          - string
+          - 'null'
+        x5c:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        x5t:
+          type:
+          - string
+          - 'null'
+        x5t#S256:
+          type:
+          - string
+          - 'null'
+        x5u:
+          type:
+          - string
+          - 'null'
+        y:
+          type:
+          - string
+          - 'null'
+        pub:
+          type:
+          - string
+          - 'null'
+        priv:
+          type:
+          - string
+          - 'null'
     QueryClientsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -383,240 +619,73 @@ components:
         totalPages:
           type: integer
           format: int32
-    CreateClientEndpoint_Output:
-      required:
-      - clientId
-      - clientSecret
+    DynamicClientRegistrationRequest:
       type: object
       properties:
-        clientId:
-          type: string
-          description: The id of the created client.
-        clientSecret:
-          type: string
-          description: The secret of the created client.
-    ClientModel:
-      required:
-      - client_id
-      - client_secret
-      - client_id_issued_at
-      - client_secret_expires_at
-      - redirect_uris
-      - grant_types
-      - response_types
-      - client_name
-      - client_uri
-      - logo_uri
-      - scope
-      - contacts
-      - tos_uri
-      - policy_uri
-      - jwks_uri
-      - jwks
-      type: object
-      properties:
-        client_id:
-          type: string
-        client_secret:
-          type: string
-          nullable: true
-        client_id_issued_at:
-          type: integer
-          format: int64
-          nullable: true
-        client_secret_expires_at:
-          type: integer
-          format: int64
-          nullable: true
         redirect_uris:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            type: array
-            items:
-              type: string
-          nullable: true
+            type: string
         grant_types:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            type: array
-            items:
-              type: string
-          nullable: true
+            type: string
         response_types:
-          type: array
+          type:
+          - array
+          - 'null'
           items:
-            type: array
-            items:
-              type: string
-          nullable: true
+            type: string
+        client_id:
+          type:
+          - string
+          - 'null'
         client_name:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         client_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         logo_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         scope:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
-          nullable: true
         contacts:
           allOf:
-          - type: array
+          - type:
+            - array
+            - 'null'
             items:
               type: string
-            nullable: true
           description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
         tos_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         policy_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         jwks_uri:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         jwks:
-          type: object
-          oneOf:
+          allOf:
           - $ref: '#/components/schemas/JsonWebKeySet'
-          nullable: true
-      description: "The response containing the id and secret of a dynamically registered client.\n Additionally, it contains all registered metadata for the client."
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    CreateClientEndpoint_Input:
-      type: object
-      properties:
-        displayName:
-          type: string
-          description: An optional display name for the client.
-          nullable: true
-    QueryClientsEndpoint_Output:
-      required:
-      - clientId
-      - displayName
-      - createdAt
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: The id of the client.
-          nullable: true
-        displayName:
-          type: string
-          description: The optional display name of the client.
-          nullable: true
-        createdAt:
-          type: string
-          description: The time at which the client was created.
-          format: date-time
-          nullable: true
-    JsonWebKey:
-      type: object
-      properties:
-        alg:
-          type: string
-          nullable: true
-        crv:
-          type: string
-          nullable: true
-        d:
-          type: string
-          nullable: true
-        dp:
-          type: string
-          nullable: true
-        dq:
-          type: string
-          nullable: true
-        e:
-          type: string
-          nullable: true
-        k:
-          type: string
-          nullable: true
-        key_ops:
-          type: array
-          items:
-            type: string
-          nullable: true
-        kid:
-          type: string
-          nullable: true
-        kty:
-          type: string
-          nullable: true
-        n:
-          type: string
-          nullable: true
-        oth:
-          type: array
-          items:
-            type: string
-          nullable: true
-        p:
-          type: string
-          nullable: true
-        q:
-          type: string
-          nullable: true
-        qi:
-          type: string
-          nullable: true
-        use:
-          type: string
-          nullable: true
-        x:
-          type: string
-          nullable: true
-        x5c:
-          type: array
-          items:
-            type: string
-          nullable: true
-        x5t:
-          type: string
-          nullable: true
-        x5t#S256:
-          type: string
-          nullable: true
-        x5u:
-          type: string
-          nullable: true
-        y:
-          type: string
-          nullable: true
-        pub:
-          type: string
-          nullable: true
-        priv:
-          type: string
-          nullable: true
+          description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
+      description: The request body for dynamic client registration.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

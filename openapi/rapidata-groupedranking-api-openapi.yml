@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset GroupedRanking API
+  title: Rapidata Grouped Ranking API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - GroupedRanking
-      summary: Gets the result overview for a grouped ranking workflow.
+      summary: Gets the result overview for a grouped ranking workflow
       parameters:
       - name: workflowId
         in: path
@@ -178,6 +178,8 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflowGroupedRankingByWorkflowIdResults
+      x-operation-id-source: derived
 components:
   schemas:
     IPairMakerInformationOnlinePairMakerInformation:
@@ -197,51 +199,57 @@ components:
         currentComparisonBudget:
           type: integer
           format: int32
-    IPairMakerInformationFullPermutationPairMakerInformation:
+    GetGroupedRankingWorkflowResultsEndpoint_Output:
       required:
-      - _t
+      - id
+      - name
+      - state
+      - pairMakerInformation
+      type: object
       properties:
-        _t:
-          enum:
-          - FullPermutationPairMakerInformation
+        id:
           type: string
+          description: The id of the sub-workflow.
+        name:
+          type: string
+          description: The name of the sub-workflow.
+        state:
+          type: string
+          description: The state of the sub-workflow.
+        pairMakerInformation:
+          allOf:
+          - $ref: '#/components/schemas/IPairMakerInformation'
+          description: Information about the pair-maker used by the sub-workflow.
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-    IPairMakerInformation:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
-      - $ref: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
-          OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
     GetGroupedRankingWorkflowResultsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -266,27 +274,26 @@ components:
         totalPages:
           type: integer
           format: int32
-    GetGroupedRankingWorkflowResultsEndpoint_Output:
+    IPairMakerInformation:
       required:
-      - id
-      - name
-      - state
-      - pairMakerInformation
+      - _t
       type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
+      - $ref: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
+          OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
+    IPairMakerInformationFullPermutationPairMakerInformation:
+      required:
+      - _t
       properties:
-        id:
+        _t:
+          enum:
+          - FullPermutationPairMakerInformation
           type: string
-          description: The id of the sub-workflow.
-        name:
-          type: string
-          description: The name of the sub-workflow.
-        state:
-          type: string
-          description: The state of the sub-workflow.
-        pairMakerInformation:
-          allOf:
-          - $ref: '#/components/schemas/IPairMakerInformation'
-          description: Information about the pair-maker used by the sub-workflow.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset ContextShortening API
+  title: Rapidata Context Shortening API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - ContextShortening
-      summary: Shortens each context to the parts relevant to its question, returning results in input order.
+      summary: Shortens each context to the parts relevant to its question, returning results…
       description: Results are cached per (context, question, prompt version), so repeated requests do not re-call the model.
       requestBody:
         description: The context/question pairs to shorten.
@@ -45,39 +45,41 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postDatasetsShortenContext
+      x-operation-id-source: derived
 components:
   schemas:
-    ShortenContextEndpoint_Output:
+    ShortenContextEndpoint_OutputItem:
       required:
-      - items
+      - shortenedContext
       type: object
       properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
-          description: The shortened contexts.
-      description: The shortened contexts, in the same order as the input items.
+        shortenedContext:
+          type: string
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
@@ -96,13 +98,6 @@ components:
               $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
           description: The context/question pairs to shorten.
       description: The input for the shorten-context endpoint.
-    ShortenContextEndpoint_OutputItem:
-      required:
-      - shortenedContext
-      type: object
-      properties:
-        shortenedContext:
-          type: string
     ShortenContextEndpoint_InputItem:
       required:
       - context
@@ -113,6 +108,18 @@ components:
           type: string
         question:
           type: string
+    ShortenContextEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
+          description: The shortened contexts.
+      description: The shortened contexts, in the same order as the input items.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset ExternalAudience API
+  title: Rapidata External Audience API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - ExternalAudience
-      summary: Queries the cached external audiences available for targeting.
+      summary: Queries the cached external audiences available for targeting
       parameters:
       - name: page
         in: query
@@ -172,11 +172,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getCampaignExternalAudiences
+      x-operation-id-source: derived
   /campaign/external-audiences/sync:
     post:
       tags:
       - ExternalAudience
-      summary: Enqueues a background job that synchronises external audiences with the cache.
+      summary: Enqueues a background job that synchronises external audiences with the cache
       responses:
         '202':
           description: Accepted
@@ -196,6 +198,8 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postCampaignExternalAudiencesSync
+      x-operation-id-source: derived
 components:
   schemas:
     QueryExternalAudiencesEndpoint_Output:
@@ -212,10 +216,11 @@ components:
           type: string
           description: The name of the external audience.
         count:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The number of users in the audience.
           format: int64
-          nullable: true
     QueryExternalAudiencesEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -244,21 +249,26 @@ components:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:

@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Workflow API
+  title: Rapidata Workflow API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     delete:
       tags:
       - Workflow
-      summary: Deletes a workflow by its id.
+      summary: Deletes a workflow by its id
       parameters:
       - name: workflowId
         in: path
@@ -40,10 +40,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteWorkflowByWorkflowId
+      x-operation-id-source: derived
     get:
       tags:
       - Workflow
-      summary: Returns the workflow identified by workflowId.
+      summary: Returns the workflow identified by workflowId
       parameters:
       - name: workflowId
         in: path
@@ -74,11 +76,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflowByWorkflowId
+      x-operation-id-source: derived
   /workflow/{workflowId}/compare-ab-summary:
     get:
       tags:
       - Workflow
-      summary: Returns the number of times each asset index won across the workflow's rapids.
+      summary: Returns the number of times each asset index won across the workflow's rapids
       parameters:
       - name: workflowId
         in: path
@@ -115,11 +119,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflowByWorkflowIdCompareAbSummary
+      x-operation-id-source: derived
   /workflow/{workflowId}/progress:
     get:
       tags:
       - Workflow
-      summary: Gets the progress of a workflow.
+      summary: Gets the progress of a workflow
       parameters:
       - name: workflowId
         in: path
@@ -150,11 +156,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflowByWorkflowIdProgress
+      x-operation-id-source: derived
   /workflow/{workflowId}/responses:
     get:
       tags:
       - Workflow
-      summary: Gets the most recent or oldest responses for a workflow, across any rapid.
+      summary: Gets the most recent or oldest responses for a workflow, across any rapid
       parameters:
       - name: workflowId
         in: path
@@ -197,11 +205,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflowByWorkflowIdResponses
+      x-operation-id-source: derived
   /workflows:
     get:
       tags:
       - Workflow
-      summary: Queries workflows based on the provided filter, page, and sort criteria.
+      summary: Queries workflows based on the provided filter, page, and sort criteria
       parameters:
       - name: page
         in: query
@@ -393,212 +403,10 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getWorkflows
+      x-operation-id-source: derived
 components:
   schemas:
-    IWorkflowModelSimpleWorkflowModel:
-      required:
-      - id
-      - state
-      - blueprint
-      - referee
-      - name
-      - ownerMail
-      - _t
-      properties:
-        _t:
-          enum:
-          - SimpleWorkflowModel
-          type: string
-        id:
-          type: string
-        state:
-          $ref: '#/components/schemas/WorkflowStateModel'
-        blueprint:
-          $ref: '#/components/schemas/IWorkflowRapidBlueprintModel'
-        referee:
-          $ref: '#/components/schemas/IRefereeConfigModel'
-        name:
-          type: string
-        ownerMail:
-          type: string
-          nullable: true
-    IRankingConfigModelBradleyTerryRankingConfigModel:
-      required:
-      - startingScore
-      - _t
-      properties:
-        _t:
-          enum:
-          - BradleyTerryRankingConfig
-          type: string
-        startingScore:
-          type: integer
-          format: int32
-    IMetadataModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    NamedClassification:
-      required:
-      - classification
-      type: object
-      properties:
-        start:
-          type: integer
-          format: int32
-        end:
-          type: integer
-          format: int32
-        classification:
-          type: string
-    IRefereeConfigModelNeverEndingRefereeConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - NeverEndingRefereeConfig
-          type: string
-    BoxShape:
-      type: object
-      properties:
-        xMin:
-          type: number
-          format: double
-          nullable: true
-        yMin:
-          type: number
-          format: double
-          nullable: true
-        xMax:
-          type: number
-          format: double
-          nullable: true
-        yMax:
-          type: number
-          format: double
-          nullable: true
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    IRapidResult:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidResultAttachCategoryResult'
-      - $ref: '#/components/schemas/IRapidResultBoundingBoxResult'
-      - $ref: '#/components/schemas/IRapidResultCompareResult'
-      - $ref: '#/components/schemas/IRapidResultFreeTextResult'
-      - $ref: '#/components/schemas/IRapidResultLineResult'
-      - $ref: '#/components/schemas/IRapidResultLocateResult'
-      - $ref: '#/components/schemas/IRapidResultNamedEntityResult'
-      - $ref: '#/components/schemas/IRapidResultPolygonResult'
-      - $ref: '#/components/schemas/IRapidResultScrubResult'
-      - $ref: '#/components/schemas/IRapidResultSkipResult'
-      - $ref: '#/components/schemas/IRapidResultTranscriptionResult'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AttachCategoryResult: '#/components/schemas/IRapidResultAttachCategoryResult'
-          BoundingBoxResult: '#/components/schemas/IRapidResultBoundingBoxResult'
-          CompareResult: '#/components/schemas/IRapidResultCompareResult'
-          FreeTextResult: '#/components/schemas/IRapidResultFreeTextResult'
-          LineResult: '#/components/schemas/IRapidResultLineResult'
-          LocateResult: '#/components/schemas/IRapidResultLocateResult'
-          NamedEntityResult: '#/components/schemas/IRapidResultNamedEntityResult'
-          PolygonResult: '#/components/schemas/IRapidResultPolygonResult'
-          ScrubResult: '#/components/schemas/IRapidResultScrubResult'
-          SkipResult: '#/components/schemas/IRapidResultSkipResult'
-          TranscriptionResult: '#/components/schemas/IRapidResultTranscriptionResult'
-    IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel:
-      required:
-      - threshold
-      - maxVotes
-      - _t
-      properties:
-        _t:
-          enum:
-          - ProbabilisticAttachCategoryRefereeConfig
-          type: string
-        threshold:
-          type: number
-          format: double
-        maxVotes:
-          type: integer
-          format: int32
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IRefereeConfigModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRefereeConfigModelBudgetRefereeConfigModel'
-      - $ref: '#/components/schemas/IRefereeConfigModelNaiveRefereeConfigModel'
-      - $ref: '#/components/schemas/IRefereeConfigModelNeverEndingRefereeConfigModel'
-      - $ref: '#/components/schemas/IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel'
-      - $ref: '#/components/schemas/IRefereeConfigModelQuorumRefereeConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BudgetRefereeConfig: '#/components/schemas/IRefereeConfigModelBudgetRefereeConfigModel'
-          NaiveRefereeConfig: '#/components/schemas/IRefereeConfigModelNaiveRefereeConfigModel'
-          NeverEndingRefereeConfig: '#/components/schemas/IRefereeConfigModelNeverEndingRefereeConfigModel'
-          ProbabilisticAttachCategoryRefereeConfig: '#/components/schemas/IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel'
-          QuorumRefereeConfig: '#/components/schemas/IRefereeConfigModelQuorumRefereeConfigModel'
     IRankingConfigModelEloConfigModel:
       required:
       - startingScore
@@ -619,77 +427,97 @@ components:
         scalingFactor:
           type: integer
           format: int32
-    IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel:
+    IRefereeConfigModelNaiveRefereeConfigModel:
       required:
-      - question
-      - shouldValidateResponse
       - _t
       properties:
         _t:
           enum:
-          - FreeTextBlueprint
+          - NaiveRefereeConfig
           type: string
-        question:
-          type: string
-        shouldValidateResponse:
-          type: boolean
-        validationSystemPrompt:
-          type: string
-          nullable: true
-    GetWorkflowByIdEndpoint_Output:
+        responsesRequired:
+          type: integer
+          format: int32
+    IRapidResultLineResult:
       required:
-      - workflow
-      type: object
-      properties:
-        workflow:
-          allOf:
-          - $ref: '#/components/schemas/IWorkflowModel'
-          description: The workflow.
-    PolygonCoordinate:
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-          nullable: true
-        y:
-          type: number
-          format: double
-          nullable: true
-    IRapidResultAttachCategoryResult:
-      required:
-      - category
+      - lines
       - rapidId
       - _t
       properties:
         _t:
           enum:
-          - AttachCategoryResult
+          - LineResult
           type: string
-        category:
-          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/Line'
         rapidId:
           type: string
-    IRefereeConfigModelBudgetRefereeConfigModel:
+    GetWorkflowProgressEndpoint_Output:
       required:
-      - totalBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - BudgetRefereeConfig
-          type: string
-        totalBudget:
-          type: integer
-          format: int32
-        totalServeBudget:
-          type: integer
-          format: int32
-          nullable: true
-    MetadataModelCollection:
+      - completionPercentage
+      - total
+      - completed
+      - state
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
+      properties:
+        completionPercentage:
+          type: number
+          description: The percentage of workflow datapoints that have been completed.
+          format: double
+        total:
+          type: integer
+          description: The total number of datapoints in the workflow.
+          format: int64
+        completed:
+          type: integer
+          description: The number of datapoints that have been completed.
+          format: int64
+        state:
+          allOf:
+          - $ref: '#/components/schemas/WorkflowState'
+          description: The current state of the workflow.
+    IWorkflowRapidBlueprintModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelLineWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelPolygonWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel'
+      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel'
+          BoundingBoxBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel'
+          CompareBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel'
+          FreeTextBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel'
+          LineBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelLineWorkflowRapidBlueprintModel'
+          LocateBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel'
+          NamedEntityBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel'
+          PolygonBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelPolygonWorkflowRapidBlueprintModel'
+          ScrubBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel'
+          TranscriptionBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel'
+    IPairMakerInformationModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerInformationModelFullPermutationPairMakerInformationModel'
+      - $ref: '#/components/schemas/IPairMakerInformationModelOnlinePairMakerInformationModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationModelFullPermutationPairMakerInformationModel'
+          OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationModelOnlinePairMakerInformationModel'
     IRapidResultLocateResult:
       required:
       - coordinates
@@ -706,6 +534,87 @@ components:
             $ref: '#/components/schemas/LocateCoordinate'
         rapidId:
           type: string
+    IRankingConfigModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
+    AttachCategoryWorkflowRapidBlueprintModel_Category:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyBlueprint
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachCategoryWorkflowRapidBlueprintModel_Category'
+        title:
+          type: string
+    IRapidResultBoundingBoxResult:
+      required:
+      - boundingBoxes
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxResult
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoxShape'
+        rapidId:
+          type: string
+    IRefereeConfigModelQuorumRefereeConfigModel:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumRefereeConfig
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
+    IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubBlueprint
+          type: string
+        target:
+          type: string
     IAssetModelNullAssetModel:
       required:
       - metadata
@@ -720,79 +629,140 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-    WorkflowStateModel:
-      enum:
-      - Created
-      - Started
-      - Labeling
-      - Paused
-      - Done
-      - Failed
-    LocateCoordinate:
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-        y:
-          type: number
-          format: double
-    IMetadataModelVideoDurationMetadataModel:
+    IRefereeConfigModelBudgetRefereeConfigModel:
       required:
-      - duration
+      - totalBudget
       - _t
       properties:
         _t:
           enum:
-          - VideoDurationMetadata
+          - BudgetRefereeConfig
           type: string
-        duration:
-          type: string
-          format: date-time
-    IRapidResultScrubResult:
+        totalBudget:
+          type: integer
+          format: int32
+        totalServeBudget:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    IAssetModelMultiAssetModel:
       required:
-      - timestamps
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IRapidResultSkipResult:
+      required:
       - rapidId
       - _t
       properties:
         _t:
           enum:
-          - ScrubResult
+          - SkipResult
           type: string
-        timestamps:
-          type: array
-          items:
-            type: integer
-            format: int32
         rapidId:
           type: string
-    IWorkflowModelEvaluationWorkflowModel:
+    IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel:
       required:
-      - id
-      - validationSetId
-      - state
-      - referee
-      - name
-      - ownerMail
+      - threshold
+      - maxVotes
       - _t
       properties:
         _t:
           enum:
-          - EvaluationWorkflow
+          - ProbabilisticAttachCategoryRefereeConfig
           type: string
-        id:
+        threshold:
+          type: number
+          format: double
+        maxVotes:
+          type: integer
+          format: int32
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
           type: string
-        validationSetId:
+        url:
           type: string
-        state:
-          $ref: '#/components/schemas/WorkflowStateModel'
-        referee:
-          $ref: '#/components/schemas/IRefereeConfigModel'
-        name:
+    GetWorkflowResponsesEndpoint_Output:
+      required:
+      - responses
+      type: object
+      properties:
+        responses:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetWorkflowResponsesEndpoint_Response'
+          description: The responses for the workflow.
+    IRapidResultCompareResult:
+      required:
+      - winners
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareResult
           type: string
-        ownerMail:
+        winners:
+          type: array
+          items:
+            type: string
+        rapidId:
           type: string
-          nullable: true
+    NamedClassification:
+      required:
+      - classification
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+        classification:
+          type: string
+    IPairMakerInformationModelOnlinePairMakerInformationModel:
+      required:
+      - randomMatchesRatio
+      - totalComparisonBudget
+      - currentComparisonBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - OnlinePairMakerInformation
+          type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
+        currentComparisonBudget:
+          type: integer
+          format: int32
     GetWorkflowResponsesEndpoint_Response:
       required:
       - id
@@ -827,208 +797,100 @@ components:
           type: object
           additionalProperties:
             type: string
-    TranscriptionWord:
-      required:
-      - word
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    ValidationProblemDetails:
       type: object
       properties:
-        word:
-          type: string
-        wordIndex:
-          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    PolygonShape:
-      required:
-      - edges
-      type: object
-      properties:
-        edges:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolygonCoordinate'
-    IWorkflowModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IWorkflowModelEvaluationWorkflowModel'
-      - $ref: '#/components/schemas/IWorkflowModelGroupedRankingWorkflowModel'
-      - $ref: '#/components/schemas/IWorkflowModelRankingWorkflowModel'
-      - $ref: '#/components/schemas/IWorkflowModelSimpleWorkflowModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          EvaluationWorkflow: '#/components/schemas/IWorkflowModelEvaluationWorkflowModel'
-          GroupedRankingWorkflowModel: '#/components/schemas/IWorkflowModelGroupedRankingWorkflowModel'
-          RankingWorkflowModel: '#/components/schemas/IWorkflowModelRankingWorkflowModel'
-          SimpleWorkflowModel: '#/components/schemas/IWorkflowModelSimpleWorkflowModel'
-    IRapidResultFreeTextResult:
-      required:
-      - answer
-      - rapidId
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextResult
-          type: string
-        answer:
-          type: string
-        rapidId:
-          type: string
-    IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel:
-      required:
-      - criteria
-      - indexIdentifiers
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareBlueprint
-          type: string
-        criteria:
-          type: string
-        indexIdentifiers:
-          type: array
-          items:
-            type: string
-    IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel:
-      required:
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionBlueprint
-          type: string
-        title:
-          type: string
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel:
-      required:
-      - categories
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyBlueprint
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachCategoryWorkflowRapidBlueprintModel_Category'
-        title:
-          type: string
-    IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel:
       required:
       - target
-      - classes
       - _t
       properties:
         _t:
           enum:
-          - NamedEntityBlueprint
+          - LocateBlueprint
           type: string
         target:
           type: string
-        classes:
-          type: array
-          items:
-            type: string
-    QueryWorkflowsEndpoint_PagedResultOfOutput:
+    GetWorkflowByIdEndpoint_Output:
       required:
-      - total
-      - page
-      - pageSize
-      - items
+      - workflow
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryWorkflowsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IRapidResultTranscriptionResult:
+        workflow:
+          allOf:
+          - $ref: '#/components/schemas/IWorkflowModel'
+          description: The workflow.
+    IRapidResultNamedEntityResult:
       required:
-      - selectedWords
+      - classifications
       - rapidId
       - _t
       properties:
         _t:
           enum:
-          - TranscriptionResult
+          - NamedEntityResult
           type: string
-        selectedWords:
+        classifications:
           type: array
           items:
-            $ref: '#/components/schemas/TranscriptionWord'
+            $ref: '#/components/schemas/NamedClassification'
         rapidId:
           type: string
-    IMetadataModelClassificationMetadataModel:
+    IRankingConfigModelBradleyTerryRankingConfigModel:
       required:
-      - classification
+      - startingScore
       - _t
       properties:
         _t:
           enum:
-          - ClassificationMetadata
+          - BradleyTerryRankingConfig
           type: string
-        classification:
-          type: string
-    IRapidResultLineResult:
-      required:
-      - lines
-      - rapidId
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineResult
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/Line'
-        rapidId:
-          type: string
+        startingScore:
+          type: integer
+          format: int32
+    WorkflowState:
+      enum:
+      - Created
+      - Started
+      - Labeling
+      - Paused
+      - Done
+      - Failed
+    SortDirection:
+      enum:
+      - Asc
+      - Desc
     IMetadataModelTextMetadataModel:
       required:
       - text
@@ -1039,8 +901,21 @@ components:
           - TextMetadata
           type: string
         text:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
+    Line:
+      required:
+      - points
+      type: object
+      properties:
+        size:
+          type: number
+          format: double
+        points:
+          type: array
+          items:
+            $ref: '#/components/schemas/LinePoint'
     IWorkflowModelRankingWorkflowModel:
       required:
       - id
@@ -1071,150 +946,202 @@ components:
         name:
           type: string
         rankingConfig:
-          type: object
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/IRankingConfigModel'
-          nullable: true
         context:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         contextAsset:
-          type: object
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/IAssetModel'
-          nullable: true
         ownerMail:
-          type: string
-          nullable: true
-    IMetadataModelStreamsMetadataModel:
+          type:
+          - string
+          - 'null'
+    IMetadataModelClassificationMetadataModel:
       required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
+      - classification
       - _t
       properties:
         _t:
           enum:
-          - StreamsMetadata
+          - ClassificationMetadata
           type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
+        classification:
           type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IRapidResultCompareResult:
+    IPairMakerInformationModelFullPermutationPairMakerInformationModel:
       required:
-      - winners
+      - _t
+      properties:
+        _t:
+          enum:
+          - FullPermutationPairMakerInformation
+          type: string
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IRapidResultScrubResult:
+      required:
+      - timestamps
       - rapidId
       - _t
       properties:
         _t:
           enum:
-          - CompareResult
+          - ScrubResult
           type: string
-        winners:
+        timestamps:
           type: array
           items:
-            type: string
+            type: integer
+            format: int32
         rapidId:
           type: string
-    GetWorkflowProgressEndpoint_Output:
+    IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel:
       required:
-      - completionPercentage
-      - total
-      - completed
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionBlueprint
+          type: string
+        title:
+          type: string
+    IWorkflowModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IWorkflowModelEvaluationWorkflowModel'
+      - $ref: '#/components/schemas/IWorkflowModelGroupedRankingWorkflowModel'
+      - $ref: '#/components/schemas/IWorkflowModelRankingWorkflowModel'
+      - $ref: '#/components/schemas/IWorkflowModelSimpleWorkflowModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          EvaluationWorkflow: '#/components/schemas/IWorkflowModelEvaluationWorkflowModel'
+          GroupedRankingWorkflowModel: '#/components/schemas/IWorkflowModelGroupedRankingWorkflowModel'
+          RankingWorkflowModel: '#/components/schemas/IWorkflowModelRankingWorkflowModel'
+          SimpleWorkflowModel: '#/components/schemas/IWorkflowModelSimpleWorkflowModel'
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IWorkflowModelSimpleWorkflowModel:
+      required:
+      - id
       - state
-      type: object
+      - blueprint
+      - referee
+      - name
+      - ownerMail
+      - _t
       properties:
-        completionPercentage:
-          type: number
-          description: The percentage of workflow datapoints that have been completed.
-          format: double
-        total:
-          type: integer
-          description: The total number of datapoints in the workflow.
-          format: int64
-        completed:
-          type: integer
-          description: The number of datapoints that have been completed.
-          format: int64
+        _t:
+          enum:
+          - SimpleWorkflowModel
+          type: string
+        id:
+          type: string
         state:
-          allOf:
-          - $ref: '#/components/schemas/WorkflowState'
-          description: The current state of the workflow.
-    Line:
+          $ref: '#/components/schemas/WorkflowStateModel'
+        blueprint:
+          $ref: '#/components/schemas/IWorkflowRapidBlueprintModel'
+        referee:
+          $ref: '#/components/schemas/IRefereeConfigModel'
+        name:
+          type: string
+        ownerMail:
+          type:
+          - string
+          - 'null'
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    QueryWorkflowsEndpoint_Output:
       required:
-      - points
+      - workflow
       type: object
       properties:
-        size:
-          type: number
-          format: double
-        points:
+        workflow:
+          allOf:
+          - $ref: '#/components/schemas/IWorkflowModel'
+          description: The workflow.
+    PolygonShape:
+      required:
+      - edges
+      type: object
+      properties:
+        edges:
           type: array
           items:
-            $ref: '#/components/schemas/LinePoint'
-    SortDirection:
-      enum:
-      - Asc
-      - Desc
-    IPairMakerInformationModelOnlinePairMakerInformationModel:
-      required:
-      - randomMatchesRatio
-      - totalComparisonBudget
-      - currentComparisonBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - OnlinePairMakerInformation
-          type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
-        currentComparisonBudget:
-          type: integer
-          format: int32
-    IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxBlueprint
-          type: string
-        target:
-          type: string
+            $ref: '#/components/schemas/PolygonCoordinate'
     IWorkflowRapidBlueprintModelPolygonWorkflowRapidBlueprintModel:
       required:
       - target
@@ -1226,6 +1153,240 @@ components:
           type: string
         target:
           type: string
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    PolygonCoordinate:
+      type: object
+      properties:
+        x:
+          type:
+          - number
+          - 'null'
+          format: double
+        y:
+          type:
+          - number
+          - 'null'
+          format: double
+    LinePoint:
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+        y:
+          type: number
+          format: double
+    IRefereeConfigModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeConfigModelBudgetRefereeConfigModel'
+      - $ref: '#/components/schemas/IRefereeConfigModelNaiveRefereeConfigModel'
+      - $ref: '#/components/schemas/IRefereeConfigModelNeverEndingRefereeConfigModel'
+      - $ref: '#/components/schemas/IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel'
+      - $ref: '#/components/schemas/IRefereeConfigModelQuorumRefereeConfigModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BudgetRefereeConfig: '#/components/schemas/IRefereeConfigModelBudgetRefereeConfigModel'
+          NaiveRefereeConfig: '#/components/schemas/IRefereeConfigModelNaiveRefereeConfigModel'
+          NeverEndingRefereeConfig: '#/components/schemas/IRefereeConfigModelNeverEndingRefereeConfigModel'
+          ProbabilisticAttachCategoryRefereeConfig: '#/components/schemas/IRefereeConfigModelProbabilisticAttachCategoryRefereeConfigModel'
+          QuorumRefereeConfig: '#/components/schemas/IRefereeConfigModelQuorumRefereeConfigModel'
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    GetCompareAbSummaryEndpoint_Output:
+      required:
+      - winCounter
+      - allTargetGroupsCompleted
+      type: object
+      properties:
+        winCounter:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: number
+              format: double
+          description: The number of times each asset index was the winner.
+        allTargetGroupsCompleted:
+          type: boolean
+          description: Whether all target groups for this workflow are completed.
+    WorkflowStateModel:
+      enum:
+      - Created
+      - Started
+      - Labeling
+      - Paused
+      - Done
+      - Failed
+    IRapidResultTranscriptionResult:
+      required:
+      - selectedWords
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionResult
+          type: string
+        selectedWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionWord'
+        rapidId:
+          type: string
+    IWorkflowModelEvaluationWorkflowModel:
+      required:
+      - id
+      - validationSetId
+      - state
+      - referee
+      - name
+      - ownerMail
+      - _t
+      properties:
+        _t:
+          enum:
+          - EvaluationWorkflow
+          type: string
+        id:
+          type: string
+        validationSetId:
+          type: string
+        state:
+          $ref: '#/components/schemas/WorkflowStateModel'
+        referee:
+          $ref: '#/components/schemas/IRefereeConfigModel'
+        name:
+          type: string
+        ownerMail:
+          type:
+          - string
+          - 'null'
+    IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxBlueprint
+          type: string
+        target:
+          type: string
+    IRapidResultPolygonResult:
+      required:
+      - shapes
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonResult
+          type: string
+        shapes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolygonShape'
+        rapidId:
+          type: string
+    IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel:
+      required:
+      - target
+      - classes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityBlueprint
+          type: string
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel:
+      required:
+      - criteria
+      - indexIdentifiers
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareBlueprint
+          type: string
+        criteria:
+          type: string
+        indexIdentifiers:
+          type: array
+          items:
+            type: string
     IWorkflowModelGroupedRankingWorkflowModel:
       required:
       - id
@@ -1251,13 +1412,15 @@ components:
         name:
           type: string
         ownerMail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         rankingConfig:
-          type: object
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/IRankingConfigModel'
-          nullable: true
     IMetadataModelImageDimensionMetadataModel:
       required:
       - _t
@@ -1272,43 +1435,28 @@ components:
         width:
           type: integer
           format: int32
-    GetWorkflowResponsesEndpoint_Output:
+    QueryWorkflowsEndpoint_PagedResultOfOutput:
       required:
-      - responses
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        responses:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetWorkflowResponsesEndpoint_Response'
-          description: The responses for the workflow.
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
+        total:
+          type: integer
+          format: int64
+        page:
           type: integer
           format: int32
-    IRefereeConfigModelQuorumRefereeConfigModel:
-      required:
-      - maxVotes
-      - threshold
-      - _t
-      properties:
-        _t:
-          enum:
-          - QuorumRefereeConfig
-          type: string
-        maxVotes:
+        pageSize:
           type: integer
           format: int32
-        threshold:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryWorkflowsEndpoint_Output'
+        totalPages:
           type: integer
           format: int32
     IWorkflowRapidBlueprintModelLineWorkflowRapidBlueprintModel:
@@ -1322,165 +1470,15 @@ components:
           type: string
         target:
           type: string
-    IRapidResultPolygonResult:
+    IRefereeConfigModelNeverEndingRefereeConfigModel:
       required:
-      - shapes
-      - rapidId
       - _t
       properties:
         _t:
           enum:
-          - PolygonResult
+          - NeverEndingRefereeConfig
           type: string
-        shapes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolygonShape'
-        rapidId:
-          type: string
-    IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubBlueprint
-          type: string
-        target:
-          type: string
-    IRankingConfigModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
-    IAssetModelMultiAssetModel:
-      required:
-      - assets
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    WorkflowState:
-      enum:
-      - Created
-      - Started
-      - Labeling
-      - Paused
-      - Done
-      - Failed
-    QueryWorkflowsEndpoint_Output:
-      required:
-      - workflow
-      type: object
-      properties:
-        workflow:
-          allOf:
-          - $ref: '#/components/schemas/IWorkflowModel'
-          description: The workflow.
-    IRapidResultBoundingBoxResult:
-      required:
-      - boundingBoxes
-      - rapidId
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxResult
-          type: string
-        boundingBoxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/BoxShape'
-        rapidId:
-          type: string
-    IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBlueprint
-          type: string
-        target:
-          type: string
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IWorkflowRapidBlueprintModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelLineWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelPolygonWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel'
-      - $ref: '#/components/schemas/IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassifyBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelAttachCategoryWorkflowRapidBlueprintModel'
-          BoundingBoxBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelBoundingBoxWorkflowRapidBlueprintModel'
-          CompareBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelCompareWorkflowRapidBlueprintModel'
-          FreeTextBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel'
-          LineBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelLineWorkflowRapidBlueprintModel'
-          LocateBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelLocateWorkflowRapidBlueprintModel'
-          NamedEntityBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelNamedEntityWorkflowRapidBlueprintModel'
-          PolygonBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelPolygonWorkflowRapidBlueprintModel'
-          ScrubBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelScrubWorkflowRapidBlueprintModel'
-          TranscriptionBlueprint: '#/components/schemas/IWorkflowRapidBlueprintModelTranscriptionWorkflowRapidBlueprintModel'
-    LinePoint:
+    LocateCoordinate:
       type: object
       properties:
         x:
@@ -1489,105 +1487,141 @@ components:
         y:
           type: number
           format: double
-    AttachCategoryWorkflowRapidBlueprintModel_Category:
+    IRapidResultAttachCategoryResult:
       required:
-      - label
-      - value
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-    IRapidResultSkipResult:
-      required:
+      - category
       - rapidId
       - _t
       properties:
         _t:
           enum:
-          - SkipResult
+          - AttachCategoryResult
+          type: string
+        category:
           type: string
         rapidId:
           type: string
-    IPairMakerInformationModel:
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    BoxShape:
+      type: object
+      properties:
+        xMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        xMax:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMax:
+          type:
+          - number
+          - 'null'
+          format: double
+    IRapidResultFreeTextResult:
+      required:
+      - answer
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextResult
+          type: string
+        answer:
+          type: string
+        rapidId:
+          type: string
+    IRapidResult:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IPairMakerInformationModelFullPermutationPairMakerInformationModel'
-      - $ref: '#/components/schemas/IPairMakerInformationModelOnlinePairMakerInformationModel'
+      - $ref: '#/components/schemas/IRapidResultAttachCategoryResult'
+      - $ref: '#/components/schemas/IRapidResultBoundingBoxResult'
+      - $ref: '#/components/schemas/IRapidResultCompareResult'
+      - $ref: '#/components/schemas/IRapidResultFreeTextResult'
+      - $ref: '#/components/schemas/IRapidResultLineResult'
+      - $ref: '#/components/schemas/IRapidResultLocateResult'
+      - $ref: '#/components/schemas/IRapidResultNamedEntityResult'
+      - $ref: '#/components/schemas/IRapidResultPolygonResult'
+      - $ref: '#/components/schemas/IRapidResultScrubResult'
+      - $ref: '#/components/schemas/IRapidResultSkipResult'
+      - $ref: '#/components/schemas/IRapidResultTranscriptionResult'
       discriminator:
         propertyName: _t
         mapping:
-          FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationModelFullPermutationPairMakerInformationModel'
-          OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationModelOnlinePairMakerInformationModel'
-    GetCompareAbSummaryEndpoint_Output:
+          AttachCategoryResult: '#/components/schemas/IRapidResultAttachCategoryResult'
+          BoundingBoxResult: '#/components/schemas/IRapidResultBoundingBoxResult'
+          CompareResult: '#/components/schemas/IRapidResultCompareResult'
+          FreeTextResult: '#/components/schemas/IRapidResultFreeTextResult'
+          LineResult: '#/components/schemas/IRapidResultLineResult'
+          LocateResult: '#/components/schemas/IRapidResultLocateResult'
+          NamedEntityResult: '#/components/schemas/IRapidResultNamedEntityResult'
+          PolygonResult: '#/components/schemas/IRapidResultPolygonResult'
+          ScrubResult: '#/components/schemas/IRapidResultScrubResult'
+          SkipResult: '#/components/schemas/IRapidResultSkipResult'
+          TranscriptionResult: '#/components/schemas/IRapidResultTranscriptionResult'
+    IMetadataModelOriginalFilenameMetadataModel:
       required:
-      - winCounter
-      - allTargetGroupsCompleted
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IWorkflowRapidBlueprintModelFreeTextWorkflowRapidBlueprintModel:
+      required:
+      - question
+      - shouldValidateResponse
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextBlueprint
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type: boolean
+        validationSystemPrompt:
+          type:
+          - string
+          - 'null'
+    TranscriptionWord:
+      required:
+      - word
       type: object
       properties:
-        winCounter:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: number
-              format: double
-          description: The number of times each asset index was the winner.
-        allTargetGroupsCompleted:
-          type: boolean
-          description: Whether all target groups for this workflow are completed.
-    IPairMakerInformationModelFullPermutationPairMakerInformationModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - FullPermutationPairMakerInformation
+        word:
           type: string
-    IRapidResultNamedEntityResult:
-      required:
-      - classifications
-      - rapidId
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityResult
-          type: string
-        classifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/NamedClassification'
-        rapidId:
-          type: string
-    IAssetModelFileAssetModel:
-      required:
-      - fileName
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IRefereeConfigModelNaiveRefereeConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - NaiveRefereeConfig
-          type: string
-        responsesRequired:
+        wordIndex:
           type: integer
           format: int32
   securitySchemes:

@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset GlobalText API
+  title: Rapidata Global Text API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - GlobalText
-      summary: Creates a new global text entry.
+      summary: Creates a new global text entry
       requestBody:
         description: The payload describing the entry to create.
         content:
@@ -44,10 +44,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postGlobalText
+      x-operation-id-source: derived
     get:
       tags:
       - GlobalText
-      summary: Returns every global text entry.
+      summary: Returns every global text entry
       responses:
         '200':
           description: OK
@@ -71,11 +73,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getGlobalText
+      x-operation-id-source: derived
   /global-text/{globalTextId}:
     delete:
       tags:
       - GlobalText
-      summary: Deletes a global text entry.
+      summary: Deletes a global text entry
       parameters:
       - name: globalTextId
         in: path
@@ -102,10 +106,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteGlobalTextByGlobalTextId
+      x-operation-id-source: derived
     patch:
       tags:
       - GlobalText
-      summary: Updates a global text entry using patch semantics.
+      summary: Updates a global text entry using patch semantics
       parameters:
       - name: globalTextId
         in: path
@@ -139,8 +145,21 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchGlobalTextByGlobalTextId
+      x-operation-id-source: derived
 components:
   schemas:
+    GetAllGlobalTextsEndpoint_Output:
+      required:
+      - globalTexts
+      type: object
+      properties:
+        globalTexts:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
+          description: The list of global text entries.
     GetAllGlobalTextsEndpoint_Output_Item:
       required:
       - id
@@ -154,42 +173,15 @@ components:
           type: string
         englishText:
           type: string
-    GetAllGlobalTextsEndpoint_Output:
-      required:
-      - globalTexts
+    UpdateGlobalTextEndpoint_Input:
       type: object
       properties:
-        globalTexts:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
-          description: The list of global text entries.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
+        key:
           type: string
-          nullable: true
-        title:
+          description: The new key for the global text entry.
+        englishText:
           type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          description: The new English source text for the global text entry.
     CreateGlobalTextEndpoint_Input:
       required:
       - key
@@ -202,6 +194,36 @@ components:
         englishText:
           type: string
           description: The English source text that all translations derive from.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateGlobalTextEndpoint_Output:
       required:
       - globalTextId
@@ -210,15 +232,6 @@ components:
         globalTextId:
           type: string
           description: The unique identifier of the created global text entry.
-    UpdateGlobalTextEndpoint_Input:
-      type: object
-      properties:
-        key:
-          type: string
-          description: The new key for the global text entry.
-        englishText:
-          type: string
-          description: The new English source text for the global text entry.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

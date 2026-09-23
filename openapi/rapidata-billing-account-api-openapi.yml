@@ -1,20 +1,24 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset BillingAccount API
+  title: Rapidata Billing Account API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
 - url: https://api.rapidata.ai/
 tags:
-- name: BillingAccount
+- name: Billing Account
   x-displayName: BillingAccount
 paths:
   /vouchers:
     post:
       tags:
-      - BillingAccount
-      summary: Grants a voucher to a customer.
-      description: "Provide exactly one of validity (a duration from now) or expiresAt (an\n explicit instant) — not both, not neither. The grant immediately raises the customer's\n serve allowance."
+      - Billing Account
+      summary: Grants a voucher to a customer
+      description: 'Provide exactly one of validity (a duration from now) or expiresAt (an
+
+        explicit instant) — not both, not neither. The grant immediately raises the customer''s
+
+        serve allowance.'
       requestBody:
         description: The customer, voucher amount, and expiry.
         content:
@@ -45,10 +49,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postVouchers
+      x-operation-id-source: derived
     get:
       tags:
-      - BillingAccount
-      summary: Queries vouchers with filtering, sorting, and pagination.
+      - Billing Account
+      summary: Queries vouchers with filtering, sorting, and pagination
       parameters:
       - name: page
         in: query
@@ -273,11 +279,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getVouchers
+      x-operation-id-source: derived
   /vouchers/{voucherId}/revoke:
     post:
       tags:
-      - BillingAccount
-      summary: Revokes a voucher.
+      - Billing Account
+      summary: Revokes a voucher
       description: Lowers the owning customer's serve allowance by the voucher's remaining grant.
       parameters:
       - name: voucherId
@@ -305,11 +313,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postVouchersByVoucherIdRevoke
+      x-operation-id-source: derived
   /customer/{customerId}/credit-line:
     put:
       tags:
-      - BillingAccount
-      summary: Sets the spend limit for a customer.
+      - Billing Account
+      summary: Sets the spend limit for a customer
       parameters:
       - name: customerId
         in: path
@@ -344,12 +354,18 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: putCustomerByCustomerIdCreditLine
+      x-operation-id-source: derived
   /customer/{customerId}/minimum-spend-commitment:
     put:
       tags:
-      - BillingAccount
-      summary: Sets the minimum spend commitment for a customer.
-      description: "At invoice time, if the period's measured spend is below the commitment, a top-up charge for\n the shortfall is added so the usage-side bill reaches the commitment. Setting it to 0\n removes the commitment."
+      - Billing Account
+      summary: Sets the minimum spend commitment for a customer
+      description: 'At invoice time, if the period''s measured spend is below the commitment, a top-up charge for
+
+        the shortfall is added so the usage-side bill reaches the commitment. Setting it to 0
+
+        removes the commitment.'
       parameters:
       - name: customerId
         in: path
@@ -384,12 +400,18 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: putCustomerByCustomerIdMinimumSpendCommitment
+      x-operation-id-source: derived
   /customer/{customerId}/platform-fee:
     put:
       tags:
-      - BillingAccount
-      summary: Sets the platform fee for a customer.
-      description: "The fee is automatically applied as a charge to the customer's current open billing period\n and to every future period. Setting it to null removes the platform-fee charge from\n the current open period; 0 keeps an explicit $0 charge that is still shown."
+      - Billing Account
+      summary: Sets the platform fee for a customer
+      description: 'The fee is automatically applied as a charge to the customer''s current open billing period
+
+        and to every future period. Setting it to null removes the platform-fee charge from
+
+        the current open period; 0 keeps an explicit $0 charge that is still shown.'
       parameters:
       - name: customerId
         in: path
@@ -424,11 +446,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: putCustomerByCustomerIdPlatformFee
+      x-operation-id-source: derived
   /customer/unsubscribe:
     post:
       tags:
-      - BillingAccount
-      summary: Unsubscribes the current customer.
+      - Billing Account
+      summary: Unsubscribes the current customer
       requestBody:
         description: Optional reason for unsubscribing.
         content:
@@ -455,90 +479,10 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postCustomerUnsubscribe
+      x-operation-id-source: derived
 components:
   schemas:
-    SetCreditLineEndpoint_Input:
-      required:
-      - creditLine
-      type: object
-      properties:
-        creditLine:
-          type: number
-          description: "The new credit line. null means no limit (unlimited), 0 disables all traffic,\n and a positive value caps spend at that amount."
-          format: double
-          nullable: true
-    QueryVouchersEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryVouchersEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    SetPlatformFeeEndpoint_Input:
-      required:
-      - platformFee
-      type: object
-      properties:
-        platformFee:
-          type: number
-          description: "The new platform fee. null removes the platform fee; 0 is an explicit $0\n fee that is still shown; a positive value is charged once per billing period."
-          format: double
-          nullable: true
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    GrantVoucherEndpoint_Output:
-      required:
-      - voucherId
-      type: object
-      properties:
-        voucherId:
-          type: string
-          description: The id of the granted voucher.
-    VoucherSource:
-      enum:
-      - Signup
-      - ManualGrant
-      - TopUp
     QueryVouchersEndpoint_Output:
       required:
       - id
@@ -582,6 +526,22 @@ components:
           allOf:
           - $ref: '#/components/schemas/VoucherSource'
           description: Where the voucher came from.
+    UnsubscribeEndpoint_Input:
+      type: object
+      properties:
+        reason:
+          type:
+          - string
+          - 'null'
+          description: The reason for unsubscribing.
+    GrantVoucherEndpoint_Output:
+      required:
+      - voucherId
+      type: object
+      properties:
+        voucherId:
+          type: string
+          description: The id of the granted voucher.
     SetMinimumSpendCommitmentEndpoint_Input:
       required:
       - minimumSpendCommitment
@@ -607,27 +567,103 @@ components:
           format: double
         validity:
           pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
-          type: string
+          type:
+          - string
+          - 'null'
           description: "How long the voucher stays valid, counted from now. Serialized as a duration string in\n the format [days.]hh:mm:ss (the days part is optional): \"30.00:00:00\" = 30\n days, \"7.00:00:00\" = 7 days, \"12:00:00\" = 12 hours. Must be positive.\n Provide this or expiresAt, not both."
-          nullable: true
         expiresAt:
-          type: string
+          type:
+          - string
+          - 'null'
           description: "An explicit expiry instant as an ISO-8601 timestamp (e.g. \"2026-12-31T23:59:59Z\").\n Use this instead of validity when you know the exact date the\n voucher should expire. Provide this or validity, not both."
           format: date-time
-          nullable: true
+    QueryVouchersEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryVouchersEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
     VoucherStatus:
       enum:
       - Active
       - Exhausted
       - Expired
       - Revoked
-    UnsubscribeEndpoint_Input:
+    ValidationProblemDetails:
       type: object
       properties:
-        reason:
-          type: string
-          description: The reason for unsubscribing.
-          nullable: true
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    SetPlatformFeeEndpoint_Input:
+      required:
+      - platformFee
+      type: object
+      properties:
+        platformFee:
+          type:
+          - number
+          - 'null'
+          description: "The new platform fee. null removes the platform fee; 0 is an explicit $0\n fee that is still shown; a positive value is charged once per billing period."
+          format: double
+    SetCreditLineEndpoint_Input:
+      required:
+      - creditLine
+      type: object
+      properties:
+        creditLine:
+          type:
+          - number
+          - 'null'
+          description: "The new credit line. null means no limit (unlimited), 0 disables all traffic,\n and a positive value caps spend at that amount."
+          format: double
+    VoucherSource:
+      enum:
+      - Signup
+      - ManualGrant
+      - TopUp
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

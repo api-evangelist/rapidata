@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Prompt API
+  title: Rapidata Prompt API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     delete:
       tags:
       - Prompt
-      summary: Deletes a prompt.
+      summary: Deletes a prompt
       description: Also removes every sample generated for the prompt across the benchmark.
       parameters:
       - name: promptId
@@ -41,11 +41,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteBenchmarkPromptByPromptId
+      x-operation-id-source: derived
   /benchmark-prompt/{promptId}/tags:
     put:
       tags:
       - Prompt
-      summary: Updates the tags associated with a prompt.
+      summary: Updates the tags associated with a prompt
       parameters:
       - name: promptId
         in: path
@@ -79,8 +81,40 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: putBenchmarkPromptByPromptIdTags
+      x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     UpdatePromptTagsEndpoint_Input:
       required:
       - tags
@@ -92,31 +126,6 @@ components:
             items:
               type: string
           description: The list of tags to be associated with the prompt.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

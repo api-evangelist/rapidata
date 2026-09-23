@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Pipeline API
+  title: Rapidata Pipeline API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - Pipeline
-      summary: Gets a pipeline by its id.
+      summary: Gets a pipeline by its id
       parameters:
       - name: pipelineId
         in: path
@@ -44,11 +44,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getPipelineByPipelineId
+      x-operation-id-source: derived
   /pipeline/preliminary-download/{preliminaryDownloadId}:
     get:
       tags:
       - Pipeline
-      summary: Streams the preliminary download file when ready.
+      summary: Streams the preliminary download file when ready
       description: Returns 202 while the download is still processing.
       parameters:
       - name: preliminaryDownloadId
@@ -82,11 +84,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getPipelinePreliminaryDownloadByPreliminaryDownloadId
+      x-operation-id-source: derived
   /pipeline/{pipelineId}/preliminary-download:
     post:
       tags:
       - Pipeline
-      summary: Initiates a preliminary download of the pipeline.
+      summary: Initiates a preliminary download of the pipeline
       parameters:
       - name: pipelineId
         in: path
@@ -124,87 +128,10 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postPipelineByPipelineIdPreliminaryDownload
+      x-operation-id-source: derived
 components:
   schemas:
-    StartPreliminaryDownloadEndpoint_Input:
-      type: object
-      properties:
-        sendEmail:
-          type: boolean
-          description: Whether to email the user when the download is ready.
-    IWorkflowConfigGroupedRankingWorkflowConfig:
-      required:
-      - criteria
-      - referee
-      - targetCountryCodes
-      - maxParallelism
-      - pairMakerConfig
-      - _t
-      properties:
-        _t:
-          enum:
-          - GroupedRankingWorkflowConfig
-          type: string
-        criteria:
-          type: string
-        referee:
-          $ref: '#/components/schemas/IRefereeConfig'
-        targetCountryCodes:
-          type: array
-          items:
-            type: string
-        maxParallelism:
-          type: integer
-          format: int32
-        rankingConfig:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/IRankingConfig'
-          nullable: true
-        pairMakerConfig:
-          $ref: '#/components/schemas/IPairMakerConfig'
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-          nullable: true
-    IRankingConfigEloRankingConfig:
-      required:
-      - startingElo
-      - kFactor
-      - scalingFactor
-      - _t
-      properties:
-        _t:
-          enum:
-          - EloRankingConfig
-          type: string
-        startingElo:
-          type: integer
-          format: int32
-        kFactor:
-          type: integer
-          format: int32
-        scalingFactor:
-          type: integer
-          format: int32
-    IMetadataImageDimensionMetadata:
-      required:
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - ImageDimensionMetadata
-          type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
     IArtifactModel:
       required:
       - _t
@@ -223,84 +150,20 @@ components:
           FileArtifactModel: '#/components/schemas/IArtifactModelFileArtifactModel'
           WorkflowArtifactModel: '#/components/schemas/IArtifactModelWorkflowArtifactModel'
           WorkflowConfigArtifactModel: '#/components/schemas/IArtifactModelWorkflowConfigArtifactModel'
-    StartPreliminaryDownloadEndpoint_Output:
+    IArtifactModelCampaignArtifactModel:
       required:
-      - downloadId
-      type: object
-      properties:
-        downloadId:
-          type: string
-          description: The id of the preliminary download that was initiated.
-    IArtifactModelFileArtifactModel:
-      required:
-      - fileName
+      - campaignId
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - FileArtifactModel
+          - CampaignArtifactModel
           type: string
-        fileName:
-          type: string
-        identifier:
-          type: string
-    IArtifactModelWorkflowArtifactModel:
-      required:
-      - workflowId
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - WorkflowArtifactModel
-          type: string
-        workflowId:
+        campaignId:
           type: string
         identifier:
           type: string
-    IArtifactModelWorkflowConfigArtifactModel:
-      required:
-      - workflowConfig
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - WorkflowConfigArtifactModel
-          type: string
-        workflowConfig:
-          $ref: '#/components/schemas/IWorkflowConfig'
-        identifier:
-          type: string
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    GetPipelineByIdEndpoint_Output:
-      required:
-      - artifacts
-      - featureFlags
-      type: object
-      properties:
-        artifacts:
-          allOf:
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/IArtifactModel'
-          description: The artifacts attached to the pipeline, keyed by their role.
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-          description: The feature flags enabled for the pipeline.
     IRapidBlueprint:
       required:
       - _t
@@ -329,78 +192,101 @@ components:
           PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
           ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
           TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IRapidBlueprintAttachCategoryRapidBlueprint:
+    IRefereeConfigNeverEndingRefereeConfig:
       required:
-      - categories
-      - title
       - _t
       properties:
         _t:
           enum:
-          - ClassifyBlueprint
+          - NeverEndingRefereeConfig
           type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
-        possibleCategories:
-          type: array
-          items:
-            type: string
-          nullable: true
+    IMetadataTextMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-    IMetadataDurationMetadata:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IRapidBlueprintScrubRapidBlueprint:
       required:
-      - duration
-      - visibilities
+      - target
       - _t
       properties:
         _t:
           enum:
-          - DurationMetadata
+          - ScrubBlueprint
           type: string
-        duration:
+        target:
           type: string
-          format: date-time
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IMetadataFileTypeMetadata:
+    IRankingConfigEloRankingConfig:
       required:
-      - fileType
-      - visibilities
+      - startingElo
+      - kFactor
+      - scalingFactor
       - _t
       properties:
         _t:
           enum:
-          - FileTypeMetadata
+          - EloRankingConfig
           type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IArtifactModelCampaignArtifactModel:
+        startingElo:
+          type: integer
+          format: int32
+        kFactor:
+          type: integer
+          format: int32
+        scalingFactor:
+          type: integer
+          format: int32
+    IArtifactModelFileArtifactModel:
       required:
-      - campaignId
+      - fileName
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - CampaignArtifactModel
+          - FileArtifactModel
           type: string
-        campaignId:
+        fileName:
           type: string
         identifier:
           type: string
@@ -412,141 +298,6 @@ components:
           enum:
           - FullPermutationPairMakerConfig
           type: string
-    AttachCategoryRapidBlueprint_Category:
-      required:
-      - label
-      - value
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-    IAssetTextAsset:
-      required:
-      - text
-      - metadata
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/IMetadata'
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IRapidBlueprintPolygonRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - PolygonBlueprint
-          type: string
-        target:
-          type: string
-    IRankingConfig:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
-      - $ref: '#/components/schemas/IRankingConfigEloRankingConfig'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
-          EloRankingConfig: '#/components/schemas/IRankingConfigEloRankingConfig'
-    IRefereeConfigQuorumRefereeConfig:
-      required:
-      - maxVotes
-      - threshold
-      - _t
-      properties:
-        _t:
-          enum:
-          - QuorumRefereeConfig
-          type: string
-        maxVotes:
-          type: integer
-          format: int32
-        threshold:
-          type: integer
-          format: int32
-    IMetadataStreamsMetadata:
-      required:
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasAudio:
-          type: boolean
-        hasVideo:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IRapidBlueprintBoundingBoxRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxBlueprint
-          type: string
-        target:
-          type: string
-    IRapidBlueprintFreeTextRapidBlueprint:
-      required:
-      - question
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextBlueprint
-          type: string
-        question:
-          type: string
-        shouldValidateResponse:
-          type: boolean
-          nullable: true
-        validationSystemPrompt:
-          type: string
-          nullable: true
     IRapidBlueprintNamedEntityRapidBlueprint:
       required:
       - target
@@ -563,191 +314,53 @@ components:
           type: array
           items:
             type: string
-    IWorkflowConfigEvaluationWorkflowConfig:
+    IRefereeConfigBudgetRefereeConfig:
       required:
-      - validationSetId
-      - referee
-      - shouldAcceptIncorrect
+      - totalBudget
       - _t
       properties:
         _t:
           enum:
-          - EvaluationWorkflowConfig
+          - BudgetRefereeConfig
           type: string
-        validationSetId:
-          type: string
-        referee:
-          $ref: '#/components/schemas/IRefereeConfig'
-        shouldAcceptIncorrect:
-          type: boolean
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-          nullable: true
-    IAssetMultiAsset:
+        totalBudget:
+          type: integer
+          format: int32
+        totalServeBudget:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    IAssetTextAsset:
       required:
-      - assets
+      - text
       - metadata
       - _t
       properties:
         _t:
           enum:
-          - MultiAsset
+          - TextAsset
           type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAsset'
+        text:
+          type: string
         metadata:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/IMetadata'
-    IRankingConfigBradleyTerryRankingConfig:
+    IArtifactModelWorkflowConfigArtifactModel:
       required:
-      - startingScore
-      - _t
-      properties:
-        _t:
-          enum:
-          - BradleyTerryRankingConfig
-          type: string
-        startingScore:
-          type: integer
-          format: int32
-    IArtifactModelDatasetArtifactModel:
-      required:
-      - datasetId
+      - workflowConfig
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - DatasetArtifactModel
+          - WorkflowConfigArtifactModel
           type: string
-        datasetId:
-          type: string
+        workflowConfig:
+          $ref: '#/components/schemas/IWorkflowConfig'
         identifier:
           type: string
-    IRapidBlueprintCompareRapidBlueprint:
-      required:
-      - criteria
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareBlueprint
-          type: string
-        criteria:
-          type: string
-        indexIdentifiers:
-          type: array
-          items:
-            type: string
-          nullable: true
-    IWorkflowConfig:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
-      - $ref: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
-      - $ref: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
-      - $ref: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
-      discriminator:
-        propertyName: _t
-        mapping:
-          EvaluationWorkflowConfig: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
-          GroupedRankingWorkflowConfig: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
-          RankingWorkflowConfig: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
-          SimpleWorkflowConfig: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
-    IRefereeConfig:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
-      - $ref: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
-      - $ref: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
-      - $ref: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
-      - $ref: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BudgetRefereeConfig: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
-          NaiveRefereeConfig: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
-          NeverEndingRefereeConfig: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
-          ProbabilisticAttachCategoryRefereeConfig: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
-          QuorumRefereeConfig: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
-    IAsset:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetFileAsset'
-      - $ref: '#/components/schemas/IAssetMultiAsset'
-      - $ref: '#/components/schemas/IAssetNullAsset'
-      - $ref: '#/components/schemas/IAssetTextAsset'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetFileAsset'
-          MultiAsset: '#/components/schemas/IAssetMultiAsset'
-          NullAsset: '#/components/schemas/IAssetNullAsset'
-          TextAsset: '#/components/schemas/IAssetTextAsset'
-    IRefereeConfigNaiveRefereeConfig:
-      required:
-      - responsesRequired
-      - _t
-      properties:
-        _t:
-          enum:
-          - NaiveRefereeConfig
-          type: string
-        responsesRequired:
-          type: integer
-          format: int32
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IWorkflowConfigRankingWorkflowConfig:
-      required:
-      - criteria
-      - referee
-      - pairMakerConfig
-      - _t
-      properties:
-        _t:
-          enum:
-          - RankingWorkflowConfig
-          type: string
-        criteria:
-          type: string
-        referee:
-          $ref: '#/components/schemas/IRefereeConfig'
-        context:
-          type: string
-          nullable: true
-        contextAsset:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/IAsset'
-          nullable: true
-        rankingConfig:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/IRankingConfig'
-          nullable: true
-        pairMakerConfig:
-          $ref: '#/components/schemas/IPairMakerConfig'
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-          nullable: true
     IMetadataClassificationMetadata:
       required:
       - classification
@@ -762,164 +375,6 @@ components:
           type: string
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
-    IRapidBlueprintLocateRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBlueprint
-          type: string
-        target:
-          type: string
-    IPairMakerConfigOnlinePairMakerConfig:
-      required:
-      - randomMatchesRatio
-      - totalComparisonBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - OnlinePairMakerConfig
-          type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
-    IRefereeConfigProbabilisticAttachCategoryRefereeConfig:
-      required:
-      - threshold
-      - maxVotes
-      - _t
-      properties:
-        _t:
-          enum:
-          - ProbabilisticAttachCategoryRefereeConfig
-          type: string
-        threshold:
-          type: number
-          format: double
-        maxVotes:
-          type: integer
-          format: int32
-    IRefereeConfigNeverEndingRefereeConfig:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - NeverEndingRefereeConfig
-          type: string
-    IRapidBlueprintTranscriptionRapidBlueprint:
-      required:
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionBlueprint
-          type: string
-        title:
-          type: string
-    IMetadataCountMetadata:
-      required:
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IMetadataSourceUrlMetadata:
-      required:
-      - url
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadata
-          type: string
-        url:
-          type: string
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IMetadataOriginalFilenameMetadata:
-      required:
-      - originalFilename
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IAssetFileAsset:
-      required:
-      - fileName
-      - metadata
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/IMetadata'
-    IRapidBlueprintScrubRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubBlueprint
-          type: string
-        target:
-          type: string
-    IMetadataTextMetadata:
-      required:
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
-          type: string
-        text:
-          type: string
-          nullable: true
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IAssetNullAsset:
-      required:
-      - metadata
-      - _t
-      properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          type: object
-          additionalProperties:
-            $ref: '#/components/schemas/IMetadata'
     IMetadata:
       required:
       - _t
@@ -948,68 +403,95 @@ components:
           SourceUrlMetadata: '#/components/schemas/IMetadataSourceUrlMetadata'
           StreamsMetadata: '#/components/schemas/IMetadataStreamsMetadata'
           TextMetadata: '#/components/schemas/IMetadataTextMetadata'
-    IWorkflowConfigSimpleWorkflowConfig:
+    IMetadataStreamsMetadata:
       required:
-      - referee
-      - blueprint
+      - visibilities
       - _t
       properties:
         _t:
           enum:
-          - SimpleWorkflowConfig
+          - StreamsMetadata
           type: string
-        referee:
-          $ref: '#/components/schemas/IRefereeConfig'
-        blueprint:
-          $ref: '#/components/schemas/IRapidBlueprint'
-        batchSize:
-          type: integer
-          format: int32
-          nullable: true
-        featureFlags:
+        hasAudio:
+          type: boolean
+        hasVideo:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetMultiAsset:
+      required:
+      - assets
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
           type: array
           items:
-            $ref: '#/components/schemas/FeatureFlag'
-          nullable: true
-    IPairMakerConfig:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
-      - $ref: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FullPermutationPairMakerConfig: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
-          OnlinePairMakerConfig: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
-    IRefereeConfigBudgetRefereeConfig:
-      required:
-      - totalBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - BudgetRefereeConfig
-          type: string
-        totalBudget:
-          type: integer
-          format: int32
-        totalServeBudget:
-          type: integer
-          format: int32
-          nullable: true
-    IRapidBlueprintLineRapidBlueprint:
+            $ref: '#/components/schemas/IAsset'
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IRapidBlueprintBoundingBoxRapidBlueprint:
       required:
       - target
       - _t
       properties:
         _t:
           enum:
-          - LineBlueprint
+          - BoundingBoxBlueprint
           type: string
         target:
           type: string
+    IRapidBlueprintCompareRapidBlueprint:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareBlueprint
+          type: string
+        criteria:
+          type: string
+        indexIdentifiers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    IRefereeConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
+      - $ref: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BudgetRefereeConfig: '#/components/schemas/IRefereeConfigBudgetRefereeConfig'
+          NaiveRefereeConfig: '#/components/schemas/IRefereeConfigNaiveRefereeConfig'
+          NeverEndingRefereeConfig: '#/components/schemas/IRefereeConfigNeverEndingRefereeConfig'
+          ProbabilisticAttachCategoryRefereeConfig: '#/components/schemas/IRefereeConfigProbabilisticAttachCategoryRefereeConfig'
+          QuorumRefereeConfig: '#/components/schemas/IRefereeConfigQuorumRefereeConfig'
+    StartPreliminaryDownloadEndpoint_Output:
+      required:
+      - downloadId
+      type: object
+      properties:
+        downloadId:
+          type: string
+          description: The id of the preliminary download that was initiated.
     IMetadataLocationMetadata:
       required:
       - visibilities
@@ -1027,6 +509,550 @@ components:
           format: float
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
+    IRapidBlueprintLocateRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBlueprint
+          type: string
+        target:
+          type: string
+    IMetadataFileTypeMetadata:
+      required:
+      - fileType
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IPairMakerConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
+      - $ref: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMakerConfig: '#/components/schemas/IPairMakerConfigFullPermutationPairMakerConfig'
+          OnlinePairMakerConfig: '#/components/schemas/IPairMakerConfigOnlinePairMakerConfig'
+    IMetadataOriginalFilenameMetadata:
+      required:
+      - originalFilename
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IRapidBlueprintAttachCategoryRapidBlueprint:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyBlueprint
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
+        possibleCategories:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        title:
+          type: string
+    IRankingConfigBradleyTerryRankingConfig:
+      required:
+      - startingScore
+      - _t
+      properties:
+        _t:
+          enum:
+          - BradleyTerryRankingConfig
+          type: string
+        startingScore:
+          type: integer
+          format: int32
+    IAsset:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetFileAsset'
+      - $ref: '#/components/schemas/IAssetMultiAsset'
+      - $ref: '#/components/schemas/IAssetNullAsset'
+      - $ref: '#/components/schemas/IAssetTextAsset'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetFileAsset'
+          MultiAsset: '#/components/schemas/IAssetMultiAsset'
+          NullAsset: '#/components/schemas/IAssetNullAsset'
+          TextAsset: '#/components/schemas/IAssetTextAsset'
+    IRapidBlueprintLineRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineBlueprint
+          type: string
+        target:
+          type: string
+    StartPreliminaryDownloadEndpoint_Input:
+      type: object
+      properties:
+        sendEmail:
+          type: boolean
+          description: Whether to email the user when the download is ready.
+    IWorkflowConfigRankingWorkflowConfig:
+      required:
+      - criteria
+      - referee
+      - pairMakerConfig
+      - _t
+      properties:
+        _t:
+          enum:
+          - RankingWorkflowConfig
+          type: string
+        criteria:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        context:
+          type:
+          - string
+          - 'null'
+        contextAsset:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/IAsset'
+        rankingConfig:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/IRankingConfig'
+        pairMakerConfig:
+          $ref: '#/components/schemas/IPairMakerConfig'
+        featureFlags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    IWorkflowConfigEvaluationWorkflowConfig:
+      required:
+      - validationSetId
+      - referee
+      - shouldAcceptIncorrect
+      - _t
+      properties:
+        _t:
+          enum:
+          - EvaluationWorkflowConfig
+          type: string
+        validationSetId:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        shouldAcceptIncorrect:
+          type: boolean
+        featureFlags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    GetPipelineByIdEndpoint_Output:
+      required:
+      - artifacts
+      - featureFlags
+      type: object
+      properties:
+        artifacts:
+          allOf:
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/IArtifactModel'
+          description: The artifacts attached to the pipeline, keyed by their role.
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags enabled for the pipeline.
+    IArtifactModelWorkflowArtifactModel:
+      required:
+      - workflowId
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - WorkflowArtifactModel
+          type: string
+        workflowId:
+          type: string
+        identifier:
+          type: string
+    IRefereeConfigProbabilisticAttachCategoryRefereeConfig:
+      required:
+      - threshold
+      - maxVotes
+      - _t
+      properties:
+        _t:
+          enum:
+          - ProbabilisticAttachCategoryRefereeConfig
+          type: string
+        threshold:
+          type: number
+          format: double
+        maxVotes:
+          type: integer
+          format: int32
+    IAssetNullAsset:
+      required:
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IPairMakerConfigOnlinePairMakerConfig:
+      required:
+      - randomMatchesRatio
+      - totalComparisonBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - OnlinePairMakerConfig
+          type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
+    IWorkflowConfigGroupedRankingWorkflowConfig:
+      required:
+      - criteria
+      - referee
+      - targetCountryCodes
+      - maxParallelism
+      - pairMakerConfig
+      - _t
+      properties:
+        _t:
+          enum:
+          - GroupedRankingWorkflowConfig
+          type: string
+        criteria:
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        targetCountryCodes:
+          type: array
+          items:
+            type: string
+        maxParallelism:
+          type: integer
+          format: int32
+        rankingConfig:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/IRankingConfig'
+        pairMakerConfig:
+          $ref: '#/components/schemas/IPairMakerConfig'
+        featureFlags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    IRapidBlueprintPolygonRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonBlueprint
+          type: string
+        target:
+          type: string
+    IArtifactModelDatasetArtifactModel:
+      required:
+      - datasetId
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - DatasetArtifactModel
+          type: string
+        datasetId:
+          type: string
+        identifier:
+          type: string
+    IMetadataCountMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    AttachCategoryRapidBlueprint_Category:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    IMetadataSourceUrlMetadata:
+      required:
+      - url
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadata
+          type: string
+        url:
+          type: string
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IRapidBlueprintTranscriptionRapidBlueprint:
+      required:
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionBlueprint
+          type: string
+        title:
+          type: string
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IRapidBlueprintFreeTextRapidBlueprint:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextBlueprint
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type:
+          - boolean
+          - 'null'
+        validationSystemPrompt:
+          type:
+          - string
+          - 'null'
+    IWorkflowConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
+      - $ref: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          EvaluationWorkflowConfig: '#/components/schemas/IWorkflowConfigEvaluationWorkflowConfig'
+          GroupedRankingWorkflowConfig: '#/components/schemas/IWorkflowConfigGroupedRankingWorkflowConfig'
+          RankingWorkflowConfig: '#/components/schemas/IWorkflowConfigRankingWorkflowConfig'
+          SimpleWorkflowConfig: '#/components/schemas/IWorkflowConfigSimpleWorkflowConfig'
+    IRankingConfig:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
+      - $ref: '#/components/schemas/IRankingConfigEloRankingConfig'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigBradleyTerryRankingConfig'
+          EloRankingConfig: '#/components/schemas/IRankingConfigEloRankingConfig'
+    IMetadataImageDimensionMetadata:
+      required:
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IWorkflowConfigSimpleWorkflowConfig:
+      required:
+      - referee
+      - blueprint
+      - _t
+      properties:
+        _t:
+          enum:
+          - SimpleWorkflowConfig
+          type: string
+        referee:
+          $ref: '#/components/schemas/IRefereeConfig'
+        blueprint:
+          $ref: '#/components/schemas/IRapidBlueprint'
+        batchSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        featureFlags:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    IMetadataDurationMetadata:
+      required:
+      - duration
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - DurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IRefereeConfigNaiveRefereeConfig:
+      required:
+      - responsesRequired
+      - _t
+      properties:
+        _t:
+          enum:
+          - NaiveRefereeConfig
+          type: string
+        responsesRequired:
+          type: integer
+          format: int32
+    IAssetFileAsset:
+      required:
+      - fileName
+      - metadata
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/IMetadata'
+    IRefereeConfigQuorumRefereeConfig:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumRefereeConfig
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

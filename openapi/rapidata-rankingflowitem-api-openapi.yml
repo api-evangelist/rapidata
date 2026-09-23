@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset RankingFlowItem API
+  title: Rapidata Ranking Flow Item API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - RankingFlowItem
-      summary: Creates a new flow item for the specified flow.
+      summary: Creates a new flow item for the specified flow
       parameters:
       - name: flowId
         in: path
@@ -51,10 +51,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postFlowRankingByFlowIdItem
+      x-operation-id-source: derived
     get:
       tags:
       - RankingFlowItem
-      summary: Queries flow items for a flow.
+      summary: Queries flow items for a flow
       parameters:
       - name: flowId
         in: path
@@ -184,11 +186,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingByFlowIdItem
+      x-operation-id-source: derived
   /flow/ranking/item/{flowItemId}:
     get:
       tags:
       - RankingFlowItem
-      summary: Retrieves a flow item by its ID.
+      summary: Retrieves a flow item by its ID
       parameters:
       - name: flowItemId
         in: path
@@ -219,11 +223,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingItemByFlowItemId
+      x-operation-id-source: derived
   /flow/ranking/item/{flowItemId}/results:
     get:
       tags:
       - RankingFlowItem
-      summary: Returns ranking results with Elo scores for a completed flow item.
+      summary: Returns ranking results with Elo scores for a completed flow item
       description: Returns 409 Conflict if the flow item is not yet completed or has no associated workflow.
       parameters:
       - name: flowItemId
@@ -261,11 +267,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingItemByFlowItemIdResults
+      x-operation-id-source: derived
   /flow/ranking/item/{flowItemId}/vote-matrix:
     get:
       tags:
       - RankingFlowItem
-      summary: Retrieves the pairwise vote matrix for a completed flow item.
+      summary: Retrieves the pairwise vote matrix for a completed flow item
       description: Returns 409 Conflict if the flow item is not completed or has no associated workflow.
       parameters:
       - name: flowItemId
@@ -303,92 +311,136 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getFlowRankingItemByFlowItemIdVoteMatrix
+      x-operation-id-source: derived
 components:
   schemas:
     MetadataModelCollection:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/IMetadataModel'
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
+    FlowItemState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
+      - Stopping
+      - Stopped
+      - Incomplete
+    ProblemDetails:
+      type: object
       properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    IMetadataModelTextMetadataModel:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+    QueryFlowItemsEndpoint_Output:
       required:
-      - text
-      - _t
+      - id
+      - datasetId
+      - state
+      - createdAt
+      type: object
       properties:
-        _t:
-          enum:
-          - TextMetadata
+        id:
           type: string
-        text:
+          description: The unique identifier of the flow item.
+        datasetId:
           type: string
-          nullable: true
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IAssetModelNullAssetModel:
-      required:
-      - metadata
-      - identifier
-      - _t
+          description: The ID of the dataset used by this flow item.
+        workflowId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the workflow created for this flow item.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/FlowItemState'
+          description: The current state of the flow item.
+        context:
+          type:
+          - string
+          - 'null'
+          description: Optional context associated with this flow item.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: Optional asset context associated with this flow item.
+        failureMessage:
+          type:
+          - string
+          - 'null'
+          description: The failure message if the flow item failed.
+        createdAt:
+          type: string
+          description: The timestamp when the flow item was created.
+          format: date-time
+        startedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item started processing.
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item completed.
+          format: date-time
+        failedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item failed.
+          format: date-time
+    ValidationProblemDetails:
+      type: object
       properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
           type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
+          additionalProperties:
+            type: array
+            items:
+              type: string
     IMetadataModel:
       required:
       - _t
@@ -417,212 +469,22 @@ components:
           StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
           TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
           VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    IAssetModelMultiAssetModel:
+    IAssetModel:
       required:
-      - assets
-      - metadata
-      - identifier
       - _t
-      properties:
-        _t:
-          enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    QueryFlowItemsEndpoint_Output:
-      required:
-      - id
-      - datasetId
-      - state
-      - createdAt
       type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the flow item.
-        datasetId:
-          type: string
-          description: The ID of the dataset used by this flow item.
-        workflowId:
-          type: string
-          description: The ID of the workflow created for this flow item.
-          nullable: true
-        state:
-          allOf:
-          - $ref: '#/components/schemas/FlowItemState'
-          description: The current state of the flow item.
-        context:
-          type: string
-          description: Optional context associated with this flow item.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: Optional asset context associated with this flow item.
-        failureMessage:
-          type: string
-          description: The failure message if the flow item failed.
-          nullable: true
-        createdAt:
-          type: string
-          description: The timestamp when the flow item was created.
-          format: date-time
-        startedAt:
-          type: string
-          description: The timestamp when the flow item started processing.
-          format: date-time
-          nullable: true
-        completedAt:
-          type: string
-          description: The timestamp when the flow item completed.
-          format: date-time
-          nullable: true
-        failedAt:
-          type: string
-          description: The timestamp when the flow item failed.
-          format: date-time
-          nullable: true
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    FlowItemState:
-      enum:
-      - Pending
-      - Running
-      - Completed
-      - Failed
-      - Stopping
-      - Stopped
-      - Incomplete
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    GetRankingFlowItemResultsEndpoint_Output_Datapoint:
-      required:
-      - id
-      - asset
-      - elo
-      type: object
-      properties:
-        id:
-          type: string
-        asset:
-          $ref: '#/components/schemas/IAssetModel'
-        elo:
-          type: integer
-          format: int32
-    CreateFlowItemEndpoint_Output:
-      required:
-      - flowItemId
-      type: object
-      properties:
-        flowItemId:
-          type: string
-          description: The ID of the created flow item.
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
     IAssetModelTextAssetModel:
       required:
       - text
@@ -640,6 +502,20 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
+    GetRankingFlowItemResultsEndpoint_Output_Datapoint:
+      required:
+      - id
+      - asset
+      - elo
+      type: object
+      properties:
+        id:
+          type: string
+        asset:
+          $ref: '#/components/schemas/IAssetModel'
+        elo:
+          type: integer
+          format: int32
     QueryFlowItemsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -664,62 +540,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type: string
-          nullable: true
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
     GetRankingFlowItemResultsEndpoint_Output:
       required:
       - datapoints
@@ -742,6 +562,296 @@ components:
       - Image
       - Video
       - Audio
+    CreateFlowItemEndpoint_Output:
+      required:
+      - flowItemId
+      type: object
+      properties:
+        flowItemId:
+          type: string
+          description: The ID of the created flow item.
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    GetFlowItemByIdEndpoint_Output:
+      required:
+      - id
+      - flowId
+      - datasetId
+      - state
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the flow item.
+        flowId:
+          type: string
+          description: The ID of the flow this item belongs to.
+        datasetId:
+          type: string
+          description: The ID of the dataset used by this flow item.
+        workflowId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the workflow created for this flow item.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/FlowItemState'
+          description: The current state of the flow item.
+        context:
+          type:
+          - string
+          - 'null'
+          description: Optional context associated with this flow item.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: Optional asset context associated with this flow item.
+        failureMessage:
+          type:
+          - string
+          - 'null'
+          description: The failure message if the flow item failed.
+        expiresAt:
+          type:
+          - string
+          - 'null'
+          description: The expiration timestamp of the flow item.
+          format: date-time
+        createdAt:
+          type: string
+          description: The timestamp when the flow item was created.
+          format: date-time
+        startedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item started processing.
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item completed.
+          format: date-time
+        failedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the flow item failed.
+          format: date-time
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
     CreateFlowItemEndpoint_Input:
       required:
       - datasetId
@@ -751,23 +861,26 @@ components:
           type: string
           description: The ID of the dataset to use for this flow item.
         context:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional context to provide additional ranking guidance.
-          nullable: true
         contextAsset:
           allOf:
           - $ref: '#/components/schemas/IAssetInput'
           description: Optional asset context to provide additional ranking guidance.
         timeToLiveInSeconds:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Optional time-to-live in seconds before the flow item expires. Must be between 60 seconds and 1 hour; defaults to 1 hour when omitted.
           format: int32
-          nullable: true
         drainDurationInSeconds:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: Optional drain duration in seconds. When set, rapids are paused this many seconds before TTL expiry to allow in-flight responses to complete.
           format: int32
-          nullable: true
     GetRankingFlowItemVoteMatrixEndpoint_Output:
       required:
       - index
@@ -796,81 +909,22 @@ components:
                 type: number
                 format: double
           description: The vote counts as a two-dimensional matrix where Data[i][j] is the number of times row i was preferred over column j.
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IMetadataModelImageDimensionMetadataModel:
+    IMetadataInputTextMetadataInput:
       required:
+      - text
+      - visibilities
       - _t
       properties:
         _t:
           enum:
-          - ImageDimensionMetadata
+          - TextMetadataInput
           type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
     IAssetModelFileAssetModel:
       required:
       - fileName
@@ -888,68 +942,58 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-    GetFlowItemByIdEndpoint_Output:
+    IMetadataModelVideoDurationMetadataModel:
       required:
-      - id
-      - flowId
-      - datasetId
-      - state
-      - createdAt
-      type: object
+      - duration
+      - _t
       properties:
-        id:
+        _t:
+          enum:
+          - VideoDurationMetadata
           type: string
-          description: The unique identifier of the flow item.
-        flowId:
+        duration:
           type: string
-          description: The ID of the flow this item belongs to.
-        datasetId:
-          type: string
-          description: The ID of the dataset used by this flow item.
-        workflowId:
-          type: string
-          description: The ID of the workflow created for this flow item.
-          nullable: true
-        state:
-          allOf:
-          - $ref: '#/components/schemas/FlowItemState'
-          description: The current state of the flow item.
-        context:
-          type: string
-          description: Optional context associated with this flow item.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: Optional asset context associated with this flow item.
-        failureMessage:
-          type: string
-          description: The failure message if the flow item failed.
-          nullable: true
-        expiresAt:
-          type: string
-          description: The expiration timestamp of the flow item.
           format: date-time
-          nullable: true
-        createdAt:
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
           type: string
-          description: The timestamp when the flow item was created.
-          format: date-time
-        startedAt:
+        count:
+          type: integer
+          format: int32
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
           type: string
-          description: The timestamp when the flow item started processing.
-          format: date-time
-          nullable: true
-        completedAt:
+        originalFilename:
           type: string
-          description: The timestamp when the flow item completed.
-          format: date-time
-          nullable: true
-        failedAt:
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
           type: string
-          description: The timestamp when the flow item failed.
-          format: date-time
-          nullable: true
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

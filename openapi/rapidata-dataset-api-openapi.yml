@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Dataset API
+  title: Rapidata Dataset API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Dataset
-      summary: Creates a new empty dataset.
+      summary: Creates a new empty dataset
       requestBody:
         description: The dataset creation parameters.
         content:
@@ -44,11 +44,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postDataset
+      x-operation-id-source: derived
   /dataset/{datasetId}:
     get:
       tags:
       - Dataset
-      summary: Gets a dataset by its id.
+      summary: Gets a dataset by its id
       parameters:
       - name: datasetId
         in: path
@@ -79,11 +81,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getDatasetByDatasetId
+      x-operation-id-source: derived
   /dataset/{datasetId}/progress:
     get:
       tags:
       - Dataset
-      summary: Gets the upload progress of a dataset.
+      summary: Gets the upload progress of a dataset
       parameters:
       - name: datasetId
         in: path
@@ -114,11 +118,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getDatasetByDatasetIdProgress
+      x-operation-id-source: derived
   /dataset/{datasetId}/name:
     patch:
       tags:
       - Dataset
-      summary: Updates the name of a dataset.
+      summary: Updates the name of a dataset
       parameters:
       - name: datasetId
         in: path
@@ -152,16 +158,18 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchDatasetByDatasetIdName
+      x-operation-id-source: derived
 components:
   schemas:
-    UpdateDatasetNameEndpoint_Input:
+    GetDatasetByIdEndpoint_Output:
       required:
       - name
       type: object
       properties:
         name:
           type: string
-          description: The new name of the dataset.
+          description: The name of the dataset.
     CreateDatasetEndpoint_Input:
       required:
       - name
@@ -171,40 +179,44 @@ components:
           type: string
           description: The name to give to the new dataset.
       description: The input for the create dataset endpoint.
+    UpdateDatasetNameEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the dataset.
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
             type: array
             items:
               type: string
-    CreateDatasetEndpoint_Output:
-      required:
-      - datasetId
-      type: object
-      properties:
-        datasetId:
-          type: string
-          description: The id of the created dataset.
-      description: The result when a dataset has been created.
     GetDatasetProgressEndpoint_Output:
       required:
       - total
@@ -229,14 +241,15 @@ components:
           type: integer
           description: The number of datapoints that failed to upload.
           format: int32
-    GetDatasetByIdEndpoint_Output:
+    CreateDatasetEndpoint_Output:
       required:
-      - name
+      - datasetId
       type: object
       properties:
-        name:
+        datasetId:
           type: string
-          description: The name of the dataset.
+          description: The id of the created dataset.
+      description: The result when a dataset has been created.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

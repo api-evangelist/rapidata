@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Payment API
+  title: Rapidata Payment API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Payment
-      summary: Creates a new Stripe checkout session for the given price.
+      summary: Creates a new Stripe checkout session for the given price
       parameters:
       - name: priceId
         in: query
@@ -49,12 +49,16 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postPaymentCheckout
+      x-operation-id-source: derived
   /payment/topup:
     post:
       tags:
       - Payment
-      summary: "Creates a hosted checkout session for the authenticated customer to add the given amount to\n their prepaid balance."
-      description: "Rejected for non-prepaid customers and for amounts below the configured minimum. On\n successful payment a voucher for the amount is minted, which raises the customer's balance."
+      summary: Creates a hosted checkout session for the authenticated customer to add the…
+      description: 'Rejected for non-prepaid customers and for amounts below the configured minimum. On
+
+        successful payment a voucher for the amount is minted, which raises the customer''s balance.'
       requestBody:
         description: The amount in dollars to add to the balance.
         content:
@@ -85,11 +89,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postPaymentTopup
+      x-operation-id-source: derived
   /payment/session/{sessionId}:
     get:
       tags:
       - Payment
-      summary: Gets the current status of a checkout session.
+      summary: Gets the current status of a checkout session
       description: Used to check whether the payment was successful or is still pending.
       parameters:
       - name: sessionId
@@ -121,12 +127,16 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getPaymentSessionBySessionId
+      x-operation-id-source: derived
   /payment/webhook:
     post:
       tags:
       - Payment
-      summary: Processes an incoming Stripe webhook event.
-      description: "Reads the raw request body and the Stripe-Signature header, then dispatches a\n ProcessPaymentEventCommand."
+      summary: Processes an incoming Stripe webhook event
+      description: 'Reads the raw request body and the Stripe-Signature header, then dispatches a
+
+        ProcessPaymentEventCommand.'
       responses:
         '200':
           description: OK
@@ -136,35 +146,42 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postPaymentWebhook
+      x-operation-id-source: derived
 components:
   schemas:
-    CreateCheckoutEndpoint_Output:
+    GetCheckoutSessionEndpoint_Output:
       required:
-      - sessionId
+      - status
       type: object
       properties:
-        sessionId:
+        status:
           type: string
-          description: The id of the created checkout session.
+          description: The current status of the checkout session.
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
@@ -179,14 +196,6 @@ components:
         url:
           type: string
           description: The hosted Stripe checkout url to redirect the customer to.
-    GetCheckoutSessionEndpoint_Output:
-      required:
-      - status
-      type: object
-      properties:
-        status:
-          type: string
-          description: The current status of the checkout session.
     CreateTopUpEndpoint_Input:
       required:
       - amount
@@ -196,6 +205,14 @@ components:
           type: number
           description: The amount in dollars to add to the prepaid balance.
           format: double
+    CreateCheckoutEndpoint_Output:
+      required:
+      - sessionId
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: The id of the created checkout session.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

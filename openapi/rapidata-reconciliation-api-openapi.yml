@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Reconciliation API
+  title: Rapidata Reconciliation API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - Reconciliation
-      summary: Returns the aggregated status and results of all reconciliation jobs in a bulk operation.
+      summary: Returns the aggregated status and results of all reconciliation jobs in a bulk…
       parameters:
       - name: bulkReconciliationId
         in: path
@@ -44,11 +44,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getBillingReconciliationBulkByBulkReconciliationId
+      x-operation-id-source: derived
   /billing/reconciliation/{jobId}:
     get:
       tags:
       - Reconciliation
-      summary: Returns the status and results of a reconciliation job.
+      summary: Returns the status and results of a reconciliation job
       parameters:
       - name: jobId
         in: path
@@ -79,11 +81,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getBillingReconciliationByJobId
+      x-operation-id-source: derived
   /billing/reconciliation/bulk/{bulkReconciliationId}/redispatch:
     post:
       tags:
       - Reconciliation
-      summary: Redispatches the individual reconciliations contained in the given bulk reconciliation.
+      summary: Redispatches the individual reconciliations contained in the given bulk…
       parameters:
       - name: bulkReconciliationId
         in: path
@@ -110,12 +114,18 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postBillingReconciliationBulkByBulkReconciliationIdRedispatch
+      x-operation-id-source: derived
   /billing/reconcile:
     post:
       tags:
       - Reconciliation
-      summary: Starts reconciliation for a single billing item, all items for a customer, or all items in a billing group.
-      description: "Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.\n Date range filtering is only available with CustomerId or BillingGroupId.\n Returns a correlation ID that can be used to track progress of the bulk operation."
+      summary: Starts reconciliation for a single billing item, all items for a customer, or…
+      description: 'Exactly one of BillingItemId, CustomerId, or BillingGroupId must be specified.
+
+        Date range filtering is only available with CustomerId or BillingGroupId.
+
+        Returns a correlation ID that can be used to track progress of the bulk operation.'
       requestBody:
         description: The reconciliation target and configuration options.
         content:
@@ -146,128 +156,41 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postBillingReconcile
+      x-operation-id-source: derived
 components:
   schemas:
-    GetReconciliationStatusEndpoint_Output:
-      required:
-      - jobId
-      - billingId
-      - state
-      - timestampMode
-      - rapidsProcessed
-      - rapidsUpdated
-      - rapidsAlreadyCorrect
-      - rapidsFailed
-      - responsesProcessed
-      - correctionsCreated
-      - responsesAlreadyCorrect
-      - responsesFailed
-      - createdAt
-      - createdById
-      - createdByMail
-      type: object
-      properties:
-        jobId:
-          type: string
-          description: The unique identifier of the reconciliation job.
-        billingId:
-          type: string
-          description: The billing item identifier this job reconciles.
-        bulkReconciliationId:
-          type: string
-          description: The bulk reconciliation identifier if this job was created as part of a bulk operation.
-          nullable: true
-        state:
-          allOf:
-          - $ref: '#/components/schemas/ReconciliationJobState'
-          description: The current state of the reconciliation job.
-        timestampMode:
-          allOf:
-          - $ref: '#/components/schemas/ReconciliationTimestampMode'
-          description: The timestamp mode used for correction entries.
-        rapidsProcessed:
-          type: integer
-          description: The total number of rapids processed.
-          format: int32
-        rapidsUpdated:
-          type: integer
-          description: The number of rapids that were updated.
-          format: int32
-        rapidsAlreadyCorrect:
-          type: integer
-          description: The number of rapids that were already correct.
-          format: int32
-        rapidsFailed:
-          type: integer
-          description: The number of rapids that failed during reconciliation.
-          format: int32
-        responsesProcessed:
-          type: integer
-          description: The total number of responses processed.
-          format: int32
-        correctionsCreated:
-          type: integer
-          description: The number of correction entries created.
-          format: int32
-        responsesAlreadyCorrect:
-          type: integer
-          description: The number of responses that were already correct.
-          format: int32
-        responsesFailed:
-          type: integer
-          description: The number of responses that failed during reconciliation.
-          format: int32
-        errorMessage:
-          type: string
-          description: The error message if the job failed.
-          nullable: true
-        completedAt:
-          type: string
-          description: The timestamp when the job completed.
-          format: date-time
-          nullable: true
-        createdAt:
-          type: string
-          description: The timestamp when the job was created.
-          format: date-time
-        createdById:
-          type: string
-          description: The identifier of the user who created the job.
-          format: uuid
-        createdByMail:
-          type: string
-          description: The email of the user who created the job.
-    BulkReconciliationDispatchState:
-      enum:
-      - Dispatching
-      - Completed
-      - Failed
     StartBulkReconciliationEndpoint_Input:
       type: object
       properties:
         billingItemId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The identifier of a single billing item to reconcile.
-          nullable: true
         customerId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The customer identifier to reconcile all billing items for.
           format: uuid
-          nullable: true
         billingGroupId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The billing group identifier to reconcile all billing items for.
-          nullable: true
         startDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional start date filter. Only applies with CustomerId or BillingGroupId.
           format: date-time
-          nullable: true
         endDate:
-          type: string
+          type:
+          - string
+          - 'null'
           description: Optional end date filter. Only applies with CustomerId or BillingGroupId.
           format: date-time
-          nullable: true
         timestampMode:
           allOf:
           - $ref: '#/components/schemas/ReconciliationTimestampMode'
@@ -305,10 +228,11 @@ components:
           description: The expected total number of billing items to dispatch.
           format: int32
         dispatchCompletedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The timestamp when dispatching finished. Null if still dispatching.
           format: date-time
-          nullable: true
         totalJobs:
           type: integer
           description: The total number of reconciliation jobs in this bulk operation.
@@ -366,45 +290,103 @@ components:
           description: The timestamp when the bulk operation was created.
           format: date-time
         completedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The timestamp when all jobs completed. Null if not fully complete.
           format: date-time
-          nullable: true
-    ValidationProblemDetails:
+    GetReconciliationStatusEndpoint_Output:
+      required:
+      - jobId
+      - billingId
+      - state
+      - timestampMode
+      - rapidsProcessed
+      - rapidsUpdated
+      - rapidsAlreadyCorrect
+      - rapidsFailed
+      - responsesProcessed
+      - correctionsCreated
+      - responsesAlreadyCorrect
+      - responsesFailed
+      - createdAt
+      - createdById
+      - createdByMail
       type: object
       properties:
-        type:
+        jobId:
           type: string
-          nullable: true
-        title:
+          description: The unique identifier of the reconciliation job.
+        billingId:
           type: string
-          nullable: true
-        status:
+          description: The billing item identifier this job reconciles.
+        bulkReconciliationId:
+          type:
+          - string
+          - 'null'
+          description: The bulk reconciliation identifier if this job was created as part of a bulk operation.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationJobState'
+          description: The current state of the reconciliation job.
+        timestampMode:
+          allOf:
+          - $ref: '#/components/schemas/ReconciliationTimestampMode'
+          description: The timestamp mode used for correction entries.
+        rapidsProcessed:
           type: integer
+          description: The total number of rapids processed.
           format: int32
-          nullable: true
-        detail:
+        rapidsUpdated:
+          type: integer
+          description: The number of rapids that were updated.
+          format: int32
+        rapidsAlreadyCorrect:
+          type: integer
+          description: The number of rapids that were already correct.
+          format: int32
+        rapidsFailed:
+          type: integer
+          description: The number of rapids that failed during reconciliation.
+          format: int32
+        responsesProcessed:
+          type: integer
+          description: The total number of responses processed.
+          format: int32
+        correctionsCreated:
+          type: integer
+          description: The number of correction entries created.
+          format: int32
+        responsesAlreadyCorrect:
+          type: integer
+          description: The number of responses that were already correct.
+          format: int32
+        responsesFailed:
+          type: integer
+          description: The number of responses that failed during reconciliation.
+          format: int32
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: The error message if the job failed.
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: The timestamp when the job completed.
+          format: date-time
+        createdAt:
           type: string
-          nullable: true
-        instance:
+          description: The timestamp when the job was created.
+          format: date-time
+        createdById:
           type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    ReconciliationTimestampMode:
-      enum:
-      - UseResponseCreatedAt
-      - UseReconciliationTime
-    ReconciliationJobState:
-      enum:
-      - Pending
-      - Running
-      - Completed
-      - Failed
+          description: The identifier of the user who created the job.
+          format: uuid
+        createdByMail:
+          type: string
+          description: The email of the user who created the job.
     StartBulkReconciliationEndpoint_Output:
       required:
       - bulkReconciliationId
@@ -413,6 +395,51 @@ components:
         bulkReconciliationId:
           type: string
           description: The bulk reconciliation identifier for all jobs created in this bulk operation.
+    ReconciliationJobState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    BulkReconciliationDispatchState:
+      enum:
+      - Dispatching
+      - Completed
+      - Failed
+    ReconciliationTimestampMode:
+      enum:
+      - UseResponseCreatedAt
+      - UseReconciliationTime
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

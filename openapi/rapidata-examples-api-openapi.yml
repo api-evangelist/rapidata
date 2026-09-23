@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Examples API
+  title: Rapidata Examples API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Examples
-      summary: Adds a new example to an audience.
+      summary: Adds a new example to an audience
       parameters:
       - name: audienceId
         in: path
@@ -51,11 +51,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postAudienceByAudienceIdExample
+      x-operation-id-source: derived
   /audience/example/{exampleId}:
     delete:
       tags:
       - Examples
-      summary: Deletes the specified audience example.
+      summary: Deletes the specified audience example
       parameters:
       - name: exampleId
         in: path
@@ -86,11 +88,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteAudienceExampleByExampleId
+      x-operation-id-source: derived
   /audience/{audienceId}/examples:
     get:
       tags:
       - Examples
-      summary: Queries all examples for the specified audience.
+      summary: Queries all examples for the specified audience
       parameters:
       - name: audienceId
         in: path
@@ -218,11 +222,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getAudienceByAudienceIdExamples
+      x-operation-id-source: derived
   /audience/{audienceId}/example/{exampleId}:
     patch:
       tags:
       - Examples
-      summary: Updates an example's properties within an audience.
+      summary: Updates an example's properties within an audience
       parameters:
       - name: audienceId
         in: path
@@ -262,71 +268,10 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: patchAudienceByAudienceIdExampleByExampleId
+      x-operation-id-source: derived
 components:
   schemas:
-    IExampleTruthLineExampleTruth:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineExampleTruth
-          type: string
-        boundingBoxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExampleBoxShape'
-          nullable: true
-        requiredPrecision:
-          type: number
-          format: double
-          nullable: true
-        requiredCompleteness:
-          type: number
-          format: double
-          nullable: true
-    IExamplePayloadTranscriptionExamplePayload:
-      required:
-      - title
-      - transcription
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionExamplePayload
-          type: string
-        title:
-          type: string
-        transcription:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExampleTranscriptionWord'
-    MetadataModelCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
-    IExamplePayloadScrubExamplePayload:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubExamplePayload
-          type: string
-        target:
-          type: string
-    IExamplePayloadLocateExamplePayload:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateExamplePayload
-          type: string
-        target:
-          type: string
     IExamplePayloadClassifyExamplePayload:
       required:
       - categories
@@ -343,17 +288,90 @@ components:
             $ref: '#/components/schemas/ExampleCategory'
         title:
           type: string
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
+    AddExampleToAudienceEndpoint_Output:
+      type: object
       properties:
-        _t:
-          enum:
-          - ClassificationMetadata
+        recalculationId:
+          type:
+          - string
+          - 'null'
+          description: "The id of the audience state recalculation dispatched as a result of adding this example.\n Null when the example addition cannot transition any user's state (e.g. the audience\n already has more examples than MaxDistillingResponses + 1)."
+    QueryExamplesForAudienceEndpoint_Output:
+      required:
+      - id
+      - asset
+      - payload
+      - correctCount
+      - incorrectCount
+      type: object
+      properties:
+        id:
           type: string
-        classification:
-          type: string
+          description: The unique identifier of the example.
+        rapidId:
+          type:
+          - string
+          - 'null'
+          description: The ID of the rapid associated with this example.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with this example.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IExamplePayload'
+          description: The payload of the example.
+        correctCount:
+          type: integer
+          description: The number of correct responses.
+          format: int32
+        incorrectCount:
+          type: integer
+          description: The number of incorrect responses.
+          format: int32
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The truth value of the example.
+        context:
+          type:
+          - string
+          - 'null'
+          description: The context text for the example.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The context asset for the example.
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: The explanation for the example.
+        randomCorrectProbability:
+          type: number
+          description: The probability of a random correct answer.
+          format: double
+        isCommonSense:
+          type:
+          - boolean
+          - 'null'
+          description: Whether this example is common sense.
+        sortIndex:
+          type: integer
+          description: The sort index that controls serving order.
+          format: int32
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: The visibility of this example. Public examples are visible to all customers.
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    ExampleVisibility:
+      enum:
+      - Private
+      - Public
     IExampleTruthScrubExampleTruth:
       required:
       - validRanges
@@ -367,53 +385,36 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ExampleScrubRange'
-    FeatureFlag:
-      required:
-      - key
-      - value
+    ValidationProblemDetails:
       type: object
       properties:
-        key:
-          type: string
-        value:
-          type: string
-    IMetadataModelTextMetadataModel:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
-          type: string
-        text:
-          type: string
-          nullable: true
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IAssetModelNullAssetModel:
-      required:
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     IExampleTruth:
       required:
       - _t
@@ -434,40 +435,6 @@ components:
           LocateExampleTruth: '#/components/schemas/IExampleTruthLocateExampleTruth'
           ScrubExampleTruth: '#/components/schemas/IExampleTruthScrubExampleTruth'
           TranscriptionExampleTruth: '#/components/schemas/IExampleTruthTranscriptionExampleTruth'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IExampleTruthClassifyExampleTruth:
-      required:
-      - correctCategories
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyExampleTruth
-          type: string
-        correctCategories:
-          type: array
-          items:
-            type: string
     IMetadataModel:
       required:
       - _t
@@ -500,21 +467,491 @@ components:
       type: object
       properties:
         xMin:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         yMin:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         xMax:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
         yMax:
-          type: number
+          type:
+          - number
+          - 'null'
           format: double
-          nullable: true
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    UpdateAudienceExampleEndpoint_Input:
+      type: object
+      properties:
+        truth:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The truth for the example.
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: The optional explanation that will be shown to the user when answering wrong.
+        context:
+          type:
+          - string
+          - 'null'
+          description: An optional text context that will be shown to the user.
+        contextAsset:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that will be used as context to show to the user.
+        randomCorrectProbability:
+          type:
+          - number
+          - 'null'
+          description: The probability that if the user answers at random that they'll be correct.
+          format: double
+        isCommonSense:
+          type:
+          - boolean
+          - 'null'
+          description: Whether this example should be treated as commonsense validation.
+        sortIndex:
+          type: integer
+          description: The sort index that controls the serving order of this example.
+          format: int32
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins."
+      description: Input model for updating an audience example.
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    ExampleScrubRange:
+      required:
+      - start
+      - end
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+    IExamplePayloadLineExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineExamplePayload
+          type: string
+        target:
+          type: string
+    IExamplePayloadScrubExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubExamplePayload
+          type: string
+        target:
+          type: string
+    IExamplePayloadLocateExamplePayload:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateExamplePayload
+          type: string
+        target:
+          type: string
+    ExampleCategory:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IExamplePayload:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadCompareExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadLineExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadLocateExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadScrubExamplePayload'
+      - $ref: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyExamplePayload: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
+          CompareExamplePayload: '#/components/schemas/IExamplePayloadCompareExamplePayload'
+          LineExamplePayload: '#/components/schemas/IExamplePayloadLineExamplePayload'
+          LocateExamplePayload: '#/components/schemas/IExamplePayloadLocateExamplePayload'
+          ScrubExamplePayload: '#/components/schemas/IExamplePayloadScrubExamplePayload'
+          TranscriptionExamplePayload: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IExamplePayloadCompareExamplePayload:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareExamplePayload
+          type: string
+        criteria:
+          type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    QueryExamplesForAudienceEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryExamplesForAudienceEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    AddExampleToAudienceEndpoint_Input:
+      required:
+      - asset
+      - payload
+      - randomCorrectProbability
+      type: object
+      properties:
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset to use for the example.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/IExamplePayload'
+          description: The payload to use for the example.
+        truth:
+          allOf:
+          - $ref: '#/components/schemas/IExampleTruth'
+          description: The ground truth for the example.
+        randomCorrectProbability:
+          type: number
+          description: The probability for an answer to be correct when randomly guessing.
+          format: double
+        explanation:
+          type:
+          - string
+          - 'null'
+          description: An explanation for the users if they answer the example incorrectly.
+        context:
+          type:
+          - string
+          - 'null'
+          description: An optional textual context that provides additional information to the user.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset that provides additional context to the user.
+        sortIndex:
+          type:
+          - integer
+          - 'null'
+          description: "The sort index that controls the serving order of this example within the audience.\n When null, the next sort index is automatically calculated."
+          format: int32
+        featureFlags:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags to enable for the example.
+        isCommonSense:
+          type:
+          - boolean
+          - 'null'
+          description: "Whether this example should be treated as commonsense validation.\n When true, incorrect answers are not accepted and the example affects global score.\n When null, AI auto-detection will determine if the example is common sense."
+        visibility:
+          allOf:
+          - $ref: '#/components/schemas/ExampleVisibility'
+          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins.\n Defaults to Private."
+      description: Input model for adding an example to an audience.
+    ExampleTranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IExamplePayloadTranscriptionExamplePayload:
+      required:
+      - title
+      - transcription
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionExamplePayload
+          type: string
+        title:
+          type: string
+        transcription:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleTranscriptionWord'
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     IMetadataModelFileTypeMetadataModel:
       required:
       - fileType
@@ -545,6 +982,38 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
+    DeleteAudienceExampleEndpoint_Output:
+      type: object
+      properties:
+        recalculationId:
+          type:
+          - string
+          - 'null'
+          description: "The id of the audience state recalculation dispatched as a result of this deletion.\n Null when the deletion cannot transition any user's state (e.g. the audience still has\n more examples than MaxDistillingResponses + 1 after the delete)."
+    IExampleTruthLineExampleTruth:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineExampleTruth
+          type: string
+        boundingBoxes:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ExampleBoxShape'
+        requiredPrecision:
+          type:
+          - number
+          - 'null'
+          format: double
+        requiredCompleteness:
+          type:
+          - number
+          - 'null'
+          format: double
     IMetadataModelSourceUrlMetadataModel:
       required:
       - url
@@ -556,275 +1025,6 @@ components:
           type: string
         url:
           type: string
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    UpdateAudienceExampleEndpoint_Input:
-      type: object
-      properties:
-        truth:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/IExampleTruth'
-          description: The truth for the example.
-          nullable: true
-        explanation:
-          type: string
-          description: The optional explanation that will be shown to the user when answering wrong.
-          nullable: true
-        context:
-          type: string
-          description: An optional text context that will be shown to the user.
-          nullable: true
-        contextAsset:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset that will be used as context to show to the user.
-          nullable: true
-        randomCorrectProbability:
-          type: number
-          description: The probability that if the user answers at random that they'll be correct.
-          format: double
-          nullable: true
-        isCommonSense:
-          type: boolean
-          description: Whether this example should be treated as commonsense validation.
-          nullable: true
-        sortIndex:
-          type: integer
-          description: The sort index that controls the serving order of this example.
-          format: int32
-        visibility:
-          allOf:
-          - $ref: '#/components/schemas/ExampleVisibility'
-          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins."
-      description: Input model for updating an audience example.
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    IExamplePayloadCompareExamplePayload:
-      required:
-      - criteria
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareExamplePayload
-          type: string
-        criteria:
-          type: string
-    AddExampleToAudienceEndpoint_Input:
-      required:
-      - asset
-      - payload
-      - randomCorrectProbability
-      type: object
-      properties:
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset to use for the example.
-        payload:
-          allOf:
-          - $ref: '#/components/schemas/IExamplePayload'
-          description: The payload to use for the example.
-        truth:
-          allOf:
-          - $ref: '#/components/schemas/IExampleTruth'
-          description: The ground truth for the example.
-        randomCorrectProbability:
-          type: number
-          description: The probability for an answer to be correct when randomly guessing.
-          format: double
-        explanation:
-          type: string
-          description: An explanation for the users if they answer the example incorrectly.
-          nullable: true
-        context:
-          type: string
-          description: An optional textual context that provides additional information to the user.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset that provides additional context to the user.
-        sortIndex:
-          type: integer
-          description: "The sort index that controls the serving order of this example within the audience.\n When null, the next sort index is automatically calculated."
-          format: int32
-          nullable: true
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-            nullable: true
-          description: The feature flags to enable for the example.
-        isCommonSense:
-          type: boolean
-          description: "Whether this example should be treated as commonsense validation.\n When true, incorrect answers are not accepted and the example affects global score.\n When null, AI auto-detection will determine if the example is common sense."
-          nullable: true
-        visibility:
-          allOf:
-          - $ref: '#/components/schemas/ExampleVisibility'
-          description: "Controls who can see this example. Public examples are visible to all customers.\n Private examples are only visible to the customer who created them and admins.\n Defaults to Private."
-      description: Input model for adding an example to an audience.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    DeleteAudienceExampleEndpoint_Output:
-      type: object
-      properties:
-        recalculationId:
-          type: string
-          description: "The id of the audience state recalculation dispatched as a result of this deletion.\n Null when the deletion cannot transition any user's state (e.g. the audience still has\n more examples than MaxDistillingResponses + 1 after the delete)."
-          nullable: true
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    QueryExamplesForAudienceEndpoint_Output:
-      required:
-      - id
-      - asset
-      - payload
-      - correctCount
-      - incorrectCount
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the example.
-        rapidId:
-          type: string
-          description: The ID of the rapid associated with this example.
-          nullable: true
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The asset associated with this example.
-        payload:
-          allOf:
-          - $ref: '#/components/schemas/IExamplePayload'
-          description: The payload of the example.
-        correctCount:
-          type: integer
-          description: The number of correct responses.
-          format: int32
-        incorrectCount:
-          type: integer
-          description: The number of incorrect responses.
-          format: int32
-        truth:
-          allOf:
-          - $ref: '#/components/schemas/IExampleTruth'
-          description: The truth value of the example.
-        context:
-          type: string
-          description: The context text for the example.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The context asset for the example.
-        explanation:
-          type: string
-          description: The explanation for the example.
-          nullable: true
-        randomCorrectProbability:
-          type: number
-          description: The probability of a random correct answer.
-          format: double
-        isCommonSense:
-          type: boolean
-          description: Whether this example is common sense.
-          nullable: true
-        sortIndex:
-          type: integer
-          description: The sort index that controls serving order.
-          format: int32
-        visibility:
-          allOf:
-          - $ref: '#/components/schemas/ExampleVisibility'
-          description: The visibility of this example. Public examples are visible to all customers.
     IMetadataInputTextMetadataInput:
       required:
       - text
@@ -836,287 +1036,11 @@ components:
           - TextMetadataInput
           type: string
         text:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    AddExampleToAudienceEndpoint_Output:
-      type: object
-      properties:
-        recalculationId:
-          type: string
-          description: "The id of the audience state recalculation dispatched as a result of adding this example.\n Null when the example addition cannot transition any user's state (e.g. the audience\n already has more examples than MaxDistillingResponses + 1)."
-          nullable: true
-    QueryExamplesForAudienceEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryExamplesForAudienceEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IExampleTruthTranscriptionExampleTruth:
-      required:
-      - correctWords
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionExampleTruth
-          type: string
-        correctWords:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExampleTranscriptionWord'
-        strictGrading:
-          type: boolean
-          nullable: true
-        requiredPrecision:
-          type: number
-          format: double
-          nullable: true
-        requiredCompleteness:
-          type: number
-          format: double
-          nullable: true
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IExampleTruthCompareExampleTruth:
-      required:
-      - winnerId
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareExampleTruth
-          type: string
-        winnerId:
-          type: string
-    IExampleTruthLocateExampleTruth:
-      required:
-      - boundingBoxes
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateExampleTruth
-          type: string
-        boundingBoxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExampleBoxShape'
-        requiredPrecision:
-          type: number
-          format: double
-          nullable: true
-        requiredCompleteness:
-          type: number
-          format: double
-          nullable: true
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IMetadataModelImageDimensionMetadataModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - ImageDimensionMetadata
-          type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-    ExampleVisibility:
-      enum:
-      - Private
-      - Public
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    ExampleCategory:
-      required:
-      - label
-      - value
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-    ExampleTranscriptionWord:
-      required:
-      - word
-      - wordIndex
-      type: object
-      properties:
-        word:
-          type: string
-        wordIndex:
-          type: integer
-          format: int32
-    IExamplePayload:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
-      - $ref: '#/components/schemas/IExamplePayloadCompareExamplePayload'
-      - $ref: '#/components/schemas/IExamplePayloadLineExamplePayload'
-      - $ref: '#/components/schemas/IExamplePayloadLocateExamplePayload'
-      - $ref: '#/components/schemas/IExamplePayloadScrubExamplePayload'
-      - $ref: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassifyExamplePayload: '#/components/schemas/IExamplePayloadClassifyExamplePayload'
-          CompareExamplePayload: '#/components/schemas/IExamplePayloadCompareExamplePayload'
-          LineExamplePayload: '#/components/schemas/IExamplePayloadLineExamplePayload'
-          LocateExamplePayload: '#/components/schemas/IExamplePayloadLocateExamplePayload'
-          ScrubExamplePayload: '#/components/schemas/IExamplePayloadScrubExamplePayload'
-          TranscriptionExamplePayload: '#/components/schemas/IExamplePayloadTranscriptionExamplePayload'
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IExamplePayloadLineExamplePayload:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineExamplePayload
-          type: string
-        target:
-          type: string
-    ExampleScrubRange:
-      required:
-      - start
-      - end
-      type: object
-      properties:
-        start:
-          type: integer
-          format: int32
-        end:
-          type: integer
-          format: int32
     IAssetModelFileAssetModel:
       required:
       - fileName
@@ -1134,6 +1058,132 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
+    IExampleTruthClassifyExampleTruth:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyExampleTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    IExampleTruthCompareExampleTruth:
+      required:
+      - winnerId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareExampleTruth
+          type: string
+        winnerId:
+          type: string
+    IExampleTruthTranscriptionExampleTruth:
+      required:
+      - correctWords
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionExampleTruth
+          type: string
+        correctWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleTranscriptionWord'
+        strictGrading:
+          type:
+          - boolean
+          - 'null'
+        requiredPrecision:
+          type:
+          - number
+          - 'null'
+          format: double
+        requiredCompleteness:
+          type:
+          - number
+          - 'null'
+          format: double
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IExampleTruthLocateExampleTruth:
+      required:
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateExampleTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExampleBoxShape'
+        requiredPrecision:
+          type:
+          - number
+          - 'null'
+          format: double
+        requiredCompleteness:
+          type:
+          - number
+          - 'null'
+          format: double
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Datapoints API
+  title: Rapidata Datapoints API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Datapoints
-      summary: Creates a new datapoint in the specified dataset.
+      summary: Creates a new datapoint in the specified dataset
       parameters:
       - name: datasetId
         in: path
@@ -51,11 +51,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postDatasetByDatasetIdDatapoint
+      x-operation-id-source: derived
   /datapoint/{datapointId}:
     delete:
       tags:
       - Datapoints
-      summary: Deletes the specified datapoint.
+      summary: Deletes the specified datapoint
       parameters:
       - name: datapointId
         in: path
@@ -82,10 +84,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: deleteDatapointByDatapointId
+      x-operation-id-source: derived
     get:
       tags:
       - Datapoints
-      summary: Gets the details of a datapoint by its id.
+      summary: Gets the details of a datapoint by its id
       parameters:
       - name: datapointId
         in: path
@@ -116,12 +120,16 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getDatapointByDatapointId
+      x-operation-id-source: derived
   /dataset/{datasetId}/datapoints/failed:
     get:
       tags:
       - Datapoints
-      summary: Gets a list of all datapoints that failed to upload.
-      description: "A datapoint usually fails to upload when using a deferred upload mechanism such as when providing a URL\n and the URL is not accessible."
+      summary: Gets a list of all datapoints that failed to upload
+      description: 'A datapoint usually fails to upload when using a deferred upload mechanism such as when providing a URL
+
+        and the URL is not accessible.'
       parameters:
       - name: datasetId
         in: path
@@ -152,11 +160,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getDatasetByDatasetIdDatapointsFailed
+      x-operation-id-source: derived
   /dataset/{datasetId}/datapoints:
     get:
       tags:
       - Datapoints
-      summary: Queries all datapoints of a dataset.
+      summary: Queries all datapoints of a dataset
       parameters:
       - name: datasetId
         in: path
@@ -286,92 +296,67 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getDatasetByDatasetIdDatapoints
+      x-operation-id-source: derived
 components:
   schemas:
+    GetFailedDatapointsEndpoint_Datapoint:
+      required:
+      - id
+      - datasetId
+      - sortIndex
+      - asset
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+        datasetId:
+          type: string
+        sortIndex:
+          type:
+          - integer
+          - 'null'
+          format: int64
+        asset:
+          $ref: '#/components/schemas/IAssetModel'
+        createdAt:
+          type: string
+          format: date-time
     MetadataModelCollection:
       type: object
       additionalProperties:
         $ref: '#/components/schemas/IMetadataModel'
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
+    ValidationProblemDetails:
+      type: object
       properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    IMetadataModelTextMetadataModel:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
-          type: string
-        text:
-          type: string
-          nullable: true
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IAssetModelNullAssetModel:
-      required:
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
           type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
+          additionalProperties:
+            type: array
+            items:
+              type: string
     IMetadataModel:
       required:
       - _t
@@ -400,222 +385,6 @@ components:
           StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
           TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
           VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    IAssetModelMultiAssetModel:
-      required:
-      - assets
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    GetDatapointEndpoint_Output:
-      required:
-      - id
-      - datasetId
-      - state
-      - asset
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the datapoint.
-        datasetId:
-          type: string
-          description: The id of the dataset this datapoint belongs to.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/DatapointState'
-          description: The current state of the datapoint.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The asset that will be displayed to the users.
-        sortIndex:
-          type: integer
-          description: An optional upload index used to force a certain order.
-          format: int64
-          nullable: true
-        createdAt:
-          type: string
-          description: The timestamp when the datapoint was created.
-          format: date-time
-    CreateDatapointEndpoint_Output:
-      required:
-      - datapointId
-      type: object
-      properties:
-        datapointId:
-          type: string
-          description: The id of the created datapoint.
-    GetFailedDatapointsEndpoint_Output:
-      required:
-      - datapoints
-      type: object
-      properties:
-        datapoints:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetFailedDatapointsEndpoint_Datapoint'
-          description: The list of failed datapoints.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type: object
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
-        identifier:
-          type: string
-          nullable: true
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type: string
-          nullable: true
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    DatapointState:
-      enum:
-      - Ready
-      - Pending
-      - Failed
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
     IAssetModel:
       required:
       - _t
@@ -656,17 +425,73 @@ components:
         totalPages:
           type: integer
           format: int32
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    QueryDatapointsByDatasetIdEndpoint_Output:
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    CreateDatapointEndpoint_Input:
+      required:
+      - asset
+      type: object
+      properties:
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset within the datapoint.
+        context:
+          type:
+          - string
+          - 'null'
+          description: An additional context to show the users when solving the rapid.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset context for the datapoint.
+        sortIndex:
+          type:
+          - integer
+          - 'null'
+          description: The sort index represents the order of the datapoint in the dataset.
+          format: int64
+        group:
+          type:
+          - string
+          - 'null'
+          description: The group a datapoint belongs to.
+        transcription:
+          type:
+          - string
+          - 'null'
+          description: For audio or video assets, an optional transcription of the content.
+        privateMetadata:
+          allOf:
+          - type:
+            - object
+            - 'null'
+            additionalProperties:
+              type: string
+          description: Private metadata for internal tracking. Not displayed to users.
+      description: The body request for creating a new datapoint.
+    GetDatapointEndpoint_Output:
       required:
       - id
       - datasetId
+      - state
       - asset
+      - createdAt
       type: object
       properties:
         id:
@@ -675,14 +500,30 @@ components:
         datasetId:
           type: string
           description: The id of the dataset this datapoint belongs to.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/DatapointState'
+          description: The current state of the datapoint.
         asset:
           allOf:
           - $ref: '#/components/schemas/IAssetModel'
           description: The asset that will be displayed to the users.
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
+        sortIndex:
+          type:
+          - integer
+          - 'null'
+          description: An optional upload index used to force a certain order.
+          format: int64
+        createdAt:
+          type: string
+          description: The timestamp when the datapoint was created.
+          format: date-time
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
     IMetadataModelImageDimensionMetadataModel:
       required:
       - _t
@@ -697,18 +538,64 @@ components:
         width:
           type: integer
           format: int32
-    IMetadataModelCountMetadataModel:
+    IMetadataInput:
       required:
-      - count
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
       - _t
       properties:
         _t:
           enum:
-          - CountMetadata
+          - MultiAssetInput
           type: string
-        count:
-          type: integer
-          format: int32
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
     IMetadataModelLocationMetadataModel:
       required:
       - x
@@ -725,76 +612,6 @@ components:
         y:
           type: number
           format: float
-    CreateDatapointEndpoint_Input:
-      required:
-      - asset
-      type: object
-      properties:
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset within the datapoint.
-        context:
-          type: string
-          description: An additional context to show the users when solving the rapid.
-          nullable: true
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset context for the datapoint.
-        sortIndex:
-          type: integer
-          description: The sort index represents the order of the datapoint in the dataset.
-          format: int64
-          nullable: true
-        group:
-          type: string
-          description: The group a datapoint belongs to.
-          nullable: true
-        transcription:
-          type: string
-          description: For audio or video assets, an optional transcription of the content.
-          nullable: true
-        privateMetadata:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: string
-            nullable: true
-          description: Private metadata for internal tracking. Not displayed to users.
-      description: The body request for creating a new datapoint.
-    GetFailedDatapointsEndpoint_Datapoint:
-      required:
-      - id
-      - datasetId
-      - sortIndex
-      - asset
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-        datasetId:
-          type: string
-        sortIndex:
-          type: integer
-          format: int64
-          nullable: true
-        asset:
-          $ref: '#/components/schemas/IAssetModel'
-        createdAt:
-          type: string
-          format: date-time
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     IAssetInputExistingAssetInput:
       required:
       - name
@@ -807,13 +624,148 @@ components:
         name:
           type: string
         metadata:
-          type: object
+          type:
+          - object
+          - 'null'
           oneOf:
           - $ref: '#/components/schemas/MetadataInputCollection'
-          nullable: true
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-          nullable: true
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    DatapointState:
+      enum:
+      - Ready
+      - Pending
+      - Failed
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    CreateDatapointEndpoint_Output:
+      required:
+      - datapointId
+      type: object
+      properties:
+        datapointId:
+          type: string
+          description: The id of the created datapoint.
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
     IAssetModelFileAssetModel:
       required:
       - fileName
@@ -831,6 +783,86 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
+    GetFailedDatapointsEndpoint_Output:
+      required:
+      - datapoints
+      type: object
+      properties:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetFailedDatapointsEndpoint_Datapoint'
+          description: The list of failed datapoints.
+    QueryDatapointsByDatasetIdEndpoint_Output:
+      required:
+      - id
+      - datasetId
+      - asset
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the datapoint.
+        datasetId:
+          type: string
+          description: The id of the dataset this datapoint belongs to.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset that will be displayed to the users.
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

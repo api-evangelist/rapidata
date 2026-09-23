@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Feedback API
+  title: Rapidata Feedback API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - Feedback
-      summary: Submits feedback about our services.
+      summary: Submits feedback about our services
       requestBody:
         description: The feedback payload.
         content:
@@ -40,8 +40,40 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postFeedback
+      x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     SubmitFeedbackEndpoint_Input:
       required:
       - feedback
@@ -51,38 +83,15 @@ components:
           type: string
           description: The feedback text.
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The email of the user submitting the feedback.
-          nullable: true
         token:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The recaptcha token, required when the caller is not authenticated.
-          nullable: true
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

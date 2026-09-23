@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset ValidationFeedback API
+  title: Rapidata Validation Feedback API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     post:
       tags:
       - ValidationFeedback
-      summary: Submits feedback for a validation rapid outcome.
+      summary: Submits feedback for a validation rapid outcome
       parameters:
       - name: rapidId
         in: path
@@ -47,10 +47,12 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postRapidByRapidIdValidationFeedback
+      x-operation-id-source: derived
     get:
       tags:
       - ValidationFeedback
-      summary: Queries validation feedbacks for a rapid.
+      summary: Queries validation feedbacks for a rapid
       parameters:
       - name: rapidId
         in: path
@@ -211,8 +213,48 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getRapidByRapidIdValidationFeedback
+      x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateValidationFeedbackEndpoint_Input:
+      required:
+      - feedback
+      type: object
+      properties:
+        feedback:
+          type: string
+          description: The feedback text.
     QueryValidationFeedbacksEndpoint_Output:
       required:
       - id
@@ -262,39 +304,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    CreateValidationFeedbackEndpoint_Input:
-      required:
-      - feedback
-      type: object
-      properties:
-        feedback:
-          type: string
-          description: The feedback text.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

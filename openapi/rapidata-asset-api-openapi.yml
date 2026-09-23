@@ -1,4 +1,4 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
   title: Rapidata Asset API
   description: The API for the Rapidata Asset service
@@ -13,8 +13,10 @@ paths:
     post:
       tags:
       - Asset
-      summary: Compresses an uploaded image and returns the WebP result.
-      description: "Compression metrics are returned in response headers: X-Original-Size, X-Compressed-Size,\n X-Processing-Time-Ms, X-Original-Dimensions, X-Output-Dimensions."
+      summary: Compresses an uploaded image and returns the WebP result
+      description: 'Compression metrics are returned in response headers: X-Original-Size, X-Compressed-Size,
+
+        X-Processing-Time-Ms, X-Original-Dimensions, X-Output-Dimensions.'
       parameters:
       - name: quality
         in: query
@@ -66,11 +68,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postAssetCompress
+      x-operation-id-source: derived
   /asset/file:
     post:
       tags:
       - Asset
-      summary: Uploads a file to our system and returns the new file name used internally.
+      summary: Uploads a file to our system and returns the new file name used internally
       parameters:
       - name: compress
         in: query
@@ -124,11 +128,13 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postAssetFile
+      x-operation-id-source: derived
   /asset/url:
     post:
       tags:
       - Asset
-      summary: Downloads a file from the provided URL, stores it in our system and returns the new file name used internally.
+      summary: Downloads a file from the provided URL, stores it in our system and returns the…
       parameters:
       - name: url
         in: query
@@ -177,8 +183,40 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: postAssetUrl
+      x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     UploadFileEndpoint_Output:
       required:
       - fileName
@@ -199,15 +237,17 @@ components:
           type: boolean
           description: Whether the uploaded file was compressed during processing.
         originalSizeBytes:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The original size of the uploaded file in bytes, if available. This may be null if the size could not be determined.
           format: int64
-          nullable: true
         finalSizeBytes:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: "The final size of the stored file in bytes after processing (e.g., compression), if available.\n This may be null if the size could not be determined. If compression was applied, this size may be smaller than the original size."
           format: int64
-          nullable: true
     UploadFileFromUrlEndpoint_Output:
       required:
       - fileName
@@ -228,40 +268,17 @@ components:
           type: boolean
           description: Whether the uploaded file was compressed during processing.
         originalSizeBytes:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: The original size of the uploaded file in bytes, if available. This may be null if the size could not be determined.
           format: int64
-          nullable: true
         finalSizeBytes:
-          type: integer
+          type:
+          - integer
+          - 'null'
           description: "The final size of the stored file in bytes after processing (e.g., compression), if available.\n This may be smaller than the original size if compression was applied."
           format: int64
-          nullable: true
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type: string
-          nullable: true
-        title:
-          type: string
-          nullable: true
-        status:
-          type: integer
-          format: int32
-          nullable: true
-        detail:
-          type: string
-          nullable: true
-        instance:
-          type: string
-          nullable: true
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     IFormFile:
       type: string
       format: binary

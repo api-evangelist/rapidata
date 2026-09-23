@@ -1,6 +1,6 @@
-openapi: 3.0.4
+openapi: 3.2.0
 info:
-  title: Rapidata Asset Customer API
+  title: Rapidata Customer API
   description: The API for the Rapidata Asset service
   version: v1
 servers:
@@ -13,7 +13,7 @@ paths:
     get:
       tags:
       - Customer
-      summary: Queries customers with filtering and pagination.
+      summary: Queries customers with filtering and pagination
       description: Results are scoped to customers that belong to the caller's organization.
       parameters:
       - name: page
@@ -204,27 +204,34 @@ paths:
         - profile
         - email
         - offline_access
+      operationId: getCustomers
+      x-operation-id-source: derived
 components:
   schemas:
     ValidationProblemDetails:
       type: object
       properties:
         type:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         title:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         status:
-          type: integer
+          type:
+          - integer
+          - 'null'
           format: int32
-          nullable: true
         detail:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         instance:
-          type: string
-          nullable: true
+          type:
+          - string
+          - 'null'
         errors:
           type: object
           additionalProperties:
@@ -244,18 +251,21 @@ components:
           description: The unique identifier of the customer.
           format: uuid
         email:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The email address of the customer.
-          nullable: true
         organizationName:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The name of the organization this customer belongs to, if any.
-          nullable: true
         organizationId:
-          type: string
+          type:
+          - string
+          - 'null'
           description: The identifier of the organization this customer belongs to, if any.
           format: uuid
-          nullable: true
     QueryCustomersEndpoint_PagedResultOfOutput:
       required:
       - total
