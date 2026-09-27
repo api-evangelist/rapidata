@@ -158,6 +158,22 @@ components:
         status:
           type: string
           description: The current status of the checkout session.
+    CreateTopUpEndpoint_Output:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: The hosted Stripe checkout url to redirect the customer to.
+    CreateCheckoutEndpoint_Output:
+      required:
+      - sessionId
+      type: object
+      properties:
+        sessionId:
+          type: string
+          description: The id of the created checkout session.
     ValidationProblemDetails:
       type: object
       properties:
@@ -188,14 +204,6 @@ components:
             type: array
             items:
               type: string
-    CreateTopUpEndpoint_Output:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: The hosted Stripe checkout url to redirect the customer to.
     CreateTopUpEndpoint_Input:
       required:
       - amount
@@ -205,14 +213,6 @@ components:
           type: number
           description: The amount in dollars to add to the prepaid balance.
           format: double
-    CreateCheckoutEndpoint_Output:
-      required:
-      - sessionId
-      type: object
-      properties:
-        sessionId:
-          type: string
-          description: The id of the created checkout session.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

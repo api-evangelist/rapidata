@@ -160,6 +160,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    StartBulkReconciliationEndpoint_Output:
+      required:
+      - bulkReconciliationId
+      type: object
+      properties:
+        bulkReconciliationId:
+          type: string
+          description: The bulk reconciliation identifier for all jobs created in this bulk operation.
+    ReconciliationTimestampMode:
+      enum:
+      - UseResponseCreatedAt
+      - UseReconciliationTime
     StartBulkReconciliationEndpoint_Input:
       type: object
       properties:
@@ -295,6 +307,41 @@ components:
           - 'null'
           description: The timestamp when all jobs completed. Null if not fully complete.
           format: date-time
+    BulkReconciliationDispatchState:
+      enum:
+      - Dispatching
+      - Completed
+      - Failed
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     GetReconciliationStatusEndpoint_Output:
       required:
       - jobId
@@ -387,59 +434,12 @@ components:
         createdByMail:
           type: string
           description: The email of the user who created the job.
-    StartBulkReconciliationEndpoint_Output:
-      required:
-      - bulkReconciliationId
-      type: object
-      properties:
-        bulkReconciliationId:
-          type: string
-          description: The bulk reconciliation identifier for all jobs created in this bulk operation.
     ReconciliationJobState:
       enum:
       - Pending
       - Running
       - Completed
       - Failed
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    BulkReconciliationDispatchState:
-      enum:
-      - Dispatching
-      - Completed
-      - Failed
-    ReconciliationTimestampMode:
-      enum:
-      - UseResponseCreatedAt
-      - UseReconciliationTime
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

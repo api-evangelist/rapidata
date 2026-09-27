@@ -149,56 +149,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ReadBridgeTokenEndpoint_NotAvailableOutput:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: A message indicating that the keys are not yet available.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    CreateBridgeTokenEndpoint_Output:
-      required:
-      - readKey
-      - writeKey
-      type: object
-      properties:
-        readKey:
-          type: string
-          description: The read key used to retrieve the authentication result.
-        writeKey:
-          type: string
-          description: The write key used to store the authentication result.
     GoogleOneTapLoginEndpoint_Output:
       required:
       - requiresEmailConfirmation
@@ -212,6 +162,14 @@ components:
           - string
           - 'null'
           description: The email of the signed-in user, if available.
+    ReadBridgeTokenEndpoint_NotAvailableOutput:
+      required:
+      - message
+      type: object
+      properties:
+        message:
+          type: string
+          description: A message indicating that the keys are not yet available.
     GoogleOneTapLoginEndpoint_Input:
       required:
       - idToken
@@ -261,6 +219,48 @@ components:
           - string
           - 'null'
           description: The scopes granted to the issued token.
+    CreateBridgeTokenEndpoint_Output:
+      required:
+      - readKey
+      - writeKey
+      type: object
+      properties:
+        readKey:
+          type: string
+          description: The read key used to retrieve the authentication result.
+        writeKey:
+          type: string
+          description: The write key used to store the authentication result.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

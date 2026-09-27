@@ -85,24 +85,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EnsureEnglishEndpoint_Input:
+    EnsureEnglishEndpoint_Output:
       required:
-      - text
+      - englishText
       type: object
       properties:
-        text:
+        englishText:
           type: string
-          description: The text to ensure is English.
-    TranslatorType:
-      enum:
-      - Google
-      - Deepl
-      - OpenAi
-      - OpenAi4O
-      - OpenAi4OMini
-      - LibreTranslate
-      - Gemini
-      - Tllm
+          description: The English version of the provided text.
     TranslateEndpoint_Output:
       required:
       - translation
@@ -121,14 +111,36 @@ components:
         targetLanguage:
           type: string
           description: The language the text was translated into.
-    EnsureEnglishEndpoint_Output:
+    TranslatorType:
+      enum:
+      - Google
+      - Deepl
+      - OpenAi
+      - OpenAi4O
+      - OpenAi4OMini
+      - LibreTranslate
+      - Gemini
+      - Tllm
+    TranslateEndpoint_Input:
       required:
-      - englishText
+      - translator
+      - text
+      - targetLanguage
       type: object
       properties:
-        englishText:
+        translator:
+          allOf:
+          - $ref: '#/components/schemas/TranslatorType'
+          description: The type of translator to use.
+        text:
           type: string
-          description: The English version of the provided text.
+          description: The text to translate.
+        targetLanguage:
+          type: string
+          description: The language to translate the text into.
+        sourceLanguage:
+          type: string
+          description: The original language of the text.
     ValidationProblemDetails:
       type: object
       properties:
@@ -159,26 +171,14 @@ components:
             type: array
             items:
               type: string
-    TranslateEndpoint_Input:
+    EnsureEnglishEndpoint_Input:
       required:
-      - translator
       - text
-      - targetLanguage
       type: object
       properties:
-        translator:
-          allOf:
-          - $ref: '#/components/schemas/TranslatorType'
-          description: The type of translator to use.
         text:
           type: string
-          description: The text to translate.
-        targetLanguage:
-          type: string
-          description: The language to translate the text into.
-        sourceLanguage:
-          type: string
-          description: The original language of the text.
+          description: The text to ensure is English.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -483,6 +483,19 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    UnsubscribeEndpoint_Input:
+      type: object
+      properties:
+        reason:
+          type:
+          - string
+          - 'null'
+          description: The reason for unsubscribing.
+    VoucherSource:
+      enum:
+      - Signup
+      - ManualGrant
+      - TopUp
     QueryVouchersEndpoint_Output:
       required:
       - id
@@ -526,57 +539,6 @@ components:
           allOf:
           - $ref: '#/components/schemas/VoucherSource'
           description: Where the voucher came from.
-    UnsubscribeEndpoint_Input:
-      type: object
-      properties:
-        reason:
-          type:
-          - string
-          - 'null'
-          description: The reason for unsubscribing.
-    GrantVoucherEndpoint_Output:
-      required:
-      - voucherId
-      type: object
-      properties:
-        voucherId:
-          type: string
-          description: The id of the granted voucher.
-    SetMinimumSpendCommitmentEndpoint_Input:
-      required:
-      - minimumSpendCommitment
-      type: object
-      properties:
-        minimumSpendCommitment:
-          type: number
-          description: "The new minimum spend commitment. 0 means no commitment; a positive value tops up\n the usage-side bill at invoice time when measured spend falls short."
-          format: double
-    GrantVoucherEndpoint_Input:
-      required:
-      - customerId
-      - amount
-      type: object
-      properties:
-        customerId:
-          type: string
-          description: The id of the customer to grant the voucher to.
-          format: uuid
-        amount:
-          type: number
-          description: The face value of the voucher in dollars.
-          format: double
-        validity:
-          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
-          type:
-          - string
-          - 'null'
-          description: "How long the voucher stays valid, counted from now. Serialized as a duration string in\n the format [days.]hh:mm:ss (the days part is optional): \"30.00:00:00\" = 30\n days, \"7.00:00:00\" = 7 days, \"12:00:00\" = 12 hours. Must be positive.\n Provide this or expiresAt, not both."
-        expiresAt:
-          type:
-          - string
-          - 'null'
-          description: "An explicit expiry instant as an ISO-8601 timestamp (e.g. \"2026-12-31T23:59:59Z\").\n Use this instead of validity when you know the exact date the\n voucher should expire. Provide this or validity, not both."
-          format: date-time
     QueryVouchersEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -601,12 +563,25 @@ components:
         totalPages:
           type: integer
           format: int32
-    VoucherStatus:
-      enum:
-      - Active
-      - Exhausted
-      - Expired
-      - Revoked
+    SetPlatformFeeEndpoint_Input:
+      required:
+      - platformFee
+      type: object
+      properties:
+        platformFee:
+          type:
+          - number
+          - 'null'
+          description: "The new platform fee. null removes the platform fee; 0 is an explicit $0\n fee that is still shown; a positive value is charged once per billing period."
+          format: double
+    GrantVoucherEndpoint_Output:
+      required:
+      - voucherId
+      type: object
+      properties:
+        voucherId:
+          type: string
+          description: The id of the granted voucher.
     ValidationProblemDetails:
       type: object
       properties:
@@ -637,17 +612,6 @@ components:
             type: array
             items:
               type: string
-    SetPlatformFeeEndpoint_Input:
-      required:
-      - platformFee
-      type: object
-      properties:
-        platformFee:
-          type:
-          - number
-          - 'null'
-          description: "The new platform fee. null removes the platform fee; 0 is an explicit $0\n fee that is still shown; a positive value is charged once per billing period."
-          format: double
     SetCreditLineEndpoint_Input:
       required:
       - creditLine
@@ -659,11 +623,47 @@ components:
           - 'null'
           description: "The new credit line. null means no limit (unlimited), 0 disables all traffic,\n and a positive value caps spend at that amount."
           format: double
-    VoucherSource:
+    SetMinimumSpendCommitmentEndpoint_Input:
+      required:
+      - minimumSpendCommitment
+      type: object
+      properties:
+        minimumSpendCommitment:
+          type: number
+          description: "The new minimum spend commitment. 0 means no commitment; a positive value tops up\n the usage-side bill at invoice time when measured spend falls short."
+          format: double
+    VoucherStatus:
       enum:
-      - Signup
-      - ManualGrant
-      - TopUp
+      - Active
+      - Exhausted
+      - Expired
+      - Revoked
+    GrantVoucherEndpoint_Input:
+      required:
+      - customerId
+      - amount
+      type: object
+      properties:
+        customerId:
+          type: string
+          description: The id of the customer to grant the voucher to.
+          format: uuid
+        amount:
+          type: number
+          description: The face value of the voucher in dollars.
+          format: double
+        validity:
+          pattern: ^-?(\d+\.)?\d{2}:\d{2}:\d{2}(\.\d{1,7})?$
+          type:
+          - string
+          - 'null'
+          description: "How long the voucher stays valid, counted from now. Serialized as a duration string in\n the format [days.]hh:mm:ss (the days part is optional): \"30.00:00:00\" = 30\n days, \"7.00:00:00\" = 7 days, \"12:00:00\" = 12 hours. Must be positive.\n Provide this or expiresAt, not both."
+        expiresAt:
+          type:
+          - string
+          - 'null'
+          description: "An explicit expiry instant as an ISO-8601 timestamp (e.g. \"2026-12-31T23:59:59Z\").\n Use this instead of validity when you know the exact date the\n voucher should expire. Provide this or validity, not both."
+          format: date-time
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

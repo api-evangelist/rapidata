@@ -456,34 +456,59 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateSampleEndpoint_Output:
+    CreateSampleEndpoint_Input:
       required:
-      - id
+      - identifier
+      - asset
       type: object
       properties:
-        id:
+        identifier:
           type: string
-          description: The id of the created sample.
-    IFaucetOutput:
+          description: The identifier used to correlate samples of different participants.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset input for the sample.
+    CreateSampleNewEndpoint_Input:
       required:
-      - _t
+      - identifier
+      - asset
       type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
-      - $ref: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          Managed: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
-          Replicate: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
-    UpdateParticipantNameEndpoint_Input:
-      required:
-      - name
+      properties:
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset input for the sample.
+    UpdateParticipantEndpoint_Input:
       type: object
       properties:
         name:
           type: string
           description: The new name of the participant.
+        family:
+          type:
+          - string
+          - 'null'
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"). Pass null to clear.
+        proprietaryName:
+          type:
+          - string
+          - 'null'
+          description: The vendor-facing display name of the model. Pass null to clear.
+        logo:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: An image asset for the model's logo. Pass null to clear.
+        faucet:
+          allOf:
+          - $ref: '#/components/schemas/IFaucetInput'
+          description: The faucet to set or replace on the participant.
     ValidationProblemDetails:
       type: object
       properties:
@@ -514,71 +539,6 @@ components:
             type: array
             items:
               type: string
-    ExistingAssetInput:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    UpdateParticipantEndpoint_Input:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The new name of the participant.
-        family:
-          type:
-          - string
-          - 'null'
-          description: The family the underlying model belongs to (e.g. "Flux", "GPT"). Pass null to clear.
-        proprietaryName:
-          type:
-          - string
-          - 'null'
-          description: The vendor-facing display name of the model. Pass null to clear.
-        logo:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/ExistingAssetInput'
-          description: An image asset for the model's logo. Pass null to clear.
-        faucet:
-          allOf:
-          - $ref: '#/components/schemas/IFaucetInput'
-          description: The faucet to set or replace on the participant.
-    IFaucetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
-      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
-      discriminator:
-        propertyName: _t
-        mapping:
-          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     IAssetInputMultiAssetInput:
       required:
       - assets
@@ -602,6 +562,20 @@ components:
           type:
           - string
           - 'null'
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
     IAssetInputTextAssetInput:
       required:
       - text
@@ -623,19 +597,45 @@ components:
           type:
           - string
           - 'null'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IAssetInputExistingAssetInput:
+    IFaucetOutputReplicateFaucetOutput:
       required:
-      - name
+      - modelOwner
+      - modelName
+      - additionalInputs
       - _t
       properties:
         _t:
           enum:
-          - ExistingAssetInput
+          - Replicate
           type: string
+        modelOwner:
+          type: string
+        modelName:
+          type: string
+        modelVersion:
+          type:
+          - string
+          - 'null'
+        additionalInputs:
+          type: object
+    IFaucetOutputManagedFaucetOutput:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - Managed
+          type: string
+        testTimeScaling:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    ExistingAssetInput:
+      required:
+      - name
+      type: object
+      properties:
         name:
           type: string
         metadata:
@@ -648,83 +648,7 @@ components:
           type:
           - string
           - 'null'
-    CreateSampleEndpoint_Input:
-      required:
-      - identifier
-      - asset
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: The identifier used to correlate samples of different participants.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset input for the sample.
-    IFaucetInputReplicateFaucetInput:
-      required:
-      - modelOwner
-      - modelName
-      - _t
-      properties:
-        _t:
-          enum:
-          - Replicate
-          type: string
-        modelOwner:
-          type: string
-          description: The owner of the hosted model (e.g. "stability-ai").
-        modelName:
-          type: string
-          description: The model name (e.g. "sdxl").
-        modelVersion:
-          type:
-          - string
-          - 'null'
-          description: Optional pinned model version hash.
-        additionalInputs:
-          type: object
-          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
-      description: Configures a faucet that generates samples via the Replicate API.
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    CreateSampleNewEndpoint_Input:
-      required:
-      - identifier
-      - asset
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: The identifier used to correlate samples of different participants.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset input for the sample.
-    CreateSampleNewEndpoint_Output:
+    CreateSampleEndpoint_Output:
       required:
       - id
       type: object
@@ -732,6 +656,17 @@ components:
         id:
           type: string
           description: The id of the created sample.
+    IFaucetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
+      discriminator:
+        propertyName: _t
+        mapping:
+          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
     GetParticipantByIdEndpoint_Output:
       required:
       - id
@@ -772,6 +707,53 @@ components:
           allOf:
           - $ref: '#/components/schemas/IFaucetOutput'
           description: The faucet configured to auto-generate samples, or null if none is set.
+    IFaucetOutput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
+      - $ref: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          Managed: '#/components/schemas/IFaucetOutputManagedFaucetOutput'
+          Replicate: '#/components/schemas/IFaucetOutputReplicateFaucetOutput'
+    ParticipantStatus:
+      enum:
+      - Created
+      - Submittable
+      - Submitted
+      - Disabled
+    CreateSampleNewEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created sample.
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
     IMetadataInputTextMetadataInput:
       required:
       - text
@@ -788,27 +770,25 @@ components:
           - 'null'
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
-    IFaucetOutputReplicateFaucetOutput:
+    UpdateParticipantNameEndpoint_Input:
       required:
-      - modelOwner
-      - modelName
-      - additionalInputs
-      - _t
+      - name
+      type: object
       properties:
-        _t:
-          enum:
-          - Replicate
+        name:
           type: string
-        modelOwner:
-          type: string
-        modelName:
-          type: string
-        modelVersion:
-          type:
-          - string
-          - 'null'
-        additionalInputs:
-          type: object
+          description: The new name of the participant.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
     SubmitParticipantEndpoint_Output:
       required:
       - validDatapoints
@@ -823,25 +803,45 @@ components:
           type: integer
           description: The number of invalid datapoints collected by the participant.
           format: int32
-    ParticipantStatus:
-      enum:
-      - Created
-      - Submittable
-      - Submitted
-      - Disabled
-    IFaucetOutputManagedFaucetOutput:
+    IMetadataInput:
       required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IFaucetInputReplicateFaucetInput:
+      required:
+      - modelOwner
+      - modelName
       - _t
       properties:
         _t:
           enum:
-          - Managed
+          - Replicate
           type: string
-        testTimeScaling:
+        modelOwner:
+          type: string
+          description: The owner of the hosted model (e.g. "stability-ai").
+        modelName:
+          type: string
+          description: The model name (e.g. "sdxl").
+        modelVersion:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
+          description: Optional pinned model version hash.
+        additionalInputs:
+          type: object
+          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
+      description: Configures a faucet that generates samples via the Replicate API.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

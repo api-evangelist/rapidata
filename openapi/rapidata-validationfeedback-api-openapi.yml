@@ -217,36 +217,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ValidationProblemDetails:
+    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
           format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
     CreateValidationFeedbackEndpoint_Input:
       required:
       - feedback
@@ -280,30 +274,36 @@ components:
           type: string
           description: The timestamp when the feedback was created.
           format: date-time
-    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
+    ValidationProblemDetails:
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

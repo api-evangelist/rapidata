@@ -163,14 +163,37 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateBatchUploadEndpoint_Output:
+    GetBatchUploadStatusEndpoint_Output:
       required:
-      - batchUploadId
+      - status
+      - totalCount
+      - completedCount
+      - failedCount
+      - completedBatches
       type: object
       properties:
-        batchUploadId:
-          type: string
-          description: The identifier of the created batch upload.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BatchUploadStatus'
+          description: The aggregated status across all queried batch uploads.
+        totalCount:
+          type: integer
+          description: The total number of URLs across all queried batches.
+          format: int32
+        completedCount:
+          type: integer
+          description: The number of URLs that have been successfully processed.
+          format: int32
+        failedCount:
+          type: integer
+          description: The number of URLs that failed to process.
+          format: int32
+        completedBatches:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The identifiers of batch uploads that have fully completed.
     CompressionOverride:
       type: object
       properties:
@@ -188,46 +211,19 @@ components:
           - integer
           - 'null'
           format: int32
-    BatchUploadStatus:
-      enum:
-      - Processing
-      - Completed
-      - Aborted
     BatchUploadUrlStatus:
       enum:
       - Pending
       - Completed
       - Failed
-    ValidationProblemDetails:
+    CreateBatchUploadEndpoint_Output:
+      required:
+      - batchUploadId
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+        batchUploadId:
+          type: string
+          description: The identifier of the created batch upload.
     GetBatchUploadResultEndpoint_Output:
       required:
       - batchUploadId
@@ -263,6 +259,36 @@ components:
             items:
               $ref: '#/components/schemas/GetBatchUploadResultEndpoint_UrlOutput'
           description: The individual results for each URL in the batch.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateBatchUploadEndpoint_Input:
       required:
       - urls
@@ -284,37 +310,11 @@ components:
           allOf:
           - $ref: '#/components/schemas/CompressionOverride'
           description: "Optional per-call override for image compression applied to every URL in the batch.\n Null means use the configured defaults."
-    GetBatchUploadStatusEndpoint_Output:
-      required:
-      - status
-      - totalCount
-      - completedCount
-      - failedCount
-      - completedBatches
-      type: object
-      properties:
-        status:
-          allOf:
-          - $ref: '#/components/schemas/BatchUploadStatus'
-          description: The aggregated status across all queried batch uploads.
-        totalCount:
-          type: integer
-          description: The total number of URLs across all queried batches.
-          format: int32
-        completedCount:
-          type: integer
-          description: The number of URLs that have been successfully processed.
-          format: int32
-        failedCount:
-          type: integer
-          description: The number of URLs that failed to process.
-          format: int32
-        completedBatches:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The identifiers of batch uploads that have fully completed.
+    BatchUploadStatus:
+      enum:
+      - Processing
+      - Completed
+      - Aborted
     GetBatchUploadResultEndpoint_UrlOutput:
       required:
       - url

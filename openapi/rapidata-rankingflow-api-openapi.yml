@@ -88,122 +88,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    PidBatchMode:
-      enum:
-      - Total
-      - PerBatch
-      - PerBatchTimeWeighted
-    ValidationProblemDetails:
+    CreateFlowEndpoint_Output:
+      required:
+      - flowId
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    UpdateConfigEndpoint_Input:
-      type: object
-      properties:
-        audienceId:
-          type:
-          - string
-          - 'null'
-          description: Optional audience ID. When provided, the flow will only serve items to users in this audience. Set to null to remove the audience restriction.
-        criteria:
+        flowId:
           type: string
-          description: The ranking criteria used to compare items.
-        startingElo:
-          type: integer
-          description: Initial Elo rating for new items.
-          format: int32
-        minResponses:
-          type: integer
-          description: Minimum number of responses per comparison.
-          format: int32
-        maxResponses:
-          type: integer
-          description: Maximum number of responses per comparison.
-          format: int32
-        serveResponses:
-          type:
-          - integer
-          - 'null'
-          description: Number of accepted responses per rapid at which to stop serving. Set to null to remove. Must be less than or equal to MaxResponses when both are set.
-          format: int32
-        serveToResponseRatio:
-          type:
-          - number
-          - 'null'
-          description: Ratio of concurrent serves to max responses. Set to null to remove the limit.
-          format: double
-        serveTimeoutSeconds:
-          type:
-          - integer
-          - 'null'
-          description: Time in seconds a user has to submit an answer after loading the task. Set to null to use the global default.
-          format: int32
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-          description: Feature flags to enable for this flow.
-        targetResponseCount:
-          type:
-          - integer
-          - 'null'
-          description: Target average response count per completed item. Set to null to disable PID control.
-          format: int32
-        pidProportionalGain:
-          type: number
-          description: PID proportional gain.
-          format: double
-        pidIntegralGain:
-          type: number
-          description: PID integral gain.
-          format: double
-        pidDerivativeGain:
-          type: number
-          description: PID derivative gain.
-          format: double
-        pidOutputOffset:
-          type: number
-          description: Constant offset added to the PID output before clamping, shifting the controller's operating point.
-          format: double
-        pidMinSessionsPerMinute:
-          type: integer
-          description: Minimum sessions per minute the PID can set.
-          format: int32
-        pidMaxSessionsPerMinute:
-          type: integer
-          description: Maximum sessions per minute the PID can set.
-          format: int32
-        pidBatchMode:
-          allOf:
-          - $ref: '#/components/schemas/PidBatchMode'
-          description: 'How PID output maps to campaign rate. Total: direct rate. PerBatch: multiplied by active batch count. PerBatchTimeWeighted: multiplied by time-weighted batch count.'
+          description: The ID of the created ranking flow.
     CreateFlowEndpoint_Input:
       required:
       - name
@@ -322,14 +214,6 @@ components:
           - 'null'
           description: Duration in seconds for draining flow items. Defaults to 40.
           format: int32
-    CreateFlowEndpoint_Output:
-      required:
-      - flowId
-      type: object
-      properties:
-        flowId:
-          type: string
-          description: The ID of the created ranking flow.
     FeatureFlag:
       required:
       - key
@@ -340,6 +224,122 @@ components:
           type: string
         value:
           type: string
+    UpdateConfigEndpoint_Input:
+      type: object
+      properties:
+        audienceId:
+          type:
+          - string
+          - 'null'
+          description: Optional audience ID. When provided, the flow will only serve items to users in this audience. Set to null to remove the audience restriction.
+        criteria:
+          type: string
+          description: The ranking criteria used to compare items.
+        startingElo:
+          type: integer
+          description: Initial Elo rating for new items.
+          format: int32
+        minResponses:
+          type: integer
+          description: Minimum number of responses per comparison.
+          format: int32
+        maxResponses:
+          type: integer
+          description: Maximum number of responses per comparison.
+          format: int32
+        serveResponses:
+          type:
+          - integer
+          - 'null'
+          description: Number of accepted responses per rapid at which to stop serving. Set to null to remove. Must be less than or equal to MaxResponses when both are set.
+          format: int32
+        serveToResponseRatio:
+          type:
+          - number
+          - 'null'
+          description: Ratio of concurrent serves to max responses. Set to null to remove the limit.
+          format: double
+        serveTimeoutSeconds:
+          type:
+          - integer
+          - 'null'
+          description: Time in seconds a user has to submit an answer after loading the task. Set to null to use the global default.
+          format: int32
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: Feature flags to enable for this flow.
+        targetResponseCount:
+          type:
+          - integer
+          - 'null'
+          description: Target average response count per completed item. Set to null to disable PID control.
+          format: int32
+        pidProportionalGain:
+          type: number
+          description: PID proportional gain.
+          format: double
+        pidIntegralGain:
+          type: number
+          description: PID integral gain.
+          format: double
+        pidDerivativeGain:
+          type: number
+          description: PID derivative gain.
+          format: double
+        pidOutputOffset:
+          type: number
+          description: Constant offset added to the PID output before clamping, shifting the controller's operating point.
+          format: double
+        pidMinSessionsPerMinute:
+          type: integer
+          description: Minimum sessions per minute the PID can set.
+          format: int32
+        pidMaxSessionsPerMinute:
+          type: integer
+          description: Maximum sessions per minute the PID can set.
+          format: int32
+        pidBatchMode:
+          allOf:
+          - $ref: '#/components/schemas/PidBatchMode'
+          description: 'How PID output maps to campaign rate. Total: direct rate. PerBatch: multiplied by active batch count. PerBatchTimeWeighted: multiplied by time-weighted batch count.'
+    PidBatchMode:
+      enum:
+      - Total
+      - PerBatch
+      - PerBatchTimeWeighted
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

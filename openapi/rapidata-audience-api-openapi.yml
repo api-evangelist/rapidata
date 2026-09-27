@@ -1306,6 +1306,332 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    IFormFile:
+      type: string
+      format: binary
+    GetAudienceInactivitySyncByIdEndpoint_Output:
+      required:
+      - id
+      - audienceId
+      - state
+      - phase
+      - cutoff
+      - processedCount
+      - changedCount
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the inactivity sync.
+        audienceId:
+          type: string
+          description: The audience this inactivity sync belongs to.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AudienceInactivitySyncState'
+          description: The current state of the inactivity sync.
+        phase:
+          allOf:
+          - $ref: '#/components/schemas/AudienceInactivitySyncPhase'
+          description: The current phase within the inactivity sync lifecycle.
+        cutoff:
+          type: string
+          description: The cutoff captured at run creation time. Users with last_seen_at older than this are marked inactive.
+          format: date-time
+        lastProcessedUserId:
+          type:
+          - string
+          - 'null'
+          description: The id of the last user that was processed (progress cursor).
+        processedCount:
+          type: integer
+          description: The number of users processed so far.
+          format: int64
+        changedCount:
+          type: integer
+          description: The number of users whose state was changed by the sync.
+          format: int64
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message populated when the sync transitioned to Failed.
+        startedAt:
+          type:
+          - string
+          - 'null'
+          description: When the sync began processing (null while still Pending).
+          format: date-time
+        lastHeartbeatAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of the last heartbeat received from the worker.
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: When the sync reached a terminal state (Completed, Failed, Aborted).
+          format: date-time
+        createdAt:
+          type: string
+          description: When the sync was created.
+          format: date-time
+    BoostLevel:
+      enum:
+      - None
+      - Stable
+      - Distilling
+      - Global
+    GetLatestAudienceInactivitySyncEndpoint_Output:
+      required:
+      - id
+      - audienceId
+      - state
+      - phase
+      - cutoff
+      - processedCount
+      - changedCount
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the inactivity sync.
+        audienceId:
+          type: string
+          description: The audience this inactivity sync belongs to.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AudienceInactivitySyncState'
+          description: The current state of the inactivity sync.
+        phase:
+          allOf:
+          - $ref: '#/components/schemas/AudienceInactivitySyncPhase'
+          description: The current phase within the inactivity sync lifecycle.
+        cutoff:
+          type: string
+          description: The cutoff captured at run creation time. Users with last_seen_at older than this are marked inactive.
+          format: date-time
+        lastProcessedUserId:
+          type:
+          - string
+          - 'null'
+          description: The id of the last user that was processed (progress cursor).
+        processedCount:
+          type: integer
+          description: The number of users processed so far.
+          format: int64
+        changedCount:
+          type: integer
+          description: The number of users whose state was changed by the sync.
+          format: int64
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message populated when the sync transitioned to Failed.
+        startedAt:
+          type:
+          - string
+          - 'null'
+          description: When the sync began processing (null while still Pending).
+          format: date-time
+        lastHeartbeatAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of the last heartbeat received from the worker.
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: When the sync reached a terminal state (Completed, Failed, Aborted).
+          format: date-time
+        createdAt:
+          type: string
+          description: When the sync was created.
+          format: date-time
+    GetLatestAudienceStateRecalculationEndpoint_Output:
+      required:
+      - id
+      - audienceId
+      - state
+      - phase
+      - processedCount
+      - changedCount
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the recalculation.
+        audienceId:
+          type: string
+          description: The audience this recalculation belongs to.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/AudienceStateRecalculationState'
+          description: The current state of the recalculation.
+        phase:
+          allOf:
+          - $ref: '#/components/schemas/AudienceStateRecalculationPhase'
+          description: The current phase within the recalculation lifecycle.
+        lastProcessedUserId:
+          type:
+          - string
+          - 'null'
+          description: The id of the last user that was processed (progress cursor).
+        processedCount:
+          type: integer
+          description: The number of users processed so far.
+          format: int64
+        changedCount:
+          type: integer
+          description: The number of users whose state was changed by the recalculation.
+          format: int64
+        errorMessage:
+          type:
+          - string
+          - 'null'
+          description: Error message populated when the recalculation transitioned to Failed.
+        startedAt:
+          type:
+          - string
+          - 'null'
+          description: When the recalculation began processing (null while still Pending).
+          format: date-time
+        lastHeartbeatAt:
+          type:
+          - string
+          - 'null'
+          description: Timestamp of the last heartbeat received from the worker.
+          format: date-time
+        completedAt:
+          type:
+          - string
+          - 'null'
+          description: When the recalculation reached a terminal state (Completed, Failed, Aborted).
+          format: date-time
+        createdAt:
+          type: string
+          description: When the recalculation was created.
+          format: date-time
+    UpdateBoostConfigEndpoint_Output:
+      type: object
+      properties:
+        recalculationId:
+          type:
+          - string
+          - 'null'
+          description: "The id of the audience state recalculation dispatched by this update.\n Boost-only updates do not trigger a recalculation, so this is typically null."
+    UpdateAudienceEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name to give to this audience.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The new description for the audience. Supports markdown. Set to null to remove.
+        filters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/IAudienceFilter'
+          description: "The new filters to apply to any orders created for this audience.\n A filter can be used to restrict the audience to a specific subset of users."
+        logo:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: "The new logo image for the audience. Must be an existing image asset.\n Set to null to remove the logo."
+        minGraduatedForDistillingBoost:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum graduated users before disabling distilling boost.\n When graduated count is below this, external distilling audience ID is added to campaign boosting."
+          format: int32
+        minDistillingForGlobalBoost:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum distilling users before disabling global boost.\n When distilling count is below this, GlobalBoostLevel is set above zero."
+          format: int32
+        graduationScore:
+          type: number
+          description: The score used to determine whether a user graduates from the distilling campaign.
+          format: double
+        demotionScore:
+          type:
+          - number
+          - 'null'
+          description: "Score below which a graduated user is demoted back to distilling.\n Must be less than or equal to GraduationScore. Set to null to use GraduationScore."
+          format: double
+        maxDistillingResponses:
+          type:
+          - integer
+          - 'null'
+          description: "Maximum responses before user exits the distilling campaign.\n Set to null to disable this exit condition."
+          format: uint32
+        minResponsesToGraduate:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum responses required before a user can graduate into the audience.\n Even if the user's score is at or above the graduation threshold, they will\n remain in distilling until they have answered at least this many responses.\n Must be strictly less than MaxDistillingResponses when both are set.\n Set to null to allow graduation as soon as the score is reached."
+          format: uint32
+        dropMinResponses:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum responses before the drop score check applies.\n Users need at least this many responses before they can be kicked out for low score.\n Set to null to apply drop score check from the first response."
+          format: uint32
+        dropScore:
+          type:
+          - number
+          - 'null'
+          description: "Score floor - users below this score exit the distilling campaign\n (only after completing DropMinResponses).\n Set to null to disable this exit condition."
+          format: double
+        maxDistillingSessions:
+          type:
+          - integer
+          - 'null'
+          description: "Maximum sessions (rapid retrievals) before user exits the distilling campaign.\n Set to a value to enable session-based exit condition."
+          format: uint32
+        inactivityDropDays:
+          type:
+          - integer
+          - 'null'
+          description: "Number of days of inactivity before a distilling user is dropped.\n Set to null to disable this exit condition."
+          format: uint32
+        minSubmissionRate:
+          type:
+          - number
+          - 'null'
+          description: "Minimum submission rate (responses / sessions) before a user is dropped.\n Set to null to disable this exit condition."
+          format: double
+        minSessionsForSubmissionRate:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum number of sessions before the submission rate check applies.\n Set to null to apply from the first session."
+          format: uint32
+        minSubmissionRateGraduated:
+          type:
+          - number
+          - 'null'
+          description: "Minimum submission rate for graduated users. If null, MinSubmissionRate applies to graduated users.\n Set a lower value to be more lenient with graduated users."
+          format: double
+        distillingRetrievalMode:
+          allOf:
+          - $ref: '#/components/schemas/RetrievalMode'
+          description: The retrieval mode used by the distilling campaign to select rapids for users.
     IAudienceFilterLanguageAudienceFilter:
       required:
       - languages
@@ -1319,6 +1645,377 @@ components:
           type: array
           items:
             type: string
+    IAudienceFilterDeviceAudienceFilter:
+      required:
+      - deviceTypes
+      - _t
+      properties:
+        _t:
+          enum:
+          - DeviceFilter
+          type: string
+        deviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceType'
+    IAudienceFilter:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAudienceFilterAndAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterCountryAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterDemographicAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterDeviceAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterLanguageAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterNotAudienceFilter'
+      - $ref: '#/components/schemas/IAudienceFilterOrAudienceFilter'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AndFilter: '#/components/schemas/IAudienceFilterAndAudienceFilter'
+          CountryFilter: '#/components/schemas/IAudienceFilterCountryAudienceFilter'
+          DemographicFilter: '#/components/schemas/IAudienceFilterDemographicAudienceFilter'
+          DeviceFilter: '#/components/schemas/IAudienceFilterDeviceAudienceFilter'
+          LanguageFilter: '#/components/schemas/IAudienceFilterLanguageAudienceFilter'
+          NotFilter: '#/components/schemas/IAudienceFilterNotAudienceFilter'
+          OrFilter: '#/components/schemas/IAudienceFilterOrAudienceFilter'
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateAudienceEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name to give the newly created audience.
+        description:
+          type:
+          - string
+          - 'null'
+          description: An optional markdown-supported description of the audience's purpose.
+        filters:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/IAudienceFilter'
+          description: "The filters to apply to any orders created for this audience.\n A filter can be used to restrict the audience to a specific subset of users."
+        graduationScore:
+          type:
+          - number
+          - 'null'
+          description: The score used to determine whether a user graduates from the distilling campaign.
+          format: double
+        demotionScore:
+          type:
+          - number
+          - 'null'
+          description: "Score below which a graduated user is demoted back to distilling.\n Must be less than or equal to GraduationScore. Defaults to null (uses GraduationScore)."
+          format: double
+        minimumSizeForActivation:
+          type:
+          - integer
+          - 'null'
+          description: The minimum number of users required for an audience to be activated.
+          format: int64
+        logo:
+          allOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: An optional logo image for the audience. Must be an existing image asset.
+        maxDistillingResponses:
+          type:
+          - integer
+          - 'null'
+          description: "Maximum responses before user exits the distilling campaign.\n Defaults to 10. Set to null to disable this exit condition."
+          format: uint32
+        minResponsesToGraduate:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum responses required before a user can graduate into the audience.\n Even if the user's score is at or above the graduation threshold, they will\n remain in distilling until they have answered at least this many responses.\n Must be strictly less than MaxDistillingResponses when both are set.\n Defaults to null (no minimum — users graduate as soon as the score is reached)."
+          format: uint32
+        dropMinResponses:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum responses before the drop score check applies.\n Users need at least this many responses before they can be kicked out for low score.\n Defaults to 3. Set to null to apply drop score check from the first response."
+          format: uint32
+        dropScore:
+          type:
+          - number
+          - 'null'
+          description: "Score floor - users below this score exit the distilling campaign\n (only after completing DropMinResponses).\n Defaults to 0.2. Set to null to disable this exit condition."
+          format: double
+        isDistillingCampaignSticky:
+          type: boolean
+          description: "Whether the distilling campaign should be sticky (users stay until filters don't match).\n Defaults to true (Temporary sticky)."
+        maxDistillingSessions:
+          type:
+          - integer
+          - 'null'
+          description: "Maximum sessions (rapid retrievals) before user exits the distilling campaign.\n Defaults to null (disabled). Set to a value to enable session-based exit condition."
+          format: uint32
+        inactivityDropDays:
+          type:
+          - integer
+          - 'null'
+          description: "Number of days of inactivity before a distilling user is dropped.\n Defaults to null (disabled)."
+          format: uint32
+        minSubmissionRate:
+          type:
+          - number
+          - 'null'
+          description: "Minimum submission rate (responses / sessions) before a user is dropped.\n Defaults to null (disabled)."
+          format: double
+        minSessionsForSubmissionRate:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum number of sessions before the submission rate check applies.\n Defaults to null (applies from first session)."
+          format: uint32
+        minSubmissionRateGraduated:
+          type:
+          - number
+          - 'null'
+          description: "Minimum submission rate for graduated users. If null, MinSubmissionRate applies to graduated users.\n Set a lower value to be more lenient with graduated users."
+          format: double
+        distillingRetrievalMode:
+          allOf:
+          - $ref: '#/components/schemas/RetrievalMode'
+          description: "The retrieval mode used by the distilling campaign to select rapids for users.\n Defaults to Shuffled."
+        minDistillingForGlobalBoost:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum distilling users before disabling global boost.\n Defaults to 200. Admin-only override."
+          format: int32
+        minGraduatedForDistillingBoost:
+          type:
+          - integer
+          - 'null'
+          description: "Minimum graduated users before disabling distilling boost.\n Defaults to 100. Admin-only override."
+          format: int32
+    AudienceStateRecalculationPhase:
+      enum:
+      - RecalculatingUsers
+      - Finalizing
+      - Done
+    AudienceStateRecalculationState:
+      enum:
+      - Pending
+      - Processing
+      - Completed
+      - Failed
+      - Aborted
+    UpdateAudienceEndpoint_Output:
+      type: object
+      properties:
+        recalculationId:
+          type:
+          - string
+          - 'null'
+          description: "The id of the audience state recalculation that was dispatched as a result of this update.\n Only populated when state-affecting parameters (e.g. graduation score, drop score) changed;\n null when the update only touched descriptive fields or boost configuration."
+        inactivitySyncId:
+          type:
+          - string
+          - 'null'
+          description: "The id of the audience inactivity sync that was dispatched as a result of this update.\n Only populated when InactivityDropDays was changed to a non-null value; null otherwise."
+    ExistingAssetInput:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    QueryAudiencesEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryAudiencesEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    GetAudienceUserStateMetricsResult:
+      required:
+      - usersPerState
+      type: object
+      properties:
+        usersPerState:
+          type: object
+          additionalProperties:
+            type: integer
+            format: int32
+    AudienceJobState:
+      enum:
+      - Submitted
+      - Running
+      - Completed
+      - Failed
+      - ManualApproval
+      - Queued
+      - Paused
+      - StaleResults
+      - SpendLimited
+    AudienceStatus:
+      enum:
+      - Created
+      - Pending
+      - Recruiting
+      - Ready
+    IAudienceFilterDemographicAudienceFilter:
+      required:
+      - identifier
+      - values
+      - _t
+      properties:
+        _t:
+          enum:
+          - DemographicFilter
+          type: string
+        identifier:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+    DeviceType:
+      enum:
+      - Unknown
+      - Phone
+      - Tablet
+    QueryAudiencesEndpoint_Output:
+      required:
+      - id
+      - name
+      - status
+      - qualifiedUserCount
+      - filters
+      - createdAt
+      - ownerMail
+      - isPublic
+      - isDistilling
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the audience.
+        name:
+          type: string
+          description: The name of the audience.
+        description:
+          type:
+          - string
+          - 'null'
+          description: The markdown-supported description of the audience.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/AudienceStatus'
+          description: The current status of the audience.
+        qualifiedUserCount:
+          type: integer
+          description: The number of users that have qualified for this audience.
+          format: int64
+        filters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/IAudienceFilter'
+          description: The filters applied to this audience.
+        logo:
+          type:
+          - string
+          - 'null'
+          description: The URL of the audience logo, if any.
+        createdAt:
+          type: string
+          description: The timestamp when the audience was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The email of the audience owner.
+        isPublic:
+          type: boolean
+          description: Whether the audience is publicly visible.
+        isDistilling:
+          type: boolean
+          description: Whether the audience is currently distilling users.
+        randomAdmissionProbability:
+          type:
+          - number
+          - 'null'
+          description: The probability of admitting a random user to the audience.
+          format: double
+        health:
+          type:
+          - number
+          - 'null'
+          description: The health score of the audience.
+          format: double
+        graduated:
+          type: integer
+          description: The number of graduated users.
+          format: int64
+        dropped:
+          type: integer
+          description: The number of dropped users.
+          format: int64
     GetAudienceByIdEndpoint_Output:
       required:
       - id
@@ -1491,126 +2188,44 @@ components:
           type: integer
           description: The number of dropped users.
           format: int64
-    StartAudienceInactivitySyncEndpoint_Output:
+    CreateFilteredAudienceEndpoint_Input:
       required:
-      - syncId
+      - filter
       type: object
       properties:
-        syncId:
-          type: string
-          description: The id of the inactivity sync that was started or reused.
-    UpdateAudienceEndpoint_Input:
+        filter:
+          allOf:
+          - $ref: '#/components/schemas/IAudienceFilter'
+          description: "The filter that restricts the base audience's graduates to a subset (e.g. by language,\n country or demographic value). Multiple criteria can be combined with And / Or / Not."
+    CreateFilteredAudienceEndpoint_Output:
+      required:
+      - audienceId
       type: object
       properties:
-        name:
+        audienceId:
           type: string
-          description: The new name to give to this audience.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The new description for the audience. Supports markdown. Set to null to remove.
+          description: The unique identifier of the filtered audience. Use this id in job creation.
+    IAudienceFilterAndAudienceFilter:
+      required:
+      - filters
+      - _t
+      properties:
+        _t:
+          enum:
+          - AndFilter
+          type: string
         filters:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/IAudienceFilter'
-          description: "The new filters to apply to any orders created for this audience.\n A filter can be used to restrict the audience to a specific subset of users."
-        logo:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/ExistingAssetInput'
-          description: "The new logo image for the audience. Must be an existing image asset.\n Set to null to remove the logo."
-        minGraduatedForDistillingBoost:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum graduated users before disabling distilling boost.\n When graduated count is below this, external distilling audience ID is added to campaign boosting."
-          format: int32
-        minDistillingForGlobalBoost:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum distilling users before disabling global boost.\n When distilling count is below this, GlobalBoostLevel is set above zero."
-          format: int32
-        graduationScore:
-          type: number
-          description: The score used to determine whether a user graduates from the distilling campaign.
-          format: double
-        demotionScore:
-          type:
-          - number
-          - 'null'
-          description: "Score below which a graduated user is demoted back to distilling.\n Must be less than or equal to GraduationScore. Set to null to use GraduationScore."
-          format: double
-        maxDistillingResponses:
-          type:
-          - integer
-          - 'null'
-          description: "Maximum responses before user exits the distilling campaign.\n Set to null to disable this exit condition."
-          format: uint32
-        minResponsesToGraduate:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum responses required before a user can graduate into the audience.\n Even if the user's score is at or above the graduation threshold, they will\n remain in distilling until they have answered at least this many responses.\n Must be strictly less than MaxDistillingResponses when both are set.\n Set to null to allow graduation as soon as the score is reached."
-          format: uint32
-        dropMinResponses:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum responses before the drop score check applies.\n Users need at least this many responses before they can be kicked out for low score.\n Set to null to apply drop score check from the first response."
-          format: uint32
-        dropScore:
-          type:
-          - number
-          - 'null'
-          description: "Score floor - users below this score exit the distilling campaign\n (only after completing DropMinResponses).\n Set to null to disable this exit condition."
-          format: double
-        maxDistillingSessions:
-          type:
-          - integer
-          - 'null'
-          description: "Maximum sessions (rapid retrievals) before user exits the distilling campaign.\n Set to a value to enable session-based exit condition."
-          format: uint32
-        inactivityDropDays:
-          type:
-          - integer
-          - 'null'
-          description: "Number of days of inactivity before a distilling user is dropped.\n Set to null to disable this exit condition."
-          format: uint32
-        minSubmissionRate:
-          type:
-          - number
-          - 'null'
-          description: "Minimum submission rate (responses / sessions) before a user is dropped.\n Set to null to disable this exit condition."
-          format: double
-        minSessionsForSubmissionRate:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum number of sessions before the submission rate check applies.\n Set to null to apply from the first session."
-          format: uint32
-        minSubmissionRateGraduated:
-          type:
-          - number
-          - 'null'
-          description: "Minimum submission rate for graduated users. If null, MinSubmissionRate applies to graduated users.\n Set a lower value to be more lenient with graduated users."
-          format: double
-        distillingRetrievalMode:
-          allOf:
-          - $ref: '#/components/schemas/RetrievalMode'
-          description: The retrieval mode used by the distilling campaign to select rapids for users.
-    UpdateBoostConfigEndpoint_Output:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAudienceFilter'
+    StartAudienceStateRecalculationEndpoint_Output:
+      required:
+      - recalculationId
       type: object
       properties:
         recalculationId:
-          type:
-          - string
-          - 'null'
-          description: "The id of the audience state recalculation dispatched by this update.\n Boost-only updates do not trigger a recalculation, so this is typically null."
+          type: string
+          description: The id of the recalculation that was started or reused.
     ChangeAudienceOwnerEndpoint_Input:
       required:
       - ownerId
@@ -1624,254 +2239,95 @@ components:
         ownerMail:
           type: string
           description: The email address of the new owner.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    AudienceStatus:
-      enum:
-      - Created
-      - Pending
-      - Recruiting
-      - Ready
-    GetLatestAudienceStateRecalculationEndpoint_Output:
+    IMetadataInputTextMetadataInput:
       required:
-      - id
-      - audienceId
-      - state
-      - phase
-      - processedCount
-      - changedCount
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the recalculation.
-        audienceId:
-          type: string
-          description: The audience this recalculation belongs to.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/AudienceStateRecalculationState'
-          description: The current state of the recalculation.
-        phase:
-          allOf:
-          - $ref: '#/components/schemas/AudienceStateRecalculationPhase'
-          description: The current phase within the recalculation lifecycle.
-        lastProcessedUserId:
-          type:
-          - string
-          - 'null'
-          description: The id of the last user that was processed (progress cursor).
-        processedCount:
-          type: integer
-          description: The number of users processed so far.
-          format: int64
-        changedCount:
-          type: integer
-          description: The number of users whose state was changed by the recalculation.
-          format: int64
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message populated when the recalculation transitioned to Failed.
-        startedAt:
-          type:
-          - string
-          - 'null'
-          description: When the recalculation began processing (null while still Pending).
-          format: date-time
-        lastHeartbeatAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of the last heartbeat received from the worker.
-          format: date-time
-        completedAt:
-          type:
-          - string
-          - 'null'
-          description: When the recalculation reached a terminal state (Completed, Failed, Aborted).
-          format: date-time
-        createdAt:
-          type: string
-          description: When the recalculation was created.
-          format: date-time
-    IAudienceFilterDeviceAudienceFilter:
-      required:
-      - deviceTypes
+      - text
+      - visibilities
       - _t
       properties:
         _t:
           enum:
-          - DeviceFilter
+          - TextMetadataInput
           type: string
-        deviceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceType'
-    ExistingAssetInput:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
+        text:
           type:
           - string
           - 'null'
-    CreateFilteredAudienceEndpoint_Output:
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    QueryAudienceJobsEndpoint_Output:
       required:
+      - jobId
+      - name
+      - definitionId
       - audienceId
-      type: object
-      properties:
-        audienceId:
-          type: string
-          description: The unique identifier of the filtered audience. Use this id in job creation.
-    GetAudienceInactivitySyncByIdEndpoint_Output:
-      required:
-      - id
-      - audienceId
+      - revisionNumber
+      - pipelineId
       - state
-      - phase
-      - cutoff
-      - processedCount
-      - changedCount
       - createdAt
       type: object
       properties:
-        id:
+        jobId:
           type: string
-          description: The unique identifier of the inactivity sync.
+          description: The unique identifier of the job.
+        name:
+          type: string
+          description: The name of the job.
+        definitionId:
+          type: string
+          description: The identifier of the job definition.
         audienceId:
           type: string
-          description: The audience this inactivity sync belongs to.
+          description: The identifier of the audience the job belongs to.
+        revisionNumber:
+          type: integer
+          description: The revision number of the job definition.
+          format: int32
+        pipelineId:
+          type: string
+          description: The identifier of the pipeline executing the job.
         state:
           allOf:
-          - $ref: '#/components/schemas/AudienceInactivitySyncState'
-          description: The current state of the inactivity sync.
-        phase:
-          allOf:
-          - $ref: '#/components/schemas/AudienceInactivitySyncPhase'
-          description: The current phase within the inactivity sync lifecycle.
-        cutoff:
-          type: string
-          description: The cutoff captured at run creation time. Users with last_seen_at older than this are marked inactive.
-          format: date-time
-        lastProcessedUserId:
-          type:
-          - string
-          - 'null'
-          description: The id of the last user that was processed (progress cursor).
-        processedCount:
-          type: integer
-          description: The number of users processed so far.
-          format: int64
-        changedCount:
-          type: integer
-          description: The number of users whose state was changed by the sync.
-          format: int64
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message populated when the sync transitioned to Failed.
-        startedAt:
-          type:
-          - string
-          - 'null'
-          description: When the sync began processing (null while still Pending).
-          format: date-time
-        lastHeartbeatAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of the last heartbeat received from the worker.
-          format: date-time
-        completedAt:
-          type:
-          - string
-          - 'null'
-          description: When the sync reached a terminal state (Completed, Failed, Aborted).
-          format: date-time
+          - $ref: '#/components/schemas/AudienceJobState'
+          description: The current status of the job.
         createdAt:
           type: string
-          description: When the sync was created.
+          description: The timestamp when the job was created.
           format: date-time
-    CreateAudienceEndpoint_Output:
+    RecreateExternalAudiencesEndpoint_Input:
       required:
-      - audienceId
+      - recreateAll
       type: object
       properties:
-        audienceId:
+        recreateAll:
+          type: boolean
+          description: Whether to recreate all 3 external audiences or only the missing ones.
+    StartAudienceInactivitySyncEndpoint_Output:
+      required:
+      - syncId
+      type: object
+      properties:
+        syncId:
           type: string
-          description: The unique identifier of the newly created audience.
-    AudienceStateRecalculationState:
+          description: The id of the inactivity sync that was started or reused.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    AudienceInactivitySyncState:
       enum:
       - Pending
       - Processing
       - Completed
       - Failed
       - Aborted
-    AudienceStateRecalculationPhase:
-      enum:
-      - RecalculatingUsers
-      - Finalizing
-      - Done
-    BoostLevel:
-      enum:
-      - None
-      - Stable
-      - Distilling
-      - Global
-    DeviceType:
-      enum:
-      - Unknown
-      - Phone
-      - Tablet
-    IFormFile:
-      type: string
-      format: binary
-    RetrievalMode:
-      enum:
-      - Random
-      - Shuffled
-      - Sequential
     UpdateBoostConfigEndpoint_Input:
       type: object
       properties:
@@ -1887,243 +2343,25 @@ components:
           - 'null'
           description: Minimum number of graduated users required to activate distilling boost.
           format: int32
-    GetLatestAudienceInactivitySyncEndpoint_Output:
+    CreateAudienceEndpoint_Output:
       required:
-      - id
       - audienceId
-      - state
-      - phase
-      - cutoff
-      - processedCount
-      - changedCount
-      - createdAt
       type: object
       properties:
-        id:
-          type: string
-          description: The unique identifier of the inactivity sync.
         audienceId:
           type: string
-          description: The audience this inactivity sync belongs to.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/AudienceInactivitySyncState'
-          description: The current state of the inactivity sync.
-        phase:
-          allOf:
-          - $ref: '#/components/schemas/AudienceInactivitySyncPhase'
-          description: The current phase within the inactivity sync lifecycle.
-        cutoff:
-          type: string
-          description: The cutoff captured at run creation time. Users with last_seen_at older than this are marked inactive.
-          format: date-time
-        lastProcessedUserId:
-          type:
-          - string
-          - 'null'
-          description: The id of the last user that was processed (progress cursor).
-        processedCount:
-          type: integer
-          description: The number of users processed so far.
-          format: int64
-        changedCount:
-          type: integer
-          description: The number of users whose state was changed by the sync.
-          format: int64
-        errorMessage:
-          type:
-          - string
-          - 'null'
-          description: Error message populated when the sync transitioned to Failed.
-        startedAt:
-          type:
-          - string
-          - 'null'
-          description: When the sync began processing (null while still Pending).
-          format: date-time
-        lastHeartbeatAt:
-          type:
-          - string
-          - 'null'
-          description: Timestamp of the last heartbeat received from the worker.
-          format: date-time
-        completedAt:
-          type:
-          - string
-          - 'null'
-          description: When the sync reached a terminal state (Completed, Failed, Aborted).
-          format: date-time
-        createdAt:
-          type: string
-          description: When the sync was created.
-          format: date-time
-    IMetadataInput:
+          description: The unique identifier of the newly created audience.
+    IAudienceFilterNotAudienceFilter:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    StartAudienceStateRecalculationEndpoint_Output:
-      required:
-      - recalculationId
-      type: object
-      properties:
-        recalculationId:
-          type: string
-          description: The id of the recalculation that was started or reused.
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    CreateAudienceEndpoint_Input:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name to give the newly created audience.
-        description:
-          type:
-          - string
-          - 'null'
-          description: An optional markdown-supported description of the audience's purpose.
-        filters:
-          allOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/IAudienceFilter'
-          description: "The filters to apply to any orders created for this audience.\n A filter can be used to restrict the audience to a specific subset of users."
-        graduationScore:
-          type:
-          - number
-          - 'null'
-          description: The score used to determine whether a user graduates from the distilling campaign.
-          format: double
-        demotionScore:
-          type:
-          - number
-          - 'null'
-          description: "Score below which a graduated user is demoted back to distilling.\n Must be less than or equal to GraduationScore. Defaults to null (uses GraduationScore)."
-          format: double
-        minimumSizeForActivation:
-          type:
-          - integer
-          - 'null'
-          description: The minimum number of users required for an audience to be activated.
-          format: int64
-        logo:
-          allOf:
-          - $ref: '#/components/schemas/ExistingAssetInput'
-          description: An optional logo image for the audience. Must be an existing image asset.
-        maxDistillingResponses:
-          type:
-          - integer
-          - 'null'
-          description: "Maximum responses before user exits the distilling campaign.\n Defaults to 10. Set to null to disable this exit condition."
-          format: uint32
-        minResponsesToGraduate:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum responses required before a user can graduate into the audience.\n Even if the user's score is at or above the graduation threshold, they will\n remain in distilling until they have answered at least this many responses.\n Must be strictly less than MaxDistillingResponses when both are set.\n Defaults to null (no minimum — users graduate as soon as the score is reached)."
-          format: uint32
-        dropMinResponses:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum responses before the drop score check applies.\n Users need at least this many responses before they can be kicked out for low score.\n Defaults to 3. Set to null to apply drop score check from the first response."
-          format: uint32
-        dropScore:
-          type:
-          - number
-          - 'null'
-          description: "Score floor - users below this score exit the distilling campaign\n (only after completing DropMinResponses).\n Defaults to 0.2. Set to null to disable this exit condition."
-          format: double
-        isDistillingCampaignSticky:
-          type: boolean
-          description: "Whether the distilling campaign should be sticky (users stay until filters don't match).\n Defaults to true (Temporary sticky)."
-        maxDistillingSessions:
-          type:
-          - integer
-          - 'null'
-          description: "Maximum sessions (rapid retrievals) before user exits the distilling campaign.\n Defaults to null (disabled). Set to a value to enable session-based exit condition."
-          format: uint32
-        inactivityDropDays:
-          type:
-          - integer
-          - 'null'
-          description: "Number of days of inactivity before a distilling user is dropped.\n Defaults to null (disabled)."
-          format: uint32
-        minSubmissionRate:
-          type:
-          - number
-          - 'null'
-          description: "Minimum submission rate (responses / sessions) before a user is dropped.\n Defaults to null (disabled)."
-          format: double
-        minSessionsForSubmissionRate:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum number of sessions before the submission rate check applies.\n Defaults to null (applies from first session)."
-          format: uint32
-        minSubmissionRateGraduated:
-          type:
-          - number
-          - 'null'
-          description: "Minimum submission rate for graduated users. If null, MinSubmissionRate applies to graduated users.\n Set a lower value to be more lenient with graduated users."
-          format: double
-        distillingRetrievalMode:
-          allOf:
-          - $ref: '#/components/schemas/RetrievalMode'
-          description: "The retrieval mode used by the distilling campaign to select rapids for users.\n Defaults to Shuffled."
-        minDistillingForGlobalBoost:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum distilling users before disabling global boost.\n Defaults to 200. Admin-only override."
-          format: int32
-        minGraduatedForDistillingBoost:
-          type:
-          - integer
-          - 'null'
-          description: "Minimum graduated users before disabling distilling boost.\n Defaults to 100. Admin-only override."
-          format: int32
-    IAudienceFilterDemographicAudienceFilter:
-      required:
-      - identifier
-      - values
+      - filter
       - _t
       properties:
         _t:
           enum:
-          - DemographicFilter
+          - NotFilter
           type: string
-        identifier:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-    IAudienceFilterOrAudienceFilter:
-      required:
-      - filters
-      - _t
-      properties:
-        _t:
-          enum:
-          - OrFilter
-          type: string
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAudienceFilter'
+        filter:
+          $ref: '#/components/schemas/IAudienceFilter'
     GetAudienceStateRecalculationByIdEndpoint_Output:
       required:
       - id
@@ -2189,61 +2427,47 @@ components:
           type: string
           description: When the recalculation was created.
           format: date-time
-    UpdateAudienceEndpoint_Output:
-      type: object
+    IAudienceFilterCountryAudienceFilter:
+      required:
+      - countries
+      - _t
       properties:
-        recalculationId:
-          type:
-          - string
-          - 'null'
-          description: "The id of the audience state recalculation that was dispatched as a result of this update.\n Only populated when state-affecting parameters (e.g. graduation score, drop score) changed;\n null when the update only touched descriptive fields or boost configuration."
-        inactivitySyncId:
-          type:
-          - string
-          - 'null'
-          description: "The id of the audience inactivity sync that was dispatched as a result of this update.\n Only populated when InactivityDropDays was changed to a non-null value; null otherwise."
-    IAudienceFilter:
+        _t:
+          enum:
+          - CountryFilter
+          type: string
+        countries:
+          type: array
+          items:
+            type: string
+    IAudienceFilterOrAudienceFilter:
+      required:
+      - filters
+      - _t
+      properties:
+        _t:
+          enum:
+          - OrFilter
+          type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAudienceFilter'
+    AudienceInactivitySyncPhase:
+      enum:
+      - MarkingInactiveUsers
+      - Finalizing
+      - Done
+    IMetadataInput:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IAudienceFilterAndAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterCountryAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterDemographicAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterDeviceAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterLanguageAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterNotAudienceFilter'
-      - $ref: '#/components/schemas/IAudienceFilterOrAudienceFilter'
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
       discriminator:
         propertyName: _t
         mapping:
-          AndFilter: '#/components/schemas/IAudienceFilterAndAudienceFilter'
-          CountryFilter: '#/components/schemas/IAudienceFilterCountryAudienceFilter'
-          DemographicFilter: '#/components/schemas/IAudienceFilterDemographicAudienceFilter'
-          DeviceFilter: '#/components/schemas/IAudienceFilterDeviceAudienceFilter'
-          LanguageFilter: '#/components/schemas/IAudienceFilterLanguageAudienceFilter'
-          NotFilter: '#/components/schemas/IAudienceFilterNotAudienceFilter'
-          OrFilter: '#/components/schemas/IAudienceFilterOrAudienceFilter'
-    AudienceJobState:
-      enum:
-      - Submitted
-      - Running
-      - Completed
-      - Failed
-      - ManualApproval
-      - Queued
-      - Paused
-      - StaleResults
-      - SpendLimited
-    CreateFilteredAudienceEndpoint_Input:
-      required:
-      - filter
-      type: object
-      properties:
-        filter:
-          allOf:
-          - $ref: '#/components/schemas/IAudienceFilter'
-          description: "The filter that restricts the base audience's graduates to a subset (e.g. by language,\n country or demographic value). Multiple criteria can be combined with And / Or / Not."
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     QueryAudienceJobsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -2268,239 +2492,15 @@ components:
         totalPages:
           type: integer
           format: int32
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    QueryAudiencesEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
+    MetadataInputCollection:
       type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryAudiencesEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    QueryAudiencesEndpoint_Output:
-      required:
-      - id
-      - name
-      - status
-      - qualifiedUserCount
-      - filters
-      - createdAt
-      - ownerMail
-      - isPublic
-      - isDistilling
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the audience.
-        name:
-          type: string
-          description: The name of the audience.
-        description:
-          type:
-          - string
-          - 'null'
-          description: The markdown-supported description of the audience.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/AudienceStatus'
-          description: The current status of the audience.
-        qualifiedUserCount:
-          type: integer
-          description: The number of users that have qualified for this audience.
-          format: int64
-        filters:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/IAudienceFilter'
-          description: The filters applied to this audience.
-        logo:
-          type:
-          - string
-          - 'null'
-          description: The URL of the audience logo, if any.
-        createdAt:
-          type: string
-          description: The timestamp when the audience was created.
-          format: date-time
-        ownerMail:
-          type: string
-          description: The email of the audience owner.
-        isPublic:
-          type: boolean
-          description: Whether the audience is publicly visible.
-        isDistilling:
-          type: boolean
-          description: Whether the audience is currently distilling users.
-        randomAdmissionProbability:
-          type:
-          - number
-          - 'null'
-          description: The probability of admitting a random user to the audience.
-          format: double
-        health:
-          type:
-          - number
-          - 'null'
-          description: The health score of the audience.
-          format: double
-        graduated:
-          type: integer
-          description: The number of graduated users.
-          format: int64
-        dropped:
-          type: integer
-          description: The number of dropped users.
-          format: int64
-    AudienceInactivitySyncState:
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    RetrievalMode:
       enum:
-      - Pending
-      - Processing
-      - Completed
-      - Failed
-      - Aborted
-    IAudienceFilterCountryAudienceFilter:
-      required:
-      - countries
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountryFilter
-          type: string
-        countries:
-          type: array
-          items:
-            type: string
-    RecreateExternalAudiencesEndpoint_Input:
-      required:
-      - recreateAll
-      type: object
-      properties:
-        recreateAll:
-          type: boolean
-          description: Whether to recreate all 3 external audiences or only the missing ones.
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    GetAudienceUserStateMetricsResult:
-      required:
-      - usersPerState
-      type: object
-      properties:
-        usersPerState:
-          type: object
-          additionalProperties:
-            type: integer
-            format: int32
-    IAudienceFilterAndAudienceFilter:
-      required:
-      - filters
-      - _t
-      properties:
-        _t:
-          enum:
-          - AndFilter
-          type: string
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAudienceFilter'
-    QueryAudienceJobsEndpoint_Output:
-      required:
-      - jobId
-      - name
-      - definitionId
-      - audienceId
-      - revisionNumber
-      - pipelineId
-      - state
-      - createdAt
-      type: object
-      properties:
-        jobId:
-          type: string
-          description: The unique identifier of the job.
-        name:
-          type: string
-          description: The name of the job.
-        definitionId:
-          type: string
-          description: The identifier of the job definition.
-        audienceId:
-          type: string
-          description: The identifier of the audience the job belongs to.
-        revisionNumber:
-          type: integer
-          description: The revision number of the job definition.
-          format: int32
-        pipelineId:
-          type: string
-          description: The identifier of the pipeline executing the job.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/AudienceJobState'
-          description: The current status of the job.
-        createdAt:
-          type: string
-          description: The timestamp when the job was created.
-          format: date-time
-    AudienceInactivitySyncPhase:
-      enum:
-      - MarkingInactiveUsers
-      - Finalizing
-      - Done
-    IAudienceFilterNotAudienceFilter:
-      required:
-      - filter
-      - _t
-      properties:
-        _t:
-          enum:
-          - NotFilter
-          type: string
-        filter:
-          $ref: '#/components/schemas/IAudienceFilter'
+      - Random
+      - Shuffled
+      - Sequential
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

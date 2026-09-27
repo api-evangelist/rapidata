@@ -49,12 +49,27 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ShortenContextEndpoint_OutputItem:
+    ShortenContextEndpoint_Input:
       required:
-      - shortenedContext
+      - items
       type: object
       properties:
-        shortenedContext:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
+          description: The context/question pairs to shorten.
+      description: The input for the shorten-context endpoint.
+    ShortenContextEndpoint_InputItem:
+      required:
+      - context
+      - question
+      type: object
+      properties:
+        context:
+          type: string
+        question:
           type: string
     ValidationProblemDetails:
       type: object
@@ -86,28 +101,6 @@ components:
             type: array
             items:
               type: string
-    ShortenContextEndpoint_Input:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
-          description: The context/question pairs to shorten.
-      description: The input for the shorten-context endpoint.
-    ShortenContextEndpoint_InputItem:
-      required:
-      - context
-      - question
-      type: object
-      properties:
-        context:
-          type: string
-        question:
-          type: string
     ShortenContextEndpoint_Output:
       required:
       - items
@@ -120,6 +113,13 @@ components:
               $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
           description: The shortened contexts.
       description: The shortened contexts, in the same order as the input items.
+    ShortenContextEndpoint_OutputItem:
+      required:
+      - shortenedContext
+      type: object
+      properties:
+        shortenedContext:
+          type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

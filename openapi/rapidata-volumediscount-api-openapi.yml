@@ -116,21 +116,14 @@ components:
           type: number
           description: The discount ratio for this bracket (e.g., 0.10 for 10%).
           format: double
-    GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem:
+    CreateVolumeDiscountEndpoint_Output:
       required:
       - id
-      - minResponses
-      - discountRatio
       type: object
       properties:
         id:
           type: string
-        minResponses:
-          type: integer
-          format: int64
-        discountRatio:
-          type: number
-          format: double
+          description: The ID of the created volume discount bracket.
     ValidationProblemDetails:
       type: object
       properties:
@@ -161,14 +154,21 @@ components:
             type: array
             items:
               type: string
-    CreateVolumeDiscountEndpoint_Output:
+    GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem:
       required:
       - id
+      - minResponses
+      - discountRatio
       type: object
       properties:
         id:
           type: string
-          description: The ID of the created volume discount bracket.
+        minResponses:
+          type: integer
+          format: int64
+        discountRatio:
+          type: number
+          format: double
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

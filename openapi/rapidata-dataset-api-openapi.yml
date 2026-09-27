@@ -162,6 +162,30 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetDatasetProgressEndpoint_Output:
+      required:
+      - total
+      - ready
+      - pending
+      - failed
+      type: object
+      properties:
+        total:
+          type: integer
+          description: The total number of datapoints in the dataset.
+          format: int32
+        ready:
+          type: integer
+          description: The number of datapoints that have been uploaded successfully.
+          format: int32
+        pending:
+          type: integer
+          description: The number of datapoints that are still being processed.
+          format: int32
+        failed:
+          type: integer
+          description: The number of datapoints that failed to upload.
+          format: int32
     GetDatasetByIdEndpoint_Output:
       required:
       - name
@@ -170,23 +194,15 @@ components:
         name:
           type: string
           description: The name of the dataset.
-    CreateDatasetEndpoint_Input:
+    CreateDatasetEndpoint_Output:
       required:
-      - name
+      - datasetId
       type: object
       properties:
-        name:
+        datasetId:
           type: string
-          description: The name to give to the new dataset.
-      description: The input for the create dataset endpoint.
-    UpdateDatasetNameEndpoint_Input:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The new name of the dataset.
+          description: The id of the created dataset.
+      description: The result when a dataset has been created.
     ValidationProblemDetails:
       type: object
       properties:
@@ -217,39 +233,23 @@ components:
             type: array
             items:
               type: string
-    GetDatasetProgressEndpoint_Output:
+    UpdateDatasetNameEndpoint_Input:
       required:
-      - total
-      - ready
-      - pending
-      - failed
+      - name
       type: object
       properties:
-        total:
-          type: integer
-          description: The total number of datapoints in the dataset.
-          format: int32
-        ready:
-          type: integer
-          description: The number of datapoints that have been uploaded successfully.
-          format: int32
-        pending:
-          type: integer
-          description: The number of datapoints that are still being processed.
-          format: int32
-        failed:
-          type: integer
-          description: The number of datapoints that failed to upload.
-          format: int32
-    CreateDatasetEndpoint_Output:
-      required:
-      - datasetId
-      type: object
-      properties:
-        datasetId:
+        name:
           type: string
-          description: The id of the created dataset.
-      description: The result when a dataset has been created.
+          description: The new name of the dataset.
+    CreateDatasetEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name to give to the new dataset.
+      description: The input for the create dataset endpoint.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

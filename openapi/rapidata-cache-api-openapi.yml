@@ -71,6 +71,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetUserScoreCacheEndpoint_Output:
+      required:
+      - count
+      - scores
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The total number of cached user scores.
+          format: int32
+        scores:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: number
+              format: double
+          description: The cached dimension-to-score mappings.
+    CampaignStatusModel:
+      enum:
+      - Created
+      - Preview
+      - Active
+      - Analysis
+      - Paused
+      - Completed
+      - SpendLimited
     BoostingControlMode:
       enum:
       - Manual
@@ -91,36 +117,6 @@ components:
             items:
               $ref: '#/components/schemas/GetCampaignCacheEndpoint_CampaignEntry'
           description: The list of cached campaign summaries.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     GetCampaignCacheEndpoint_CampaignEntry:
       required:
       - id
@@ -164,32 +160,36 @@ components:
           type: boolean
         boostingControlMode:
           $ref: '#/components/schemas/BoostingControlMode'
-    CampaignStatusModel:
-      enum:
-      - Created
-      - Preview
-      - Active
-      - Analysis
-      - Paused
-      - Completed
-      - SpendLimited
-    GetUserScoreCacheEndpoint_Output:
-      required:
-      - count
-      - scores
+    ValidationProblemDetails:
       type: object
       properties:
-        count:
-          type: integer
-          description: The total number of cached user scores.
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        scores:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: number
-              format: double
-          description: The cached dimension-to-score mappings.
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

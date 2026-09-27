@@ -52,7 +52,7 @@ tags:
 - Annotation
 - RLHF
 - Model Evaluation
-- Machine-Learning
+- Machine Learning
 - Artificial Intelligence
 - Crowdsourcing
 - Preference Data
@@ -67,6 +67,7 @@ tags_raw:
 - AI
 - Crowdsourcing
 - Preference Data
+- Machine-Learning
 apis:
 - aid: rapidata:rapidata-asset-api
   name: Rapidata Asset API

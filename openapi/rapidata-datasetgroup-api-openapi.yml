@@ -51,27 +51,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
     CreateDatasetGroupEndpoint_Input:
       required:
       - group
@@ -89,10 +68,29 @@ components:
           allOf:
           - $ref: '#/components/schemas/IAssetInput'
           description: The optional asset context for the group.
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
     IAssetInputExistingAssetInput:
       required:
       - name
@@ -130,6 +128,16 @@ components:
           - 'null'
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     ValidationProblemDetails:
       type: object
       properties:
@@ -160,6 +168,21 @@ components:
             type: array
             items:
               type: string
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
     IAssetInput:
       required:
       - _t
@@ -174,40 +197,17 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IMetadataInput:
+    IAssetInputTextAssetInput:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
+      - text
       - _t
       properties:
         _t:
           enum:
-          - MultiAssetInput
+          - TextAssetInput
           type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
+        text:
+          type: string
         metadata:
           type:
           - object

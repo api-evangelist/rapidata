@@ -349,15 +349,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InvoiceStatus:
-      enum:
-      - Generating
-      - Draft
-      - Open
-      - Paid
-      - Void
-      - Uncollectible
-      - Failed
     GetInvoiceEndpoint_Output:
       required:
       - id
@@ -417,30 +408,6 @@ components:
           - 'null'
           description: When the invoice was paid.
           format: date-time
-    QueryInvoicesEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryInvoicesEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
     CreateInvoiceEndpoint_Input:
       required:
       - billingPeriodId
@@ -449,36 +416,6 @@ components:
         billingPeriodId:
           type: string
           description: The billing period to create an invoice for.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     QueryInvoicesEndpoint_Output:
       required:
       - id
@@ -549,6 +486,69 @@ components:
           - 'null'
           description: When the invoice was voided.
           format: date-time
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    QueryInvoicesEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryInvoicesEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    InvoiceStatus:
+      enum:
+      - Generating
+      - Draft
+      - Open
+      - Paid
+      - Void
+      - Uncollectible
+      - Failed
     CreateInvoiceEndpoint_Output:
       required:
       - invoiceId

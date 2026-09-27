@@ -104,6 +104,55 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetReplicateModelEndpoint_Parameter:
+      required:
+      - key
+      - type
+      - required
+      - enumValues
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ReplicateModelParameterType'
+        required:
+          type: boolean
+        default: {}
+        enumValues:
+          type: array
+          items:
+            type: string
+        minimum:
+          type:
+          - number
+          - 'null'
+          format: double
+        maximum:
+          type:
+          - number
+          - 'null'
+          format: double
+        order:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    ReplicateModelParameterType:
+      enum:
+      - String
+      - Integer
+      - Number
+      - Boolean
+      - Uri
     SearchReplicateModelsEndpoint_Output:
       required:
       - models
@@ -120,36 +169,6 @@ components:
           - string
           - 'null'
           description: Cursor to fetch the next page, or null when there are no more results.
-    SearchReplicateModelsEndpoint_Model:
-      required:
-      - modelOwner
-      - modelName
-      type: object
-      properties:
-        modelOwner:
-          type: string
-        modelName:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        coverImageUrl:
-          type:
-          - string
-          - 'null'
-        runCount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-    ReplicateModelParameterType:
-      enum:
-      - String
-      - Integer
-      - Number
-      - Boolean
-      - Uri
     ValidationProblemDetails:
       type: object
       properties:
@@ -224,48 +243,29 @@ components:
             items:
               $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
           description: The model's configurable input parameters, ordered for rendering.
-    GetReplicateModelEndpoint_Parameter:
+    SearchReplicateModelsEndpoint_Model:
       required:
-      - key
-      - type
-      - required
-      - enumValues
+      - modelOwner
+      - modelName
       type: object
       properties:
-        key:
+        modelOwner:
           type: string
-        title:
-          type:
-          - string
-          - 'null'
+        modelName:
+          type: string
         description:
           type:
           - string
           - 'null'
-        type:
-          $ref: '#/components/schemas/ReplicateModelParameterType'
-        required:
-          type: boolean
-        default: {}
-        enumValues:
-          type: array
-          items:
-            type: string
-        minimum:
+        coverImageUrl:
           type:
-          - number
+          - string
           - 'null'
-          format: double
-        maximum:
-          type:
-          - number
-          - 'null'
-          format: double
-        order:
+        runCount:
           type:
           - integer
           - 'null'
-          format: int32
+          format: int64
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

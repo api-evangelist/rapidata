@@ -488,14 +488,40 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AcceptOrgInvitationEndpoint_Input:
+    InviteOrgMemberEndpoint_Input:
       required:
-      - token
+      - email
+      - role
       type: object
       properties:
+        email:
+          type: string
+          description: The email address to invite.
+        role:
+          allOf:
+          - $ref: '#/components/schemas/OrgRole'
+          description: The org-scoped role the resulting membership will confer.
+    InviteOrgMemberEndpoint_Output:
+      required:
+      - invitationId
+      - token
+      - expiresAt
+      type: object
+      properties:
+        invitationId:
+          type: string
+          description: The id of the created invitation.
         token:
           type: string
-          description: The single-use invitation token.
+          description: The single-use token used to accept the invitation.
+        expiresAt:
+          type: string
+          description: The instant after which the invitation can no longer be accepted.
+          format: date-time
+    MembershipStatus:
+      enum:
+      - Active
+      - Suspended
     QueryOrganizationsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -520,17 +546,87 @@ components:
         totalPages:
           type: integer
           format: int32
-    ListOrgMembersEndpoint_Output:
+    AcceptOrgInvitationEndpoint_Output:
       required:
-      - members
+      - organizationId
+      - membershipId
       type: object
       properties:
-        members:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ListOrgMembersEndpoint_Output_Member'
-          description: The members of the organization.
+        organizationId:
+          type: string
+          description: The organization the customer joined.
+        membershipId:
+          type: string
+          description: The id of the created membership.
+    ListOrgMembersEndpoint_Output_Member:
+      required:
+      - customerId
+      - email
+      - role
+      - status
+      type: object
+      properties:
+        customerId:
+          type: string
+          format: uuid
+        email:
+          type:
+          - string
+          - 'null'
+        role:
+          $ref: '#/components/schemas/OrgRole'
+        status:
+          $ref: '#/components/schemas/MembershipStatus'
+    GetOrganizationEndpoint_Output:
+      required:
+      - id
+      - name
+      - slug
+      - billingCustomerId
+      - primaryDomain
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the organization.
+        name:
+          type: string
+          description: The human-readable name of the organization.
+        slug:
+          type: string
+          description: The URL-safe unique identifier of the organization.
+        billingCustomerId:
+          type: string
+          description: The customer that owns billing for the organization.
+          format: uuid
+        primaryDomain:
+          type:
+          - string
+          - 'null'
+          description: The primary email domain associated with the organization, if any.
+    OrgRole:
+      enum:
+      - Owner
+      - Admin
+      - Editor
+      - Viewer
+    QueryOrganizationsEndpoint_Output:
+      required:
+      - owner
+      - name
+      - domain
+      type: object
+      properties:
+        owner:
+          type: string
+          description: The customer ID of the organization owner.
+          format: uuid
+        name:
+          type: string
+          description: The name of the organization.
+        domain:
+          type: string
+          description: The domain associated with this organization.
     CreateOrganizationEndpoint_Input:
       required:
       - name
@@ -548,45 +644,14 @@ components:
           - string
           - 'null'
           description: The primary email domain associated with the organization, if any.
-    GetMyOrganizationEndpoint_Output:
+    AcceptOrgInvitationEndpoint_Input:
       required:
-      - name
-      - supportSlackChannelUrl
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the organization.
-        supportSlackChannelUrl:
-          type:
-          - string
-          - 'null'
-          description: The support Slack channel URL of the organization, if one has been configured.
-    InviteOrgMemberEndpoint_Output:
-      required:
-      - invitationId
       - token
-      - expiresAt
       type: object
       properties:
-        invitationId:
-          type: string
-          description: The id of the created invitation.
         token:
           type: string
-          description: The single-use token used to accept the invitation.
-        expiresAt:
-          type: string
-          description: The instant after which the invitation can no longer be accepted.
-          format: date-time
-    CreateOrganizationEndpoint_Output:
-      required:
-      - organizationId
-      type: object
-      properties:
-        organizationId:
-          type: string
-          description: The id of the created organization.
+          description: The single-use invitation token.
     ValidationProblemDetails:
       type: object
       properties:
@@ -617,45 +682,28 @@ components:
             type: array
             items:
               type: string
-    GetOrganizationEndpoint_Output:
+    GetMyOrganizationEndpoint_Output:
       required:
-      - id
       - name
-      - slug
-      - billingCustomerId
-      - primaryDomain
+      - supportSlackChannelUrl
       type: object
       properties:
-        id:
-          type: string
-          description: The id of the organization.
         name:
           type: string
-          description: The human-readable name of the organization.
-        slug:
-          type: string
-          description: The URL-safe unique identifier of the organization.
-        billingCustomerId:
-          type: string
-          description: The customer that owns billing for the organization.
-          format: uuid
-        primaryDomain:
+          description: The name of the organization.
+        supportSlackChannelUrl:
           type:
           - string
           - 'null'
-          description: The primary email domain associated with the organization, if any.
-    AcceptOrgInvitationEndpoint_Output:
+          description: The support Slack channel URL of the organization, if one has been configured.
+    CreateOrganizationEndpoint_Output:
       required:
       - organizationId
-      - membershipId
       type: object
       properties:
         organizationId:
           type: string
-          description: The organization the customer joined.
-        membershipId:
-          type: string
-          description: The id of the created membership.
+          description: The id of the created organization.
     SetOrganizationSupportSlackChannelEndpoint_Input:
       type: object
       properties:
@@ -664,65 +712,17 @@ components:
           - string
           - 'null'
           description: The support Slack channel URL to set, or null/empty to clear it.
-    OrgRole:
-      enum:
-      - Owner
-      - Admin
-      - Editor
-      - Viewer
-    InviteOrgMemberEndpoint_Input:
+    ListOrgMembersEndpoint_Output:
       required:
-      - email
-      - role
+      - members
       type: object
       properties:
-        email:
-          type: string
-          description: The email address to invite.
-        role:
+        members:
           allOf:
-          - $ref: '#/components/schemas/OrgRole'
-          description: The org-scoped role the resulting membership will confer.
-    ListOrgMembersEndpoint_Output_Member:
-      required:
-      - customerId
-      - email
-      - role
-      - status
-      type: object
-      properties:
-        customerId:
-          type: string
-          format: uuid
-        email:
-          type:
-          - string
-          - 'null'
-        role:
-          $ref: '#/components/schemas/OrgRole'
-        status:
-          $ref: '#/components/schemas/MembershipStatus'
-    QueryOrganizationsEndpoint_Output:
-      required:
-      - owner
-      - name
-      - domain
-      type: object
-      properties:
-        owner:
-          type: string
-          description: The customer ID of the organization owner.
-          format: uuid
-        name:
-          type: string
-          description: The name of the organization.
-        domain:
-          type: string
-          description: The domain associated with this organization.
-    MembershipStatus:
-      enum:
-      - Active
-      - Suspended
+          - type: array
+            items:
+              $ref: '#/components/schemas/ListOrgMembersEndpoint_Output_Member'
+          description: The members of the organization.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

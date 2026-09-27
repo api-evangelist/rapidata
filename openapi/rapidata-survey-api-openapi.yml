@@ -44,6 +44,17 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SendSurveyEndpoint_Input:
+      required:
+      - fields
+      type: object
+      properties:
+        fields:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: string
+          description: The fields of the survey.
     ValidationProblemDetails:
       type: object
       properties:
@@ -74,17 +85,6 @@ components:
             type: array
             items:
               type: string
-    SendSurveyEndpoint_Input:
-      required:
-      - fields
-      type: object
-      properties:
-        fields:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: string
-          description: The fields of the survey.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

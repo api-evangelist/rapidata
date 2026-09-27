@@ -279,6 +279,94 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateGlobalBillingSettingEndpoint_Input:
+      type: object
+      properties:
+        priority:
+          type:
+          - integer
+          - 'null'
+          description: The priority of the setting. Defaults to the configured global default if not specified.
+          format: int32
+        validFrom:
+          type:
+          - string
+          - 'null'
+          description: The start of the validity window.
+          format: date-time
+        validTo:
+          type:
+          - string
+          - 'null'
+          description: The end of the validity window.
+          format: date-time
+        costPerResponseFreeText:
+          type:
+          - number
+          - 'null'
+          description: The cost per free text response.
+          format: double
+        costPerResponseImage:
+          type:
+          - number
+          - 'null'
+          description: The cost per image response.
+          format: double
+        costPerResponseMediaPerSecond:
+          type:
+          - number
+          - 'null'
+          description: The cost per second of media response.
+          format: double
+        costPerResponseMediaMinimum:
+          type:
+          - number
+          - 'null'
+          description: The minimum cost per media response.
+          format: double
+        costPerResponseTextPer50Chars:
+          type:
+          - number
+          - 'null'
+          description: The cost per 50 characters of text response.
+          format: double
+        costPerResponseContextTextPer50Chars:
+          type:
+          - number
+          - 'null'
+          description: The cost per 50 characters of context text.
+          format: double
+        costPerResponseContextTextMinimum:
+          type:
+          - number
+          - 'null'
+          description: The minimum cost per context text.
+          format: double
+        costPerResponseContextImage:
+          type:
+          - number
+          - 'null'
+          description: The cost per context image.
+          format: double
+        costPerResponseContextVideoPerSecond:
+          type:
+          - number
+          - 'null'
+          description: The cost per second of context video.
+          format: double
+        costPerResponseContextVideoMinimum:
+          type:
+          - number
+          - 'null'
+          description: The minimum cost per context video.
+          format: double
+        discountRatio:
+          type:
+          - number
+          - 'null'
+          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
+          format: double
+      description: The billing setting input data.
     CreateCustomerBillingSettingEndpoint_Input:
       type: object
       properties:
@@ -367,17 +455,6 @@ components:
           description: The discount ratio (0-1, e.g. 0.10 = 10% off).
           format: double
       description: The billing setting input data.
-    GetBillingSettingsTimelineEndpoint_Output:
-      required:
-      - intervals
-      type: object
-      properties:
-        intervals:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
-          description: The billing settings intervals.
     CreateBillingItemBillingSettingEndpoint_Input:
       type: object
       properties:
@@ -496,94 +573,17 @@ components:
             type: array
             items:
               type: string
-    CreateGlobalBillingSettingEndpoint_Input:
+    GetBillingSettingsTimelineEndpoint_Output:
+      required:
+      - intervals
       type: object
       properties:
-        priority:
-          type:
-          - integer
-          - 'null'
-          description: The priority of the setting. Defaults to the configured global default if not specified.
-          format: int32
-        validFrom:
-          type:
-          - string
-          - 'null'
-          description: The start of the validity window.
-          format: date-time
-        validTo:
-          type:
-          - string
-          - 'null'
-          description: The end of the validity window.
-          format: date-time
-        costPerResponseFreeText:
-          type:
-          - number
-          - 'null'
-          description: The cost per free text response.
-          format: double
-        costPerResponseImage:
-          type:
-          - number
-          - 'null'
-          description: The cost per image response.
-          format: double
-        costPerResponseMediaPerSecond:
-          type:
-          - number
-          - 'null'
-          description: The cost per second of media response.
-          format: double
-        costPerResponseMediaMinimum:
-          type:
-          - number
-          - 'null'
-          description: The minimum cost per media response.
-          format: double
-        costPerResponseTextPer50Chars:
-          type:
-          - number
-          - 'null'
-          description: The cost per 50 characters of text response.
-          format: double
-        costPerResponseContextTextPer50Chars:
-          type:
-          - number
-          - 'null'
-          description: The cost per 50 characters of context text.
-          format: double
-        costPerResponseContextTextMinimum:
-          type:
-          - number
-          - 'null'
-          description: The minimum cost per context text.
-          format: double
-        costPerResponseContextImage:
-          type:
-          - number
-          - 'null'
-          description: The cost per context image.
-          format: double
-        costPerResponseContextVideoPerSecond:
-          type:
-          - number
-          - 'null'
-          description: The cost per second of context video.
-          format: double
-        costPerResponseContextVideoMinimum:
-          type:
-          - number
-          - 'null'
-          description: The minimum cost per context video.
-          format: double
-        discountRatio:
-          type:
-          - number
-          - 'null'
-          description: The discount ratio (0-1, e.g. 0.10 = 10% off).
-          format: double
-      description: The billing setting input data.
+        intervals:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
+          description: The billing settings intervals.
     GetBillingSettingsTimelineEndpoint_Output_Interval:
       required:
       - costPerResponseFreeText

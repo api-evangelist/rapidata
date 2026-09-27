@@ -176,6 +176,55 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetReplicateModelEndpoint_Parameter:
+      required:
+      - key
+      - type
+      - required
+      - enumValues
+      type: object
+      properties:
+        key:
+          type: string
+        title:
+          type:
+          - string
+          - 'null'
+        description:
+          type:
+          - string
+          - 'null'
+        type:
+          $ref: '#/components/schemas/ReplicateModelParameterType'
+        required:
+          type: boolean
+        default: {}
+        enumValues:
+          type: array
+          items:
+            type: string
+        minimum:
+          type:
+          - number
+          - 'null'
+          format: double
+        maximum:
+          type:
+          - number
+          - 'null'
+          format: double
+        order:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    ReplicateModelParameterType:
+      enum:
+      - String
+      - Integer
+      - Number
+      - Boolean
+      - Uri
     SearchReplicateModelsEndpoint_Output:
       required:
       - models
@@ -192,61 +241,17 @@ components:
           - string
           - 'null'
           description: Cursor to fetch the next page, or null when there are no more results.
-    IFaucetInputReplicateFaucetInput:
+    IFaucetInput:
       required:
-      - modelOwner
-      - modelName
       - _t
-      properties:
-        _t:
-          enum:
-          - Replicate
-          type: string
-        modelOwner:
-          type: string
-          description: The owner of the hosted model (e.g. "stability-ai").
-        modelName:
-          type: string
-          description: The model name (e.g. "sdxl").
-        modelVersion:
-          type:
-          - string
-          - 'null'
-          description: Optional pinned model version hash.
-        additionalInputs:
-          type: object
-          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
-      description: Configures a faucet that generates samples via the Replicate API.
-    SearchReplicateModelsEndpoint_Model:
-      required:
-      - modelOwner
-      - modelName
       type: object
-      properties:
-        modelOwner:
-          type: string
-        modelName:
-          type: string
-        description:
-          type:
-          - string
-          - 'null'
-        coverImageUrl:
-          type:
-          - string
-          - 'null'
-        runCount:
-          type:
-          - integer
-          - 'null'
-          format: int64
-    ReplicateModelParameterType:
-      enum:
-      - String
-      - Integer
-      - Number
-      - Boolean
-      - Uri
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
+      discriminator:
+        propertyName: _t
+        mapping:
+          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
     ValidationProblemDetails:
       type: object
       properties:
@@ -277,6 +282,31 @@ components:
             type: array
             items:
               type: string
+    IFaucetInputReplicateFaucetInput:
+      required:
+      - modelOwner
+      - modelName
+      - _t
+      properties:
+        _t:
+          enum:
+          - Replicate
+          type: string
+        modelOwner:
+          type: string
+          description: The owner of the hosted model (e.g. "stability-ai").
+        modelName:
+          type: string
+          description: The model name (e.g. "sdxl").
+        modelVersion:
+          type:
+          - string
+          - 'null'
+          description: Optional pinned model version hash.
+        additionalInputs:
+          type: object
+          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
+      description: Configures a faucet that generates samples via the Replicate API.
     GetReplicateModelEndpoint_Output:
       required:
       - modelOwner
@@ -321,59 +351,29 @@ components:
             items:
               $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
           description: The model's configurable input parameters, ordered for rendering.
-    IFaucetInput:
+    SearchReplicateModelsEndpoint_Model:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
-      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
-      discriminator:
-        propertyName: _t
-        mapping:
-          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
-    GetReplicateModelEndpoint_Parameter:
-      required:
-      - key
-      - type
-      - required
-      - enumValues
+      - modelOwner
+      - modelName
       type: object
       properties:
-        key:
+        modelOwner:
           type: string
-        title:
-          type:
-          - string
-          - 'null'
+        modelName:
+          type: string
         description:
           type:
           - string
           - 'null'
-        type:
-          $ref: '#/components/schemas/ReplicateModelParameterType'
-        required:
-          type: boolean
-        default: {}
-        enumValues:
-          type: array
-          items:
-            type: string
-        minimum:
+        coverImageUrl:
           type:
-          - number
+          - string
           - 'null'
-          format: double
-        maximum:
-          type:
-          - number
-          - 'null'
-          format: double
-        order:
+        runCount:
           type:
           - integer
           - 'null'
-          format: int32
+          format: int64
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

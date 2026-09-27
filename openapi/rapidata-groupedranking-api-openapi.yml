@@ -182,23 +182,38 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IPairMakerInformationOnlinePairMakerInformation:
+    GetGroupedRankingWorkflowResultsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetGroupedRankingWorkflowResultsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IPairMakerInformationFullPermutationPairMakerInformation:
       required:
       - _t
       properties:
         _t:
           enum:
-          - OnlinePairMakerInformation
+          - FullPermutationPairMakerInformation
           type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
-        currentComparisonBudget:
-          type: integer
-          format: int32
     GetGroupedRankingWorkflowResultsEndpoint_Output:
       required:
       - id
@@ -250,30 +265,6 @@ components:
             type: array
             items:
               type: string
-    GetGroupedRankingWorkflowResultsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetGroupedRankingWorkflowResultsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
     IPairMakerInformation:
       required:
       - _t
@@ -286,14 +277,23 @@ components:
         mapping:
           FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
           OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
-    IPairMakerInformationFullPermutationPairMakerInformation:
+    IPairMakerInformationOnlinePairMakerInformation:
       required:
       - _t
       properties:
         _t:
           enum:
-          - FullPermutationPairMakerInformation
+          - OnlinePairMakerInformation
           type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
+        currentComparisonBudget:
+          type: integer
+          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect
