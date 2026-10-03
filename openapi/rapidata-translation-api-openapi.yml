@@ -85,14 +85,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    EnsureEnglishEndpoint_Output:
-      required:
-      - englishText
-      type: object
-      properties:
-        englishText:
-          type: string
-          description: The English version of the provided text.
     TranslateEndpoint_Output:
       required:
       - translation
@@ -111,16 +103,6 @@ components:
         targetLanguage:
           type: string
           description: The language the text was translated into.
-    TranslatorType:
-      enum:
-      - Google
-      - Deepl
-      - OpenAi
-      - OpenAi4O
-      - OpenAi4OMini
-      - LibreTranslate
-      - Gemini
-      - Tllm
     TranslateEndpoint_Input:
       required:
       - translator
@@ -141,6 +123,14 @@ components:
         sourceLanguage:
           type: string
           description: The original language of the text.
+    EnsureEnglishEndpoint_Input:
+      required:
+      - text
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text to ensure is English.
     ValidationProblemDetails:
       type: object
       properties:
@@ -171,14 +161,24 @@ components:
             type: array
             items:
               type: string
-    EnsureEnglishEndpoint_Input:
+    TranslatorType:
+      enum:
+      - Google
+      - Deepl
+      - OpenAi
+      - OpenAi4O
+      - OpenAi4OMini
+      - LibreTranslate
+      - Gemini
+      - Tllm
+    EnsureEnglishEndpoint_Output:
       required:
-      - text
+      - englishText
       type: object
       properties:
-        text:
+        englishText:
           type: string
-          description: The text to ensure is English.
+          description: The English version of the provided text.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

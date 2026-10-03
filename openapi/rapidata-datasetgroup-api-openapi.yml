@@ -68,6 +68,51 @@ components:
           allOf:
           - $ref: '#/components/schemas/IAssetInput'
           description: The optional asset context for the group.
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
     IAssetInputMultiAssetInput:
       required:
       - assets
@@ -81,6 +126,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
         metadata:
           type:
           - object
@@ -112,32 +178,6 @@ components:
           type:
           - string
           - 'null'
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     ValidationProblemDetails:
       type: object
       properties:
@@ -168,56 +208,16 @@ components:
             type: array
             items:
               type: string
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IAssetInput:
+    IMetadataInput:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
       discriminator:
         propertyName: _t
         mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

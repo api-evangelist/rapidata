@@ -176,6 +176,91 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SearchReplicateModelsEndpoint_Output:
+      required:
+      - models
+      type: object
+      properties:
+        models:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
+          description: The matching models for this page.
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the next page, or null when there are no more results.
+    GetReplicateModelEndpoint_Output:
+      required:
+      - modelOwner
+      - modelName
+      - supportsImageReference
+      - parameters
+      type: object
+      properties:
+        modelOwner:
+          type: string
+          description: The owner of the hosted model.
+        modelName:
+          type: string
+          description: The model name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the model.
+        coverImageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of a representative cover image, if available.
+        runCount:
+          type:
+          - integer
+          - 'null'
+          description: Total number of times the model has been run on Replicate, if known.
+          format: int64
+        latestVersion:
+          type:
+          - string
+          - 'null'
+          description: The model's latest version id, if reported by Replicate.
+        supportsImageReference:
+          type: boolean
+          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
+        parameters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
+          description: The model's configurable input parameters, ordered for rendering.
+    IFaucetInputReplicateFaucetInput:
+      required:
+      - modelOwner
+      - modelName
+      - _t
+      properties:
+        _t:
+          enum:
+          - Replicate
+          type: string
+        modelOwner:
+          type: string
+          description: The owner of the hosted model (e.g. "stability-ai").
+        modelName:
+          type: string
+          description: The model name (e.g. "sdxl").
+        modelVersion:
+          type:
+          - string
+          - 'null'
+          description: Optional pinned model version hash.
+        additionalInputs:
+          type: object
+          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
+      description: Configures a faucet that generates samples via the Replicate API.
     GetReplicateModelEndpoint_Parameter:
       required:
       - key
@@ -225,33 +310,6 @@ components:
       - Number
       - Boolean
       - Uri
-    SearchReplicateModelsEndpoint_Output:
-      required:
-      - models
-      type: object
-      properties:
-        models:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
-          description: The matching models for this page.
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor to fetch the next page, or null when there are no more results.
-    IFaucetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
-      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
-      discriminator:
-        propertyName: _t
-        mapping:
-          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
     ValidationProblemDetails:
       type: object
       properties:
@@ -282,75 +340,17 @@ components:
             type: array
             items:
               type: string
-    IFaucetInputReplicateFaucetInput:
+    IFaucetInput:
       required:
-      - modelOwner
-      - modelName
       - _t
-      properties:
-        _t:
-          enum:
-          - Replicate
-          type: string
-        modelOwner:
-          type: string
-          description: The owner of the hosted model (e.g. "stability-ai").
-        modelName:
-          type: string
-          description: The model name (e.g. "sdxl").
-        modelVersion:
-          type:
-          - string
-          - 'null'
-          description: Optional pinned model version hash.
-        additionalInputs:
-          type: object
-          description: "Extra model inputs keyed by parameter name (e.g. \"aspect_ratio\"). The system-managed keys\n (prompt, num_outputs) must not appear here — they are supplied automatically. Values are\n validated against the model's live input schema when the faucet is set."
-      description: Configures a faucet that generates samples via the Replicate API.
-    GetReplicateModelEndpoint_Output:
-      required:
-      - modelOwner
-      - modelName
-      - supportsImageReference
-      - parameters
       type: object
-      properties:
-        modelOwner:
-          type: string
-          description: The owner of the hosted model.
-        modelName:
-          type: string
-          description: The model name.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of the model.
-        coverImageUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of a representative cover image, if available.
-        runCount:
-          type:
-          - integer
-          - 'null'
-          description: Total number of times the model has been run on Replicate, if known.
-          format: int64
-        latestVersion:
-          type:
-          - string
-          - 'null'
-          description: The model's latest version id, if reported by Replicate.
-        supportsImageReference:
-          type: boolean
-          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
-        parameters:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
-          description: The model's configurable input parameters, ordered for rendering.
+      oneOf:
+      - $ref: '#/components/schemas/IFaucetInputReplicateFaucetInput'
+      description: "Polymorphic request body describing a faucet to configure on a participant. The concrete\n type is selected by the _t discriminator (e.g. \"Replicate\")."
+      discriminator:
+        propertyName: _t
+        mapping:
+          Replicate: '#/components/schemas/IFaucetInputReplicateFaucetInput'
     SearchReplicateModelsEndpoint_Model:
       required:
       - modelOwner

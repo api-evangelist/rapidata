@@ -409,50 +409,21 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IMetadataModelFileTypeMetadataModel:
+    IMetadataModelOriginalFilenameMetadataModel:
       required:
-      - fileType
+      - originalFilename
       - _t
       properties:
         _t:
           enum:
-          - FileTypeMetadata
+          - OriginalFilenameMetadata
           type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput:
-      required:
-      - identifier
-      - tags
-      - _t
-      properties:
-        _t:
-          enum:
-          - PlaceholderSampleOutput
+        originalFilename:
           type: string
-        identifier:
-          type: string
-          description: The identifier used to correlate samples of different participants.
-        englishPrompt:
-          type:
-          - string
-          - 'null'
-          description: An optional prompt text translated to English.
-        originalPrompt:
-          type:
-          - string
-          - 'null'
-          description: An optional prompt text as originally provided.
-        promptAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: An optional prompt asset associated with the sample.
-        tags:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The tags associated with the sample.
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
     GetSampleNavigationEndpoint_SampleModel:
       required:
       - id
@@ -500,34 +471,6 @@ components:
           format: uuid
         ownerMail:
           type: string
-    IMetadataModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
     IMetadataModelClassificationMetadataModel:
       required:
       - classification
@@ -539,67 +482,42 @@ components:
           type: string
         classification:
           type: string
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IMetadataModelStreamsMetadataModel:
+    IMetadataModelLocationMetadataModel:
       required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
+      - x
+      - y
       - _t
       properties:
         _t:
           enum:
-          - StreamsMetadata
+          - LocationMetadata
           type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    GetSamplesByParticipantEndpoint_ISampleOutput:
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    IAssetModelMultiAssetModel:
       required:
+      - assets
+      - metadata
+      - identifier
       - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
-      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
-      description: Represents a sample returned for a participant.
-      discriminator:
-        propertyName: _t
-        mapping:
-          SampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
-          PlaceholderSampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
-    GetSamplesByParticipantEndpoint_PagedResultOfISampleOutput:
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    GetSamplesByIdentifierEndpoint_PagedResultOfOutput:
       required:
       - total
       - page
@@ -619,37 +537,23 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutput'
+            $ref: '#/components/schemas/GetSamplesByIdentifierEndpoint_Output'
         totalPages:
           type: integer
           format: int32
-    GetSampleByIdEndpoint_Output:
+    GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput:
       required:
-      - id
       - identifier
-      - participantId
-      - participantName
-      - asset
       - tags
-      - ownerMail
-      type: object
+      - _t
       properties:
-        id:
+        _t:
+          enum:
+          - PlaceholderSampleOutput
           type: string
-          description: The unique identifier of the sample.
         identifier:
           type: string
           description: The identifier used to correlate samples of different participants.
-        participantId:
-          type: string
-          description: The id of the participant that owns the sample.
-        participantName:
-          type: string
-          description: The name of the participant that owns the sample.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The asset associated with the sample.
         englishPrompt:
           type:
           - string
@@ -670,84 +574,64 @@ components:
             items:
               type: string
           description: The tags associated with the sample.
-        createdAt:
-          type: string
-          description: The timestamp when the sample was created.
-          format: date-time
-        ownerId:
-          type: string
-          description: The id of the customer that owns the sample.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The mail of the customer that owns the sample.
-    IMetadataModelOriginalFilenameMetadataModel:
+    IAssetModelTextAssetModel:
       required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    IAssetModelNullAssetModel:
-      required:
+      - text
       - metadata
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - NullAsset
+          - TextAsset
+          type: string
+        text:
           type: string
         metadata:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-    GetSampleNavigationEndpoint_Output:
+    IAssetModelFileAssetModel:
       required:
-      - current
-      - previous
-      - next
-      - related
-      type: object
+      - fileName
+      - metadata
+      - identifier
+      - _t
       properties:
-        current:
-          allOf:
-          - $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
-          description: The current sample that navigation is anchored on.
-        previous:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
-          description: "Up to three samples of the same participant preceding the current sample,\n ordered ascending by identifier. Empty when the current sample is the first\n of its participant."
-        next:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
-          description: "Up to three samples of the same participant following the current sample,\n ordered ascending by identifier. Empty when the current sample is the last\n of its participant."
-        related:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
-          description: "Samples of other participants in the same benchmark that share the current\n sample's identifier."
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    GetSamplesByParticipantEndpoint_ISampleOutput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
+      - $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
+      description: Represents a sample returned for a participant.
+      discriminator:
+        propertyName: _t
+        mapping:
+          SampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput'
+          PlaceholderSampleOutput: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_PlaceholderSampleOutput'
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
     GetSamplesByIdentifierEndpoint_Output:
       required:
       - id
@@ -806,6 +690,48 @@ components:
         ownerMail:
           type: string
           description: The mail of the customer that owns the sample.
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
     IMetadataModelCountMetadataModel:
       required:
       - count
@@ -818,87 +744,169 @@ components:
         count:
           type: integer
           format: int32
-    IMetadataModelTextMetadataModel:
+    GetSampleNavigationEndpoint_Output:
       required:
-      - text
+      - current
+      - previous
+      - next
+      - related
+      type: object
+      properties:
+        current:
+          allOf:
+          - $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: The current sample that navigation is anchored on.
+        previous:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Up to three samples of the same participant preceding the current sample,\n ordered ascending by identifier. Empty when the current sample is the first\n of its participant."
+        next:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Up to three samples of the same participant following the current sample,\n ordered ascending by identifier. Empty when the current sample is the last\n of its participant."
+        related:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetSampleNavigationEndpoint_SampleModel'
+          description: "Samples of other participants in the same benchmark that share the current\n sample's identifier."
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
       - _t
       properties:
         _t:
           enum:
-          - TextMetadata
+          - StreamsMetadata
           type: string
-        text:
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    GetSamplesByParticipantEndpoint_PagedResultOfISampleOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetSamplesByParticipantEndpoint_ISampleOutput'
+        totalPages:
+          type: integer
+          format: int32
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    GetSampleByIdEndpoint_Output:
+      required:
+      - id
+      - identifier
+      - participantId
+      - participantName
+      - asset
+      - tags
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the sample.
+        identifier:
+          type: string
+          description: The identifier used to correlate samples of different participants.
+        participantId:
+          type: string
+          description: The id of the participant that owns the sample.
+        participantName:
+          type: string
+          description: The name of the participant that owns the sample.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset associated with the sample.
+        englishPrompt:
           type:
           - string
           - 'null'
-    IMetadataModelSourceUrlMetadataModel:
+          description: An optional prompt text translated to English.
+        originalPrompt:
+          type:
+          - string
+          - 'null'
+          description: An optional prompt text as originally provided.
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: An optional prompt asset associated with the sample.
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the sample.
+        createdAt:
+          type: string
+          description: The timestamp when the sample was created.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the customer that owns the sample.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The mail of the customer that owns the sample.
+    IMetadataModel:
       required:
-      - url
       - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetModelFileAssetModel:
-      required:
-      - fileName
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetModelMultiAssetModel:
-      required:
-      - assets
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    MetadataModelCollection:
       type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
     GetSamplesByParticipantEndpoint_ISampleOutputGetSamplesByParticipantEndpoint_SampleOutput:
       required:
       - id
@@ -953,6 +961,60 @@ components:
         ownerMail:
           type: string
           description: The mail of the customer that owns the sample.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
     IMetadataModelImageDimensionMetadataModel:
       required:
       - _t
@@ -967,68 +1029,6 @@ components:
         width:
           type: integer
           format: int32
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    GetSamplesByIdentifierEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetSamplesByIdentifierEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

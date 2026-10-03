@@ -217,63 +217,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    CreateValidationFeedbackEndpoint_Input:
-      required:
-      - feedback
-      type: object
-      properties:
-        feedback:
-          type: string
-          description: The feedback text.
-    QueryValidationFeedbacksEndpoint_Output:
-      required:
-      - id
-      - userId
-      - sessionId
-      - feedback
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the feedback.
-        userId:
-          type: string
-          description: The ID of the user who submitted the feedback.
-        sessionId:
-          type: string
-          description: The session ID of the user who submitted the feedback.
-        feedback:
-          type: string
-          description: The feedback text.
-        createdAt:
-          type: string
-          description: The timestamp when the feedback was created.
-          format: date-time
     ValidationProblemDetails:
       type: object
       properties:
@@ -304,6 +247,63 @@ components:
             type: array
             items:
               type: string
+    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryValidationFeedbacksEndpoint_Output:
+      required:
+      - id
+      - userId
+      - sessionId
+      - feedback
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the feedback.
+        userId:
+          type: string
+          description: The ID of the user who submitted the feedback.
+        sessionId:
+          type: string
+          description: The session ID of the user who submitted the feedback.
+        feedback:
+          type: string
+          description: The feedback text.
+        createdAt:
+          type: string
+          description: The timestamp when the feedback was created.
+          format: date-time
+    CreateValidationFeedbackEndpoint_Input:
+      required:
+      - feedback
+      type: object
+      properties:
+        feedback:
+          type: string
+          description: The feedback text.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

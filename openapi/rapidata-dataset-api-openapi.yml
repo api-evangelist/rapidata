@@ -186,6 +186,14 @@ components:
           type: integer
           description: The number of datapoints that failed to upload.
           format: int32
+    UpdateDatasetNameEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name of the dataset.
     GetDatasetByIdEndpoint_Output:
       required:
       - name
@@ -194,15 +202,15 @@ components:
         name:
           type: string
           description: The name of the dataset.
-    CreateDatasetEndpoint_Output:
+    CreateDatasetEndpoint_Input:
       required:
-      - datasetId
+      - name
       type: object
       properties:
-        datasetId:
+        name:
           type: string
-          description: The id of the created dataset.
-      description: The result when a dataset has been created.
+          description: The name to give to the new dataset.
+      description: The input for the create dataset endpoint.
     ValidationProblemDetails:
       type: object
       properties:
@@ -233,23 +241,15 @@ components:
             type: array
             items:
               type: string
-    UpdateDatasetNameEndpoint_Input:
+    CreateDatasetEndpoint_Output:
       required:
-      - name
+      - datasetId
       type: object
       properties:
-        name:
+        datasetId:
           type: string
-          description: The new name of the dataset.
-    CreateDatasetEndpoint_Input:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name to give to the new dataset.
-      description: The input for the create dataset endpoint.
+          description: The id of the created dataset.
+      description: The result when a dataset has been created.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

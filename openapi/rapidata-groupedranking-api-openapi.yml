@@ -182,6 +182,44 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    GetGroupedRankingWorkflowResultsEndpoint_Output:
+      required:
+      - id
+      - name
+      - state
+      - pairMakerInformation
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the sub-workflow.
+        name:
+          type: string
+          description: The name of the sub-workflow.
+        state:
+          type: string
+          description: The state of the sub-workflow.
+        pairMakerInformation:
+          allOf:
+          - $ref: '#/components/schemas/IPairMakerInformation'
+          description: Information about the pair-maker used by the sub-workflow.
+    IPairMakerInformationOnlinePairMakerInformation:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - OnlinePairMakerInformation
+          type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
+        currentComparisonBudget:
+          type: integer
+          format: int32
     GetGroupedRankingWorkflowResultsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -214,27 +252,6 @@ components:
           enum:
           - FullPermutationPairMakerInformation
           type: string
-    GetGroupedRankingWorkflowResultsEndpoint_Output:
-      required:
-      - id
-      - name
-      - state
-      - pairMakerInformation
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the sub-workflow.
-        name:
-          type: string
-          description: The name of the sub-workflow.
-        state:
-          type: string
-          description: The state of the sub-workflow.
-        pairMakerInformation:
-          allOf:
-          - $ref: '#/components/schemas/IPairMakerInformation'
-          description: Information about the pair-maker used by the sub-workflow.
     ValidationProblemDetails:
       type: object
       properties:
@@ -277,23 +294,6 @@ components:
         mapping:
           FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
           OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
-    IPairMakerInformationOnlinePairMakerInformation:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - OnlinePairMakerInformation
-          type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
-        currentComparisonBudget:
-          type: integer
-          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

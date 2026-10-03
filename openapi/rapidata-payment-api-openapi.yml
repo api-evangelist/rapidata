@@ -150,22 +150,15 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetCheckoutSessionEndpoint_Output:
+    CreateTopUpEndpoint_Input:
       required:
-      - status
+      - amount
       type: object
       properties:
-        status:
-          type: string
-          description: The current status of the checkout session.
-    CreateTopUpEndpoint_Output:
-      required:
-      - url
-      type: object
-      properties:
-        url:
-          type: string
-          description: The hosted Stripe checkout url to redirect the customer to.
+        amount:
+          type: number
+          description: The amount in dollars to add to the prepaid balance.
+          format: double
     CreateCheckoutEndpoint_Output:
       required:
       - sessionId
@@ -174,6 +167,14 @@ components:
         sessionId:
           type: string
           description: The id of the created checkout session.
+    CreateTopUpEndpoint_Output:
+      required:
+      - url
+      type: object
+      properties:
+        url:
+          type: string
+          description: The hosted Stripe checkout url to redirect the customer to.
     ValidationProblemDetails:
       type: object
       properties:
@@ -204,15 +205,14 @@ components:
             type: array
             items:
               type: string
-    CreateTopUpEndpoint_Input:
+    GetCheckoutSessionEndpoint_Output:
       required:
-      - amount
+      - status
       type: object
       properties:
-        amount:
-          type: number
-          description: The amount in dollars to add to the prepaid balance.
-          format: double
+        status:
+          type: string
+          description: The current status of the checkout session.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

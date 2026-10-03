@@ -71,23 +71,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetUserScoreCacheEndpoint_Output:
-      required:
-      - count
-      - scores
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The total number of cached user scores.
-          format: int32
-        scores:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: number
-              format: double
-          description: The cached dimension-to-score mappings.
     CampaignStatusModel:
       enum:
       - Created
@@ -97,26 +80,6 @@ components:
       - Paused
       - Completed
       - SpendLimited
-    BoostingControlMode:
-      enum:
-      - Manual
-      - Automatic
-    GetCampaignCacheEndpoint_Output:
-      required:
-      - count
-      - campaigns
-      type: object
-      properties:
-        count:
-          type: integer
-          description: The total number of cached campaigns.
-          format: int32
-        campaigns:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetCampaignCacheEndpoint_CampaignEntry'
-          description: The list of cached campaign summaries.
     GetCampaignCacheEndpoint_CampaignEntry:
       required:
       - id
@@ -160,6 +123,10 @@ components:
           type: boolean
         boostingControlMode:
           $ref: '#/components/schemas/BoostingControlMode'
+    BoostingControlMode:
+      enum:
+      - Manual
+      - Automatic
     ValidationProblemDetails:
       type: object
       properties:
@@ -190,6 +157,39 @@ components:
             type: array
             items:
               type: string
+    GetCampaignCacheEndpoint_Output:
+      required:
+      - count
+      - campaigns
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The total number of cached campaigns.
+          format: int32
+        campaigns:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCampaignCacheEndpoint_CampaignEntry'
+          description: The list of cached campaign summaries.
+    GetUserScoreCacheEndpoint_Output:
+      required:
+      - count
+      - scores
+      type: object
+      properties:
+        count:
+          type: integer
+          description: The total number of cached user scores.
+          format: int32
+        scores:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: number
+              format: double
+          description: The cached dimension-to-score mappings.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

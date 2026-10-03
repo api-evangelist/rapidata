@@ -1101,299 +1101,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    IPipelineStepModelDatasetEvaluationStepModel:
-      required:
-      - datasetArtifactId
-      - aggregationResultFileArtifactId
-      - evaluationResultFileArtifactId
-      - receiver
-      - _t
-      properties:
-        _t:
-          enum:
-          - DatasetEvaluationStepModel
-          type: string
-        datasetArtifactId:
-          type: string
-        aggregationResultFileArtifactId:
-          type: string
-        evaluationResultFileArtifactId:
-          type: string
-        receiver:
-          type: string
-    CloneOrderEndpoint_Output:
-      required:
-      - orderId
-      type: object
-      properties:
-        datasetId:
-          type:
-          - string
-          - 'null'
-          description: The dataset ID of the cloned order.
-        orderId:
-          type: string
-          description: The ID of the newly cloned order.
-    IRapidBlueprintNamedEntityRapidBlueprint:
-      required:
-      - target
-      - classes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityBlueprint
-          type: string
-        target:
-          type: string
-        classes:
-          type: array
-          items:
-            type: string
-    GetPublicOrdersEndpoint_OrderOutput:
-      required:
-      - id
-      - name
-      - isPublic
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        isPublic:
-          type: boolean
-    IDatasetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IDatasetModelCloneDatasetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          CloneDatasetModel: '#/components/schemas/IDatasetModelCloneDatasetModel'
-    IRapidBlueprintTranscriptionRapidBlueprint:
-      required:
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionBlueprint
-          type: string
-        title:
-          type: string
-    IPipelineArtifactModelCreateDatasetArtifactModel:
-      required:
-      - identifier
-      - dataset
-      - _t
-      properties:
-        _t:
-          enum:
-          - CreateDatasetArtifactModel
-          type: string
-        identifier:
-          type: string
-        dataset:
-          $ref: '#/components/schemas/IDatasetModel'
-    AgeUserFilterModel_AgeGroup:
-      enum:
-      - 0-17
-      - 18-29
-      - 30-39
-      - 40-49
-      - 50-64
-      - 65+
-    ConditionalValidationSelection_ValidationChance:
-      required:
-      - userScoreThreshold
-      - chance
-      - rapidCount
-      type: object
-      properties:
-        userScoreThreshold:
-          type: number
-          format: double
-        chance:
-          type: number
-          format: double
-        rapidCount:
-          type: integer
-          format: int32
-        selections:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/ISelection'
-    GetPublicOrdersEndpoint_Output:
-      required:
-      - orders
-      type: object
-      properties:
-        orders:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetPublicOrdersEndpoint_OrderOutput'
-          description: The list of publicly available orders.
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IUserFilterModelCountryUserFilterModel:
-      required:
-      - countries
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountryFilter
-          type: string
-        countries:
-          type: array
-          items:
-            type: string
-    CreateOrderEndpoint_Output:
-      required:
-      - orderId
-      - pipelineId
-      type: object
-      properties:
-        datasetId:
-          type:
-          - string
-          - 'null'
-          description: The dataset ID of the created order.
-        orderId:
-          type: string
-          description: The ID of the created order.
-        campaignId:
-          type:
-          - string
-          - 'null'
-          description: The campaign ID of the created order.
-        pipelineId:
-          type: string
-          description: The pipeline ID of the created order.
-    IPipelineStepModelSendCompletionMailStepModel:
-      required:
-      - receiver
-      - resultsFileArtifactIdentifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - SendCompletionMailStepModel
-          type: string
-        receiver:
-          type: string
-        resultsFileArtifactIdentifier:
-          type: string
-    IUserFilterModelGenderUserFilterModel:
-      required:
-      - genders
-      - _t
-      properties:
-        _t:
-          enum:
-          - GenderFilter
-          type: string
-        genders:
-          type: array
-          items:
-            $ref: '#/components/schemas/GenderUserFilterModel_Gender'
-    ISelectionCappedSelection:
-      required:
-      - selections
-      - maxRapids
-      - _t
-      properties:
-        _t:
-          enum:
-          - CappedSelection
-          type: string
-        selections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ISelection'
-        maxRapids:
-          type: integer
-          format: int32
-    ComparisonOperator:
-      enum:
-      - Equal
-      - NotEqual
-      - LessThan
-      - LessThanOrEqual
-      - GreaterThan
-      - GreaterThanOrEqual
-    IRefereeModelNaiveRefereeModel:
-      required:
-      - totalVotes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NaiveReferee
-          type: string
-        totalVotes:
-          type: integer
-          format: int32
-    IPipelineStepModelWorkflowLabelingStepModel:
-      required:
-      - workflowArtifactId
-      - _t
-      properties:
-        _t:
-          enum:
-          - WorkflowLabelingStepModel
-          type: string
-        workflowArtifactId:
-          type: string
-    IRapidBlueprintLocateRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBlueprint
-          type: string
-        target:
-          type: string
-    IRapidBlueprintLineRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineBlueprint
-          type: string
-        target:
-          type: string
     ISelectionConditionalValidationSelection:
       required:
       - validationSetId
@@ -1414,6 +1121,323 @@ components:
           type: array
           items:
             type: string
+    IRefereeModelBudgetRefereeModel:
+      required:
+      - totalBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - BudgetReferee
+          type: string
+        totalBudget:
+          type: integer
+          format: int32
+    IRapidBlueprintLocateRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBlueprint
+          type: string
+        target:
+          type: string
+    AgeUserFilterModel_AgeGroup:
+      enum:
+      - 0-17
+      - 18-29
+      - 30-39
+      - 40-49
+      - 50-64
+      - 65+
+    IUserFilterModelNewUserFilterModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - NewUserFilter
+          type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IRefereeModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeModelBudgetRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelNaiveRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelQuorumRefereeModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BudgetReferee: '#/components/schemas/IRefereeModelBudgetRefereeModel'
+          EarlyStoppingReferee: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
+          NaiveReferee: '#/components/schemas/IRefereeModelNaiveRefereeModel'
+          QuorumReferee: '#/components/schemas/IRefereeModelQuorumRefereeModel'
+    IPipelineStepModelWorkflowLabelingStepModel:
+      required:
+      - workflowArtifactId
+      - _t
+      properties:
+        _t:
+          enum:
+          - WorkflowLabelingStepModel
+          type: string
+        workflowArtifactId:
+          type: string
+    DeviceType:
+      enum:
+      - Unknown
+      - Phone
+      - Tablet
+    IPipelineStepModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPipelineStepModelDatasetEvaluationStepModel'
+      - $ref: '#/components/schemas/IPipelineStepModelSendCompletionMailStepModel'
+      - $ref: '#/components/schemas/IPipelineStepModelWorkflowAggregationStepModel'
+      - $ref: '#/components/schemas/IPipelineStepModelWorkflowLabelingStepModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          DatasetEvaluationStepModel: '#/components/schemas/IPipelineStepModelDatasetEvaluationStepModel'
+          SendCompletionMailStepModel: '#/components/schemas/IPipelineStepModelSendCompletionMailStepModel'
+          WorkflowAggregationStepModel: '#/components/schemas/IPipelineStepModelWorkflowAggregationStepModel'
+          WorkflowLabelingStepModel: '#/components/schemas/IPipelineStepModelWorkflowLabelingStepModel'
+    UnlockOrderEndpoint_Output:
+      required:
+      - datasetIds
+      type: object
+      properties:
+        datasetIds:
+          allOf:
+          - type: object
+            additionalProperties:
+              type: string
+          description: The dataset IDs created by unlocking the order.
+    IUserFilterModelDeviceUserFilterModel:
+      required:
+      - deviceTypes
+      - _t
+      properties:
+        _t:
+          enum:
+          - DeviceFilter
+          type: string
+        deviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceType'
+    IPipelineStepModelDatasetEvaluationStepModel:
+      required:
+      - datasetArtifactId
+      - aggregationResultFileArtifactId
+      - evaluationResultFileArtifactId
+      - receiver
+      - _t
+      properties:
+        _t:
+          enum:
+          - DatasetEvaluationStepModel
+          type: string
+        datasetArtifactId:
+          type: string
+        aggregationResultFileArtifactId:
+          type: string
+        evaluationResultFileArtifactId:
+          type: string
+        receiver:
+          type: string
+    IDatasetModelCloneDatasetModel:
+      required:
+      - datasetToCloneId
+      - datasetName
+      - _t
+      properties:
+        _t:
+          enum:
+          - CloneDatasetModel
+          type: string
+        datasetToCloneId:
+          type: string
+        datasetName:
+          type: string
+    IUserFilterModelLanguageUserFilterModel:
+      required:
+      - languages
+      - _t
+      properties:
+        _t:
+          enum:
+          - LanguageFilter
+          type: string
+        languages:
+          type: array
+          items:
+            type: string
+    GenderUserFilterModel_Gender:
+      enum:
+      - Male
+      - Female
+      - Other
+    IUserFilterModelResponseCountUserFilterModel:
+      required:
+      - responseCount
+      - dimension
+      - operator
+      - _t
+      properties:
+        _t:
+          enum:
+          - ResponseCountFilter
+          type: string
+        responseCount:
+          type: integer
+          format: uint32
+        dimension:
+          type: string
+        operator:
+          $ref: '#/components/schemas/ComparisonOperator'
+    QueryAggregatedOrdersEndpoint_Output:
+      required:
+      - amount
+      - last7Days
+      - lastOrderDate
+      - lastOrderName
+      - lastOrderId
+      - customerMail
+      type: object
+      properties:
+        amount:
+          type: integer
+          description: The total number of orders for this customer.
+          format: int32
+        last7Days:
+          type: integer
+          description: The number of orders placed in the last 7 days.
+          format: int32
+        lastOrderDate:
+          type: string
+          description: The date of the most recent order.
+          format: date-time
+        lastOrderName:
+          type: string
+          description: The name of the most recent order.
+        lastOrderId:
+          type: string
+          description: The ID of the most recent order.
+        customerMail:
+          type: string
+          description: The customer's email address.
+    QueryAggregatedOrdersEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryAggregatedOrdersEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    ISelectionLabelingSelection:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LabelingSelection
+          type: string
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effortBudget:
+          type: integer
+          format: int32
+        retrievalMode:
+          $ref: '#/components/schemas/RetrievalMode'
+        maxIterations:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    IUserFilterModelOrUserFilterModel:
+      required:
+      - filters
+      - _t
+      properties:
+        _t:
+          enum:
+          - OrFilter
+          type: string
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/IUserFilterModel'
+    CloneOrderEndpoint_Output:
+      required:
+      - orderId
+      type: object
+      properties:
+        datasetId:
+          type:
+          - string
+          - 'null'
+          description: The dataset ID of the cloned order.
+        orderId:
+          type: string
+          description: The ID of the newly cloned order.
     IMetadataInputTextMetadataInput:
       required:
       - text
@@ -1430,17 +1454,71 @@ components:
           - 'null'
         visibilities:
           $ref: '#/components/schemas/MetadataVisibilities'
-    UpdateOrderEndpoint_Input:
+    IPairMakerConfigModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
+      - $ref: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMaker: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
+          OnlinePairMaker: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
+    IUserFilterModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IUserFilterModelAgeUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelAndUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelCampaignUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelCountryUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelCustomUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelDeviceUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelGenderUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelLanguageUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelNewUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelNotUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelOrUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelResponseCountUserFilterModel'
+      - $ref: '#/components/schemas/IUserFilterModelUserScoreUserFilterModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AgeFilter: '#/components/schemas/IUserFilterModelAgeUserFilterModel'
+          AndFilter: '#/components/schemas/IUserFilterModelAndUserFilterModel'
+          CampaignFilter: '#/components/schemas/IUserFilterModelCampaignUserFilterModel'
+          CountryFilter: '#/components/schemas/IUserFilterModelCountryUserFilterModel'
+          CustomFilter: '#/components/schemas/IUserFilterModelCustomUserFilterModel'
+          DeviceFilter: '#/components/schemas/IUserFilterModelDeviceUserFilterModel'
+          GenderFilter: '#/components/schemas/IUserFilterModelGenderUserFilterModel'
+          LanguageFilter: '#/components/schemas/IUserFilterModelLanguageUserFilterModel'
+          NewUserFilter: '#/components/schemas/IUserFilterModelNewUserFilterModel'
+          NotFilter: '#/components/schemas/IUserFilterModelNotUserFilterModel'
+          OrFilter: '#/components/schemas/IUserFilterModelOrUserFilterModel'
+          ResponseCountFilter: '#/components/schemas/IUserFilterModelResponseCountUserFilterModel'
+          UserScoreFilter: '#/components/schemas/IUserFilterModelUserScoreUserFilterModel'
+    IRapidBlueprintBoundingBoxRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxBlueprint
+          type: string
+        target:
+          type: string
+    PreviewOrderEndpoint_Input:
       type: object
       properties:
-        name:
-          type: string
-          description: The new name of the order, if specified.
-        precedingOrderId:
+        ignoreFailedDatapoints:
           type:
-          - string
+          - boolean
           - 'null'
-          description: "The ID of the order that must complete before this order starts processing.\n Set to null to clear an existing preceding order."
+          description: Whether the order should proceed even if certain datapoints failed.
     CreateOrderModel:
       required:
       - orderName
@@ -1542,17 +1620,345 @@ components:
           - 'null'
           description: Optional ID of the order that must complete before this order starts processing.
       description: This model is used to create a simple order
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
+    GetOrderByIdEndpoint_Output:
+      required:
+      - orderName
+      - customerMail
+      - orderDate
+      - state
+      - pipelineId
+      - isLocked
+      - isPublic
+      type: object
+      properties:
+        orderName:
+          type: string
+          description: The name of the order.
+        customerMail:
+          type: string
+          description: The email of the customer who placed the order.
+        orderDate:
+          type: string
+          description: The date the order was placed.
+          format: date-time
+        state:
+          type: string
+          description: The current state of the order.
+        pipelineId:
+          type: string
+          description: The ID of the pipeline associated with the order.
+        isLocked:
+          type: boolean
+          description: Whether the order is locked.
+        isPublic:
+          type: boolean
+          description: Whether the order is publicly visible.
+        failureMessage:
+          type:
+          - string
+          - 'null'
+          description: The failure message if the order failed.
+    ISelectionStaticSelection:
+      required:
+      - rapidIds
+      - _t
+      properties:
+        _t:
+          enum:
+          - StaticSelection
+          type: string
+        rapidIds:
+          type: array
+          items:
+            type: string
+    IPipelineModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPipelineModelCreateSimplePipelineModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          CreateSimplePipelineModel: '#/components/schemas/IPipelineModelCreateSimplePipelineModel'
+    IRapidBlueprintLineRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineBlueprint
+          type: string
+        target:
+          type: string
+    IRapidBlueprintNamedEntityRapidBlueprint:
+      required:
+      - target
+      - classes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityBlueprint
+          type: string
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
+    IRefereeModelQuorumRefereeModel:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumReferee
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
+    IPipelineModelCreateSimplePipelineModel:
+      required:
+      - artifacts
+      - pipelineSteps
+      - namePrefix
+      - _t
+      properties:
+        _t:
+          enum:
+          - CreateSimplePipelineModel
+          type: string
+        artifacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPipelineArtifactModel'
+        pipelineSteps:
+          type: array
+          items:
+            $ref: '#/components/schemas/IPipelineStepModel'
+        namePrefix:
+          type: string
+    IUserFilterModelAgeUserFilterModel:
+      required:
+      - ageGroups
+      - _t
+      properties:
+        _t:
+          enum:
+          - AgeFilter
+          type: string
+        ageGroups:
+          type: array
+          items:
+            $ref: '#/components/schemas/AgeUserFilterModel_AgeGroup'
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    ISelectionValidationSelection:
+      required:
+      - amount
+      - validationSetId
+      - _t
+      properties:
+        _t:
+          enum:
+          - ValidationSelection
+          type: string
+        amount:
+          type: integer
+          format: int32
+        validationSetId:
+          type: string
+    ISelectionDemographicSelection:
+      required:
+      - keys
+      - _t
+      properties:
+        _t:
+          enum:
+          - DemographicSelection
+          type: string
+        keys:
+          type: array
+          items:
+            type: string
+        maxRapids:
+          type: integer
+          format: int32
+    IUserFilterModelNotUserFilterModel:
+      required:
+      - filter
+      - _t
+      properties:
+        _t:
+          enum:
+          - NotFilter
+          type: string
+        filter:
+          $ref: '#/components/schemas/IUserFilterModel'
+    IPipelineStepModelSendCompletionMailStepModel:
+      required:
+      - receiver
+      - resultsFileArtifactIdentifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - SendCompletionMailStepModel
+          type: string
+        receiver:
+          type: string
+        resultsFileArtifactIdentifier:
+          type: string
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    IUserFilterModelUserScoreUserFilterModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - UserScoreFilter
+          type: string
+        lowerbound:
+          type: number
+          format: double
+        upperbound:
+          type: number
+          format: double
+        dimension:
+          type:
+          - string
+          - 'null'
+    StickyConfig:
+      required:
+      - dimension
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+        dimension:
+          type: string
+        bypassFilters:
+          type: boolean
+        bypassPrioritySelection:
+          type: boolean
+        blockOtherStickyCampaigns:
+          type: boolean
+        clearOnPause:
+          type: boolean
+    AttachCategoryRapidBlueprint_Category:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    ComparisonOperator:
+      enum:
+      - Equal
+      - NotEqual
+      - LessThan
+      - LessThanOrEqual
+      - GreaterThan
+      - GreaterThanOrEqual
+    ConditionalValidationSelection_ValidationChance:
+      required:
+      - userScoreThreshold
+      - chance
+      - rapidCount
+      type: object
+      properties:
+        userScoreThreshold:
+          type: number
+          format: double
+        chance:
+          type: number
+          format: double
+        rapidCount:
+          type: integer
+          format: int32
+        selections:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/ISelection'
+    OrderState:
+      enum:
+      - Created
+      - Preview
+      - Submitted
+      - ManualReview
+      - Queued
+      - Processing
+      - Paused
+      - Completed
+      - Cancelled
+      - Failed
+      - StaleResults
+    ISelectionShufflingSelection:
+      required:
+      - selections
+      - _t
+      properties:
+        _t:
+          enum:
+          - ShufflingSelection
+          type: string
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ISelection'
     IRapidBlueprintFreeTextRapidBlueprint:
       required:
       - question
@@ -1572,24 +1978,37 @@ components:
           type:
           - string
           - 'null'
-    IPipelineModel:
+    ISelectionAbTestSelection:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPipelineModelCreateSimplePipelineModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          CreateSimplePipelineModel: '#/components/schemas/IPipelineModelCreateSimplePipelineModel'
-    IUserFilterModelNewUserFilterModel:
-      required:
+      - a
+      - b
       - _t
       properties:
         _t:
           enum:
-          - NewUserFilter
+          - AbTestSelection
           type: string
+        a:
+          type: array
+          items:
+            $ref: '#/components/schemas/ISelection'
+        b:
+          type: array
+          items:
+            $ref: '#/components/schemas/ISelection'
+    IUserFilterModelCountryUserFilterModel:
+      required:
+      - countries
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountryFilter
+          type: string
+        countries:
+          type: array
+          items:
+            type: string
     IUserFilterModelAndUserFilterModel:
       required:
       - filters
@@ -1603,6 +2022,321 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/IUserFilterModel'
+    IUserFilterModelCampaignUserFilterModel:
+      required:
+      - campaignIds
+      - _t
+      properties:
+        _t:
+          enum:
+          - CampaignFilter
+          type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IRapidBlueprintTranscriptionRapidBlueprint:
+      required:
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionBlueprint
+          type: string
+        title:
+          type: string
+    IRankingConfigModelEloConfigModel:
+      required:
+      - startingScore
+      - kFactor
+      - scalingFactor
+      - _t
+      properties:
+        _t:
+          enum:
+          - EloConfig
+          type: string
+        startingScore:
+          type: integer
+          format: int32
+        kFactor:
+          type: integer
+          format: int32
+        scalingFactor:
+          type: integer
+          format: int32
+    RetrievalMode:
+      enum:
+      - Random
+      - Shuffled
+      - Sequential
+    ISelectionEffortCappedSelection:
+      required:
+      - effortBudget
+      - _t
+      properties:
+        _t:
+          enum:
+          - EffortCappedSelection
+          type: string
+        effortBudget:
+          type: integer
+          format: int32
+        retrievalMode:
+          $ref: '#/components/schemas/RetrievalMode'
+        maxIterations:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    IPipelineArtifactModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPipelineArtifactModelCreateDatasetArtifactModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          CreateDatasetArtifactModel: '#/components/schemas/IPipelineArtifactModelCreateDatasetArtifactModel'
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IRapidBlueprintAttachCategoryRapidBlueprint:
+      required:
+      - categories
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyBlueprint
+          type: string
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
+        possibleCategories:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        title:
+          type: string
+    IDatasetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IDatasetModelCloneDatasetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          CloneDatasetModel: '#/components/schemas/IDatasetModelCloneDatasetModel'
+    SubmitOrderEndpoint_Input:
+      type: object
+      properties:
+        ignoreFailedDatapoints:
+          type:
+          - boolean
+          - 'null'
+          description: Whether the order should proceed even if certain datapoints failed.
+    IUserFilterModelGenderUserFilterModel:
+      required:
+      - genders
+      - _t
+      properties:
+        _t:
+          enum:
+          - GenderFilter
+          type: string
+        genders:
+          type: array
+          items:
+            $ref: '#/components/schemas/GenderUserFilterModel_Gender'
+    IRankingConfigModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
+    IOrderWorkflowInputModelEvaluationWorkflowInputModel:
+      required:
+      - validationSetId
+      - shouldAcceptIncorrect
+      - _t
+      properties:
+        _t:
+          enum:
+          - EvaluationWorkflow
+          type: string
+        validationSetId:
+          type: string
+        shouldAcceptIncorrect:
+          type: boolean
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    CreateComplexOrderEndpoint_Input:
+      required:
+      - orderName
+      - pipeline
+      type: object
+      properties:
+        orderName:
+          type: string
+          description: The name of the order.
+        pipeline:
+          allOf:
+          - $ref: '#/components/schemas/IPipelineModel'
+          description: The pipeline configuration to use.
+        isDemo:
+          type: boolean
+          description: Whether the order is a demo.
+        precedingOrderId:
+          type:
+          - string
+          - 'null'
+          description: Optional ID of the order that must complete before this order starts processing.
+    ISelection:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/ISelectionAbTestSelection'
+      - $ref: '#/components/schemas/ISelectionCappedSelection'
+      - $ref: '#/components/schemas/ISelectionConditionalValidationSelection'
+      - $ref: '#/components/schemas/ISelectionDemographicSelection'
+      - $ref: '#/components/schemas/ISelectionEffortCappedSelection'
+      - $ref: '#/components/schemas/ISelectionLabelingSelection'
+      - $ref: '#/components/schemas/ISelectionShufflingSelection'
+      - $ref: '#/components/schemas/ISelectionStaticSelection'
+      - $ref: '#/components/schemas/ISelectionValidationSelection'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AbTestSelection: '#/components/schemas/ISelectionAbTestSelection'
+          CappedSelection: '#/components/schemas/ISelectionCappedSelection'
+          ConditionalValidationSelection: '#/components/schemas/ISelectionConditionalValidationSelection'
+          DemographicSelection: '#/components/schemas/ISelectionDemographicSelection'
+          EffortCappedSelection: '#/components/schemas/ISelectionEffortCappedSelection'
+          LabelingSelection: '#/components/schemas/ISelectionLabelingSelection'
+          ShufflingSelection: '#/components/schemas/ISelectionShufflingSelection'
+          StaticSelection: '#/components/schemas/ISelectionStaticSelection'
+          ValidationSelection: '#/components/schemas/ISelectionValidationSelection'
+    CreateOrderEndpoint_Output:
+      required:
+      - orderId
+      - pipelineId
+      type: object
+      properties:
+        datasetId:
+          type:
+          - string
+          - 'null'
+          description: The dataset ID of the created order.
+        orderId:
+          type: string
+          description: The ID of the created order.
+        campaignId:
+          type:
+          - string
+          - 'null'
+          description: The campaign ID of the created order.
+        pipelineId:
+          type: string
+          description: The pipeline ID of the created order.
+    IOrderWorkflowInputModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          EvaluationWorkflow: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
+          GroupedRankingWorkflow: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
+          SimpleWorkflow: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
+    QueryOrdersEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryOrdersEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
     CreateComplexOrderEndpoint_Output:
       required:
       - orderId
@@ -1625,54 +2359,190 @@ components:
         pipelineId:
           type: string
           description: The pipeline ID of the created order.
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    UnlockOrderEndpoint_Output:
+    IOrderWorkflowInputModelSimpleWorkflowInputModel:
       required:
-      - datasetIds
-      type: object
-      properties:
-        datasetIds:
-          allOf:
-          - type: object
-            additionalProperties:
-              type: string
-          description: The dataset IDs created by unlocking the order.
-    IRankingConfigModelEloConfigModel:
-      required:
-      - startingScore
-      - kFactor
-      - scalingFactor
+      - blueprint
       - _t
       properties:
         _t:
           enum:
-          - EloConfig
+          - SimpleWorkflow
+          type: string
+        blueprint:
+          $ref: '#/components/schemas/IRapidBlueprint'
+        batchSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    IUserFilterModelCustomUserFilterModel:
+      required:
+      - identifier
+      - values
+      - _t
+      properties:
+        _t:
+          enum:
+          - CustomFilter
+          type: string
+        identifier:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IRefereeModelNaiveRefereeModel:
+      required:
+      - totalVotes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NaiveReferee
+          type: string
+        totalVotes:
+          type: integer
+          format: int32
+    AggregatorType:
+      enum:
+      - NonCommittal
+      - MajorityVote
+      - SimpleMatchup
+      - LocateCluster
+      - Classification
+      - Locate
+      - BoundingBox
+      - Line
+      - Transcription
+      - SinglePointLocate
+      - FreeText
+      - Scrub
+      - Ranking
+      - MultiRanking
+      - null
+    IRapidBlueprintCompareRapidBlueprint:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareBlueprint
+          type: string
+        criteria:
+          type: string
+        indexIdentifiers:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+    CreateUnsupportedOrderEndpoint_Input:
+      required:
+      - orderName
+      - dataType
+      - labelType
+      type: object
+      properties:
+        orderName:
+          type: string
+          description: The name of the order.
+        dataType:
+          type: string
+          description: The type of data that was attempted to be ordered.
+        labelType:
+          type: string
+          description: The type of labels that were attempted to be ordered.
+    IRankingConfigModelBradleyTerryRankingConfigModel:
+      required:
+      - startingScore
+      - _t
+      properties:
+        _t:
+          enum:
+          - BradleyTerryRankingConfig
           type: string
         startingScore:
           type: integer
           format: int32
-        kFactor:
-          type: integer
-          format: int32
-        scalingFactor:
-          type: integer
-          format: int32
-    ISelectionStaticSelection:
+    ISelectionCappedSelection:
       required:
-      - rapidIds
+      - selections
+      - maxRapids
       - _t
       properties:
         _t:
           enum:
-          - StaticSelection
+          - CappedSelection
           type: string
-        rapidIds:
+        selections:
           type: array
           items:
+            $ref: '#/components/schemas/ISelection'
+        maxRapids:
+          type: integer
+          format: int32
+    IPipelineStepModelWorkflowAggregationStepModel:
+      required:
+      - campaignArtifactId
+      - workflowArtifactId
+      - fileArtifactId
+      - _t
+      properties:
+        _t:
+          enum:
+          - WorkflowAggregationStepModel
+          type: string
+        campaignArtifactId:
+          type: string
+        workflowArtifactId:
+          type: string
+        fileArtifactId:
+          type: string
+        aggregatorType:
+          $ref: '#/components/schemas/AggregatorType'
+        demographicKeys:
+          type:
+          - array
+          - 'null'
+          items:
             type: string
+    IRapidBlueprintScrubRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubBlueprint
+          type: string
+        target:
+          type: string
     QueryOrdersEndpoint_Output:
       required:
       - id
@@ -1714,330 +2584,69 @@ components:
           - string
           - 'null'
           description: The failure message if the order failed.
-    IUserFilterModelNotUserFilterModel:
+    IRapidBlueprint:
       required:
-      - filter
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyBlueprint: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+          BoundingBoxBlueprint: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+          CompareBlueprint: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+          FreeTextBlueprint: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+          LineBlueprint: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+          LocateBlueprint: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+          NamedEntityBlueprint: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+          PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+          ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+          TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+    IPairMakerConfigModelFullPermutationPairMakerConfigModel:
+      required:
       - _t
       properties:
         _t:
           enum:
-          - NotFilter
+          - FullPermutationPairMaker
           type: string
-        filter:
-          $ref: '#/components/schemas/IUserFilterModel'
-    IPipelineModelCreateSimplePipelineModel:
+    GetPublicOrdersEndpoint_Output:
       required:
-      - artifacts
-      - pipelineSteps
-      - namePrefix
-      - _t
-      properties:
-        _t:
-          enum:
-          - CreateSimplePipelineModel
-          type: string
-        artifacts:
-          type: array
-          items:
-            $ref: '#/components/schemas/IPipelineArtifactModel'
-        pipelineSteps:
-          type: array
-          items:
-            $ref: '#/components/schemas/IPipelineStepModel'
-        namePrefix:
-          type: string
-    IPipelineStepModelWorkflowAggregationStepModel:
-      required:
-      - campaignArtifactId
-      - workflowArtifactId
-      - fileArtifactId
-      - _t
-      properties:
-        _t:
-          enum:
-          - WorkflowAggregationStepModel
-          type: string
-        campaignArtifactId:
-          type: string
-        workflowArtifactId:
-          type: string
-        fileArtifactId:
-          type: string
-        aggregatorType:
-          $ref: '#/components/schemas/AggregatorType'
-        demographicKeys:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    IUserFilterModelDeviceUserFilterModel:
-      required:
-      - deviceTypes
-      - _t
-      properties:
-        _t:
-          enum:
-          - DeviceFilter
-          type: string
-        deviceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceType'
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    QueryAggregatedOrdersEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
+      - orders
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryAggregatedOrdersEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    StickyConfig:
-      required:
-      - dimension
-      type: object
-      properties:
-        isEnabled:
-          type: boolean
-        dimension:
-          type: string
-        bypassFilters:
-          type: boolean
-        bypassPrioritySelection:
-          type: boolean
-        blockOtherStickyCampaigns:
-          type: boolean
-        clearOnPause:
-          type: boolean
-    CreateComplexOrderEndpoint_Input:
-      required:
-      - orderName
-      - pipeline
-      type: object
-      properties:
-        orderName:
-          type: string
-          description: The name of the order.
-        pipeline:
+        orders:
           allOf:
-          - $ref: '#/components/schemas/IPipelineModel'
-          description: The pipeline configuration to use.
-        isDemo:
-          type: boolean
-          description: Whether the order is a demo.
-        precedingOrderId:
-          type:
-          - string
-          - 'null'
-          description: Optional ID of the order that must complete before this order starts processing.
-    IRapidBlueprintCompareRapidBlueprint:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetPublicOrdersEndpoint_OrderOutput'
+          description: The list of publicly available orders.
+    IRefereeModelEarlyStoppingRefereeModel:
       required:
-      - criteria
+      - maxVotes
+      - threshold
       - _t
       properties:
         _t:
           enum:
-          - CompareBlueprint
+          - EarlyStoppingReferee
           type: string
-        criteria:
-          type: string
-        indexIdentifiers:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    PreviewOrderEndpoint_Input:
-      type: object
-      properties:
-        ignoreFailedDatapoints:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the order should proceed even if certain datapoints failed.
-    IUserFilterModelCustomUserFilterModel:
-      required:
-      - identifier
-      - values
-      - _t
-      properties:
-        _t:
-          enum:
-          - CustomFilter
-          type: string
-        identifier:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-    IOrderWorkflowInputModelEvaluationWorkflowInputModel:
-      required:
-      - validationSetId
-      - shouldAcceptIncorrect
-      - _t
-      properties:
-        _t:
-          enum:
-          - EvaluationWorkflow
-          type: string
-        validationSetId:
-          type: string
-        shouldAcceptIncorrect:
-          type: boolean
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-    IRapidBlueprintAttachCategoryRapidBlueprint:
-      required:
-      - categories
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyBlueprint
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
-        possibleCategories:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        title:
-          type: string
-    QueryOrdersEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
+        maxVotes:
           type: integer
           format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryOrdersEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IUserFilterModelOrUserFilterModel:
-      required:
-      - filters
-      - _t
-      properties:
-        _t:
-          enum:
-          - OrFilter
-          type: string
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/IUserFilterModel'
-    ISelectionShufflingSelection:
-      required:
-      - selections
-      - _t
-      properties:
-        _t:
-          enum:
-          - ShufflingSelection
-          type: string
-        selections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ISelection'
-    IUserFilterModelResponseCountUserFilterModel:
-      required:
-      - responseCount
-      - dimension
-      - operator
-      - _t
-      properties:
-        _t:
-          enum:
-          - ResponseCountFilter
-          type: string
-        responseCount:
-          type: integer
-          format: uint32
-        dimension:
-          type: string
-        operator:
-          $ref: '#/components/schemas/ComparisonOperator'
-    SubmitOrderEndpoint_Input:
-      type: object
-      properties:
-        ignoreFailedDatapoints:
-          type:
-          - boolean
-          - 'null'
-          description: Whether the order should proceed even if certain datapoints failed.
-    IDatasetModelCloneDatasetModel:
-      required:
-      - datasetToCloneId
-      - datasetName
-      - _t
-      properties:
-        _t:
-          enum:
-          - CloneDatasetModel
-          type: string
-        datasetToCloneId:
-          type: string
-        datasetName:
-          type: string
+        threshold:
+          type: number
+          format: double
     IRapidBlueprintPolygonRapidBlueprint:
       required:
       - target
@@ -2049,53 +2658,20 @@ components:
           type: string
         target:
           type: string
-    IUserFilterModelAgeUserFilterModel:
+    IPairMakerConfigModelOnlinePairMakerConfigModel:
       required:
-      - ageGroups
       - _t
       properties:
         _t:
           enum:
-          - AgeFilter
+          - OnlinePairMaker
           type: string
-        ageGroups:
-          type: array
-          items:
-            $ref: '#/components/schemas/AgeUserFilterModel_AgeGroup'
-    IUserFilterModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IUserFilterModelAgeUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelAndUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelCampaignUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelCountryUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelCustomUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelDeviceUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelGenderUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelLanguageUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelNewUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelNotUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelOrUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelResponseCountUserFilterModel'
-      - $ref: '#/components/schemas/IUserFilterModelUserScoreUserFilterModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AgeFilter: '#/components/schemas/IUserFilterModelAgeUserFilterModel'
-          AndFilter: '#/components/schemas/IUserFilterModelAndUserFilterModel'
-          CampaignFilter: '#/components/schemas/IUserFilterModelCampaignUserFilterModel'
-          CountryFilter: '#/components/schemas/IUserFilterModelCountryUserFilterModel'
-          CustomFilter: '#/components/schemas/IUserFilterModelCustomUserFilterModel'
-          DeviceFilter: '#/components/schemas/IUserFilterModelDeviceUserFilterModel'
-          GenderFilter: '#/components/schemas/IUserFilterModelGenderUserFilterModel'
-          LanguageFilter: '#/components/schemas/IUserFilterModelLanguageUserFilterModel'
-          NewUserFilter: '#/components/schemas/IUserFilterModelNewUserFilterModel'
-          NotFilter: '#/components/schemas/IUserFilterModelNotUserFilterModel'
-          OrFilter: '#/components/schemas/IUserFilterModelOrUserFilterModel'
-          ResponseCountFilter: '#/components/schemas/IUserFilterModelResponseCountUserFilterModel'
-          UserScoreFilter: '#/components/schemas/IUserFilterModelUserScoreUserFilterModel'
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
+          type: integer
+          format: int32
     IOrderWorkflowInputModelGroupedRankingWorkflowInputModel:
       required:
       - criteria
@@ -2134,589 +2710,20 @@ components:
         maxParallelism:
           type: integer
           format: int32
-    IPairMakerConfigModel:
+    IPipelineArtifactModelCreateDatasetArtifactModel:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
-      - $ref: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FullPermutationPairMaker: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
-          OnlinePairMaker: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    ISelectionLabelingSelection:
-      required:
+      - identifier
+      - dataset
       - _t
       properties:
         _t:
           enum:
-          - LabelingSelection
+          - CreateDatasetArtifactModel
           type: string
-        amount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        effortBudget:
-          type: integer
-          format: int32
-        retrievalMode:
-          $ref: '#/components/schemas/RetrievalMode'
-        maxIterations:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    AttachCategoryRapidBlueprint_Category:
-      required:
-      - label
-      - value
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-    IRefereeModelEarlyStoppingRefereeModel:
-      required:
-      - maxVotes
-      - threshold
-      - _t
-      properties:
-        _t:
-          enum:
-          - EarlyStoppingReferee
-          type: string
-        maxVotes:
-          type: integer
-          format: int32
-        threshold:
-          type: number
-          format: double
-    GetOrderByIdEndpoint_Output:
-      required:
-      - orderName
-      - customerMail
-      - orderDate
-      - state
-      - pipelineId
-      - isLocked
-      - isPublic
-      type: object
-      properties:
-        orderName:
-          type: string
-          description: The name of the order.
-        customerMail:
-          type: string
-          description: The email of the customer who placed the order.
-        orderDate:
-          type: string
-          description: The date the order was placed.
-          format: date-time
-        state:
-          type: string
-          description: The current state of the order.
-        pipelineId:
-          type: string
-          description: The ID of the pipeline associated with the order.
-        isLocked:
-          type: boolean
-          description: Whether the order is locked.
-        isPublic:
-          type: boolean
-          description: Whether the order is publicly visible.
-        failureMessage:
-          type:
-          - string
-          - 'null'
-          description: The failure message if the order failed.
-    OrderState:
-      enum:
-      - Created
-      - Preview
-      - Submitted
-      - ManualReview
-      - Queued
-      - Processing
-      - Paused
-      - Completed
-      - Cancelled
-      - Failed
-      - StaleResults
-    QueryAggregatedOrdersEndpoint_Output:
-      required:
-      - amount
-      - last7Days
-      - lastOrderDate
-      - lastOrderName
-      - lastOrderId
-      - customerMail
-      type: object
-      properties:
-        amount:
-          type: integer
-          description: The total number of orders for this customer.
-          format: int32
-        last7Days:
-          type: integer
-          description: The number of orders placed in the last 7 days.
-          format: int32
-        lastOrderDate:
-          type: string
-          description: The date of the most recent order.
-          format: date-time
-        lastOrderName:
-          type: string
-          description: The name of the most recent order.
-        lastOrderId:
-          type: string
-          description: The ID of the most recent order.
-        customerMail:
-          type: string
-          description: The customer's email address.
-    IUserFilterModelUserScoreUserFilterModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - UserScoreFilter
-          type: string
-        lowerbound:
-          type: number
-          format: double
-        upperbound:
-          type: number
-          format: double
-        dimension:
-          type:
-          - string
-          - 'null'
-    IPairMakerConfigModelFullPermutationPairMakerConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - FullPermutationPairMaker
-          type: string
-    IRefereeModelBudgetRefereeModel:
-      required:
-      - totalBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - BudgetReferee
-          type: string
-        totalBudget:
-          type: integer
-          format: int32
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
         identifier:
-          type:
-          - string
-          - 'null'
-    ISelectionValidationSelection:
-      required:
-      - amount
-      - validationSetId
-      - _t
-      properties:
-        _t:
-          enum:
-          - ValidationSelection
           type: string
-        amount:
-          type: integer
-          format: int32
-        validationSetId:
-          type: string
-    AggregatorType:
-      enum:
-      - NonCommittal
-      - MajorityVote
-      - SimpleMatchup
-      - LocateCluster
-      - Classification
-      - Locate
-      - BoundingBox
-      - Line
-      - Transcription
-      - SinglePointLocate
-      - FreeText
-      - Scrub
-      - Ranking
-      - MultiRanking
-      - null
-    IRefereeModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRefereeModelBudgetRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelNaiveRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelQuorumRefereeModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BudgetReferee: '#/components/schemas/IRefereeModelBudgetRefereeModel'
-          EarlyStoppingReferee: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
-          NaiveReferee: '#/components/schemas/IRefereeModelNaiveRefereeModel'
-          QuorumReferee: '#/components/schemas/IRefereeModelQuorumRefereeModel'
-    IRefereeModelQuorumRefereeModel:
-      required:
-      - maxVotes
-      - threshold
-      - _t
-      properties:
-        _t:
-          enum:
-          - QuorumReferee
-          type: string
-        maxVotes:
-          type: integer
-          format: int32
-        threshold:
-          type: integer
-          format: int32
-    IRapidBlueprintBoundingBoxRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxBlueprint
-          type: string
-        target:
-          type: string
-    IRankingConfigModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    ISelectionEffortCappedSelection:
-      required:
-      - effortBudget
-      - _t
-      properties:
-        _t:
-          enum:
-          - EffortCappedSelection
-          type: string
-        effortBudget:
-          type: integer
-          format: int32
-        retrievalMode:
-          $ref: '#/components/schemas/RetrievalMode'
-        maxIterations:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    IUserFilterModelCampaignUserFilterModel:
-      required:
-      - campaignIds
-      - _t
-      properties:
-        _t:
-          enum:
-          - CampaignFilter
-          type: string
-        campaignIds:
-          type: array
-          items:
-            type: string
-    ISelectionDemographicSelection:
-      required:
-      - keys
-      - _t
-      properties:
-        _t:
-          enum:
-          - DemographicSelection
-          type: string
-        keys:
-          type: array
-          items:
-            type: string
-        maxRapids:
-          type: integer
-          format: int32
-    IPipelineArtifactModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPipelineArtifactModelCreateDatasetArtifactModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          CreateDatasetArtifactModel: '#/components/schemas/IPipelineArtifactModelCreateDatasetArtifactModel'
-    IPairMakerConfigModelOnlinePairMakerConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - OnlinePairMaker
-          type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
-    ISelection:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/ISelectionAbTestSelection'
-      - $ref: '#/components/schemas/ISelectionCappedSelection'
-      - $ref: '#/components/schemas/ISelectionConditionalValidationSelection'
-      - $ref: '#/components/schemas/ISelectionDemographicSelection'
-      - $ref: '#/components/schemas/ISelectionEffortCappedSelection'
-      - $ref: '#/components/schemas/ISelectionLabelingSelection'
-      - $ref: '#/components/schemas/ISelectionShufflingSelection'
-      - $ref: '#/components/schemas/ISelectionStaticSelection'
-      - $ref: '#/components/schemas/ISelectionValidationSelection'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AbTestSelection: '#/components/schemas/ISelectionAbTestSelection'
-          CappedSelection: '#/components/schemas/ISelectionCappedSelection'
-          ConditionalValidationSelection: '#/components/schemas/ISelectionConditionalValidationSelection'
-          DemographicSelection: '#/components/schemas/ISelectionDemographicSelection'
-          EffortCappedSelection: '#/components/schemas/ISelectionEffortCappedSelection'
-          LabelingSelection: '#/components/schemas/ISelectionLabelingSelection'
-          ShufflingSelection: '#/components/schemas/ISelectionShufflingSelection'
-          StaticSelection: '#/components/schemas/ISelectionStaticSelection'
-          ValidationSelection: '#/components/schemas/ISelectionValidationSelection'
-    IOrderWorkflowInputModelSimpleWorkflowInputModel:
-      required:
-      - blueprint
-      - _t
-      properties:
-        _t:
-          enum:
-          - SimpleWorkflow
-          type: string
-        blueprint:
-          $ref: '#/components/schemas/IRapidBlueprint'
-        batchSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-    ISelectionAbTestSelection:
-      required:
-      - a
-      - b
-      - _t
-      properties:
-        _t:
-          enum:
-          - AbTestSelection
-          type: string
-        a:
-          type: array
-          items:
-            $ref: '#/components/schemas/ISelection'
-        b:
-          type: array
-          items:
-            $ref: '#/components/schemas/ISelection'
-    IUserFilterModelLanguageUserFilterModel:
-      required:
-      - languages
-      - _t
-      properties:
-        _t:
-          enum:
-          - LanguageFilter
-          type: string
-        languages:
-          type: array
-          items:
-            type: string
-    DeviceType:
-      enum:
-      - Unknown
-      - Phone
-      - Tablet
-    IPipelineStepModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPipelineStepModelDatasetEvaluationStepModel'
-      - $ref: '#/components/schemas/IPipelineStepModelSendCompletionMailStepModel'
-      - $ref: '#/components/schemas/IPipelineStepModelWorkflowAggregationStepModel'
-      - $ref: '#/components/schemas/IPipelineStepModelWorkflowLabelingStepModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          DatasetEvaluationStepModel: '#/components/schemas/IPipelineStepModelDatasetEvaluationStepModel'
-          SendCompletionMailStepModel: '#/components/schemas/IPipelineStepModelSendCompletionMailStepModel'
-          WorkflowAggregationStepModel: '#/components/schemas/IPipelineStepModelWorkflowAggregationStepModel'
-          WorkflowLabelingStepModel: '#/components/schemas/IPipelineStepModelWorkflowLabelingStepModel'
-    IOrderWorkflowInputModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          EvaluationWorkflow: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
-          GroupedRankingWorkflow: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
-          SimpleWorkflow: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
-    IRankingConfigModelBradleyTerryRankingConfigModel:
-      required:
-      - startingScore
-      - _t
-      properties:
-        _t:
-          enum:
-          - BradleyTerryRankingConfig
-          type: string
-        startingScore:
-          type: integer
-          format: int32
-    IRapidBlueprint:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassifyBlueprint: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
-          BoundingBoxBlueprint: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
-          CompareBlueprint: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
-          FreeTextBlueprint: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
-          LineBlueprint: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
-          LocateBlueprint: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
-          NamedEntityBlueprint: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
-          PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
-          ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
-          TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
-    GenderUserFilterModel_Gender:
-      enum:
-      - Male
-      - Female
-      - Other
-    IRapidBlueprintScrubRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubBlueprint
-          type: string
-        target:
-          type: string
+        dataset:
+          $ref: '#/components/schemas/IDatasetModel'
     CloneOrderEndpoint_Input:
       required:
       - orderName
@@ -2725,37 +2732,30 @@ components:
         orderName:
           type: string
           description: The name of the new cloned order.
-    IMetadataInput:
+    GetPublicOrdersEndpoint_OrderOutput:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    CreateUnsupportedOrderEndpoint_Input:
-      required:
-      - orderName
-      - dataType
-      - labelType
+      - id
+      - name
+      - isPublic
       type: object
       properties:
-        orderName:
+        id:
           type: string
-          description: The name of the order.
-        dataType:
+        name:
           type: string
-          description: The type of data that was attempted to be ordered.
-        labelType:
+        isPublic:
+          type: boolean
+    UpdateOrderEndpoint_Input:
+      type: object
+      properties:
+        name:
           type: string
-          description: The type of labels that were attempted to be ordered.
-    RetrievalMode:
-      enum:
-      - Random
-      - Shuffled
-      - Sequential
+          description: The new name of the order, if specified.
+        precedingOrderId:
+          type:
+          - string
+          - 'null'
+          description: "The ID of the order that must complete before this order starts processing.\n Set to null to clear an existing preceding order."
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

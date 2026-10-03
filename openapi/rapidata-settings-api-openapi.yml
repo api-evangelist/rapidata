@@ -367,6 +367,17 @@ components:
           description: The discount ratio (0-1, e.g. 0.10 = 10% off).
           format: double
       description: The billing setting input data.
+    GetBillingSettingsTimelineEndpoint_Output:
+      required:
+      - intervals
+      type: object
+      properties:
+        intervals:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
+          description: The billing settings intervals.
     CreateCustomerBillingSettingEndpoint_Input:
       type: object
       properties:
@@ -543,47 +554,6 @@ components:
           description: The discount ratio (0-1, e.g. 0.10 = 10% off).
           format: double
       description: The billing setting input data.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    GetBillingSettingsTimelineEndpoint_Output:
-      required:
-      - intervals
-      type: object
-      properties:
-        intervals:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetBillingSettingsTimelineEndpoint_Output_Interval'
-          description: The billing settings intervals.
     GetBillingSettingsTimelineEndpoint_Output_Interval:
       required:
       - costPerResponseFreeText
@@ -642,6 +612,36 @@ components:
         discountRatio:
           type: number
           format: double
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -88,14 +88,16 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateFlowEndpoint_Output:
+    FeatureFlag:
       required:
-      - flowId
+      - key
+      - value
       type: object
       properties:
-        flowId:
+        key:
           type: string
-          description: The ID of the created ranking flow.
+        value:
+          type: string
     CreateFlowEndpoint_Input:
       required:
       - name
@@ -214,16 +216,6 @@ components:
           - 'null'
           description: Duration in seconds for draining flow items. Defaults to 40.
           format: int32
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
     UpdateConfigEndpoint_Input:
       type: object
       properties:
@@ -340,6 +332,14 @@ components:
             type: array
             items:
               type: string
+    CreateFlowEndpoint_Output:
+      required:
+      - flowId
+      type: object
+      properties:
+        flowId:
+          type: string
+          description: The ID of the created ranking flow.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

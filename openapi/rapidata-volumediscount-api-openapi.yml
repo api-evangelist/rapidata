@@ -91,17 +91,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetVolumeDiscountsEndpoint_Output:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem'
-          description: The volume discount brackets.
     CreateVolumeDiscountEndpoint_Input:
       required:
       - minResponses
@@ -115,6 +104,32 @@ components:
         discountRatio:
           type: number
           description: The discount ratio for this bracket (e.g., 0.10 for 10%).
+          format: double
+    GetVolumeDiscountsEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem'
+          description: The volume discount brackets.
+    GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem:
+      required:
+      - id
+      - minResponses
+      - discountRatio
+      type: object
+      properties:
+        id:
+          type: string
+        minResponses:
+          type: integer
+          format: int64
+        discountRatio:
+          type: number
           format: double
     CreateVolumeDiscountEndpoint_Output:
       required:
@@ -154,21 +169,6 @@ components:
             type: array
             items:
               type: string
-    GetVolumeDiscountsEndpoint_Output_VolumeDiscountItem:
-      required:
-      - id
-      - minResponses
-      - discountRatio
-      type: object
-      properties:
-        id:
-          type: string
-        minResponses:
-          type: integer
-          format: int64
-        discountRatio:
-          type: number
-          format: double
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

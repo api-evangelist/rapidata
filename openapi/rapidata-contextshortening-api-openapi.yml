@@ -49,6 +49,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ShortenContextEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
+          description: The shortened contexts.
+      description: The shortened contexts, in the same order as the input items.
+    ShortenContextEndpoint_OutputItem:
+      required:
+      - shortenedContext
+      type: object
+      properties:
+        shortenedContext:
+          type: string
     ShortenContextEndpoint_Input:
       required:
       - items
@@ -61,16 +80,6 @@ components:
               $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
           description: The context/question pairs to shorten.
       description: The input for the shorten-context endpoint.
-    ShortenContextEndpoint_InputItem:
-      required:
-      - context
-      - question
-      type: object
-      properties:
-        context:
-          type: string
-        question:
-          type: string
     ValidationProblemDetails:
       type: object
       properties:
@@ -101,24 +110,15 @@ components:
             type: array
             items:
               type: string
-    ShortenContextEndpoint_Output:
+    ShortenContextEndpoint_InputItem:
       required:
-      - items
+      - context
+      - question
       type: object
       properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
-          description: The shortened contexts.
-      description: The shortened contexts, in the same order as the input items.
-    ShortenContextEndpoint_OutputItem:
-      required:
-      - shortenedContext
-      type: object
-      properties:
-        shortenedContext:
+        context:
+          type: string
+        question:
           type: string
   securitySchemes:
     OpenIdConnect:

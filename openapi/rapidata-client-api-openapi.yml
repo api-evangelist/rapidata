@@ -304,6 +304,53 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    QueryClientsEndpoint_Output:
+      required:
+      - clientId
+      - displayName
+      - createdAt
+      type: object
+      properties:
+        clientId:
+          type:
+          - string
+          - 'null'
+          description: The id of the client.
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: The optional display name of the client.
+        createdAt:
+          type:
+          - string
+          - 'null'
+          description: The time at which the client was created.
+          format: date-time
+    QueryClientsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryClientsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
     JsonWebKey:
       type: object
       properties:
@@ -409,6 +456,132 @@ components:
           type:
           - string
           - 'null'
+    JsonWebKeySet:
+      type: object
+      properties:
+        keys:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/JsonWebKey'
+    CreateClientEndpoint_Input:
+      type: object
+      properties:
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: An optional display name for the client.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    DynamicClientRegistrationRequest:
+      type: object
+      properties:
+        redirect_uris:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        grant_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        response_types:
+          type:
+          - array
+          - 'null'
+          items:
+            type: string
+        client_id:
+          type:
+          - string
+          - 'null'
+        client_name:
+          type:
+          - string
+          - 'null'
+        client_uri:
+          type:
+          - string
+          - 'null'
+        logo_uri:
+          type:
+          - string
+          - 'null'
+        scope:
+          type:
+          - string
+          - 'null'
+          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
+        contacts:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              type: string
+          description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
+        tos_uri:
+          type:
+          - string
+          - 'null'
+        policy_uri:
+          type:
+          - string
+          - 'null'
+        jwks_uri:
+          type:
+          - string
+          - 'null'
+        jwks:
+          allOf:
+          - $ref: '#/components/schemas/JsonWebKeySet'
+          description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
+      description: The request body for dynamic client registration.
+    CreateClientEndpoint_Output:
+      required:
+      - clientId
+      - clientSecret
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The id of the created client.
+        clientSecret:
+          type: string
+          description: The secret of the created client.
     ClientModel:
       required:
       - client_id
@@ -513,179 +686,6 @@ components:
           oneOf:
           - $ref: '#/components/schemas/JsonWebKeySet'
       description: "The response containing the id and secret of a dynamically registered client.\n Additionally, it contains all registered metadata for the client."
-    CreateClientEndpoint_Output:
-      required:
-      - clientId
-      - clientSecret
-      type: object
-      properties:
-        clientId:
-          type: string
-          description: The id of the created client.
-        clientSecret:
-          type: string
-          description: The secret of the created client.
-    DynamicClientRegistrationRequest:
-      type: object
-      properties:
-        redirect_uris:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        grant_types:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        response_types:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        client_id:
-          type:
-          - string
-          - 'null'
-        client_name:
-          type:
-          - string
-          - 'null'
-        client_uri:
-          type:
-          - string
-          - 'null'
-        logo_uri:
-          type:
-          - string
-          - 'null'
-        scope:
-          type:
-          - string
-          - 'null'
-          description: "String containing a space-separated list of scope values\n that the client can use when requesting access tokens."
-        contacts:
-          allOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              type: string
-          description: "Array of strings representing ways to contact people responsible for this client,\n typically email addresses."
-        tos_uri:
-          type:
-          - string
-          - 'null'
-        policy_uri:
-          type:
-          - string
-          - 'null'
-        jwks_uri:
-          type:
-          - string
-          - 'null'
-        jwks:
-          allOf:
-          - $ref: '#/components/schemas/JsonWebKeySet'
-          description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
-      description: The request body for dynamic client registration.
-    QueryClientsEndpoint_Output:
-      required:
-      - clientId
-      - displayName
-      - createdAt
-      type: object
-      properties:
-        clientId:
-          type:
-          - string
-          - 'null'
-          description: The id of the client.
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: The optional display name of the client.
-        createdAt:
-          type:
-          - string
-          - 'null'
-          description: The time at which the client was created.
-          format: date-time
-    CreateClientEndpoint_Input:
-      type: object
-      properties:
-        displayName:
-          type:
-          - string
-          - 'null'
-          description: An optional display name for the client.
-    QueryClientsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryClientsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    JsonWebKeySet:
-      type: object
-      properties:
-        keys:
-          type:
-          - array
-          - 'null'
-          items:
-            $ref: '#/components/schemas/JsonWebKey'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

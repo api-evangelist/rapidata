@@ -430,20 +430,51 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FlowType:
-      enum:
-      - Ranking
-    GetResponseCountHistogramEndpoint_Output:
+    QueryFlowsEndpoint_PagedResultOfOutput:
       required:
-      - buckets
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        buckets:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetResponseCountHistogramEndpoint_Output_Bucket'
-          description: The histogram buckets.
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryFlowsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IFlowModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IFlowModelRankingFlowModel'
+      description: "A flow definition exposed over the API, identified by a discriminator.\n Implementations describe the flow's type-specific configuration."
+      discriminator:
+        propertyName: _t
+        mapping:
+          RankingFlow: '#/components/schemas/IFlowModelRankingFlowModel'
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     GetFlowItemCreationTimeseriesEndpoint_Output:
       required:
       - datapoints
@@ -455,6 +486,18 @@ components:
             items:
               $ref: '#/components/schemas/GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint'
           description: The timeseries data points.
+    GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - count
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        count:
+          type: integer
+          format: int64
     IFlowModelRankingFlowModel:
       required:
       - id
@@ -592,91 +635,44 @@ components:
           type: string
           description: The timestamp when the flow was created.
           format: date-time
-    GetResponseCountTimeseriesEndpoint_Output_DataPoint:
+    PidBatchMode:
+      enum:
+      - Total
+      - PerBatch
+      - PerBatchTimeWeighted
+    GetResponseCountTimeseriesEndpoint_Output:
       required:
-      - timestamp
-      - averageResponseCount
+      - datapoints
       type: object
       properties:
-        timestamp:
-          type: string
-          format: date-time
-        averageResponseCount:
-          type: number
-          format: double
-    IFlowModel:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output_DataPoint'
+          description: The timeseries data points.
+    GetResponseCountHistogramEndpoint_Output:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IFlowModelRankingFlowModel'
-      description: "A flow definition exposed over the API, identified by a discriminator.\n Implementations describe the flow's type-specific configuration."
-      discriminator:
-        propertyName: _t
-        mapping:
-          RankingFlow: '#/components/schemas/IFlowModelRankingFlowModel'
-    FeatureFlag:
-      required:
-      - key
-      - value
+      - buckets
       type: object
       properties:
-        key:
-          type: string
-        value:
-          type: string
-    GetResponseCountHistogramEndpoint_Output_Bucket:
+        buckets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponseCountHistogramEndpoint_Output_Bucket'
+          description: The histogram buckets.
+    GetCompletionTimeHistogramEndpoint_Output:
       required:
-      - lowerBound
-      - upperBound
-      - count
+      - buckets
       type: object
       properties:
-        lowerBound:
-          type: number
-          format: double
-        upperBound:
-          type: number
-          format: double
-        count:
-          type: integer
-          format: int32
-    QueryFlowsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryFlowsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    GetFlowItemCreationTimeseriesEndpoint_Output_DataPoint:
-      required:
-      - timestamp
-      - count
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        count:
-          type: integer
-          format: int64
+        buckets:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output_Bucket'
+          description: The histogram buckets.
     ValidationProblemDetails:
       type: object
       properties:
@@ -707,7 +703,38 @@ components:
             type: array
             items:
               type: string
+    GetResponseCountTimeseriesEndpoint_Output_DataPoint:
+      required:
+      - timestamp
+      - averageResponseCount
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        averageResponseCount:
+          type: number
+          format: double
     GetCompletionTimeHistogramEndpoint_Output_Bucket:
+      required:
+      - lowerBound
+      - upperBound
+      - count
+      type: object
+      properties:
+        lowerBound:
+          type: number
+          format: double
+        upperBound:
+          type: number
+          format: double
+        count:
+          type: integer
+          format: int32
+    FlowType:
+      enum:
+      - Ranking
+    GetResponseCountHistogramEndpoint_Output_Bucket:
       required:
       - lowerBound
       - upperBound
@@ -754,33 +781,6 @@ components:
           type: string
           description: The timestamp when the flow was created.
           format: date-time
-    PidBatchMode:
-      enum:
-      - Total
-      - PerBatch
-      - PerBatchTimeWeighted
-    GetResponseCountTimeseriesEndpoint_Output:
-      required:
-      - datapoints
-      type: object
-      properties:
-        datapoints:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetResponseCountTimeseriesEndpoint_Output_DataPoint'
-          description: The timeseries data points.
-    GetCompletionTimeHistogramEndpoint_Output:
-      required:
-      - buckets
-      type: object
-      properties:
-        buckets:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetCompletionTimeHistogramEndpoint_Output_Bucket'
-          description: The histogram buckets.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

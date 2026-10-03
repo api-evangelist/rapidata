@@ -149,6 +149,25 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    CreateGlobalTextEndpoint_Output:
+      required:
+      - globalTextId
+      type: object
+      properties:
+        globalTextId:
+          type: string
+          description: The unique identifier of the created global text entry.
+    GetAllGlobalTextsEndpoint_Output:
+      required:
+      - globalTexts
+      type: object
+      properties:
+        globalTexts:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
+          description: The list of global text entries.
     GetAllGlobalTextsEndpoint_Output_Item:
       required:
       - id
@@ -201,25 +220,6 @@ components:
         englishText:
           type: string
           description: The new English source text for the global text entry.
-    CreateGlobalTextEndpoint_Output:
-      required:
-      - globalTextId
-      type: object
-      properties:
-        globalTextId:
-          type: string
-          description: The unique identifier of the created global text entry.
-    GetAllGlobalTextsEndpoint_Output:
-      required:
-      - globalTexts
-      type: object
-      properties:
-        globalTexts:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
-          description: The list of global text entries.
     CreateGlobalTextEndpoint_Input:
       required:
       - key

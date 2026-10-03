@@ -202,25 +202,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    QueryExternalAudiencesEndpoint_Output:
-      required:
-      - id
-      - name
-      type: object
-      properties:
-        id:
-          type: integer
-          description: The external audience identifier.
-          format: int32
-        name:
-          type: string
-          description: The name of the external audience.
-        count:
-          type:
-          - integer
-          - 'null'
-          description: The number of users in the audience.
-          format: int64
     QueryExternalAudiencesEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -245,6 +226,25 @@ components:
         totalPages:
           type: integer
           format: int32
+    QueryExternalAudiencesEndpoint_Output:
+      required:
+      - id
+      - name
+      type: object
+      properties:
+        id:
+          type: integer
+          description: The external audience identifier.
+          format: int32
+        name:
+          type: string
+          description: The name of the external audience.
+        count:
+          type:
+          - integer
+          - 'null'
+          description: The number of users in the audience.
+          format: int64
     ValidationProblemDetails:
       type: object
       properties:

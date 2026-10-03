@@ -2426,18 +2426,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    VoteAggregation:
-      enum:
-      - AllVotes
-      - MajorityVote
-    CreateLeaderboardParticipantEndpoint_Input:
+    ConfidenceInterval:
       required:
-      - name
+      - lowerOffset
+      - upperOffset
       type: object
       properties:
-        name:
-          type: string
-          description: The name of the participant.
+        lowerOffset:
+          type: number
+          format: double
+        upperOffset:
+          type: number
+          format: double
     QueryCombinedStandingsByLeaderboardsEndpoint_OutputItem:
       required:
       - id
@@ -2486,190 +2486,88 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/ConfidenceInterval'
-    QueryParticipantsObsoleteEndpoint_OutputItem:
+    CreateLeaderboardEndpoint_Output:
       required:
       - id
-      - name
-      - leaderboardId
-      - status
-      - score
-      - wins
-      - totalMatches
-      - isDisabled
+      - benchmarkId
+      - showPrompt
+      - showPromptAsset
+      - responseBudget
+      - minResponses
+      - isInversed
+      - voteAggregation
       type: object
       properties:
         id:
           type: string
-        name:
+          description: The id of the created leaderboard.
+        benchmarkId:
           type: string
-        leaderboardId:
-          type: string
-        status:
-          $ref: '#/components/schemas/StandingStatus'
-        score:
-          type:
-          - number
-          - 'null'
-          format: double
-        wins:
-          type: number
-          format: double
-        totalMatches:
-          type: number
-          format: double
-        isDisabled:
+          description: The id of the benchmark the leaderboard belongs to.
+        showPrompt:
           type: boolean
-        confidenceInterval:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/ConfidenceInterval'
-    BoostLeaderboardEndpoint_Input:
-      required:
-      - participants
-      - totalResponses
-      type: object
-      properties:
-        participants:
+          description: Whether the prompt is shown on the rapids.
+        showPromptAsset:
+          type: boolean
+          description: Whether the prompt asset is shown on the rapids.
+        responseBudget:
+          type: integer
+          description: The response budget per run.
+          format: int32
+        minResponses:
+          type: integer
+          description: The minimum responses per comparison.
+          format: int32
+        isInversed:
+          type: boolean
+          description: Whether the leaderboard results are inversed.
+        voteAggregation:
           allOf:
-          - type: array
-            items:
-              type: string
-          description: The participants of the given leaderboard that should be boosted.
-        totalResponses:
-          type: integer
-          description: The total responses to add, shared across all participants.
-          format: int32
-        seed:
-          type:
-          - integer
-          - 'null'
-          description: "Optional seed for deterministic matchup selection. Use the same value across leaderboards\n of a benchmark to have them boosted on the same image pairs. Omit for random selection."
-          format: int64
-    ValidationProblemDetails:
+          - $ref: '#/components/schemas/VoteAggregation'
+          description: How individual votes on a matchup are aggregated into the stored result.
+    UpdateLeaderboardEndpoint_Input:
       type: object
       properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    RunStatus:
-      enum:
-      - Queued
-      - Running
-      - Completed
-      - Failed
-    CreateLeaderboardParticipantEndpoint_Output:
-      required:
-      - participantId
-      - datasetId
-      type: object
-      properties:
-        participantId:
-          type: string
-          description: The id of the created participant.
-        datasetId:
-          type: string
-          description: The id of the participant's dataset.
-    QueryLeaderboardRunsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryLeaderboardRunsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    CreatePromptForLeaderboardEndpoint_Output:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the created prompt.
-    QueryLeaderboardRunsEndpoint_Output:
-      required:
-      - id
-      - name
-      - status
-      - createdAt
-      - ownerMail
-      - orderId
-      - jobId
-      - audienceId
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the run.
         name:
           type: string
-          description: The name of the run.
-        status:
+          description: The new name of the leaderboard.
+        responseBudget:
+          type: integer
+          description: The response budget collected when onboarding a new participant.
+          format: int32
+        minResponses:
+          type: integer
+          description: The minimum responses collected per matchup.
+          format: int32
+        priority:
+          type:
+          - integer
+          - 'null'
+          description: "Priority override applied to every run's job. Admin-only. Pass null to clear\n the override and fall back to the default leaderboard priority."
+          format: int32
+        weight:
+          type: number
+          description: "Multiplier applied to every match result of this leaderboard when it contributes to\n the parent benchmark's overall / combined scoreboards. Unbounded; negative and zero\n values are accepted."
+          format: double
+        scoreShift:
+          type: number
+          description: "Additive offset applied to displayed scores on this leaderboard's per-leaderboard\n scoreboard."
+          format: double
+        scoreScale:
+          type: number
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on this leaderboard's per-leaderboard scoreboard. Must be strictly positive."
+          format: double
+        isHidden:
+          type: boolean
+          description: Whether the leaderboard is hidden from non-admins in listings and reads. Admin-only.
+        isExcludedFromOverall:
+          type: boolean
+          description: "Whether the leaderboard is excluded from its benchmark's overall / combined scoreboard.\n When set, the leaderboard becomes an owner-only private experiment: its results do not\n contribute to the overall and it is visible only to its owner and admins."
+        voteAggregation:
           allOf:
-          - $ref: '#/components/schemas/RunStatus'
-          description: The status of the run.
-        createdAt:
-          type: string
-          description: The timestamp when the run was created.
-          format: date-time
-        ownerMail:
-          type: string
-          description: The mail of the owner of the run.
-        orderId:
-          type:
-          - string
-          - 'null'
-          description: The id of the associated order, if any.
-        jobId:
-          type:
-          - string
-          - 'null'
-          description: The id of the associated job, if any.
-        audienceId:
-          type: string
-          description: The id of the audience associated with the run.
-    QueryCombinedMatrixByLeaderboardsEndpoint_Output:
+          - $ref: '#/components/schemas/VoteAggregation'
+          description: "How individual votes on a matchup are aggregated into the stored result. AllVotes\n counts every vote as a matchup; MajorityVote collapses each matchup to a single\n win for the majority side (ties split 0.5/0.5). Only affects future runs."
+    QueryMatrixByLeaderboardEndpoint_Output:
       required:
       - index
       - columns
@@ -2697,6 +2595,52 @@ components:
                 type: number
                 format: double
           description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
+    QueryLeaderboardsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryLeaderboardsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    CreateLeaderboardParticipantEndpoint_Output:
+      required:
+      - participantId
+      - datasetId
+      type: object
+      properties:
+        participantId:
+          type: string
+          description: The id of the created participant.
+        datasetId:
+          type: string
+          description: The id of the participant's dataset.
     GetLeaderboardByIdEndpoint_Output:
       required:
       - id
@@ -2785,116 +2729,166 @@ components:
           allOf:
           - $ref: '#/components/schemas/VoteAggregation'
           description: How individual votes on a matchup are aggregated into the stored result.
-    UpdateLeaderboardEndpoint_Input:
-      type: object
-      properties:
-        name:
-          type: string
-          description: The new name of the leaderboard.
-        responseBudget:
-          type: integer
-          description: The response budget collected when onboarding a new participant.
-          format: int32
-        minResponses:
-          type: integer
-          description: The minimum responses collected per matchup.
-          format: int32
-        priority:
-          type:
-          - integer
-          - 'null'
-          description: "Priority override applied to every run's job. Admin-only. Pass null to clear\n the override and fall back to the default leaderboard priority."
-          format: int32
-        weight:
-          type: number
-          description: "Multiplier applied to every match result of this leaderboard when it contributes to\n the parent benchmark's overall / combined scoreboards. Unbounded; negative and zero\n values are accepted."
-          format: double
-        scoreShift:
-          type: number
-          description: "Additive offset applied to displayed scores on this leaderboard's per-leaderboard\n scoreboard."
-          format: double
-        scoreScale:
-          type: number
-          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on this leaderboard's per-leaderboard scoreboard. Must be strictly positive."
-          format: double
-        isHidden:
-          type: boolean
-          description: Whether the leaderboard is hidden from non-admins in listings and reads. Admin-only.
-        isExcludedFromOverall:
-          type: boolean
-          description: "Whether the leaderboard is excluded from its benchmark's overall / combined scoreboard.\n When set, the leaderboard becomes an owner-only private experiment: its results do not\n contribute to the overall and it is visible only to its owner and admins."
-        voteAggregation:
-          allOf:
-          - $ref: '#/components/schemas/VoteAggregation'
-          description: "How individual votes on a matchup are aggregated into the stored result. AllVotes\n counts every vote as a matchup; MajorityVote collapses each matchup to a single\n win for the majority side (ties split 0.5/0.5). Only affects future runs."
-    CreateLeaderboardEndpoint_Output:
+    CreatePromptForLeaderboardEndpoint_Output:
       required:
       - id
-      - benchmarkId
-      - showPrompt
-      - showPromptAsset
-      - responseBudget
-      - minResponses
-      - isInversed
-      - voteAggregation
       type: object
       properties:
         id:
           type: string
-          description: The id of the created leaderboard.
-        benchmarkId:
-          type: string
-          description: The id of the benchmark the leaderboard belongs to.
-        showPrompt:
-          type: boolean
-          description: Whether the prompt is shown on the rapids.
-        showPromptAsset:
-          type: boolean
-          description: Whether the prompt asset is shown on the rapids.
-        responseBudget:
-          type: integer
-          description: The response budget per run.
-          format: int32
-        minResponses:
-          type: integer
-          description: The minimum responses per comparison.
-          format: int32
-        isInversed:
-          type: boolean
-          description: Whether the leaderboard results are inversed.
-        voteAggregation:
-          allOf:
-          - $ref: '#/components/schemas/VoteAggregation'
-          description: How individual votes on a matchup are aggregated into the stored result.
-    QueryMatrixByLeaderboardEndpoint_Output:
+          description: The id of the created prompt.
+    BoostLeaderboardEndpoint_Input:
       required:
-      - index
-      - columns
-      - data
+      - participants
+      - totalResponses
       type: object
       properties:
-        index:
+        participants:
           allOf:
           - type: array
             items:
               type: string
-          description: The participant names of the matrix rows, ordered strongest first.
-        columns:
+          description: The participants of the given leaderboard that should be boosted.
+        totalResponses:
+          type: integer
+          description: The total responses to add, shared across all participants.
+          format: int32
+        seed:
+          type:
+          - integer
+          - 'null'
+          description: "Optional seed for deterministic matchup selection. Use the same value across leaderboards\n of a benchmark to have them boosted on the same image pairs. Omit for random selection."
+          format: int64
+    QueryLeaderboardRunsEndpoint_Output:
+      required:
+      - id
+      - name
+      - status
+      - createdAt
+      - ownerMail
+      - orderId
+      - jobId
+      - audienceId
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the run.
+        name:
+          type: string
+          description: The name of the run.
+        status:
           allOf:
-          - type: array
-            items:
-              type: string
-          description: The participant names of the matrix columns, ordered strongest first.
-        data:
-          allOf:
-          - type: array
-            items:
-              type: array
-              items:
-                type: number
-                format: double
-          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
-    QueryCombinedStandingsByLeaderboardsEndpoint_Output:
+          - $ref: '#/components/schemas/RunStatus'
+          description: The status of the run.
+        createdAt:
+          type: string
+          description: The timestamp when the run was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The mail of the owner of the run.
+        orderId:
+          type:
+          - string
+          - 'null'
+          description: The id of the associated order, if any.
+        jobId:
+          type:
+          - string
+          - 'null'
+          description: The id of the associated job, if any.
+        audienceId:
+          type: string
+          description: The id of the audience associated with the run.
+    QueryParticipantsObsoleteEndpoint_OutputItem:
+      required:
+      - id
+      - name
+      - leaderboardId
+      - status
+      - score
+      - wins
+      - totalMatches
+      - isDisabled
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        leaderboardId:
+          type: string
+        status:
+          $ref: '#/components/schemas/StandingStatus'
+        score:
+          type:
+          - number
+          - 'null'
+          format: double
+        wins:
+          type: number
+          format: double
+        totalMatches:
+          type: number
+          format: double
+        isDisabled:
+          type: boolean
+        confidenceInterval:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/ConfidenceInterval'
+    QueryStandingsByLeaderboardEndpoint_OutputItem:
+      required:
+      - id
+      - name
+      - status
+      - score
+      - wins
+      - totalMatches
+      - isDisabled
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        family:
+          type:
+          - string
+          - 'null'
+        proprietaryName:
+          type:
+          - string
+          - 'null'
+        logo:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/StandingStatus'
+        score:
+          type:
+          - number
+          - 'null'
+          format: double
+        wins:
+          type: number
+          format: double
+        totalMatches:
+          type: number
+          format: double
+        isDisabled:
+          type: boolean
+        confidenceInterval:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/ConfidenceInterval'
+    QueryParticipantsObsoleteEndpoint_Output:
       required:
       - items
       type: object
@@ -2903,35 +2897,16 @@ components:
           allOf:
           - type: array
             items:
-              $ref: '#/components/schemas/QueryCombinedStandingsByLeaderboardsEndpoint_OutputItem'
-          description: The standings items, ordered by score descending.
-      description: The queried standings output.
-    UpdateLeaderboardResponseConfigEndpoint_Input:
+              $ref: '#/components/schemas/QueryParticipantsObsoleteEndpoint_OutputItem'
+          description: The standings items for the leaderboard.
+    CreateLeaderboardParticipantEndpoint_Input:
       required:
-      - responseBudget
-      - minResponses
+      - name
       type: object
       properties:
-        responseBudget:
-          type: integer
-          description: The response budget collected when onboarding a new participant.
-          format: int32
-        minResponses:
-          type: integer
-          description: The minimum responses collected per matchup.
-          format: int32
-    ConfidenceInterval:
-      required:
-      - lowerOffset
-      - upperOffset
-      type: object
-      properties:
-        lowerOffset:
-          type: number
-          format: double
-        upperOffset:
-          type: number
-          format: double
+        name:
+          type: string
+          description: The name of the participant.
     QueryLeaderboardsEndpoint_Output:
       required:
       - id
@@ -3014,6 +2989,12 @@ components:
           allOf:
           - $ref: '#/components/schemas/VoteAggregation'
           description: How individual votes on a matchup are aggregated into the stored result.
+    RunStatus:
+      enum:
+      - Queued
+      - Running
+      - Completed
+      - Failed
     UpdateLeaderboardNameEndpoint_Input:
       required:
       - name
@@ -3022,6 +3003,137 @@ components:
         name:
           type: string
           description: The new name of the leaderboard.
+    StandingStatus:
+      enum:
+      - Created
+      - Active
+      - Idle
+    QueryCombinedMatrixByLeaderboardsEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix rows, ordered strongest first.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix columns, ordered strongest first.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
+    SubmitParticipantEndpoint_Output:
+      required:
+      - validDatapoints
+      - invalidDatapoints
+      type: object
+      properties:
+        validDatapoints:
+          type: integer
+          description: The number of valid datapoints collected by the participant.
+          format: int32
+        invalidDatapoints:
+          type: integer
+          description: The number of invalid datapoints collected by the participant.
+          format: int32
+    VoteAggregation:
+      enum:
+      - AllVotes
+      - MajorityVote
+    QueryStandingsByLeaderboardEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/QueryStandingsByLeaderboardEndpoint_OutputItem'
+          description: The standings items, ordered by score descending.
+      description: The queried standings output.
+    QueryLeaderboardRunsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryLeaderboardRunsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    UpdateLeaderboardResponseConfigEndpoint_Input:
+      required:
+      - responseBudget
+      - minResponses
+      type: object
+      properties:
+        responseBudget:
+          type: integer
+          description: The response budget collected when onboarding a new participant.
+          format: int32
+        minResponses:
+          type: integer
+          description: The minimum responses collected per matchup.
+          format: int32
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateLeaderboardEndpoint_Input:
       required:
       - name
@@ -3110,7 +3222,7 @@ components:
             items:
               $ref: '#/components/schemas/FeatureFlag'
           description: Feature flags applied to every order created by this leaderboard.
-    QueryStandingsByLeaderboardEndpoint_Output:
+    QueryCombinedStandingsByLeaderboardsEndpoint_Output:
       required:
       - items
       type: object
@@ -3119,121 +3231,9 @@ components:
           allOf:
           - type: array
             items:
-              $ref: '#/components/schemas/QueryStandingsByLeaderboardEndpoint_OutputItem'
+              $ref: '#/components/schemas/QueryCombinedStandingsByLeaderboardsEndpoint_OutputItem'
           description: The standings items, ordered by score descending.
       description: The queried standings output.
-    QueryLeaderboardsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryLeaderboardsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    SubmitParticipantEndpoint_Output:
-      required:
-      - validDatapoints
-      - invalidDatapoints
-      type: object
-      properties:
-        validDatapoints:
-          type: integer
-          description: The number of valid datapoints collected by the participant.
-          format: int32
-        invalidDatapoints:
-          type: integer
-          description: The number of invalid datapoints collected by the participant.
-          format: int32
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    QueryParticipantsObsoleteEndpoint_Output:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/QueryParticipantsObsoleteEndpoint_OutputItem'
-          description: The standings items for the leaderboard.
-    StandingStatus:
-      enum:
-      - Created
-      - Active
-      - Idle
-    QueryStandingsByLeaderboardEndpoint_OutputItem:
-      required:
-      - id
-      - name
-      - status
-      - score
-      - wins
-      - totalMatches
-      - isDisabled
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        family:
-          type:
-          - string
-          - 'null'
-        proprietaryName:
-          type:
-          - string
-          - 'null'
-        logo:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/StandingStatus'
-        score:
-          type:
-          - number
-          - 'null'
-          format: double
-        wins:
-          type: number
-          format: double
-        totalMatches:
-          type: number
-          format: double
-        isDisabled:
-          type: boolean
-        confidenceInterval:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/ConfidenceInterval'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

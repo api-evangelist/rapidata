@@ -232,34 +232,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    QueryCustomersEndpoint_Output:
-      required:
-      - id
-      - email
-      - organizationName
-      - organizationId
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the customer.
-          format: uuid
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email address of the customer.
-        organizationName:
-          type:
-          - string
-          - 'null'
-          description: The name of the organization this customer belongs to, if any.
-        organizationId:
-          type:
-          - string
-          - 'null'
-          description: The identifier of the organization this customer belongs to, if any.
-          format: uuid
     ValidationProblemDetails:
       type: object
       properties:
@@ -290,6 +262,34 @@ components:
             type: array
             items:
               type: string
+    QueryCustomersEndpoint_Output:
+      required:
+      - id
+      - email
+      - organizationName
+      - organizationId
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the customer.
+          format: uuid
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email address of the customer.
+        organizationName:
+          type:
+          - string
+          - 'null'
+          description: The name of the organization this customer belongs to, if any.
+        organizationId:
+          type:
+          - string
+          - 'null'
+          description: The identifier of the organization this customer belongs to, if any.
+          format: uuid
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

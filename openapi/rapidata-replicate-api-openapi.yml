@@ -104,6 +104,66 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    SearchReplicateModelsEndpoint_Output:
+      required:
+      - models
+      type: object
+      properties:
+        models:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
+          description: The matching models for this page.
+        nextCursor:
+          type:
+          - string
+          - 'null'
+          description: Cursor to fetch the next page, or null when there are no more results.
+    GetReplicateModelEndpoint_Output:
+      required:
+      - modelOwner
+      - modelName
+      - supportsImageReference
+      - parameters
+      type: object
+      properties:
+        modelOwner:
+          type: string
+          description: The owner of the hosted model.
+        modelName:
+          type: string
+          description: The model name.
+        description:
+          type:
+          - string
+          - 'null'
+          description: A short description of the model.
+        coverImageUrl:
+          type:
+          - string
+          - 'null'
+          description: URL of a representative cover image, if available.
+        runCount:
+          type:
+          - integer
+          - 'null'
+          description: Total number of times the model has been run on Replicate, if known.
+          format: int64
+        latestVersion:
+          type:
+          - string
+          - 'null'
+          description: The model's latest version id, if reported by Replicate.
+        supportsImageReference:
+          type: boolean
+          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
+        parameters:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
+          description: The model's configurable input parameters, ordered for rendering.
     GetReplicateModelEndpoint_Parameter:
       required:
       - key
@@ -153,22 +213,6 @@ components:
       - Number
       - Boolean
       - Uri
-    SearchReplicateModelsEndpoint_Output:
-      required:
-      - models
-      type: object
-      properties:
-        models:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/SearchReplicateModelsEndpoint_Model'
-          description: The matching models for this page.
-        nextCursor:
-          type:
-          - string
-          - 'null'
-          description: Cursor to fetch the next page, or null when there are no more results.
     ValidationProblemDetails:
       type: object
       properties:
@@ -199,50 +243,6 @@ components:
             type: array
             items:
               type: string
-    GetReplicateModelEndpoint_Output:
-      required:
-      - modelOwner
-      - modelName
-      - supportsImageReference
-      - parameters
-      type: object
-      properties:
-        modelOwner:
-          type: string
-          description: The owner of the hosted model.
-        modelName:
-          type: string
-          description: The model name.
-        description:
-          type:
-          - string
-          - 'null'
-          description: A short description of the model.
-        coverImageUrl:
-          type:
-          - string
-          - 'null'
-          description: URL of a representative cover image, if available.
-        runCount:
-          type:
-          - integer
-          - 'null'
-          description: Total number of times the model has been run on Replicate, if known.
-          format: int64
-        latestVersion:
-          type:
-          - string
-          - 'null'
-          description: The model's latest version id, if reported by Replicate.
-        supportsImageReference:
-          type: boolean
-          description: "Whether the model accepts a reference image that the platform auto-fills with a prompt's\n attached media. When true that input is excluded from Parameters."
-        parameters:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetReplicateModelEndpoint_Parameter'
-          description: The model's configurable input parameters, ordered for rendering.
     SearchReplicateModelsEndpoint_Model:
       required:
       - modelOwner

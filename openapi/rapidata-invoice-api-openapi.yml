@@ -349,73 +349,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetInvoiceEndpoint_Output:
-      required:
-      - id
-      - billingPeriodId
-      - billingPeriodStart
-      - billingPeriodEnd
-      - status
-      - amountDue
-      - createdAt
-      type: object
-      properties:
-        id:
-          type: string
-          description: The invoice ID.
-        billingPeriodId:
-          type: string
-          description: The billing period this invoice belongs to.
-        billingPeriodStart:
-          type: string
-          description: The start date of the billing period.
-          format: date-time
-        billingPeriodEnd:
-          type: string
-          description: The end date of the billing period.
-          format: date-time
-        stripeInvoiceId:
-          type:
-          - string
-          - 'null'
-          description: The Stripe invoice ID.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/InvoiceStatus'
-          description: The current invoice status.
-        amountDue:
-          type: integer
-          description: The total amount due in cents.
-          format: int64
-        currency:
-          type:
-          - string
-          - 'null'
-          description: The invoice currency.
-        createdAt:
-          type: string
-          description: When the invoice was created.
-          format: date-time
-        finalizedAt:
-          type:
-          - string
-          - 'null'
-          description: When the invoice was finalized.
-          format: date-time
-        paidAt:
-          type:
-          - string
-          - 'null'
-          description: When the invoice was paid.
-          format: date-time
-    CreateInvoiceEndpoint_Input:
-      required:
-      - billingPeriodId
-      type: object
-      properties:
-        billingPeriodId:
-          type: string
-          description: The billing period to create an invoice for.
     QueryInvoicesEndpoint_Output:
       required:
       - id
@@ -486,6 +419,97 @@ components:
           - 'null'
           description: When the invoice was voided.
           format: date-time
+    GetInvoiceEndpoint_Output:
+      required:
+      - id
+      - billingPeriodId
+      - billingPeriodStart
+      - billingPeriodEnd
+      - status
+      - amountDue
+      - createdAt
+      type: object
+      properties:
+        id:
+          type: string
+          description: The invoice ID.
+        billingPeriodId:
+          type: string
+          description: The billing period this invoice belongs to.
+        billingPeriodStart:
+          type: string
+          description: The start date of the billing period.
+          format: date-time
+        billingPeriodEnd:
+          type: string
+          description: The end date of the billing period.
+          format: date-time
+        stripeInvoiceId:
+          type:
+          - string
+          - 'null'
+          description: The Stripe invoice ID.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/InvoiceStatus'
+          description: The current invoice status.
+        amountDue:
+          type: integer
+          description: The total amount due in cents.
+          format: int64
+        currency:
+          type:
+          - string
+          - 'null'
+          description: The invoice currency.
+        createdAt:
+          type: string
+          description: When the invoice was created.
+          format: date-time
+        finalizedAt:
+          type:
+          - string
+          - 'null'
+          description: When the invoice was finalized.
+          format: date-time
+        paidAt:
+          type:
+          - string
+          - 'null'
+          description: When the invoice was paid.
+          format: date-time
+    QueryInvoicesEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryInvoicesEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    CreateInvoiceEndpoint_Input:
+      required:
+      - billingPeriodId
+      type: object
+      properties:
+        billingPeriodId:
+          type: string
+          description: The billing period to create an invoice for.
     ValidationProblemDetails:
       type: object
       properties:
@@ -516,30 +540,6 @@ components:
             type: array
             items:
               type: string
-    QueryInvoicesEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryInvoicesEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
     InvoiceStatus:
       enum:
       - Generating
