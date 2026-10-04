@@ -739,177 +739,220 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ICooldownDurationModelRandomCooldownDurationModel:
+    ICampaignSelectionModelEnforcingSelectionModel:
       required:
-      - minDuration
-      - maxDuration
-      - seedByUserId
+      - selections
+      - minSelections
+      - minRapids
       - _t
       properties:
         _t:
           enum:
-          - RandomCooldownDuration
+          - EnforcingSelection
           type: string
-        minDuration:
-          type: string
-          format: date-time
-        maxDuration:
-          type: string
-          format: date-time
-        seedByUserId:
-          type: boolean
-    ICooldownDurationModel:
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+        minSelections:
+          type: integer
+          format: int32
+        minRapids:
+          type: integer
+          format: int32
+    ICampaignSelectionModel:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/ICooldownDurationModelFixedCooldownDurationModel'
-      - $ref: '#/components/schemas/ICooldownDurationModelRandomCooldownDurationModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelAbTestSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelAudienceSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelCappedSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelConditionalValidationSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelDemographicSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelEnforcingSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelLabelingSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelShufflingSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelStaticSelectionModel'
+      - $ref: '#/components/schemas/ICampaignSelectionModelValidationSelectionModel'
       discriminator:
         propertyName: _t
         mapping:
-          FixedCooldownDuration: '#/components/schemas/ICooldownDurationModelFixedCooldownDurationModel'
-          RandomCooldownDuration: '#/components/schemas/ICooldownDurationModelRandomCooldownDurationModel'
-    ICampaignFilterModelAudienceStateFilterModel:
+          AbTestSelection: '#/components/schemas/ICampaignSelectionModelAbTestSelectionModel'
+          AudienceSelection: '#/components/schemas/ICampaignSelectionModelAudienceSelectionModel'
+          CappedSelection: '#/components/schemas/ICampaignSelectionModelCappedSelectionModel'
+          ConditionalValidationSelection: '#/components/schemas/ICampaignSelectionModelConditionalValidationSelectionModel'
+          DemographicSelection: '#/components/schemas/ICampaignSelectionModelDemographicSelectionModel'
+          EnforcingSelection: '#/components/schemas/ICampaignSelectionModelEnforcingSelectionModel'
+          LabelingSelection: '#/components/schemas/ICampaignSelectionModelLabelingSelectionModel'
+          ShufflingSelection: '#/components/schemas/ICampaignSelectionModelShufflingSelectionModel'
+          StaticSelection: '#/components/schemas/ICampaignSelectionModelStaticSelectionModel'
+          ValidationSelection: '#/components/schemas/ICampaignSelectionModelValidationSelectionModel'
+    ValidationChanceModel:
       required:
-      - audienceId
-      - allowedStates
-      - includeUnknownState
-      - _t
-      properties:
-        _t:
-          enum:
-          - AudienceStateFilter
-          type: string
-        audienceId:
-          type: string
-        allowedStates:
-          type: array
-          items:
-            $ref: '#/components/schemas/SimplifiedAudienceUserState'
-        includeUnknownState:
-          type: boolean
-    StickyConfigModel:
-      required:
-      - isEnabled
-      - bypassFilters
-      - bypassPrioritySelection
-      - blockOtherStickyCampaigns
-      - clearOnPause
+      - userScoreThreshold
+      - chance
+      - rapidCount
       type: object
       properties:
-        isEnabled:
-          type: boolean
-        dimension:
-          type: string
-        bypassFilters:
-          type: boolean
-        bypassPrioritySelection:
-          type: boolean
-        blockOtherStickyCampaigns:
-          type: boolean
-        clearOnPause:
-          type: boolean
-    GetBoostInsightsEndpoint_GlobalBoostOutput:
-      required:
-      - effectiveLevel
-      - contributors
-      type: object
-      properties:
-        effectiveLevel:
+        userScoreThreshold:
+          type: number
+          format: double
+        chance:
+          type: number
+          format: double
+        rapidCount:
           type: integer
           format: int32
-        contributors:
-          type: array
+        selections:
+          type:
+          - array
+          - 'null'
           items:
-            $ref: '#/components/schemas/GetBoostInsightsEndpoint_LevelContributorOutput'
-    ICampaignSelectionModelDemographicSelectionModel:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+    ICampaignFilterModel:
       required:
-      - keys
-      - maxRapids
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/ICampaignFilterModelAndFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelAudienceStateFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelCampaignCooldownFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelCampaignIdFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelCampaignSessionCountFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelCountryFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelDemographicFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelDeviceFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelLanguageFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelNewUserFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelNotFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelOrFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelResponseCountFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelUserActionRestrictionFilterModel'
+      - $ref: '#/components/schemas/ICampaignFilterModelUserScoreFilterModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AndFilter: '#/components/schemas/ICampaignFilterModelAndFilterModel'
+          AudienceStateFilter: '#/components/schemas/ICampaignFilterModelAudienceStateFilterModel'
+          CampaignCooldownFilter: '#/components/schemas/ICampaignFilterModelCampaignCooldownFilterModel'
+          CampaignIdFilter: '#/components/schemas/ICampaignFilterModelCampaignIdFilterModel'
+          CampaignSessionCountFilter: '#/components/schemas/ICampaignFilterModelCampaignSessionCountFilterModel'
+          CountryFilter: '#/components/schemas/ICampaignFilterModelCountryFilterModel'
+          DemographicFilter: '#/components/schemas/ICampaignFilterModelDemographicFilterModel'
+          DeviceFilter: '#/components/schemas/ICampaignFilterModelDeviceFilterModel'
+          LanguageFilter: '#/components/schemas/ICampaignFilterModelLanguageFilterModel'
+          NewUserFilter: '#/components/schemas/ICampaignFilterModelNewUserFilterModel'
+          NotFilter: '#/components/schemas/ICampaignFilterModelNotFilterModel'
+          OrFilter: '#/components/schemas/ICampaignFilterModelOrFilterModel'
+          ResponseCountFilter: '#/components/schemas/ICampaignFilterModelResponseCountFilterModel'
+          UserActionRestrictionFilter: '#/components/schemas/ICampaignFilterModelUserActionRestrictionFilterModel'
+          UserScoreFilter: '#/components/schemas/ICampaignFilterModelUserScoreFilterModel'
+    ICampaignFilterModelNotFilterModel:
+      required:
+      - filter
       - _t
       properties:
         _t:
           enum:
-          - DemographicSelection
+          - NotFilter
           type: string
-        keys:
+        filter:
+          $ref: '#/components/schemas/ICampaignFilterModel'
+    ICampaignFilterModelAndFilterModel:
+      required:
+      - filters
+      - _t
+      properties:
+        _t:
+          enum:
+          - AndFilter
+          type: string
+        filters:
           type: array
           items:
-            type: string
-        probability:
-          type:
-          - number
-          - 'null'
-          format: double
+            $ref: '#/components/schemas/ICampaignFilterModel'
+    DeviceType:
+      enum:
+      - Unknown
+      - Phone
+      - Tablet
+    BoostStatusModel:
+      enum:
+      - Active
+      - Inactive
+      - Partial
+      - Unknown
+    CreateProgramCampaignEndpoint_Input:
+      required:
+      - name
+      - priority
+      - rootNodeId
+      - nodes
+      - maxRapids
+      - maxDurationSeconds
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the campaign.
+        priority:
+          type: integer
+          description: The priority weight the campaign competes with for sessions.
+          format: int32
+        rootNodeId:
+          type: string
+          description: The node the program's evaluation enters at.
+        nodes:
+          allOf:
+          - type: object
+            additionalProperties:
+              $ref: '#/components/schemas/IProgramNodeModel'
+          description: The program's decision graph, keyed by node id.
         maxRapids:
           type: integer
+          description: The session ends after this many counted responses.
           format: int32
-    IProgramNodeModelCasesNodeModel:
+        maxDurationSeconds:
+          type: integer
+          description: The session ends after this many seconds.
+          format: int32
+    GetBoostStatusEndpoint_Output:
       required:
-      - cases
-      - _t
-      properties:
-        _t:
-          enum:
-          - CasesNode
-          type: string
-        cases:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProgramCaseModel'
-        defaultNodeId:
-          type:
-          - string
-          - 'null'
-    ComparisonOperator:
-      enum:
-      - Equal
-      - NotEqual
-      - LessThan
-      - LessThanOrEqual
-      - GreaterThan
-      - GreaterThanOrEqual
-    IProgramPredicateModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IProgramPredicateModelAnsweredCountPredicateModel'
-      - $ref: '#/components/schemas/IProgramPredicateModelCorrectCountPredicateModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AnsweredCountPredicate: '#/components/schemas/IProgramPredicateModelAnsweredCountPredicateModel'
-          CorrectCountPredicate: '#/components/schemas/IProgramPredicateModelCorrectCountPredicateModel'
-    ProgramCaseModel:
-      required:
-      - predicate
-      - nodeId
+      - status
+      - mode
+      - activeCampaigns
+      - inactiveCampaigns
+      - unknownCampaigns
       type: object
       properties:
-        predicate:
-          $ref: '#/components/schemas/IProgramPredicateModel'
-        nodeId:
-          type: string
-    ICampaignFilterModelLanguageFilterModel:
-      required:
-      - languages
-      - _t
-      properties:
-        _t:
-          enum:
-          - LanguageFilter
-          type: string
-        languages:
-          type: array
-          items:
-            type: string
-    SimplifiedAudienceUserState:
-      enum:
-      - Distilling
-      - Graduated
-      - Dropped
+        status:
+          allOf:
+          - $ref: '#/components/schemas/BoostStatusModel'
+          description: The current boost status.
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/BoostMode'
+          description: The current boost mode.
+        activeCampaigns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The list of active campaign identifiers.
+        inactiveCampaigns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The list of inactive campaign identifiers.
+        unknownCampaigns:
+          allOf:
+          - type: array
+            items:
+              type: integer
+              format: int32
+          description: The list of unknown campaign identifiers.
     GetCampaignByIdEndpoint_Output:
       required:
       - id
@@ -986,48 +1029,123 @@ components:
           type: string
           description: The timestamp when the campaign was created.
           format: date-time
-    GetBoostInsightsEndpoint_Output:
+    ICampaignFilterModelLanguageFilterModel:
       required:
-      - mode
-      - manualOverrideLevel
-      - globalBoost
-      - prospectBlacklist
-      - distillingBoosts
-      - labelingBoosts
+      - languages
+      - _t
+      properties:
+        _t:
+          enum:
+          - LanguageFilter
+          type: string
+        languages:
+          type: array
+          items:
+            type: string
+    IProgramPredicateModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IProgramPredicateModelAnsweredCountPredicateModel'
+      - $ref: '#/components/schemas/IProgramPredicateModelCorrectCountPredicateModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AnsweredCountPredicate: '#/components/schemas/IProgramPredicateModelAnsweredCountPredicateModel'
+          CorrectCountPredicate: '#/components/schemas/IProgramPredicateModelCorrectCountPredicateModel'
+    SetManualGlobalBoostLevelEndpoint_Input:
       type: object
       properties:
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/BoostMode'
-          description: The current boost mode.
-        manualOverrideLevel:
+        level:
           type:
           - integer
           - 'null'
-          description: The manual override level, if manual mode is active.
+          description: The global boost level. Null disables manual mode and returns to automatic.
           format: int32
-        globalBoost:
-          allOf:
-          - $ref: '#/components/schemas/GetBoostInsightsEndpoint_GlobalBoostOutput'
-          description: Global boost insight with contributing campaigns.
-        prospectBlacklist:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetBoostInsightsEndpoint_AudienceOutput'
-          description: Prospect blacklist insights.
-        distillingBoosts:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetBoostInsightsEndpoint_LeveledAudienceOutput'
-          description: Distilling boost insights.
-        labelingBoosts:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetBoostInsightsEndpoint_LeveledAudienceOutput'
-          description: Labeling boost insights.
+    IProgramPredicateModelAnsweredCountPredicateModel:
+      required:
+      - comparison
+      - value
+      - _t
+      properties:
+        _t:
+          enum:
+          - AnsweredCountPredicate
+          type: string
+        comparison:
+          $ref: '#/components/schemas/ProgramComparisonModel'
+        value:
+          type: integer
+          format: int32
+    ICooldownDurationModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/ICooldownDurationModelFixedCooldownDurationModel'
+      - $ref: '#/components/schemas/ICooldownDurationModelRandomCooldownDurationModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FixedCooldownDuration: '#/components/schemas/ICooldownDurationModelFixedCooldownDurationModel'
+          RandomCooldownDuration: '#/components/schemas/ICooldownDurationModelRandomCooldownDurationModel'
+    ICampaignFilterModelUserScoreFilterModel:
+      required:
+      - dimension
+      - lowerbound
+      - upperbound
+      - _t
+      properties:
+        _t:
+          enum:
+          - UserScoreFilter
+          type: string
+        dimension:
+          type: string
+        lowerbound:
+          type: number
+          format: double
+        upperbound:
+          type: number
+          format: double
+    ICampaignFilterModelDemographicFilterModel:
+      required:
+      - identifier
+      - values
+      - _t
+      properties:
+        _t:
+          enum:
+          - DemographicFilter
+          type: string
+        identifier:
+          type: string
+        values:
+          type: array
+          items:
+            type: string
+    ICampaignSelectionModelValidationSelectionModel:
+      required:
+      - validationSetId
+      - _t
+      properties:
+        _t:
+          enum:
+          - ValidationSelection
+          type: string
+        validationSetId:
+          type: string
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effortBudget:
+          type:
+          - integer
+          - 'null'
+          format: int32
     ICampaignFilterModelCampaignSessionCountFilterModel:
       required:
       - sessionCount
@@ -1043,92 +1161,29 @@ components:
           format: uint32
         operator:
           $ref: '#/components/schemas/ComparisonOperator'
-    ICampaignFilterModelOrFilterModel:
-      required:
-      - filters
-      - _t
-      properties:
-        _t:
-          enum:
-          - OrFilter
-          type: string
-        filters: {}
-    BoostStatusModel:
+    ProgramComparisonModel:
       enum:
-      - Active
-      - Inactive
-      - Partial
-      - Unknown
-    ICampaignSelectionModelLabelingSelectionModel:
-      required:
-      - effortBudget
-      - retrievalMode
-      - _t
-      properties:
-        _t:
-          enum:
-          - LabelingSelection
-          type: string
-        amount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        effortBudget:
-          type: integer
-          format: int32
-        retrievalMode:
-          $ref: '#/components/schemas/RetrievalMode'
-        maxIterations:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    IProgramActionModelCompleteActionModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompleteAction
-          type: string
-    GetBoostInsightsEndpoint_LeveledAudienceOutput:
-      required:
-      - externalAudienceId
-      - effectiveLevel
-      - contributors
-      type: object
-      properties:
-        externalAudienceId:
-          type: integer
-          format: int32
-        effectiveLevel:
-          type: integer
-          format: int32
-        contributors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetBoostInsightsEndpoint_LevelContributorOutput'
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    GetBoostInsightsEndpoint_ContributorOutput:
+      - GreaterThanOrEqual
+      - GreaterThan
+      - LessThanOrEqual
+      - LessThan
+      - Equal
+    CreateProgramCampaignEndpoint_Output:
       required:
       - campaignId
-      - campaignName
       type: object
       properties:
         campaignId:
           type: string
-        campaignName:
-          type: string
+          description: The id of the created campaign.
+    ComparisonOperator:
+      enum:
+      - Equal
+      - NotEqual
+      - LessThan
+      - LessThanOrEqual
+      - GreaterThan
+      - GreaterThanOrEqual
     QueryCampaignsEndpoint_Output:
       required:
       - id
@@ -1174,244 +1229,71 @@ components:
           type: string
           description: The timestamp when the campaign was created.
           format: date-time
-    ICampaignSelectionModelAbTestSelectionModel:
-      required:
-      - a
-      - b
-      - _t
-      properties:
-        _t:
-          enum:
-          - AbTestSelection
-          type: string
-        a:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
-        b:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
-    ICampaignSelectionModelStaticSelectionModel:
-      required:
-      - rapidIds
-      - _t
-      properties:
-        _t:
-          enum:
-          - StaticSelection
-          type: string
-        rapidIds:
-          type: array
-          items:
-            type: string
-    DeviceType:
-      enum:
-      - Unknown
-      - Phone
-      - Tablet
-    ICampaignSelectionModelConditionalValidationSelectionModel:
-      required:
-      - validationChances
-      - dimensions
-      - _t
-      properties:
-        _t:
-          enum:
-          - ConditionalValidationSelection
-          type: string
-        validationChances:
-          type: array
-          items:
-            $ref: '#/components/schemas/ValidationChanceModel'
-        dimensions:
-          type: array
-          items:
-            type: string
-    ICampaignFilterModelDemographicFilterModel:
-      required:
-      - identifier
-      - values
-      - _t
-      properties:
-        _t:
-          enum:
-          - DemographicFilter
-          type: string
-        identifier:
-          type: string
-        values:
-          type: array
-          items:
-            type: string
-    GetFastBidMultiplierEndpoint_Output:
-      required:
-      - externalCampaignId
-      - bidMultiplierValue
-      type: object
-      properties:
-        externalCampaignId:
-          type: integer
-          description: The external campaign id reported by the downstream system.
-          format: int32
-        bidMultiplierValue:
-          type: number
-          description: The current bid multiplier reported for the campaign.
-          format: double
-    CreateProgramCampaignEndpoint_Output:
-      required:
-      - campaignId
-      type: object
-      properties:
-        campaignId:
-          type: string
-          description: The id of the created campaign.
-    IProgramPredicateModelCorrectCountPredicateModel:
-      required:
-      - comparison
-      - value
-      - _t
-      properties:
-        _t:
-          enum:
-          - CorrectCountPredicate
-          type: string
-        comparison:
-          $ref: '#/components/schemas/ProgramComparisonModel'
-        value:
-          type: integer
-          format: int32
-    ICampaignFilterModelNotFilterModel:
-      required:
-      - filter
-      - _t
-      properties:
-        _t:
-          enum:
-          - NotFilter
-          type: string
-        filter:
-          $ref: '#/components/schemas/ICampaignFilterModel'
-    SetManualGlobalBoostLevelEndpoint_Input:
-      type: object
-      properties:
-        level:
-          type:
-          - integer
-          - 'null'
-          description: The global boost level. Null disables manual mode and returns to automatic.
-          format: int32
-    ICampaignSelectionModel:
+    IProgramActionModel:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/ICampaignSelectionModelAbTestSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelAudienceSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelCappedSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelConditionalValidationSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelDemographicSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelEnforcingSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelLabelingSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelShufflingSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelStaticSelectionModel'
-      - $ref: '#/components/schemas/ICampaignSelectionModelValidationSelectionModel'
+      - $ref: '#/components/schemas/IProgramActionModelCompleteActionModel'
+      - $ref: '#/components/schemas/IProgramActionModelServeRapidActionModel'
       discriminator:
         propertyName: _t
         mapping:
-          AbTestSelection: '#/components/schemas/ICampaignSelectionModelAbTestSelectionModel'
-          AudienceSelection: '#/components/schemas/ICampaignSelectionModelAudienceSelectionModel'
-          CappedSelection: '#/components/schemas/ICampaignSelectionModelCappedSelectionModel'
-          ConditionalValidationSelection: '#/components/schemas/ICampaignSelectionModelConditionalValidationSelectionModel'
-          DemographicSelection: '#/components/schemas/ICampaignSelectionModelDemographicSelectionModel'
-          EnforcingSelection: '#/components/schemas/ICampaignSelectionModelEnforcingSelectionModel'
-          LabelingSelection: '#/components/schemas/ICampaignSelectionModelLabelingSelectionModel'
-          ShufflingSelection: '#/components/schemas/ICampaignSelectionModelShufflingSelectionModel'
-          StaticSelection: '#/components/schemas/ICampaignSelectionModelStaticSelectionModel'
-          ValidationSelection: '#/components/schemas/ICampaignSelectionModelValidationSelectionModel'
-    ICampaignFilterModelDeviceFilterModel:
+          CompleteAction: '#/components/schemas/IProgramActionModelCompleteActionModel'
+          ServeRapidAction: '#/components/schemas/IProgramActionModelServeRapidActionModel'
+    ICampaignSelectionModelAudienceSelectionModel:
       required:
-      - deviceTypes
+      - audienceId
+      - effort
+      - retrievalMode
       - _t
       properties:
         _t:
           enum:
-          - DeviceFilter
+          - AudienceSelection
           type: string
-        deviceTypes:
-          type: array
-          items:
-            $ref: '#/components/schemas/DeviceType'
-    ICampaignFilterModelResponseCountFilterModel:
-      required:
-      - dimension
-      - responseCount
-      - operator
-      - _t
-      properties:
-        _t:
-          enum:
-          - ResponseCountFilter
+        audienceId:
           type: string
-        dimension:
-          type: string
-        responseCount:
+        effort:
           type: integer
-          format: uint32
-        operator:
-          $ref: '#/components/schemas/ComparisonOperator'
-    AudienceBoostModel:
-      required:
-      - externalAudienceId
-      - level
+          format: int32
+        retrievalMode:
+          $ref: '#/components/schemas/RetrievalMode'
+        maxIterations:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    ValidationProblemDetails:
       type: object
       properties:
-        externalAudienceId:
-          type: integer
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        level:
-          type: integer
-          format: int32
-    ICampaignFilterModelCampaignIdFilterModel:
-      required:
-      - campaignIds
-      - _t
-      properties:
-        _t:
-          enum:
-          - CampaignIdFilter
-          type: string
-        campaignIds:
-          type: array
-          items:
-            type: string
-    GetBoostInsightsEndpoint_LevelContributorOutput:
-      required:
-      - campaignId
-      - campaignName
-      - level
-      type: object
-      properties:
-        campaignId:
-          type: string
-        campaignName:
-          type: string
-        level:
-          type: integer
-          format: int32
-    ICampaignFilterModelCountryFilterModel:
-      required:
-      - countries
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountryFilter
-          type: string
-        countries:
-          type: array
-          items:
-            type: string
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     SetFastBidMultiplierEndpoint_Output:
       required:
       - externalCampaignId
@@ -1426,20 +1308,161 @@ components:
           type: number
           description: The bid multiplier the downstream system reports as currently applied.
           format: double
-    CampaignStatusModel:
-      enum:
-      - Created
-      - Preview
-      - Active
-      - Analysis
-      - Paused
-      - Completed
-      - SpendLimited
+    ICampaignSelectionModelCappedSelectionModel:
+      required:
+      - selections
+      - maxRapids
+      - _t
+      properties:
+        _t:
+          enum:
+          - CappedSelection
+          type: string
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+        maxRapids:
+          type: integer
+          format: int32
+    ICampaignFilterModelOrFilterModel:
+      required:
+      - filters
+      - _t
+      properties:
+        _t:
+          enum:
+          - OrFilter
+          type: string
+        filters: {}
+    ICampaignSelectionModelShufflingSelectionModel:
+      required:
+      - selections
+      - _t
+      properties:
+        _t:
+          enum:
+          - ShufflingSelection
+          type: string
+        selections:
+          type: array
+          items:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+    ICampaignFilterModelCountryFilterModel:
+      required:
+      - countries
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountryFilter
+          type: string
+        countries:
+          type: array
+          items:
+            type: string
+    ProgramCaseModel:
+      required:
+      - predicate
+      - nodeId
+      type: object
+      properties:
+        predicate:
+          $ref: '#/components/schemas/IProgramPredicateModel'
+        nodeId:
+          type: string
+    ICampaignFilterModelUserActionRestrictionFilterModel:
+      required:
+      - requiredActions
+      - _t
+      properties:
+        _t:
+          enum:
+          - UserActionRestrictionFilter
+          type: string
+        requiredActions: {}
     RetrievalMode:
       enum:
       - Random
       - Shuffled
       - Sequential
+    GetFastBidMultiplierEndpoint_Output:
+      required:
+      - externalCampaignId
+      - bidMultiplierValue
+      type: object
+      properties:
+        externalCampaignId:
+          type: integer
+          description: The external campaign id reported by the downstream system.
+          format: int32
+        bidMultiplierValue:
+          type: number
+          description: The current bid multiplier reported for the campaign.
+          format: double
+    ICampaignSelectionModelLabelingSelectionModel:
+      required:
+      - effortBudget
+      - retrievalMode
+      - _t
+      properties:
+        _t:
+          enum:
+          - LabelingSelection
+          type: string
+        amount:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        effortBudget:
+          type: integer
+          format: int32
+        retrievalMode:
+          $ref: '#/components/schemas/RetrievalMode'
+        maxIterations:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    StickyConfigModel:
+      required:
+      - isEnabled
+      - bypassFilters
+      - bypassPrioritySelection
+      - blockOtherStickyCampaigns
+      - clearOnPause
+      type: object
+      properties:
+        isEnabled:
+          type: boolean
+        dimension:
+          type: string
+        bypassFilters:
+          type: boolean
+        bypassPrioritySelection:
+          type: boolean
+        blockOtherStickyCampaigns:
+          type: boolean
+        clearOnPause:
+          type: boolean
+    GetBoostInsightsEndpoint_LeveledAudienceOutput:
+      required:
+      - externalAudienceId
+      - effectiveLevel
+      - contributors
+      type: object
+      properties:
+        externalAudienceId:
+          type: integer
+          format: int32
+        effectiveLevel:
+          type: integer
+          format: int32
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetBoostInsightsEndpoint_LevelContributorOutput'
     UpdateCampaignEndpoint_Input:
       type: object
       properties:
@@ -1480,202 +1503,6 @@ components:
             items:
               $ref: '#/components/schemas/FeatureFlag'
           description: The feature flags for the campaign.
-    ICampaignFilterModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/ICampaignFilterModelAndFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelAudienceStateFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelCampaignCooldownFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelCampaignIdFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelCampaignSessionCountFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelCountryFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelDemographicFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelDeviceFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelLanguageFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelNewUserFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelNotFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelOrFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelResponseCountFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelUserActionRestrictionFilterModel'
-      - $ref: '#/components/schemas/ICampaignFilterModelUserScoreFilterModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AndFilter: '#/components/schemas/ICampaignFilterModelAndFilterModel'
-          AudienceStateFilter: '#/components/schemas/ICampaignFilterModelAudienceStateFilterModel'
-          CampaignCooldownFilter: '#/components/schemas/ICampaignFilterModelCampaignCooldownFilterModel'
-          CampaignIdFilter: '#/components/schemas/ICampaignFilterModelCampaignIdFilterModel'
-          CampaignSessionCountFilter: '#/components/schemas/ICampaignFilterModelCampaignSessionCountFilterModel'
-          CountryFilter: '#/components/schemas/ICampaignFilterModelCountryFilterModel'
-          DemographicFilter: '#/components/schemas/ICampaignFilterModelDemographicFilterModel'
-          DeviceFilter: '#/components/schemas/ICampaignFilterModelDeviceFilterModel'
-          LanguageFilter: '#/components/schemas/ICampaignFilterModelLanguageFilterModel'
-          NewUserFilter: '#/components/schemas/ICampaignFilterModelNewUserFilterModel'
-          NotFilter: '#/components/schemas/ICampaignFilterModelNotFilterModel'
-          OrFilter: '#/components/schemas/ICampaignFilterModelOrFilterModel'
-          ResponseCountFilter: '#/components/schemas/ICampaignFilterModelResponseCountFilterModel'
-          UserActionRestrictionFilter: '#/components/schemas/ICampaignFilterModelUserActionRestrictionFilterModel'
-          UserScoreFilter: '#/components/schemas/ICampaignFilterModelUserScoreFilterModel'
-    GetBoostInsightsEndpoint_AudienceOutput:
-      required:
-      - externalAudienceId
-      - contributors
-      type: object
-      properties:
-        externalAudienceId:
-          type: integer
-          format: int32
-        contributors:
-          type: array
-          items:
-            $ref: '#/components/schemas/GetBoostInsightsEndpoint_ContributorOutput'
-    CreateProgramCampaignEndpoint_Input:
-      required:
-      - name
-      - priority
-      - rootNodeId
-      - nodes
-      - maxRapids
-      - maxDurationSeconds
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the campaign.
-        priority:
-          type: integer
-          description: The priority weight the campaign competes with for sessions.
-          format: int32
-        rootNodeId:
-          type: string
-          description: The node the program's evaluation enters at.
-        nodes:
-          allOf:
-          - type: object
-            additionalProperties:
-              $ref: '#/components/schemas/IProgramNodeModel'
-          description: The program's decision graph, keyed by node id.
-        maxRapids:
-          type: integer
-          description: The session ends after this many counted responses.
-          format: int32
-        maxDurationSeconds:
-          type: integer
-          description: The session ends after this many seconds.
-          format: int32
-    ICampaignSelectionModelEnforcingSelectionModel:
-      required:
-      - selections
-      - minSelections
-      - minRapids
-      - _t
-      properties:
-        _t:
-          enum:
-          - EnforcingSelection
-          type: string
-        selections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
-        minSelections:
-          type: integer
-          format: int32
-        minRapids:
-          type: integer
-          format: int32
-    QueryCampaignsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryCampaignsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    ICampaignSelectionModelValidationSelectionModel:
-      required:
-      - validationSetId
-      - _t
-      properties:
-        _t:
-          enum:
-          - ValidationSelection
-          type: string
-        validationSetId:
-          type: string
-        amount:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        effortBudget:
-          type:
-          - integer
-          - 'null'
-          format: int32
-    ICampaignFilterModelUserActionRestrictionFilterModel:
-      required:
-      - requiredActions
-      - _t
-      properties:
-        _t:
-          enum:
-          - UserActionRestrictionFilter
-          type: string
-        requiredActions: {}
-    ICooldownDurationModelFixedCooldownDurationModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - FixedCooldownDuration
-          type: string
-        duration:
-          type: string
-          format: date-time
-    IProgramNodeModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IProgramNodeModelActionNodeModel'
-      - $ref: '#/components/schemas/IProgramNodeModelCasesNodeModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ActionNode: '#/components/schemas/IProgramNodeModelActionNodeModel'
-          CasesNode: '#/components/schemas/IProgramNodeModelCasesNodeModel'
-    ICampaignFilterModelCampaignCooldownFilterModel:
-      required:
-      - cooldown
-      - _t
-      properties:
-        _t:
-          enum:
-          - CampaignCooldownFilter
-          type: string
-        cooldown:
-          $ref: '#/components/schemas/ICooldownDurationModel'
     IProgramActionModelServeRapidActionModel:
       required:
       - routingId
@@ -1689,85 +1516,114 @@ components:
           type: string
         retrievalMode:
           $ref: '#/components/schemas/RetrievalMode'
-    IProgramActionModel:
+    IProgramPredicateModelCorrectCountPredicateModel:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IProgramActionModelCompleteActionModel'
-      - $ref: '#/components/schemas/IProgramActionModelServeRapidActionModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          CompleteAction: '#/components/schemas/IProgramActionModelCompleteActionModel'
-          ServeRapidAction: '#/components/schemas/IProgramActionModelServeRapidActionModel'
-    ICampaignSelectionModelCappedSelectionModel:
-      required:
-      - selections
-      - maxRapids
+      - comparison
+      - value
       - _t
       properties:
         _t:
           enum:
-          - CappedSelection
+          - CorrectCountPredicate
           type: string
-        selections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
-        maxRapids:
+        comparison:
+          $ref: '#/components/schemas/ProgramComparisonModel'
+        value:
           type: integer
           format: int32
-    ICampaignFilterModelAndFilterModel:
+    GetBoostInsightsEndpoint_AudienceOutput:
       required:
-      - filters
-      - _t
-      properties:
-        _t:
-          enum:
-          - AndFilter
-          type: string
-        filters:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignFilterModel'
-    IProgramNodeModelActionNodeModel:
-      required:
-      - action
-      - _t
-      properties:
-        _t:
-          enum:
-          - ActionNode
-          type: string
-        action:
-          $ref: '#/components/schemas/IProgramActionModel'
-    BoostMode:
-      enum:
-      - Automatic
-      - Manual
-    ValidationChanceModel:
-      required:
-      - userScoreThreshold
-      - chance
-      - rapidCount
+      - externalAudienceId
+      - contributors
       type: object
       properties:
-        userScoreThreshold:
-          type: number
-          format: double
-        chance:
-          type: number
-          format: double
-        rapidCount:
+        externalAudienceId:
           type: integer
           format: int32
-        selections:
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetBoostInsightsEndpoint_ContributorOutput'
+    ICampaignFilterModelResponseCountFilterModel:
+      required:
+      - dimension
+      - responseCount
+      - operator
+      - _t
+      properties:
+        _t:
+          enum:
+          - ResponseCountFilter
+          type: string
+        dimension:
+          type: string
+        responseCount:
+          type: integer
+          format: uint32
+        operator:
+          $ref: '#/components/schemas/ComparisonOperator'
+    ICampaignFilterModelNewUserFilterModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - NewUserFilter
+          type: string
+    GetBoostInsightsEndpoint_Output:
+      required:
+      - mode
+      - manualOverrideLevel
+      - globalBoost
+      - prospectBlacklist
+      - distillingBoosts
+      - labelingBoosts
+      type: object
+      properties:
+        mode:
+          allOf:
+          - $ref: '#/components/schemas/BoostMode'
+          description: The current boost mode.
+        manualOverrideLevel:
           type:
-          - array
+          - integer
           - 'null'
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
+          description: The manual override level, if manual mode is active.
+          format: int32
+        globalBoost:
+          allOf:
+          - $ref: '#/components/schemas/GetBoostInsightsEndpoint_GlobalBoostOutput'
+          description: Global boost insight with contributing campaigns.
+        prospectBlacklist:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBoostInsightsEndpoint_AudienceOutput'
+          description: Prospect blacklist insights.
+        distillingBoosts:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBoostInsightsEndpoint_LeveledAudienceOutput'
+          description: Distilling boost insights.
+        labelingBoosts:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetBoostInsightsEndpoint_LeveledAudienceOutput'
+          description: Labeling boost insights.
+    AudienceBoostModel:
+      required:
+      - externalAudienceId
+      - level
+      type: object
+      properties:
+        externalAudienceId:
+          type: integer
+          format: int32
+        level:
+          type: integer
+          format: int32
     UpdateStreamProgramEndpoint_Input:
       required:
       - rootNodeId
@@ -1793,147 +1649,48 @@ components:
           type: integer
           description: The session ends after this many seconds.
           format: int32
-    ICampaignSelectionModelShufflingSelectionModel:
+    GetBoostInsightsEndpoint_GlobalBoostOutput:
       required:
-      - selections
-      - _t
+      - effectiveLevel
+      - contributors
+      type: object
       properties:
-        _t:
-          enum:
-          - ShufflingSelection
-          type: string
-        selections:
-          type: array
-          items:
-            $ref: '#/components/schemas/ICampaignSelectionModel'
-    IProgramPredicateModelAnsweredCountPredicateModel:
-      required:
-      - comparison
-      - value
-      - _t
-      properties:
-        _t:
-          enum:
-          - AnsweredCountPredicate
-          type: string
-        comparison:
-          $ref: '#/components/schemas/ProgramComparisonModel'
-        value:
+        effectiveLevel:
           type: integer
           format: int32
-    SetFastBidMultiplierEndpoint_Input:
-      required:
-      - multiplier
-      type: object
-      properties:
-        multiplier:
-          type: number
-          description: The bid multiplier to apply. Must be in [0, 50].
-          format: double
-    BoostingControlMode:
+        contributors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetBoostInsightsEndpoint_LevelContributorOutput'
+    BoostMode:
       enum:
-      - Manual
       - Automatic
-    GetBoostStatusEndpoint_Output:
+      - Manual
+    ICampaignFilterModelDeviceFilterModel:
       required:
-      - status
-      - mode
-      - activeCampaigns
-      - inactiveCampaigns
-      - unknownCampaigns
-      type: object
-      properties:
-        status:
-          allOf:
-          - $ref: '#/components/schemas/BoostStatusModel'
-          description: The current boost status.
-        mode:
-          allOf:
-          - $ref: '#/components/schemas/BoostMode'
-          description: The current boost mode.
-        activeCampaigns:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The list of active campaign identifiers.
-        inactiveCampaigns:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The list of inactive campaign identifiers.
-        unknownCampaigns:
-          allOf:
-          - type: array
-            items:
-              type: integer
-              format: int32
-          description: The list of unknown campaign identifiers.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    ICampaignFilterModelNewUserFilterModel:
-      required:
+      - deviceTypes
       - _t
       properties:
         _t:
           enum:
-          - NewUserFilter
+          - DeviceFilter
           type: string
-    ICampaignFilterModelUserScoreFilterModel:
+        deviceTypes:
+          type: array
+          items:
+            $ref: '#/components/schemas/DeviceType'
+    IProgramNodeModel:
       required:
-      - dimension
-      - lowerbound
-      - upperbound
       - _t
-      properties:
-        _t:
-          enum:
-          - UserScoreFilter
-          type: string
-        dimension:
-          type: string
-        lowerbound:
-          type: number
-          format: double
-        upperbound:
-          type: number
-          format: double
-    ProgramComparisonModel:
-      enum:
-      - GreaterThanOrEqual
-      - GreaterThan
-      - LessThanOrEqual
-      - LessThan
-      - Equal
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IProgramNodeModelActionNodeModel'
+      - $ref: '#/components/schemas/IProgramNodeModelCasesNodeModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ActionNode: '#/components/schemas/IProgramNodeModelActionNodeModel'
+          CasesNode: '#/components/schemas/IProgramNodeModelCasesNodeModel'
     BoostingProfileModel:
       required:
       - globalBoostLevel
@@ -1968,29 +1725,272 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/AudienceBoostModel'
-    ICampaignSelectionModelAudienceSelectionModel:
+    ICampaignSelectionModelStaticSelectionModel:
       required:
-      - audienceId
-      - effort
-      - retrievalMode
+      - rapidIds
       - _t
       properties:
         _t:
           enum:
-          - AudienceSelection
+          - StaticSelection
+          type: string
+        rapidIds:
+          type: array
+          items:
+            type: string
+    IProgramActionModelCompleteActionModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompleteAction
+          type: string
+    ICampaignFilterModelCampaignCooldownFilterModel:
+      required:
+      - cooldown
+      - _t
+      properties:
+        _t:
+          enum:
+          - CampaignCooldownFilter
+          type: string
+        cooldown:
+          $ref: '#/components/schemas/ICooldownDurationModel'
+    ICampaignSelectionModelDemographicSelectionModel:
+      required:
+      - keys
+      - maxRapids
+      - _t
+      properties:
+        _t:
+          enum:
+          - DemographicSelection
+          type: string
+        keys:
+          type: array
+          items:
+            type: string
+        probability:
+          type:
+          - number
+          - 'null'
+          format: double
+        maxRapids:
+          type: integer
+          format: int32
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    ICooldownDurationModelFixedCooldownDurationModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - FixedCooldownDuration
+          type: string
+        duration:
+          type: string
+          format: date-time
+    QueryCampaignsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryCampaignsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    ICampaignSelectionModelConditionalValidationSelectionModel:
+      required:
+      - validationChances
+      - dimensions
+      - _t
+      properties:
+        _t:
+          enum:
+          - ConditionalValidationSelection
+          type: string
+        validationChances:
+          type: array
+          items:
+            $ref: '#/components/schemas/ValidationChanceModel'
+        dimensions:
+          type: array
+          items:
+            type: string
+    BoostingControlMode:
+      enum:
+      - Manual
+      - Automatic
+    GetBoostInsightsEndpoint_ContributorOutput:
+      required:
+      - campaignId
+      - campaignName
+      type: object
+      properties:
+        campaignId:
+          type: string
+        campaignName:
+          type: string
+    ICampaignFilterModelAudienceStateFilterModel:
+      required:
+      - audienceId
+      - allowedStates
+      - includeUnknownState
+      - _t
+      properties:
+        _t:
+          enum:
+          - AudienceStateFilter
           type: string
         audienceId:
           type: string
-        effort:
+        allowedStates:
+          type: array
+          items:
+            $ref: '#/components/schemas/SimplifiedAudienceUserState'
+        includeUnknownState:
+          type: boolean
+    ICampaignSelectionModelAbTestSelectionModel:
+      required:
+      - a
+      - b
+      - _t
+      properties:
+        _t:
+          enum:
+          - AbTestSelection
+          type: string
+        a:
+          type: array
+          items:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+        b:
+          type: array
+          items:
+            $ref: '#/components/schemas/ICampaignSelectionModel'
+    IProgramNodeModelActionNodeModel:
+      required:
+      - action
+      - _t
+      properties:
+        _t:
+          enum:
+          - ActionNode
+          type: string
+        action:
+          $ref: '#/components/schemas/IProgramActionModel'
+    SetFastBidMultiplierEndpoint_Input:
+      required:
+      - multiplier
+      type: object
+      properties:
+        multiplier:
+          type: number
+          description: The bid multiplier to apply. Must be in [0, 50].
+          format: double
+    CampaignStatusModel:
+      enum:
+      - Created
+      - Preview
+      - Active
+      - Analysis
+      - Paused
+      - Completed
+      - SpendLimited
+    GetBoostInsightsEndpoint_LevelContributorOutput:
+      required:
+      - campaignId
+      - campaignName
+      - level
+      type: object
+      properties:
+        campaignId:
+          type: string
+        campaignName:
+          type: string
+        level:
           type: integer
           format: int32
-        retrievalMode:
-          $ref: '#/components/schemas/RetrievalMode'
-        maxIterations:
+    IProgramNodeModelCasesNodeModel:
+      required:
+      - cases
+      - _t
+      properties:
+        _t:
+          enum:
+          - CasesNode
+          type: string
+        cases:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProgramCaseModel'
+        defaultNodeId:
           type:
-          - integer
+          - string
           - 'null'
-          format: int32
+    ICampaignFilterModelCampaignIdFilterModel:
+      required:
+      - campaignIds
+      - _t
+      properties:
+        _t:
+          enum:
+          - CampaignIdFilter
+          type: string
+        campaignIds:
+          type: array
+          items:
+            type: string
+    ICooldownDurationModelRandomCooldownDurationModel:
+      required:
+      - minDuration
+      - maxDuration
+      - seedByUserId
+      - _t
+      properties:
+        _t:
+          enum:
+          - RandomCooldownDuration
+          type: string
+        minDuration:
+          type: string
+          format: date-time
+        maxDuration:
+          type: string
+          format: date-time
+        seedByUserId:
+          type: boolean
+    SimplifiedAudienceUserState:
+      enum:
+      - Distilling
+      - Graduated
+      - Dropped
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

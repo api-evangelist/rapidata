@@ -3313,210 +3313,20 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IMetadataModelOriginalFilenameMetadataModel:
+    IAssetModelNullAssetModel:
       required:
-      - originalFilename
+      - metadata
+      - identifier
       - _t
       properties:
         _t:
           enum:
-          - OriginalFilenameMetadata
+          - NullAsset
           type: string
-        originalFilename:
-          type: string
-    ConfidenceInterval:
-      required:
-      - lowerOffset
-      - upperOffset
-      type: object
-      properties:
-        lowerOffset:
-          type: number
-          format: double
-        upperOffset:
-          type: number
-          format: double
-    MetadataModelCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
         metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
+          $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
-          type:
-          - string
-          - 'null'
-    QueryCombinedStandingsByBenchmarksEndpoint_OutputItem:
-      required:
-      - id
-      - name
-      - status
-      - score
-      - wins
-      - totalMatches
-      - isDisabled
-      type: object
-      properties:
-        id:
           type: string
-        name:
-          type: string
-        family:
-          type:
-          - string
-          - 'null'
-        proprietaryName:
-          type:
-          - string
-          - 'null'
-        logo:
-          type:
-          - string
-          - 'null'
-        status:
-          $ref: '#/components/schemas/StandingStatus'
-        score:
-          type:
-          - number
-          - 'null'
-          format: double
-        wins:
-          type: number
-          format: double
-        totalMatches:
-          type: number
-          format: double
-        isDisabled:
-          type: boolean
-        confidenceInterval:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/ConfidenceInterval'
-    QueryParticipantsByBenchmarkEndpoint_Output:
-      required:
-      - id
-      - name
-      - benchmarkId
-      - status
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the participant.
-        name:
-          type: string
-          description: The name of the participant.
-        benchmarkId:
-          type: string
-          description: The id of the benchmark the participant belongs to.
-        family:
-          type:
-          - string
-          - 'null'
-          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), or null if unset.
-        proprietaryName:
-          type:
-          - string
-          - 'null'
-          description: The vendor-facing display name of the model, or null if unset.
-        logo:
-          type:
-          - string
-          - 'null'
-          description: The logo of the model, or null if unset.
-        status:
-          allOf:
-          - $ref: '#/components/schemas/ParticipantStatus'
-          description: The status of the participant.
-    QueryManagedBenchmarksEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryManagedBenchmarksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    CreateBenchmarkEndpoint_Output:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the created benchmark.
     CreateSampleGenerationEndpoint_Input:
       required:
       - samplesPerPrompt
@@ -3550,46 +3360,75 @@ components:
             items:
               type: string
           description: Restrict generation to prompts having at least one of these tags.
-    IAssetModelMultiAssetModel:
+    QueryStandingsByBenchmarkEndpoint_Output:
       required:
-      - assets
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/QueryStandingsByBenchmarkEndpoint_OutputItem'
+          description: The standings items, ordered by score descending.
+      description: The queried standings output.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    IAssetModelTextAssetModel:
+      required:
+      - text
       - metadata
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
+          - TextAsset
           type: string
         text:
           type: string
         metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
+          $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
-          type:
-          - string
-          - 'null'
+          type: string
+    CreatePromptForBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created prompt.
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
     QueryLeaderboardsByBenchmarkEndpoint_Output:
       required:
       - id
@@ -3667,227 +3506,6 @@ components:
         isExcludedFromOverall:
           type: boolean
           description: "Whether the leaderboard is excluded from its benchmark's overall / combined scoreboard,\n making it an owner-only private experiment."
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    QueryStandingsByBenchmarkEndpoint_Output:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/QueryStandingsByBenchmarkEndpoint_OutputItem'
-          description: The standings items, ordered by score descending.
-      description: The queried standings output.
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    QueryBenchmarksEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryBenchmarksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    QueryCombinedStandingsByBenchmarksEndpoint_Output:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/QueryCombinedStandingsByBenchmarksEndpoint_OutputItem'
-          description: The standings items, ordered by score descending.
-      description: The queried standings output.
-    IAssetModelFileAssetModel:
-      required:
-      - fileName
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    CreateBenchmarkEndpoint_Input:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the benchmark.
-        description:
-          type:
-          - string
-          - 'null'
-          description: "Optional plain-text credit for the people or sources behind the benchmark. Limited to\n 2000 characters. Leave unset for no description."
-        initialBoostLevel:
-          type:
-          - integer
-          - 'null'
-          description: "Initial boost level applied to the campaign of every run created from this benchmark.\n Leave unset to fall back to DefaultInitialBoostLevel. Admins\n may set any value the validator allows (0-10); non-admins are restricted to\n 0..BenchmarkEntity.DefaultInitialBoostLevel — anything outside that range returns\n 403 Forbidden via IsAllowedToSetInitialBoostLevel."
-          format: int32
-        scoreShift:
-          type:
-          - number
-          - 'null'
-          description: "Additive offset applied to displayed scores on the overall scoreboard of this\n benchmark. Defaults to 0 when unset."
-          format: double
-        scoreScale:
-          type:
-          - number
-          - 'null'
-          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark. Defaults to 1.0 when\n unset; must be strictly positive."
-          format: double
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    QueryPublishedBenchmarksEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryPublishedBenchmarksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    CreateBenchmarkParticipantEndpoint_Input:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the participant.
-        family:
-          type:
-          - string
-          - 'null'
-          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), if any.
-        proprietaryName:
-          type:
-          - string
-          - 'null'
-          description: The vendor-facing display name of the model, if any.
-        logo:
-          allOf:
-          - $ref: '#/components/schemas/ExistingAssetInput'
-          description: An optional logo image for the model. Must be an existing image asset.
     UpdateBenchmarkEndpoint_Input:
       type: object
       properties:
@@ -3917,82 +3535,6 @@ components:
           type: number
           description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark. Must be strictly positive."
           format: double
-    GetPromptsByBenchmarkEndpoint_Output:
-      required:
-      - id
-      - identifier
-      - createdAt
-      - tags
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the prompt.
-        englishPrompt:
-          type:
-          - string
-          - 'null'
-          description: The prompt text translated to English.
-        originalPrompt:
-          type:
-          - string
-          - 'null'
-          description: The prompt text as originally provided.
-        promptAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The optional asset associated with the prompt.
-        identifier:
-          type: string
-          description: The identifier associated with the prompt.
-        createdAt:
-          type: string
-          description: The timestamp when the prompt was created.
-          format: date-time
-        tags:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The tags associated with the prompt.
-    QueryParticipantsByBenchmarkEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryParticipantsByBenchmarkEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    CreatePromptForBenchmarkEndpoint_Output:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the created prompt.
-    ParticipantStatus:
-      enum:
-      - Created
-      - Submittable
-      - Submitted
-      - Disabled
     QueryManagedBenchmarksEndpoint_Output:
       required:
       - id
@@ -4026,6 +3568,120 @@ components:
         ownerMail:
           type: string
           description: The mail of the customer owning the benchmark.
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateSampleGenerationEndpoint_Output:
+      required:
+      - id
+      - totalCount
+      - skippedParticipantIds
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created sample generation request.
+        totalCount:
+          type: integer
+          description: The total number of generation items that were queued.
+          format: int32
+        skippedParticipantIds:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: "Participants that matched the selection but were skipped because they have no faucet\n configured. Empty when explicit participant ids were supplied."
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    QueryCombinedStandingsByBenchmarksEndpoint_OutputItem:
+      required:
+      - id
+      - name
+      - status
+      - score
+      - wins
+      - totalMatches
+      - isDisabled
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        family:
+          type:
+          - string
+          - 'null'
+        proprietaryName:
+          type:
+          - string
+          - 'null'
+        logo:
+          type:
+          - string
+          - 'null'
+        status:
+          $ref: '#/components/schemas/StandingStatus'
+        score:
+          type:
+          - number
+          - 'null'
+          format: double
+        wins:
+          type: number
+          format: double
+        totalMatches:
+          type: number
+          format: double
+        isDisabled:
+          type: boolean
+        confidenceInterval:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/ConfidenceInterval'
     GetBenchmarkByIdEndpoint_Output:
       required:
       - id
@@ -4083,6 +3739,47 @@ components:
           type: number
           description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark."
           format: double
+    QueryPublishedBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryPublishedBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
     UpdateBenchmarkNameEndpoint_Input:
       required:
       - name
@@ -4091,20 +3788,346 @@ components:
         name:
           type: string
           description: The new name of the benchmark.
-    IAssetModelNullAssetModel:
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IMetadataModelSourceUrlMetadataModel:
       required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    QueryMatrixByBenchmarkEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix rows, ordered strongest first.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix columns, ordered strongest first.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
+    CreateBenchmarkParticipantEndpoint_Output:
+      required:
+      - participantId
+      - datasetId
+      type: object
+      properties:
+        participantId:
+          type: string
+          description: The id of the created participant.
+        datasetId:
+          type: string
+          description: The id of the participant's dataset.
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
       - metadata
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - NullAsset
+          - MultiAsset
           type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
         metadata:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    QueryCombinedStandingsByBenchmarksEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/QueryCombinedStandingsByBenchmarksEndpoint_OutputItem'
+          description: The standings items, ordered by score descending.
+      description: The queried standings output.
+    GetPromptsByBenchmarkEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/GetPromptsByBenchmarkEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryManagedBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryManagedBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    CreatePromptForBenchmarkEndpoint_Input:
+      required:
+      - identifier
+      type: object
+      properties:
+        identifier:
+          type: string
+          description: An identifier associated with the prompt.
+        prompt:
+          type:
+          - string
+          - 'null'
+          description: The prompt text.
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The asset associated with the prompt.
+        tags:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              type: string
+          description: The tags associated with the prompt.
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    CreateBenchmarkEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the benchmark.
+        description:
+          type:
+          - string
+          - 'null'
+          description: "Optional plain-text credit for the people or sources behind the benchmark. Limited to\n 2000 characters. Leave unset for no description."
+        initialBoostLevel:
+          type:
+          - integer
+          - 'null'
+          description: "Initial boost level applied to the campaign of every run created from this benchmark.\n Leave unset to fall back to DefaultInitialBoostLevel. Admins\n may set any value the validator allows (0-10); non-admins are restricted to\n 0..BenchmarkEntity.DefaultInitialBoostLevel — anything outside that range returns\n 403 Forbidden via IsAllowedToSetInitialBoostLevel."
+          format: int32
+        scoreShift:
+          type:
+          - number
+          - 'null'
+          description: "Additive offset applied to displayed scores on the overall scoreboard of this\n benchmark. Defaults to 0 when unset."
+          format: double
+        scoreScale:
+          type:
+          - number
+          - 'null'
+          description: "Multiplicative factor applied to displayed scores (relative to the Bradley-Terry\n center) on the overall scoreboard of this benchmark. Defaults to 1.0 when\n unset; must be strictly positive."
+          format: double
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    QueryBenchmarksEndpoint_Output:
+      required:
+      - id
+      - name
+      - isManaged
+      - isPublic
+      - isPublished
+      - createdAt
+      - ownerMail
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the benchmark.
+        name:
+          type: string
+          description: The name of the benchmark.
+        isManaged:
+          type: boolean
+          description: Whether the benchmark is managed.
+        isPublic:
+          type: boolean
+          description: Whether the benchmark is public.
+        isPublished:
+          type: boolean
+          description: Whether the benchmark is published to the public benchmark repository.
+        createdAt:
+          type: string
+          description: The timestamp when the benchmark was created.
+          format: date-time
+        ownerMail:
+          type: string
+          description: The mail of the customer owning the benchmark.
+    CreateBenchmarkParticipantEndpoint_Input:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the participant.
+        family:
+          type:
+          - string
+          - 'null'
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), if any.
+        proprietaryName:
+          type:
+          - string
+          - 'null'
+          description: The vendor-facing display name of the model, if any.
+        logo:
+          allOf:
+          - $ref: '#/components/schemas/ExistingAssetInput'
+          description: An optional logo image for the model. Must be an existing image asset.
     QueryPublishedBenchmarksEndpoint_Output:
       required:
       - id
@@ -4138,53 +4161,55 @@ components:
         ownerMail:
           type: string
           description: The mail of the customer owning the benchmark.
-    ExistingAssetInput:
+    ConfidenceInterval:
       required:
-      - name
+      - lowerOffset
+      - upperOffset
       type: object
       properties:
+        lowerOffset:
+          type: number
+          format: double
+        upperOffset:
+          type: number
+          format: double
+    QueryParticipantsByBenchmarkEndpoint_Output:
+      required:
+      - id
+      - name
+      - benchmarkId
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the participant.
         name:
           type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    IMetadataModelTextMetadataModel:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
+          description: The name of the participant.
+        benchmarkId:
           type: string
-        text:
+          description: The id of the benchmark the participant belongs to.
+        family:
           type:
           - string
           - 'null'
-    GetPromptsByBenchmarkEndpoint_PagedResultOfOutput:
+          description: The family the underlying model belongs to (e.g. "Flux", "GPT"), or null if unset.
+        proprietaryName:
+          type:
+          - string
+          - 'null'
+          description: The vendor-facing display name of the model, or null if unset.
+        logo:
+          type:
+          - string
+          - 'null'
+          description: The logo of the model, or null if unset.
+        status:
+          allOf:
+          - $ref: '#/components/schemas/ParticipantStatus'
+          description: The status of the participant.
+    QueryParticipantsByBenchmarkEndpoint_PagedResultOfOutput:
       required:
       - total
       - page
@@ -4204,10 +4229,100 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/GetPromptsByBenchmarkEndpoint_Output'
+            $ref: '#/components/schemas/QueryParticipantsByBenchmarkEndpoint_Output'
         totalPages:
           type: integer
           format: int32
+    QueryLeaderboardsByBenchmarkEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryLeaderboardsByBenchmarkEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryBenchmarksEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryBenchmarksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    CreateBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the created benchmark.
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    ForkBenchmarkEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the new benchmark created.
     IMetadataModelVideoDurationMetadataModel:
       required:
       - duration
@@ -4220,6 +4335,227 @@ components:
         duration:
           type: string
           format: date-time
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    GetPromptsByBenchmarkEndpoint_Output:
+      required:
+      - id
+      - identifier
+      - createdAt
+      - tags
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique identifier of the prompt.
+        englishPrompt:
+          type:
+          - string
+          - 'null'
+          description: The prompt text translated to English.
+        originalPrompt:
+          type:
+          - string
+          - 'null'
+          description: The prompt text as originally provided.
+        promptAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The optional asset associated with the prompt.
+        identifier:
+          type: string
+          description: The identifier associated with the prompt.
+        createdAt:
+          type: string
+          description: The timestamp when the prompt was created.
+          format: date-time
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the prompt.
+    SubmitParticipantByBenchmarkEndpoint_Output:
+      required:
+      - validDatapoints
+      - invalidDatapoints
+      type: object
+      properties:
+        validDatapoints:
+          type: integer
+          description: The number of valid datapoints collected by the participant.
+          format: int32
+        invalidDatapoints:
+          type: integer
+          description: The number of invalid datapoints collected by the participant.
+          format: int32
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    QueryTagsByBenchmarkEndpoint_Output:
+      required:
+      - tags
+      type: object
+      properties:
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The tags associated with the benchmark.
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    ExistingAssetInput:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    ParticipantStatus:
+      enum:
+      - Created
+      - Submittable
+      - Submitted
+      - Disabled
+    StandingStatus:
+      enum:
+      - Created
+      - Active
+      - Idle
+    QueryCombinedMatrixByBenchmarksEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix rows, ordered strongest first.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The participant names of the matrix columns, ordered strongest first.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
     QueryStandingsByBenchmarkEndpoint_OutputItem:
       required:
       - id
@@ -4268,342 +4604,6 @@ components:
           - 'null'
           oneOf:
           - $ref: '#/components/schemas/ConfidenceInterval'
-    CreateBenchmarkParticipantEndpoint_Output:
-      required:
-      - participantId
-      - datasetId
-      type: object
-      properties:
-        participantId:
-          type: string
-          description: The id of the created participant.
-        datasetId:
-          type: string
-          description: The id of the participant's dataset.
-    StandingStatus:
-      enum:
-      - Created
-      - Active
-      - Idle
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    SubmitParticipantByBenchmarkEndpoint_Output:
-      required:
-      - validDatapoints
-      - invalidDatapoints
-      type: object
-      properties:
-        validDatapoints:
-          type: integer
-          description: The number of valid datapoints collected by the participant.
-          format: int32
-        invalidDatapoints:
-          type: integer
-          description: The number of invalid datapoints collected by the participant.
-          format: int32
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    QueryMatrixByBenchmarkEndpoint_Output:
-      required:
-      - index
-      - columns
-      - data
-      type: object
-      properties:
-        index:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The participant names of the matrix rows, ordered strongest first.
-        columns:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The participant names of the matrix columns, ordered strongest first.
-        data:
-          allOf:
-          - type: array
-            items:
-              type: array
-              items:
-                type: number
-                format: double
-          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
-    QueryTagsByBenchmarkEndpoint_Output:
-      required:
-      - tags
-      type: object
-      properties:
-        tags:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The tags associated with the benchmark.
-    CreatePromptForBenchmarkEndpoint_Input:
-      required:
-      - identifier
-      type: object
-      properties:
-        identifier:
-          type: string
-          description: An identifier associated with the prompt.
-        prompt:
-          type:
-          - string
-          - 'null'
-          description: The prompt text.
-        promptAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The asset associated with the prompt.
-        tags:
-          allOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              type: string
-          description: The tags associated with the prompt.
-    QueryBenchmarksEndpoint_Output:
-      required:
-      - id
-      - name
-      - isManaged
-      - isPublic
-      - isPublished
-      - createdAt
-      - ownerMail
-      type: object
-      properties:
-        id:
-          type: string
-          description: The unique identifier of the benchmark.
-        name:
-          type: string
-          description: The name of the benchmark.
-        isManaged:
-          type: boolean
-          description: Whether the benchmark is managed.
-        isPublic:
-          type: boolean
-          description: Whether the benchmark is public.
-        isPublished:
-          type: boolean
-          description: Whether the benchmark is published to the public benchmark repository.
-        createdAt:
-          type: string
-          description: The timestamp when the benchmark was created.
-          format: date-time
-        ownerMail:
-          type: string
-          description: The mail of the customer owning the benchmark.
-    QueryLeaderboardsByBenchmarkEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryLeaderboardsByBenchmarkEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    QueryCombinedMatrixByBenchmarksEndpoint_Output:
-      required:
-      - index
-      - columns
-      - data
-      type: object
-      properties:
-        index:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The participant names of the matrix rows, ordered strongest first.
-        columns:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The participant names of the matrix columns, ordered strongest first.
-        data:
-          allOf:
-          - type: array
-            items:
-              type: array
-              items:
-                type: number
-                format: double
-          description: The win counts; Data[i][j] holds the wins of Index[i] over Columns[j].
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IMetadataModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    CreateSampleGenerationEndpoint_Output:
-      required:
-      - id
-      - totalCount
-      - skippedParticipantIds
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the created sample generation request.
-        totalCount:
-          type: integer
-          description: The total number of generation items that were queued.
-          format: int32
-        skippedParticipantIds:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: "Participants that matched the selection but were skipped because they have no faucet\n configured. Empty when explicit participant ids were supplied."
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    ForkBenchmarkEndpoint_Output:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The id of the new benchmark created.
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    IMetadataModelImageDimensionMetadataModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - ImageDimensionMetadata
-          type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

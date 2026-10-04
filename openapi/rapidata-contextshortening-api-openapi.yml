@@ -49,37 +49,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ShortenContextEndpoint_Output:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
-          description: The shortened contexts.
-      description: The shortened contexts, in the same order as the input items.
-    ShortenContextEndpoint_OutputItem:
-      required:
-      - shortenedContext
-      type: object
-      properties:
-        shortenedContext:
-          type: string
-    ShortenContextEndpoint_Input:
-      required:
-      - items
-      type: object
-      properties:
-        items:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
-          description: The context/question pairs to shorten.
-      description: The input for the shorten-context endpoint.
     ValidationProblemDetails:
       type: object
       properties:
@@ -120,6 +89,37 @@ components:
           type: string
         question:
           type: string
+    ShortenContextEndpoint_Input:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShortenContextEndpoint_InputItem'
+          description: The context/question pairs to shorten.
+      description: The input for the shorten-context endpoint.
+    ShortenContextEndpoint_OutputItem:
+      required:
+      - shortenedContext
+      type: object
+      properties:
+        shortenedContext:
+          type: string
+    ShortenContextEndpoint_Output:
+      required:
+      - items
+      type: object
+      properties:
+        items:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/ShortenContextEndpoint_OutputItem'
+          description: The shortened contexts.
+      description: The shortened contexts, in the same order as the input items.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

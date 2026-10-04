@@ -77,30 +77,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    SubscribeToNewsletterEndpoint_Input:
-      required:
-      - email
-      - token
-      type: object
-      properties:
-        email:
-          type: string
-          description: The email of the user to subscribe.
-        token:
-          type: string
-          description: The recaptcha token used to verify the caller is not a bot.
-    UnsubscribeFromNewsletterEndpoint_Input:
-      required:
-      - email
-      - token
-      type: object
-      properties:
-        email:
-          type: string
-          description: The email of the user to unsubscribe.
-        token:
-          type: string
-          description: The recaptcha token used to verify the caller is not a bot.
     ValidationProblemDetails:
       type: object
       properties:
@@ -131,6 +107,30 @@ components:
             type: array
             items:
               type: string
+    SubscribeToNewsletterEndpoint_Input:
+      required:
+      - email
+      - token
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email of the user to subscribe.
+        token:
+          type: string
+          description: The recaptcha token used to verify the caller is not a bot.
+    UnsubscribeFromNewsletterEndpoint_Input:
+      required:
+      - email
+      - token
+      type: object
+      properties:
+        email:
+          type: string
+          description: The email of the user to unsubscribe.
+        token:
+          type: string
+          description: The recaptcha token used to verify the caller is not a bot.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

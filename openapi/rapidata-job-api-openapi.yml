@@ -1967,129 +1967,28 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    QueryJobDefinitionsEndpoint_Output:
+    IRapidBlueprintAttachCategoryRapidBlueprint:
       required:
-      - definitionId
-      - name
-      - definitionType
-      - createdAt
-      - revisionCount
-      - ownerId
-      - ownerMail
-      type: object
-      properties:
-        definitionId:
-          type: string
-          description: The id of the job definition.
-        name:
-          type: string
-          description: The name of the job definition.
-        definitionType:
-          allOf:
-          - $ref: '#/components/schemas/DefinitionType'
-          description: The type of the job definition.
-        createdAt:
-          type: string
-          description: The creation timestamp of the job definition.
-          format: date-time
-        revisionCount:
-          type: integer
-          description: The number of revisions for this job definition.
-          format: int32
-        ownerId:
-          type: string
-          description: The id of the owner of the job definition.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The email of the owner of the job definition.
-    IRefereeModelBudgetRefereeModel:
-      required:
-      - totalBudget
+      - categories
+      - title
       - _t
       properties:
         _t:
           enum:
-          - BudgetReferee
+          - ClassifyBlueprint
           type: string
-        totalBudget:
-          type: integer
-          format: int32
-    CreateJobDefinitionEndpoint_Output:
-      required:
-      - definitionId
-      - pipelineId
-      type: object
-      properties:
-        definitionId:
-          type: string
-          description: The id of the created job definition.
-        pipelineId:
-          type: string
-          description: The id of the created preview pipeline.
-      description: The result when a job definition has been created.
-    IRapidBlueprintLocateRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBlueprint
-          type: string
-        target:
-          type: string
-    AttachCategoryRapidBlueprint_Category:
-      required:
-      - label
-      - value
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type: string
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
+        categories:
           type: array
           items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
+            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
+        possibleCategories:
           type:
-          - object
+          - array
           - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    UpdateJobDefinitionEndpoint_Input:
-      type: object
-      properties:
-        name:
+          items:
+            type: string
+        title:
           type: string
-          description: The new name for the job definition.
-      description: The input for the update job definition endpoint.
     CreateJobDefinitionEndpoint_Input:
       required:
       - definitionName
@@ -2129,132 +2028,21 @@ components:
           - $ref: '#/components/schemas/AggregatorType'
           description: The aggregator type.
       description: The input for the create job definition endpoint.
-    IOrderWorkflowInputModelSimpleWorkflowInputModel:
+    IPairMakerConfigModelFullPermutationPairMakerConfigModel:
       required:
-      - blueprint
       - _t
       properties:
         _t:
           enum:
-          - SimpleWorkflow
+          - FullPermutationPairMaker
           type: string
-        blueprint:
-          $ref: '#/components/schemas/IRapidBlueprint'
-        batchSize:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        featureFlags:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeatureFlag'
-    IRefereeModelNaiveRefereeModel:
-      required:
-      - totalVotes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NaiveReferee
-          type: string
-        totalVotes:
-          type: integer
-          format: int32
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IRefereeModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRefereeModelBudgetRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelNaiveRefereeModel'
-      - $ref: '#/components/schemas/IRefereeModelQuorumRefereeModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BudgetReferee: '#/components/schemas/IRefereeModelBudgetRefereeModel'
-          EarlyStoppingReferee: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
-          NaiveReferee: '#/components/schemas/IRefereeModelNaiveRefereeModel'
-          QuorumReferee: '#/components/schemas/IRefereeModelQuorumRefereeModel'
-    AggregatorType:
+    ReviewReasonModel:
       enum:
-      - NonCommittal
-      - MajorityVote
-      - SimpleMatchup
-      - LocateCluster
-      - Classification
-      - Locate
-      - BoundingBox
-      - Line
-      - Transcription
-      - SinglePointLocate
-      - FreeText
-      - Scrub
-      - Ranking
-      - MultiRanking
+      - ContentFlagged
+      - UnsupportedContentType
+      - CheckErrored
+      - ClassificationTimedOut
       - null
-    IRapidBlueprintFreeTextRapidBlueprint:
-      required:
-      - question
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextBlueprint
-          type: string
-        question:
-          type: string
-        shouldValidateResponse:
-          type:
-          - boolean
-          - 'null'
-        validationSystemPrompt:
-          type:
-          - string
-          - 'null'
     QueryJobsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -2279,106 +2067,72 @@ components:
         totalPages:
           type: integer
           format: int32
-    IRapidBlueprintCompareRapidBlueprint:
+    IRefereeModelBudgetRefereeModel:
       required:
-      - criteria
+      - totalBudget
       - _t
       properties:
         _t:
           enum:
-          - CompareBlueprint
+          - BudgetReferee
           type: string
-        criteria:
-          type: string
-        indexIdentifiers:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-    GetJobCostEstimateEndpoint_Output:
-      required:
-      - estimatedCost
-      - costPerResponse
-      - datapointCount
-      - requiredResponses
-      type: object
-      properties:
-        estimatedCost:
-          type: number
-          description: The estimated total cost of running the job to completion.
-          format: double
-        costPerResponse:
-          type: number
-          description: The representative per-response cost the estimate is based on.
-          format: double
-        datapointCount:
-          type: integer
-          description: The number of datapoints in the job's dataset.
-          format: int64
-        requiredResponses:
-          type: integer
-          description: The total number of responses the job's referee requires to complete.
-          format: int64
-      description: The estimated cost of a job.
-    IRankingConfigModelBradleyTerryRankingConfigModel:
-      required:
-      - startingScore
-      - _t
-      properties:
-        _t:
-          enum:
-          - BradleyTerryRankingConfig
-          type: string
-        startingScore:
+        totalBudget:
           type: integer
           format: int32
-    GetJobDefinitionByIdEndpoint_Output:
+    QueryJobRevisionsEndpoint_Output:
       required:
       - definitionId
-      - name
-      - definitionType
-      - isPublic
+      - revisionNumber
       - createdAt
-      - ownerId
-      - ownerMail
+      - state
       type: object
       properties:
         definitionId:
           type: string
-          description: The job definition id.
-        name:
-          type: string
-          description: The name of the job definition.
-        definitionType:
-          allOf:
-          - $ref: '#/components/schemas/DefinitionType'
-          description: The type of the job definition.
-        isPublic:
-          type: boolean
-          description: Whether the definition is shared publicly as a reusable template.
+          description: The id of the job definition this revision belongs to.
+        revisionNumber:
+          type: integer
+          description: The revision number.
+          format: int32
         createdAt:
           type: string
-          description: The creation timestamp.
+          description: The timestamp when this revision was created.
           format: date-time
-        ownerId:
-          type: string
-          description: The id of the job definition's owner.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The email of the job definition's owner.
-      description: The result when a job definition has been retrieved.
-    FeatureFlag:
+        state:
+          allOf:
+          - $ref: '#/components/schemas/JobDefinitionRevisionState'
+          description: The current state of the revision.
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    IRankingConfigModelEloConfigModel:
       required:
-      - key
-      - value
-      type: object
+      - startingScore
+      - kFactor
+      - scalingFactor
+      - _t
       properties:
-        key:
+        _t:
+          enum:
+          - EloConfig
           type: string
-        value:
-          type: string
+        startingScore:
+          type: integer
+          format: int32
+        kFactor:
+          type: integer
+          format: int32
+        scalingFactor:
+          type: integer
+          format: int32
     QueryJobsEndpoint_Output:
       required:
       - jobId
@@ -2428,190 +2182,6 @@ components:
           - 'null'
           description: "Labeling completion as a ratio in the range 0–1, or null when no progress has\n been reported yet (completion sets it to 1). Sortable via ?sort=progress."
           format: double
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IPairMakerConfigModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
-      - $ref: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FullPermutationPairMaker: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
-          OnlinePairMaker: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
-    IRapidBlueprintTranscriptionRapidBlueprint:
-      required:
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionBlueprint
-          type: string
-        title:
-          type: string
-    CreateJobRevisionEndpoint_Output:
-      required:
-      - revisionNumber
-      - pipelineId
-      type: object
-      properties:
-        revisionNumber:
-          type: integer
-          description: The revision number of the created job revision.
-          format: int32
-        pipelineId:
-          type: string
-          description: The id of the created preview pipeline.
-      description: The result when a job revision has been created.
-    IRapidBlueprintBoundingBoxRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxBlueprint
-          type: string
-        target:
-          type: string
-    GetJobDefinitionCostEstimateEndpoint_Output:
-      required:
-      - estimatedCost
-      - costPerResponse
-      - datapointCount
-      - requiredResponses
-      type: object
-      properties:
-        estimatedCost:
-          type: number
-          description: The estimated total cost of running the definition's latest revision to completion.
-          format: double
-        costPerResponse:
-          type: number
-          description: The representative per-response cost the estimate is based on.
-          format: double
-        datapointCount:
-          type: integer
-          description: The number of datapoints in the definition's dataset.
-          format: int64
-        requiredResponses:
-          type: integer
-          description: The total number of responses the definition's referee requires to complete.
-          format: int64
-      description: The estimated cost of a job definition.
-    CreateJobEndpoint_Input:
-      required:
-      - jobDefinitionId
-      - audienceId
-      type: object
-      properties:
-        jobDefinitionId:
-          type: string
-          description: The id of the job definition to use.
-        audienceId:
-          type: string
-          description: The id of the audience to target.
-        revisionNumber:
-          type:
-          - integer
-          - 'null'
-          description: The revision number to use. If not specified, the latest revision will be used.
-          format: int32
-        name:
-          type:
-          - string
-          - 'null'
-          description: The name of the job. If not specified, defaults to "{definition name}:{revision number}".
-        priority:
-          type: integer
-          description: The priority of the job. Higher values mean higher priority. Default is 50.
-          format: int32
-        precedingJobId:
-          type:
-          - string
-          - 'null'
-          description: "Optional id of a job that must finish before this job starts. When set, this job is\n queued until the preceding job completes or fails."
-        notifyOwnerOnCompletion:
-          type: boolean
-          description: Whether the job's owner should be emailed when the job completes. Defaults to false.
-      description: The input for the create job endpoint.
-    QueryPublicJobDefinitionsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryPublicJobDefinitionsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IRapidBlueprintScrubRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubBlueprint
-          type: string
-        target:
-          type: string
-    IRankingConfigModelEloConfigModel:
-      required:
-      - startingScore
-      - kFactor
-      - scalingFactor
-      - _t
-      properties:
-        _t:
-          enum:
-          - EloConfig
-          type: string
-        startingScore:
-          type: integer
-          format: int32
-        kFactor:
-          type: integer
-          format: int32
-        scalingFactor:
-          type: integer
-          format: int32
     QueryJobRevisionsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -2636,35 +2206,94 @@ components:
         totalPages:
           type: integer
           format: int32
-    JobDefinitionRevisionState:
-      enum:
-      - Pending
-      - Completed
-      - Failed
-    QueryAggregatedJobsEndpoint_PagedResultOfOutput:
+    IPairMakerConfigModel:
       required:
-      - total
-      - page
-      - pageSize
-      - items
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
+      - $ref: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FullPermutationPairMaker: '#/components/schemas/IPairMakerConfigModelFullPermutationPairMakerConfigModel'
+          OnlinePairMaker: '#/components/schemas/IPairMakerConfigModelOnlinePairMakerConfigModel'
+    CreateJobEndpoint_CostWarningModel:
+      required:
+      - estimatedCost
+      - availableBalance
+      - shortfall
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
+        estimatedCost:
+          type: number
+          format: double
+        availableBalance:
+          type: number
+          format: double
+        shortfall:
+          type: number
+          format: double
+    IRefereeModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeModelBudgetRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelNaiveRefereeModel'
+      - $ref: '#/components/schemas/IRefereeModelQuorumRefereeModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BudgetReferee: '#/components/schemas/IRefereeModelBudgetRefereeModel'
+          EarlyStoppingReferee: '#/components/schemas/IRefereeModelEarlyStoppingRefereeModel'
+          NaiveReferee: '#/components/schemas/IRefereeModelNaiveRefereeModel'
+          QuorumReferee: '#/components/schemas/IRefereeModelQuorumRefereeModel'
+    IPairMakerConfigModelOnlinePairMakerConfigModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - OnlinePairMaker
+          type: string
+        randomMatchesRatio:
+          type: number
+          format: float
+        totalComparisonBudget:
           type: integer
           format: int32
-        pageSize:
-          type: integer
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
           format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryAggregatedJobsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     QueryAggregatedJobsEndpoint_Output:
       required:
       - amount
@@ -2696,6 +2325,284 @@ components:
         ownerMail:
           type: string
           description: The customer's email address.
+    IRapidBlueprintBoundingBoxRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxBlueprint
+          type: string
+        target:
+          type: string
+    CreateJobRevisionEndpoint_Output:
+      required:
+      - revisionNumber
+      - pipelineId
+      type: object
+      properties:
+        revisionNumber:
+          type: integer
+          description: The revision number of the created job revision.
+          format: int32
+        pipelineId:
+          type: string
+          description: The id of the created preview pipeline.
+      description: The result when a job revision has been created.
+    UpdateJobDefinitionEndpoint_Input:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The new name for the job definition.
+      description: The input for the update job definition endpoint.
+    AttachCategoryRapidBlueprint_Category:
+      required:
+      - label
+      - value
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type: string
+    IRefereeModelQuorumRefereeModel:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumReferee
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
+    IOrderWorkflowInputModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
+      - $ref: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          EvaluationWorkflow: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
+          GroupedRankingWorkflow: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
+          SimpleWorkflow: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
+    CreateJobEndpoint_Output:
+      required:
+      - jobId
+      - recruitingStarted
+      type: object
+      properties:
+        jobId:
+          type: string
+          description: The id of the created job.
+        recruitingStarted:
+          type: boolean
+          description: Whether recruiting was automatically started for the audience.
+        costWarning:
+          allOf:
+          - $ref: '#/components/schemas/CreateJobEndpoint_CostWarningModel'
+          description: "Present only when the job's estimated cost exceeds the owner's remaining balance.\n Advisory — the job is created and runs regardless; it may pause for funds mid-run."
+      description: The result when a job has been created.
+    IRapidBlueprint:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+      - $ref: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassifyBlueprint: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
+          BoundingBoxBlueprint: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
+          CompareBlueprint: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
+          FreeTextBlueprint: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
+          LineBlueprint: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
+          LocateBlueprint: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
+          NamedEntityBlueprint: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
+          PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
+          ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
+          TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
+    IOrderWorkflowInputModelSimpleWorkflowInputModel:
+      required:
+      - blueprint
+      - _t
+      properties:
+        _t:
+          enum:
+          - SimpleWorkflow
+          type: string
+        blueprint:
+          $ref: '#/components/schemas/IRapidBlueprint'
+        batchSize:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        featureFlags:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeatureFlag'
+    QueryAggregatedJobsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryAggregatedJobsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    GetJobCostEstimateEndpoint_Output:
+      required:
+      - estimatedCost
+      - costPerResponse
+      - datapointCount
+      - requiredResponses
+      type: object
+      properties:
+        estimatedCost:
+          type: number
+          description: The estimated total cost of running the job to completion.
+          format: double
+        costPerResponse:
+          type: number
+          description: The representative per-response cost the estimate is based on.
+          format: double
+        datapointCount:
+          type: integer
+          description: The number of datapoints in the job's dataset.
+          format: int64
+        requiredResponses:
+          type: integer
+          description: The total number of responses the job's referee requires to complete.
+          format: int64
+      description: The estimated cost of a job.
+    IRapidBlueprintScrubRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubBlueprint
+          type: string
+        target:
+          type: string
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IRapidBlueprintLineRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineBlueprint
+          type: string
+        target:
+          type: string
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    DefinitionType:
+      enum:
+      - Unknown
+      - Classify
+      - Compare
+      - BoundingBox
+      - Line
+      - Polygon
+      - Locate
+      - Transcription
+      - NamedEntity
+      - FreeText
+      - Scrub
+      - Ranking
+      - GroupedRanking
+      - Evaluation
+    IRapidBlueprintLocateRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBlueprint
+          type: string
+        target:
+          type: string
     QueryJobDefinitionsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -2727,252 +2634,6 @@ components:
           type: string
           description: The new name for the job.
       description: The input for the update job endpoint.
-    GetJobRevisionEndpoint_Output:
-      required:
-      - definitionId
-      - revisionNumber
-      - state
-      - pipelineId
-      - datasetId
-      - workflow
-      - referee
-      - featureFlags
-      - createdAt
-      - createdById
-      - createdByMail
-      type: object
-      properties:
-        definitionId:
-          type: string
-          description: The job definition id.
-        revisionNumber:
-          type: integer
-          description: The revision number.
-          format: int32
-        state:
-          allOf:
-          - $ref: '#/components/schemas/JobDefinitionRevisionState'
-          description: The state of the revision.
-        pipelineId:
-          type: string
-          description: The pipeline id.
-        datasetId:
-          type: string
-          description: The dataset id.
-        aggregatorType:
-          allOf:
-          - $ref: '#/components/schemas/AggregatorType'
-          description: The aggregator type.
-        workflow:
-          allOf:
-          - $ref: '#/components/schemas/IOrderWorkflowInputModel'
-          description: The workflow configuration. Can be used directly to create a new revision.
-        referee:
-          allOf:
-          - $ref: '#/components/schemas/IRefereeModel'
-          description: The referee configuration. Can be used directly to create a new revision.
-        featureFlags:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-          description: The feature flags.
-        createdAt:
-          type: string
-          description: The creation timestamp.
-          format: date-time
-        createdById:
-          type: string
-          description: The id of the user who created the revision.
-          format: uuid
-        createdByMail:
-          type: string
-          description: The email of the user who created the revision.
-        isInstructionComplex:
-          type:
-          - boolean
-          - 'null'
-          description: "Whether the instruction was flagged as too complex for the average annotator to\n understand. Null until the asynchronous complexity check has completed."
-        instructionComplexityReason:
-          type:
-          - string
-          - 'null'
-          description: A short explanation of why the instruction was flagged, when applicable.
-      description: The result when a job revision has been retrieved.
-    IRapidBlueprintLineRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineBlueprint
-          type: string
-        target:
-          type: string
-    CreateJobEndpoint_CostWarningModel:
-      required:
-      - estimatedCost
-      - availableBalance
-      - shortfall
-      type: object
-      properties:
-        estimatedCost:
-          type: number
-          format: double
-        availableBalance:
-          type: number
-          format: double
-        shortfall:
-          type: number
-          format: double
-    IRapidBlueprint:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
-      - $ref: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassifyBlueprint: '#/components/schemas/IRapidBlueprintAttachCategoryRapidBlueprint'
-          BoundingBoxBlueprint: '#/components/schemas/IRapidBlueprintBoundingBoxRapidBlueprint'
-          CompareBlueprint: '#/components/schemas/IRapidBlueprintCompareRapidBlueprint'
-          FreeTextBlueprint: '#/components/schemas/IRapidBlueprintFreeTextRapidBlueprint'
-          LineBlueprint: '#/components/schemas/IRapidBlueprintLineRapidBlueprint'
-          LocateBlueprint: '#/components/schemas/IRapidBlueprintLocateRapidBlueprint'
-          NamedEntityBlueprint: '#/components/schemas/IRapidBlueprintNamedEntityRapidBlueprint'
-          PolygonBlueprint: '#/components/schemas/IRapidBlueprintPolygonRapidBlueprint'
-          ScrubBlueprint: '#/components/schemas/IRapidBlueprintScrubRapidBlueprint'
-          TranscriptionBlueprint: '#/components/schemas/IRapidBlueprintTranscriptionRapidBlueprint'
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    CreateJobEndpoint_Output:
-      required:
-      - jobId
-      - recruitingStarted
-      type: object
-      properties:
-        jobId:
-          type: string
-          description: The id of the created job.
-        recruitingStarted:
-          type: boolean
-          description: Whether recruiting was automatically started for the audience.
-        costWarning:
-          allOf:
-          - $ref: '#/components/schemas/CreateJobEndpoint_CostWarningModel'
-          description: "Present only when the job's estimated cost exceeds the owner's remaining balance.\n Advisory — the job is created and runs regardless; it may pause for funds mid-run."
-      description: The result when a job has been created.
-    QueryJobRevisionsEndpoint_Output:
-      required:
-      - definitionId
-      - revisionNumber
-      - createdAt
-      - state
-      type: object
-      properties:
-        definitionId:
-          type: string
-          description: The id of the job definition this revision belongs to.
-        revisionNumber:
-          type: integer
-          description: The revision number.
-          format: int32
-        createdAt:
-          type: string
-          description: The timestamp when this revision was created.
-          format: date-time
-        state:
-          allOf:
-          - $ref: '#/components/schemas/JobDefinitionRevisionState'
-          description: The current state of the revision.
-    IRapidBlueprintAttachCategoryRapidBlueprint:
-      required:
-      - categories
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyBlueprint
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/AttachCategoryRapidBlueprint_Category'
-        possibleCategories:
-          type:
-          - array
-          - 'null'
-          items:
-            type: string
-        title:
-          type: string
-    IRapidBlueprintNamedEntityRapidBlueprint:
-      required:
-      - target
-      - classes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityBlueprint
-          type: string
-        target:
-          type: string
-        classes:
-          type: array
-          items:
-            type: string
-    IRefereeModelQuorumRefereeModel:
-      required:
-      - maxVotes
-      - threshold
-      - _t
-      properties:
-        _t:
-          enum:
-          - QuorumReferee
-          type: string
-        maxVotes:
-          type: integer
-          format: int32
-        threshold:
-          type: integer
-          format: int32
-    ReviewReasonModel:
-      enum:
-      - ContentFlagged
-      - UnsupportedContentType
-      - CheckErrored
-      - ClassificationTimedOut
-      - null
-    IPairMakerConfigModelFullPermutationPairMakerConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - FullPermutationPairMaker
-          type: string
     GetJobByIdEndpoint_Output:
       required:
       - jobId
@@ -3056,6 +2717,217 @@ components:
           type: string
           description: The owner email.
       description: The result when a job has been retrieved.
+    CreateJobEndpoint_Input:
+      required:
+      - jobDefinitionId
+      - audienceId
+      type: object
+      properties:
+        jobDefinitionId:
+          type: string
+          description: The id of the job definition to use.
+        audienceId:
+          type: string
+          description: The id of the audience to target.
+        revisionNumber:
+          type:
+          - integer
+          - 'null'
+          description: The revision number to use. If not specified, the latest revision will be used.
+          format: int32
+        name:
+          type:
+          - string
+          - 'null'
+          description: The name of the job. If not specified, defaults to "{definition name}:{revision number}".
+        priority:
+          type: integer
+          description: The priority of the job. Higher values mean higher priority. Default is 50.
+          format: int32
+        precedingJobId:
+          type:
+          - string
+          - 'null'
+          description: "Optional id of a job that must finish before this job starts. When set, this job is\n queued until the preceding job completes or fails."
+        notifyOwnerOnCompletion:
+          type: boolean
+          description: Whether the job's owner should be emailed when the job completes. Defaults to false.
+      description: The input for the create job endpoint.
+    CreateJobDefinitionEndpoint_Output:
+      required:
+      - definitionId
+      - pipelineId
+      type: object
+      properties:
+        definitionId:
+          type: string
+          description: The id of the created job definition.
+        pipelineId:
+          type: string
+          description: The id of the created preview pipeline.
+      description: The result when a job definition has been created.
+    IRapidBlueprintTranscriptionRapidBlueprint:
+      required:
+      - title
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionBlueprint
+          type: string
+        title:
+          type: string
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    GetJobDefinitionByIdEndpoint_Output:
+      required:
+      - definitionId
+      - name
+      - definitionType
+      - isPublic
+      - createdAt
+      - ownerId
+      - ownerMail
+      type: object
+      properties:
+        definitionId:
+          type: string
+          description: The job definition id.
+        name:
+          type: string
+          description: The name of the job definition.
+        definitionType:
+          allOf:
+          - $ref: '#/components/schemas/DefinitionType'
+          description: The type of the job definition.
+        isPublic:
+          type: boolean
+          description: Whether the definition is shared publicly as a reusable template.
+        createdAt:
+          type: string
+          description: The creation timestamp.
+          format: date-time
+        ownerId:
+          type: string
+          description: The id of the job definition's owner.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the job definition's owner.
+      description: The result when a job definition has been retrieved.
+    QueryPublicJobDefinitionsEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryPublicJobDefinitionsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    QueryPublicJobDefinitionsEndpoint_Output:
+      required:
+      - definitionId
+      - name
+      - definitionType
+      - createdAt
+      - revisionCount
+      - ownerId
+      - ownerMail
+      type: object
+      properties:
+        definitionId:
+          type: string
+          description: The id of the job definition.
+        name:
+          type: string
+          description: The name of the job definition.
+        definitionType:
+          allOf:
+          - $ref: '#/components/schemas/DefinitionType'
+          description: The type of the job definition.
+        createdAt:
+          type: string
+          description: The creation timestamp of the job definition.
+          format: date-time
+        revisionCount:
+          type: integer
+          description: The number of revisions for this job definition.
+          format: int32
+        ownerId:
+          type: string
+          description: The id of the owner of the job definition.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the owner of the job definition.
+    JobDefinitionRevisionState:
+      enum:
+      - Pending
+      - Completed
+      - Failed
+    AggregatorType:
+      enum:
+      - NonCommittal
+      - MajorityVote
+      - SimpleMatchup
+      - LocateCluster
+      - Classification
+      - Locate
+      - BoundingBox
+      - Line
+      - Transcription
+      - SinglePointLocate
+      - FreeText
+      - Scrub
+      - Ranking
+      - MultiRanking
+      - null
+    IRankingConfigModelBradleyTerryRankingConfigModel:
+      required:
+      - startingScore
+      - _t
+      properties:
+        _t:
+          enum:
+          - BradleyTerryRankingConfig
+          type: string
+        startingScore:
+          type: integer
+          format: int32
     IRefereeModelEarlyStoppingRefereeModel:
       required:
       - maxVotes
@@ -3072,59 +2944,6 @@ components:
         threshold:
           type: number
           format: double
-    DefinitionType:
-      enum:
-      - Unknown
-      - Classify
-      - Compare
-      - BoundingBox
-      - Line
-      - Polygon
-      - Locate
-      - Transcription
-      - NamedEntity
-      - FreeText
-      - Scrub
-      - Ranking
-      - GroupedRanking
-      - Evaluation
-    IRapidBlueprintPolygonRapidBlueprint:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - PolygonBlueprint
-          type: string
-        target:
-          type: string
-    IRankingConfigModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
-          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
-    IPairMakerConfigModelOnlinePairMakerConfigModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - OnlinePairMaker
-          type: string
-        randomMatchesRatio:
-          type: number
-          format: float
-        totalComparisonBudget:
-          type: integer
-          format: int32
     CreateJobRevisionEndpoint_Input:
       type: object
       properties:
@@ -3164,6 +2983,78 @@ components:
           - 'null'
           description: "A validation set id to pin on this revision. When set, every job run from this\n revision uses the specified validation set as the source of validation rapids\n instead of audience-derived examples. If not provided, inherits from the previous\n revision. Provide a wrapped null value to clear a previously pinned set."
       description: The input for the create job revision endpoint.
+    GetJobRevisionEndpoint_Output:
+      required:
+      - definitionId
+      - revisionNumber
+      - state
+      - pipelineId
+      - datasetId
+      - workflow
+      - referee
+      - featureFlags
+      - createdAt
+      - createdById
+      - createdByMail
+      type: object
+      properties:
+        definitionId:
+          type: string
+          description: The job definition id.
+        revisionNumber:
+          type: integer
+          description: The revision number.
+          format: int32
+        state:
+          allOf:
+          - $ref: '#/components/schemas/JobDefinitionRevisionState'
+          description: The state of the revision.
+        pipelineId:
+          type: string
+          description: The pipeline id.
+        datasetId:
+          type: string
+          description: The dataset id.
+        aggregatorType:
+          allOf:
+          - $ref: '#/components/schemas/AggregatorType'
+          description: The aggregator type.
+        workflow:
+          allOf:
+          - $ref: '#/components/schemas/IOrderWorkflowInputModel'
+          description: The workflow configuration. Can be used directly to create a new revision.
+        referee:
+          allOf:
+          - $ref: '#/components/schemas/IRefereeModel'
+          description: The referee configuration. Can be used directly to create a new revision.
+        featureFlags:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: The feature flags.
+        createdAt:
+          type: string
+          description: The creation timestamp.
+          format: date-time
+        createdById:
+          type: string
+          description: The id of the user who created the revision.
+          format: uuid
+        createdByMail:
+          type: string
+          description: The email of the user who created the revision.
+        isInstructionComplex:
+          type:
+          - boolean
+          - 'null'
+          description: "Whether the instruction was flagged as too complex for the average annotator to\n understand. Null until the asynchronous complexity check has completed."
+        instructionComplexityReason:
+          type:
+          - string
+          - 'null'
+          description: A short explanation of why the instruction was flagged, when applicable.
+      description: The result when a job revision has been retrieved.
     IOrderWorkflowInputModelEvaluationWorkflowInputModel:
       required:
       - validationSetId
@@ -3182,6 +3073,115 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FeatureFlag'
+    QueryJobDefinitionsEndpoint_Output:
+      required:
+      - definitionId
+      - name
+      - definitionType
+      - createdAt
+      - revisionCount
+      - ownerId
+      - ownerMail
+      type: object
+      properties:
+        definitionId:
+          type: string
+          description: The id of the job definition.
+        name:
+          type: string
+          description: The name of the job definition.
+        definitionType:
+          allOf:
+          - $ref: '#/components/schemas/DefinitionType'
+          description: The type of the job definition.
+        createdAt:
+          type: string
+          description: The creation timestamp of the job definition.
+          format: date-time
+        revisionCount:
+          type: integer
+          description: The number of revisions for this job definition.
+          format: int32
+        ownerId:
+          type: string
+          description: The id of the owner of the job definition.
+          format: uuid
+        ownerMail:
+          type: string
+          description: The email of the owner of the job definition.
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IRapidBlueprintPolygonRapidBlueprint:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonBlueprint
+          type: string
+        target:
+          type: string
+    IRapidBlueprintFreeTextRapidBlueprint:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextBlueprint
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type:
+          - boolean
+          - 'null'
+        validationSystemPrompt:
+          type:
+          - string
+          - 'null'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IRefereeModelNaiveRefereeModel:
+      required:
+      - totalVotes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NaiveReferee
+          type: string
+        totalVotes:
+          type: integer
+          format: int32
     AudienceJobState:
       enum:
       - Submitted
@@ -3193,36 +3193,58 @@ components:
       - Paused
       - StaleResults
       - SpendLimited
-    ValidationProblemDetails:
+    GetJobDefinitionCostEstimateEndpoint_Output:
+      required:
+      - estimatedCost
+      - costPerResponse
+      - datapointCount
+      - requiredResponses
       type: object
       properties:
-        type:
+        estimatedCost:
+          type: number
+          description: The estimated total cost of running the definition's latest revision to completion.
+          format: double
+        costPerResponse:
+          type: number
+          description: The representative per-response cost the estimate is based on.
+          format: double
+        datapointCount:
+          type: integer
+          description: The number of datapoints in the definition's dataset.
+          format: int64
+        requiredResponses:
+          type: integer
+          description: The total number of responses the definition's referee requires to complete.
+          format: int64
+      description: The estimated cost of a job definition.
+    IRapidBlueprintCompareRapidBlueprint:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareBlueprint
+          type: string
+        criteria:
+          type: string
+        indexIdentifiers:
           type:
-          - string
+          - array
           - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          items:
+            type: string
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
     IOrderWorkflowInputModelGroupedRankingWorkflowInputModel:
       required:
       - criteria
@@ -3261,56 +3283,34 @@ components:
         maxParallelism:
           type: integer
           format: int32
-    IOrderWorkflowInputModel:
+    IRankingConfigModel:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
-      - $ref: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
+      - $ref: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+      - $ref: '#/components/schemas/IRankingConfigModelEloConfigModel'
       discriminator:
         propertyName: _t
         mapping:
-          EvaluationWorkflow: '#/components/schemas/IOrderWorkflowInputModelEvaluationWorkflowInputModel'
-          GroupedRankingWorkflow: '#/components/schemas/IOrderWorkflowInputModelGroupedRankingWorkflowInputModel'
-          SimpleWorkflow: '#/components/schemas/IOrderWorkflowInputModelSimpleWorkflowInputModel'
-    QueryPublicJobDefinitionsEndpoint_Output:
+          BradleyTerryRankingConfig: '#/components/schemas/IRankingConfigModelBradleyTerryRankingConfigModel'
+          EloConfig: '#/components/schemas/IRankingConfigModelEloConfigModel'
+    IRapidBlueprintNamedEntityRapidBlueprint:
       required:
-      - definitionId
-      - name
-      - definitionType
-      - createdAt
-      - revisionCount
-      - ownerId
-      - ownerMail
-      type: object
+      - target
+      - classes
+      - _t
       properties:
-        definitionId:
+        _t:
+          enum:
+          - NamedEntityBlueprint
           type: string
-          description: The id of the job definition.
-        name:
+        target:
           type: string
-          description: The name of the job definition.
-        definitionType:
-          allOf:
-          - $ref: '#/components/schemas/DefinitionType'
-          description: The type of the job definition.
-        createdAt:
-          type: string
-          description: The creation timestamp of the job definition.
-          format: date-time
-        revisionCount:
-          type: integer
-          description: The number of revisions for this job definition.
-          format: int32
-        ownerId:
-          type: string
-          description: The id of the owner of the job definition.
-          format: uuid
-        ownerMail:
-          type: string
-          description: The email of the owner of the job definition.
+        classes:
+          type: array
+          items:
+            type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

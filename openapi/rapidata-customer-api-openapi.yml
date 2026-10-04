@@ -208,30 +208,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    QueryCustomersEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryCustomersEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
     ValidationProblemDetails:
       type: object
       properties:
@@ -290,6 +266,30 @@ components:
           - 'null'
           description: The identifier of the organization this customer belongs to, if any.
           format: uuid
+    QueryCustomersEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryCustomersEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

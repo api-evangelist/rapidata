@@ -187,6 +187,39 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IFormFile:
+      type: string
+      format: binary
     UploadFileEndpoint_Output:
       required:
       - fileName
@@ -218,39 +251,6 @@ components:
           - 'null'
           description: "The final size of the stored file in bytes after processing (e.g., compression), if available.\n This may be null if the size could not be determined. If compression was applied, this size may be smaller than the original size."
           format: int64
-    IFormFile:
-      type: string
-      format: binary
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     UploadFileFromUrlEndpoint_Output:
       required:
       - fileName

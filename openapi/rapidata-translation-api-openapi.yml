@@ -85,52 +85,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    TranslateEndpoint_Output:
-      required:
-      - translation
-      - sourceLanguage
-      - targetLanguage
-      type: object
-      properties:
-        translation:
-          type: string
-          description: The translated text.
-        sourceLanguage:
-          type:
-          - string
-          - 'null'
-          description: The detected or provided source language of the text.
-        targetLanguage:
-          type: string
-          description: The language the text was translated into.
-    TranslateEndpoint_Input:
-      required:
-      - translator
-      - text
-      - targetLanguage
-      type: object
-      properties:
-        translator:
-          allOf:
-          - $ref: '#/components/schemas/TranslatorType'
-          description: The type of translator to use.
-        text:
-          type: string
-          description: The text to translate.
-        targetLanguage:
-          type: string
-          description: The language to translate the text into.
-        sourceLanguage:
-          type: string
-          description: The original language of the text.
-    EnsureEnglishEndpoint_Input:
-      required:
-      - text
-      type: object
-      properties:
-        text:
-          type: string
-          description: The text to ensure is English.
     ValidationProblemDetails:
       type: object
       properties:
@@ -161,6 +115,14 @@ components:
             type: array
             items:
               type: string
+    EnsureEnglishEndpoint_Output:
+      required:
+      - englishText
+      type: object
+      properties:
+        englishText:
+          type: string
+          description: The English version of the provided text.
     TranslatorType:
       enum:
       - Google
@@ -171,14 +133,52 @@ components:
       - LibreTranslate
       - Gemini
       - Tllm
-    EnsureEnglishEndpoint_Output:
+    TranslateEndpoint_Output:
       required:
-      - englishText
+      - translation
+      - sourceLanguage
+      - targetLanguage
       type: object
       properties:
-        englishText:
+        translation:
           type: string
-          description: The English version of the provided text.
+          description: The translated text.
+        sourceLanguage:
+          type:
+          - string
+          - 'null'
+          description: The detected or provided source language of the text.
+        targetLanguage:
+          type: string
+          description: The language the text was translated into.
+    EnsureEnglishEndpoint_Input:
+      required:
+      - text
+      type: object
+      properties:
+        text:
+          type: string
+          description: The text to ensure is English.
+    TranslateEndpoint_Input:
+      required:
+      - translator
+      - text
+      - targetLanguage
+      type: object
+      properties:
+        translator:
+          allOf:
+          - $ref: '#/components/schemas/TranslatorType'
+          description: The type of translator to use.
+        text:
+          type: string
+          description: The text to translate.
+        targetLanguage:
+          type: string
+          description: The language to translate the text into.
+        sourceLanguage:
+          type: string
+          description: The original language of the text.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

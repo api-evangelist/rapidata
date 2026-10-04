@@ -247,30 +247,14 @@ components:
             type: array
             items:
               type: string
-    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
+    CreateValidationFeedbackEndpoint_Input:
       required:
-      - total
-      - page
-      - pageSize
-      - items
+      - feedback
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
+        feedback:
+          type: string
+          description: The feedback text.
     QueryValidationFeedbacksEndpoint_Output:
       required:
       - id
@@ -296,14 +280,30 @@ components:
           type: string
           description: The timestamp when the feedback was created.
           format: date-time
-    CreateValidationFeedbackEndpoint_Input:
+    QueryValidationFeedbacksEndpoint_PagedResultOfOutput:
       required:
-      - feedback
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        feedback:
-          type: string
-          description: The feedback text.
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryValidationFeedbacksEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

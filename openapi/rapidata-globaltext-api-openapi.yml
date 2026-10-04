@@ -149,38 +149,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateGlobalTextEndpoint_Output:
-      required:
-      - globalTextId
-      type: object
-      properties:
-        globalTextId:
-          type: string
-          description: The unique identifier of the created global text entry.
-    GetAllGlobalTextsEndpoint_Output:
-      required:
-      - globalTexts
-      type: object
-      properties:
-        globalTexts:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
-          description: The list of global text entries.
-    GetAllGlobalTextsEndpoint_Output_Item:
-      required:
-      - id
-      - key
-      - englishText
-      type: object
-      properties:
-        id:
-          type: string
-        key:
-          type: string
-        englishText:
-          type: string
     ValidationProblemDetails:
       type: object
       properties:
@@ -211,15 +179,38 @@ components:
             type: array
             items:
               type: string
-    UpdateGlobalTextEndpoint_Input:
+    GetAllGlobalTextsEndpoint_Output:
+      required:
+      - globalTexts
       type: object
       properties:
+        globalTexts:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetAllGlobalTextsEndpoint_Output_Item'
+          description: The list of global text entries.
+    CreateGlobalTextEndpoint_Output:
+      required:
+      - globalTextId
+      type: object
+      properties:
+        globalTextId:
+          type: string
+          description: The unique identifier of the created global text entry.
+    GetAllGlobalTextsEndpoint_Output_Item:
+      required:
+      - id
+      - key
+      - englishText
+      type: object
+      properties:
+        id:
+          type: string
         key:
           type: string
-          description: The new key for the global text entry.
         englishText:
           type: string
-          description: The new English source text for the global text entry.
     CreateGlobalTextEndpoint_Input:
       required:
       - key
@@ -232,6 +223,15 @@ components:
         englishText:
           type: string
           description: The English source text that all translations derive from.
+    UpdateGlobalTextEndpoint_Input:
+      type: object
+      properties:
+        key:
+          type: string
+          description: The new key for the global text entry.
+        englishText:
+          type: string
+          description: The new English source text for the global text entry.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

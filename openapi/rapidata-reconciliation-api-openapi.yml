@@ -160,6 +160,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     GetReconciliationStatusEndpoint_Output:
       required:
       - jobId
@@ -252,10 +282,6 @@ components:
         createdByMail:
           type: string
           description: The email of the user who created the job.
-    ReconciliationTimestampMode:
-      enum:
-      - UseResponseCreatedAt
-      - UseReconciliationTime
     GetBulkReconciliationStatusEndpoint_Output:
       required:
       - bulkReconciliationId
@@ -356,36 +382,16 @@ components:
           - 'null'
           description: The timestamp when all jobs completed. Null if not fully complete.
           format: date-time
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+    ReconciliationTimestampMode:
+      enum:
+      - UseResponseCreatedAt
+      - UseReconciliationTime
+    ReconciliationJobState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
     StartBulkReconciliationEndpoint_Input:
       type: object
       properties:
@@ -434,12 +440,6 @@ components:
         bulkReconciliationId:
           type: string
           description: The bulk reconciliation identifier for all jobs created in this bulk operation.
-    ReconciliationJobState:
-      enum:
-      - Pending
-      - Running
-      - Completed
-      - Failed
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

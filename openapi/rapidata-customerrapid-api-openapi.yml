@@ -624,136 +624,256 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    LocateBoxTruthModel_Box:
+    IValidationTruthModelLocateBoxTruthModel:
+      required:
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocateBoxTruth
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocateBoxTruthModel_Box'
+        requiredPrecision:
+          type: number
+          format: double
+        requiredCompleteness:
+          type: number
+          format: double
+    IRapidResultModelPolygonResultModel:
+      required:
+      - rapidId
+      - shapes
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonResult
+          type: string
+        rapidId:
+          type: string
+        shapes:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolygonResultModel_Shape'
+    PolygonResultModel_Shape:
+      required:
+      - edges
       type: object
       properties:
-        xMin:
-          type:
-          - number
-          - 'null'
-          format: double
-        yMin:
-          type:
-          - number
-          - 'null'
-          format: double
-        xMax:
-          type:
-          - number
-          - 'null'
-          format: double
-        yMax:
-          type:
-          - number
-          - 'null'
-          format: double
-    IValidationTruthModelCompareTruthModel:
-      required:
-      - winnerId
-      - _t
+        edges:
+          type: array
+          items:
+            $ref: '#/components/schemas/PolygonResultModel_Coordinate'
+    ValidationProblemDetails:
+      type: object
       properties:
-        _t:
-          enum:
-          - CompareTruth
-          type: string
-        winnerId:
-          type: string
-    IRefereeInfoModelNaiveRefereeInfoModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - NaiveRefereeInfo
-          type: string
-        responseAmountThreshold:
-          type: integer
-          format: int32
-        serveThreshold:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
           type:
           - integer
           - 'null'
           format: int32
-    IMetadataModelLocationMetadataModel:
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    GetGlobalResponsesEndpoint_Output_Response:
       required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    QueryValidationRapidEligibilityEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
+      - id
+      - userId
+      - country
       type: object
       properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryValidationRapidEligibilityEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
-    IAssetModelMultiAssetModel:
+        id:
+          type: string
+        userId:
+          type: string
+        country:
+          type: string
+        age:
+          type:
+          - string
+          - 'null'
+        occupation:
+          type:
+          - string
+          - 'null'
+        gender:
+          type:
+          - string
+          - 'null'
+    IRapidPayloadModelClassifyPayloadModel:
       required:
-      - assets
-      - metadata
-      - identifier
+      - categories
+      - title
       - _t
       properties:
         _t:
           enum:
-          - MultiAsset
+          - ClassifyPayload
           type: string
-        assets:
+        categories:
           type: array
           items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
+            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
+        title:
           type: string
-    IAssetInputTextAssetInput:
+    IRapidPayloadModelBoundingBoxPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxPayload
+          type: string
+        target:
+          type: string
+    NamedEntityTruthModel_NamedClassification:
+      required:
+      - start
+      - end
+      - classification
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+        classification:
+          type: string
+    IMetadataModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    IMetadataInputTextMetadataInput:
       required:
       - text
+      - visibilities
       - _t
       properties:
         _t:
           enum:
-          - TextAssetInput
+          - TextMetadataInput
           type: string
         text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    TranscriptionResultModel_TranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IValidationTruthModelAttachCategoryTruthModel:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - AttachCategoryTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IRapidPayloadModelScrubPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubPayload
+          type: string
+        target:
+          type: string
+    IValidationTruthModelEmptyValidationTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - EmptyValidationTruth
+          type: string
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
           type: string
         metadata:
           type:
@@ -765,6 +885,256 @@ components:
           type:
           - string
           - 'null'
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    RapidStateModel:
+      enum:
+      - Labeling
+      - Paused
+      - Incomplete
+      - Flagged
+      - Done
+      - None
+      - Rejected
+    ClassifyPayloadModel:
+      required:
+      - categories
+      - title
+      type: object
+      properties:
+        categories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
+        title:
+          type: string
+    IValidationTruthModelClassifyTruthModel:
+      required:
+      - correctCategories
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassifyTruth
+          type: string
+        correctCategories:
+          type: array
+          items:
+            type: string
+    IRefereeInfoModelQuorumRefereeInfoModel:
+      required:
+      - maxVotes
+      - threshold
+      - _t
+      properties:
+        _t:
+          enum:
+          - QuorumRefereeInfo
+          type: string
+        maxVotes:
+          type: integer
+          format: int32
+        threshold:
+          type: integer
+          format: int32
+    IRefereeInfoModelNeverEndingRefereeInfoModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - NeverEndingRefereeInfo
+          type: string
+    TranscriptionPayloadModel_TranscriptionWord:
+      required:
+      - word
+      - wordIndex
+      type: object
+      properties:
+        word:
+          type: string
+        wordIndex:
+          type: integer
+          format: int32
+    IAssetModelFileAssetModel:
+      required:
+      - fileName
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileAsset
+          type: string
+        fileName:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IRapidResultModelBoundingBoxResultModel:
+      required:
+      - rapidId
+      - boundingBoxes
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxResult
+          type: string
+        rapidId:
+          type: string
+        boundingBoxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoundingBoxResultModel_Box'
+    IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel:
+      required:
+      - threshold
+      - maxVotes
+      - _t
+      properties:
+        _t:
+          enum:
+          - ProbabilisticAttachCategoryRefereeInfo
+          type: string
+        threshold:
+          type: number
+          format: double
+        maxVotes:
+          type: integer
+          format: int32
+    IValidationTruthModelPolygonTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonTruth
+          type: string
+    IValidationTruthModelNamedEntityTruthModel:
+      required:
+      - classifications
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityTruth
+          type: string
+        classifications:
+          type: array
+          items:
+            $ref: '#/components/schemas/NamedEntityTruthModel_NamedClassification'
+    IRapidPayloadModelLinePayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LinePayload
+          type: string
+        target:
+          type: string
+    IRapidPayloadModelComparePayloadModel:
+      required:
+      - criteria
+      - _t
+      properties:
+        _t:
+          enum:
+          - ComparePayload
+          type: string
+        criteria:
+          type: string
+    IRapidPayloadModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+      - $ref: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          BoundingBoxPayload: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
+          ClassifyPayload: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
+          ComparePayload: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
+          FreeTextPayload: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
+          LinePayload: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
+          LocatePayload: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
+          NamedEntityPayload: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
+          PolygonPayload: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
+          ScrubPayload: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
+          TranscriptionPayload: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IRapidPayloadModelPolygonPayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - PolygonPayload
+          type: string
+        target:
+          type: string
+    IRapidPayloadModelLocatePayloadModel:
+      required:
+      - target
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocatePayload
+          type: string
+        target:
+          type: string
+    IRapidPayloadModelNamedEntityPayloadModel:
+      required:
+      - target
+      - classes
+      - _t
+      properties:
+        _t:
+          enum:
+          - NamedEntityPayload
+          type: string
+        target:
+          type: string
+        classes:
+          type: array
+          items:
+            type: string
     QueryFlaggedRapidsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -789,6 +1159,549 @@ components:
         totalPages:
           type: integer
           format: int32
+    IValidationTruthModelBoundingBoxTruthModel:
+      required:
+      - xMin
+      - yMin
+      - xMax
+      - yMax
+      - _t
+      properties:
+        _t:
+          enum:
+          - BoundingBoxTruth
+          type: string
+        xMin:
+          type: number
+          format: double
+        yMin:
+          type: number
+          format: double
+        xMax:
+          type: number
+          format: double
+        yMax:
+          type: number
+          format: double
+    IRapidResultModelScrubResultModel:
+      required:
+      - rapidId
+      - timestamps
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubResult
+          type: string
+        rapidId:
+          type: string
+        timestamps:
+          type: array
+          items:
+            type: integer
+            format: int32
+    CreateDemographicRapidEndpoint_Input:
+      required:
+      - key
+      - payload
+      type: object
+      properties:
+        key:
+          type: string
+          description: The identifier of the demographic classification.
+        payload:
+          allOf:
+          - $ref: '#/components/schemas/ClassifyPayloadModel'
+          description: The payload for the classification.
+        featureFlags:
+          allOf:
+          - type:
+            - array
+            - 'null'
+            items:
+              $ref: '#/components/schemas/FeatureFlag'
+          description: Optional feature flags to apply to the rapid.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset to associate with the rapid.
+        context:
+          type:
+          - string
+          - 'null'
+          description: An optional text context to show to the user.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: An optional asset to use as context to show to the user.
+    ClassifyPayloadModel_Category:
+      required:
+      - label
+      type: object
+      properties:
+        label:
+          type: string
+        value:
+          type:
+          - string
+          - 'null'
+    IValidationTruthModelSkipTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - SkipTruth
+          type: string
+    IValidationTruthModelLineTruthModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineTruth
+          type: string
+    IRefereeInfoModelNaiveRefereeInfoModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - NaiveRefereeInfo
+          type: string
+        responseAmountThreshold:
+          type: integer
+          format: int32
+        serveThreshold:
+          type:
+          - integer
+          - 'null'
+          format: int32
+    ScrubTruthModel_ScrubRange:
+      required:
+      - start
+      - end
+      type: object
+      properties:
+        start:
+          type: integer
+          format: int32
+        end:
+          type: integer
+          format: int32
+    IMetadataInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    LineResultModel_LinePoint:
+      required:
+      - x
+      - y
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+        y:
+          type: number
+          format: double
+    IAssetInput:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
+      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
+      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
+      discriminator:
+        propertyName: _t
+        mapping:
+          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
+          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
+          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
+    IAssetModelNullAssetModel:
+      required:
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - NullAsset
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    GetGlobalResponsesEndpoint_Output:
+      required:
+      - responses
+      type: object
+      properties:
+        responses:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetGlobalResponsesEndpoint_Output_Response'
+          description: The most recent public responses.
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IRapidResultModelTranscriptionResultModel:
+      required:
+      - rapidId
+      - selectedWords
+      - _t
+      properties:
+        _t:
+          enum:
+          - TranscriptionResult
+          type: string
+        rapidId:
+          type: string
+        selectedWords:
+          type: array
+          items:
+            $ref: '#/components/schemas/TranscriptionResultModel_TranscriptionWord'
+    IAssetModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
+    IMetadataModelStreamsMetadataModel:
+      required:
+      - hasVideo
+      - hasAudio
+      - hasSubtitles
+      - _t
+      properties:
+        _t:
+          enum:
+          - StreamsMetadata
+          type: string
+        hasVideo:
+          type: boolean
+        hasAudio:
+          type: boolean
+        hasSubtitles:
+          type: boolean
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    GetResponsesForRapidEndpoint_Output_Response:
+      required:
+      - id
+      - userId
+      - country
+      - result
+      - userScore
+      - userScores
+      - demographicInformation
+      type: object
+      properties:
+        id:
+          type: string
+        userId:
+          type: string
+        country:
+          type: string
+        result:
+          $ref: '#/components/schemas/IRapidResultModel'
+        userScore:
+          type: number
+          format: double
+        userScores:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+        demographicInformation:
+          type: object
+          additionalProperties:
+            type: string
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IRapidPayloadModelFreeTextPayloadModel:
+      required:
+      - question
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextPayload
+          type: string
+        question:
+          type: string
+        shouldValidateResponse:
+          type: boolean
+        validationSystemPrompt:
+          type:
+          - string
+          - 'null'
+    PolygonResultModel_Coordinate:
+      required:
+      - x
+      - y
+      type: object
+      properties:
+        x:
+          type:
+          - number
+          - 'null'
+          format: double
+        y:
+          type:
+          - number
+          - 'null'
+          format: double
+    BoundingBoxResultModel_Box:
+      type: object
+      properties:
+        xMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMin:
+          type:
+          - number
+          - 'null'
+          format: double
+        xMax:
+          type:
+          - number
+          - 'null'
+          format: double
+        yMax:
+          type:
+          - number
+          - 'null'
+          format: double
+    IRapidResultModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRapidResultModelAttachCategoryResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelBoundingBoxResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelCompareResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelFreeTextResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelLineResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelLocateResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelNamedEntityResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelPolygonResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelScrubResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelSkipResultModel'
+      - $ref: '#/components/schemas/IRapidResultModelTranscriptionResultModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AttachCategoryResult: '#/components/schemas/IRapidResultModelAttachCategoryResultModel'
+          BoundingBoxResult: '#/components/schemas/IRapidResultModelBoundingBoxResultModel'
+          CompareResult: '#/components/schemas/IRapidResultModelCompareResultModel'
+          FreeTextResult: '#/components/schemas/IRapidResultModelFreeTextResultModel'
+          LineResult: '#/components/schemas/IRapidResultModelLineResultModel'
+          LocateResult: '#/components/schemas/IRapidResultModelLocateResultModel'
+          NamedEntityResult: '#/components/schemas/IRapidResultModelNamedEntityResultModel'
+          PolygonResult: '#/components/schemas/IRapidResultModelPolygonResultModel'
+          ScrubResult: '#/components/schemas/IRapidResultModelScrubResultModel'
+          SkipResult: '#/components/schemas/IRapidResultModelSkipResultModel'
+          TranscriptionResult: '#/components/schemas/IRapidResultModelTranscriptionResultModel'
+    IValidationTruthModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelCompareTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelLineTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelScrubTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelSkipTruthModel'
+      - $ref: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          AttachCategoryTruth: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
+          BoundingBoxTruth: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
+          ClassifyTruth: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
+          CompareTruth: '#/components/schemas/IValidationTruthModelCompareTruthModel'
+          EmptyValidationTruth: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
+          LineTruth: '#/components/schemas/IValidationTruthModelLineTruthModel'
+          LocateBoxTruth: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
+          MultiCompareTruth: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
+          NamedEntityTruth: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
+          PolygonTruth: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
+          ScrubTruth: '#/components/schemas/IValidationTruthModelScrubTruthModel'
+          SkipTruth: '#/components/schemas/IValidationTruthModelSkipTruthModel'
+          TranscriptionTruth: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
+    IRapidResultModelSkipResultModel:
+      required:
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - SkipResult
+          type: string
+        rapidId:
+          type: string
+    IRapidResultModelCompareResultModel:
+      required:
+      - rapidId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareResult
+          type: string
+        rapidId:
+          type: string
+        winners:
+          type: array
+          items:
+            type: string
+    IRapidResultModelFreeTextResultModel:
+      required:
+      - rapidId
+      - answer
+      - _t
+      properties:
+        _t:
+          enum:
+          - FreeTextResult
+          type: string
+        rapidId:
+          type: string
+        answer:
+          type: string
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    QueryValidationRapidEligibilityEndpoint_PagedResultOfOutput:
+      required:
+      - total
+      - page
+      - pageSize
+      - items
+      type: object
+      properties:
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryValidationRapidEligibilityEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    IRefereeInfoModel:
+      required:
+      - _t
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IRefereeInfoModelNaiveRefereeInfoModel'
+      - $ref: '#/components/schemas/IRefereeInfoModelNeverEndingRefereeInfoModel'
+      - $ref: '#/components/schemas/IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel'
+      - $ref: '#/components/schemas/IRefereeInfoModelQuorumRefereeInfoModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          NaiveRefereeInfo: '#/components/schemas/IRefereeInfoModelNaiveRefereeInfoModel'
+          NeverEndingRefereeInfo: '#/components/schemas/IRefereeInfoModelNeverEndingRefereeInfoModel'
+          ProbabilisticAttachCategoryRefereeInfo: '#/components/schemas/IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel'
+          QuorumRefereeInfo: '#/components/schemas/IRefereeInfoModelQuorumRefereeInfoModel'
+    IValidationTruthModelCompareTruthModel:
+      required:
+      - winnerId
+      - _t
+      properties:
+        _t:
+          enum:
+          - CompareTruth
+          type: string
+        winnerId:
+          type: string
     IRapidResultModelLocateResultModel:
       required:
       - rapidId
@@ -839,299 +1752,58 @@ components:
           type: integer
           description: Controls the serving order of rapids within a target group.
           format: int32
-    IRapidResultModel:
+    IValidationTruthModelTranscriptionTruthModel:
       required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidResultModelAttachCategoryResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelBoundingBoxResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelCompareResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelFreeTextResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelLineResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelLocateResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelNamedEntityResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelPolygonResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelScrubResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelSkipResultModel'
-      - $ref: '#/components/schemas/IRapidResultModelTranscriptionResultModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AttachCategoryResult: '#/components/schemas/IRapidResultModelAttachCategoryResultModel'
-          BoundingBoxResult: '#/components/schemas/IRapidResultModelBoundingBoxResultModel'
-          CompareResult: '#/components/schemas/IRapidResultModelCompareResultModel'
-          FreeTextResult: '#/components/schemas/IRapidResultModelFreeTextResultModel'
-          LineResult: '#/components/schemas/IRapidResultModelLineResultModel'
-          LocateResult: '#/components/schemas/IRapidResultModelLocateResultModel'
-          NamedEntityResult: '#/components/schemas/IRapidResultModelNamedEntityResultModel'
-          PolygonResult: '#/components/schemas/IRapidResultModelPolygonResultModel'
-          ScrubResult: '#/components/schemas/IRapidResultModelScrubResultModel'
-          SkipResult: '#/components/schemas/IRapidResultModelSkipResultModel'
-          TranscriptionResult: '#/components/schemas/IRapidResultModelTranscriptionResultModel'
-    IRapidResultModelBoundingBoxResultModel:
-      required:
-      - rapidId
-      - boundingBoxes
+      - correctWords
       - _t
       properties:
         _t:
           enum:
-          - BoundingBoxResult
+          - TranscriptionTruth
           type: string
-        rapidId:
-          type: string
-        boundingBoxes:
+        correctWords:
           type: array
           items:
-            $ref: '#/components/schemas/BoundingBoxResultModel_Box'
-    IRapidResultModelCompareResultModel:
-      required:
-      - rapidId
-      - _t
-      properties:
-        _t:
-          enum:
-          - CompareResult
-          type: string
-        rapidId:
-          type: string
-        winners:
-          type: array
-          items:
-            type: string
-    IValidationTruthModelLineTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineTruth
-          type: string
-    IRapidResultModelAttachCategoryResultModel:
-      required:
-      - rapidId
-      - category
-      - _t
-      properties:
-        _t:
-          enum:
-          - AttachCategoryResult
-          type: string
-        rapidId:
-          type: string
-        category:
-          type: string
-    TranscriptionResultModel_TranscriptionWord:
-      required:
-      - word
-      - wordIndex
-      type: object
-      properties:
-        word:
-          type: string
-        wordIndex:
-          type: integer
-          format: int32
-    IValidationTruthModelNamedEntityTruthModel:
-      required:
-      - classifications
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityTruth
-          type: string
-        classifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/NamedEntityTruthModel_NamedClassification'
-    IMetadataModelStreamsMetadataModel:
-      required:
-      - hasVideo
-      - hasAudio
-      - hasSubtitles
-      - _t
-      properties:
-        _t:
-          enum:
-          - StreamsMetadata
-          type: string
-        hasVideo:
-          type: boolean
-        hasAudio:
-          type: boolean
-        hasSubtitles:
-          type: boolean
-    IRapidResultModelLineResultModel:
-      required:
-      - rapidId
-      - lines
-      - _t
-      properties:
-        _t:
-          enum:
-          - LineResult
-          type: string
-        rapidId:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineResultModel_Line'
-    IRapidPayloadModelFreeTextPayloadModel:
-      required:
-      - question
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextPayload
-          type: string
-        question:
-          type: string
-        shouldValidateResponse:
-          type: boolean
-        validationSystemPrompt:
+            $ref: '#/components/schemas/TranscriptionTruthModel_TranscriptionWord'
+        strictGrading:
           type:
-          - string
+          - boolean
           - 'null'
-    IMetadataModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    IValidationTruthModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelCompareTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelLineTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelScrubTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelSkipTruthModel'
-      - $ref: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          AttachCategoryTruth: '#/components/schemas/IValidationTruthModelAttachCategoryTruthModel'
-          BoundingBoxTruth: '#/components/schemas/IValidationTruthModelBoundingBoxTruthModel'
-          ClassifyTruth: '#/components/schemas/IValidationTruthModelClassifyTruthModel'
-          CompareTruth: '#/components/schemas/IValidationTruthModelCompareTruthModel'
-          EmptyValidationTruth: '#/components/schemas/IValidationTruthModelEmptyValidationTruthModel'
-          LineTruth: '#/components/schemas/IValidationTruthModelLineTruthModel'
-          LocateBoxTruth: '#/components/schemas/IValidationTruthModelLocateBoxTruthModel'
-          MultiCompareTruth: '#/components/schemas/IValidationTruthModelMultiCompareTruthModel'
-          NamedEntityTruth: '#/components/schemas/IValidationTruthModelNamedEntityTruthModel'
-          PolygonTruth: '#/components/schemas/IValidationTruthModelPolygonTruthModel'
-          ScrubTruth: '#/components/schemas/IValidationTruthModelScrubTruthModel'
-          SkipTruth: '#/components/schemas/IValidationTruthModelSkipTruthModel'
-          TranscriptionTruth: '#/components/schemas/IValidationTruthModelTranscriptionTruthModel'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    PolygonResultModel_Shape:
-      required:
-      - edges
-      type: object
-      properties:
-        edges:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolygonResultModel_Coordinate'
-    IRapidPayloadModelScrubPayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubPayload
-          type: string
-        target:
-          type: string
-    IRapidResultModelPolygonResultModel:
+        requiredPrecision:
+          type:
+          - number
+          - 'null'
+          format: double
+        requiredCompleteness:
+          type:
+          - number
+          - 'null'
+          format: double
+    GetResponsesForRapidEndpoint_Output:
       required:
       - rapidId
-      - shapes
-      - _t
+      - asset
+      - responses
+      - state
+      type: object
       properties:
-        _t:
-          enum:
-          - PolygonResult
-          type: string
         rapidId:
           type: string
-        shapes:
-          type: array
-          items:
-            $ref: '#/components/schemas/PolygonResultModel_Shape'
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    IMetadataModelSourceUrlMetadataModel:
-      required:
-      - url
-      - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
+          description: The id of the rapid.
+        asset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetModel'
+          description: The asset of the rapid.
+        responses:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetResponsesForRapidEndpoint_Output_Response'
+          description: The list of responses for the rapid.
+        state:
+          allOf:
+          - $ref: '#/components/schemas/RapidStateModel'
+          description: The state of the rapid.
     IValidationTruthModelMultiCompareTruthModel:
       required:
       - correctCombinations
@@ -1147,315 +1819,6 @@ components:
             type: array
             items:
               type: string
-    IValidationTruthModelClassifyTruthModel:
-      required:
-      - correctCategories
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyTruth
-          type: string
-        correctCategories:
-          type: array
-          items:
-            type: string
-    ScrubTruthModel_ScrubRange:
-      required:
-      - start
-      - end
-      type: object
-      properties:
-        start:
-          type: integer
-          format: int32
-        end:
-          type: integer
-          format: int32
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    GetGlobalResponsesEndpoint_Output:
-      required:
-      - responses
-      type: object
-      properties:
-        responses:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetGlobalResponsesEndpoint_Output_Response'
-          description: The most recent public responses.
-    IRapidPayloadModelBoundingBoxPayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxPayload
-          type: string
-        target:
-          type: string
-    IValidationTruthModelScrubTruthModel:
-      required:
-      - validRanges
-      - _t
-      properties:
-        _t:
-          enum:
-          - ScrubTruth
-          type: string
-        validRanges:
-          type: array
-          items:
-            $ref: '#/components/schemas/ScrubTruthModel_ScrubRange'
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
-    IRapidPayloadModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
-      - $ref: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          BoundingBoxPayload: '#/components/schemas/IRapidPayloadModelBoundingBoxPayloadModel'
-          ClassifyPayload: '#/components/schemas/IRapidPayloadModelClassifyPayloadModel'
-          ComparePayload: '#/components/schemas/IRapidPayloadModelComparePayloadModel'
-          FreeTextPayload: '#/components/schemas/IRapidPayloadModelFreeTextPayloadModel'
-          LinePayload: '#/components/schemas/IRapidPayloadModelLinePayloadModel'
-          LocatePayload: '#/components/schemas/IRapidPayloadModelLocatePayloadModel'
-          NamedEntityPayload: '#/components/schemas/IRapidPayloadModelNamedEntityPayloadModel'
-          PolygonPayload: '#/components/schemas/IRapidPayloadModelPolygonPayloadModel'
-          ScrubPayload: '#/components/schemas/IRapidPayloadModelScrubPayloadModel'
-          TranscriptionPayload: '#/components/schemas/IRapidPayloadModelTranscriptionPayloadModel'
-    IRapidPayloadModelLocatePayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocatePayload
-          type: string
-        target:
-          type: string
-    TranscriptionTruthModel_TranscriptionWord:
-      required:
-      - word
-      - wordIndex
-      type: object
-      properties:
-        word:
-          type: string
-        wordIndex:
-          type: integer
-          format: int32
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    ClassifyPayloadModel_Category:
-      required:
-      - label
-      type: object
-      properties:
-        label:
-          type: string
-        value:
-          type:
-          - string
-          - 'null'
-    IMetadataModelTextMetadataModel:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-    IAssetInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetInputExistingAssetInput'
-      - $ref: '#/components/schemas/IAssetInputMultiAssetInput'
-      - $ref: '#/components/schemas/IAssetInputTextAssetInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
-          MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
-          TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    IMetadataModelOriginalFilenameMetadataModel:
-      required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    IRefereeInfoModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IRefereeInfoModelNaiveRefereeInfoModel'
-      - $ref: '#/components/schemas/IRefereeInfoModelNeverEndingRefereeInfoModel'
-      - $ref: '#/components/schemas/IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel'
-      - $ref: '#/components/schemas/IRefereeInfoModelQuorumRefereeInfoModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          NaiveRefereeInfo: '#/components/schemas/IRefereeInfoModelNaiveRefereeInfoModel'
-          NeverEndingRefereeInfo: '#/components/schemas/IRefereeInfoModelNeverEndingRefereeInfoModel'
-          ProbabilisticAttachCategoryRefereeInfo: '#/components/schemas/IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel'
-          QuorumRefereeInfo: '#/components/schemas/IRefereeInfoModelQuorumRefereeInfoModel'
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetModelFileAssetModel:
-      required:
-      - fileName
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileAsset
-          type: string
-        fileName:
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    FeatureFlag:
-      required:
-      - key
-      - value
-      type: object
-      properties:
-        key:
-          type: string
-        value:
-          type: string
-    LocateCoordinateModel:
-      required:
-      - x
-      - y
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-        y:
-          type: number
-          format: double
-    IRapidResultModelNamedEntityResultModel:
-      required:
-      - rapidId
-      - classifications
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityResult
-          type: string
-        rapidId:
-          type: string
-        classifications:
-          type: array
-          items:
-            $ref: '#/components/schemas/NamedEntityResultModel_NamedClassification'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
     QueryValidationRapidEligibilityEndpoint_Output:
       required:
       - rapidId
@@ -1484,55 +1847,37 @@ components:
           allOf:
           - $ref: '#/components/schemas/IValidationTruthModel'
           description: The derived validation truth for the rapid.
-    IRapidResultModelScrubResultModel:
+    IRapidResultModelNamedEntityResultModel:
       required:
       - rapidId
-      - timestamps
+      - classifications
       - _t
       properties:
         _t:
           enum:
-          - ScrubResult
+          - NamedEntityResult
           type: string
         rapidId:
           type: string
-        timestamps:
+        classifications:
           type: array
           items:
-            type: integer
-            format: int32
-    IRefereeInfoModelProbabilisticAttachCategoryRefereeInfoModel:
-      required:
-      - threshold
-      - maxVotes
-      - _t
-      properties:
-        _t:
-          enum:
-          - ProbabilisticAttachCategoryRefereeInfo
-          type: string
-        threshold:
-          type: number
-          format: double
-        maxVotes:
-          type: integer
-          format: int32
-    IRapidPayloadModelNamedEntityPayloadModel:
-      required:
-      - target
-      - classes
-      - _t
-      properties:
-        _t:
-          enum:
-          - NamedEntityPayload
-          type: string
-        target:
-          type: string
-        classes:
-          type: array
-          items:
-            type: string
+            $ref: '#/components/schemas/NamedEntityResultModel_NamedClassification'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
     NamedEntityResultModel_NamedClassification:
       required:
       - start
@@ -1548,259 +1893,17 @@ components:
           format: int32
         classification:
           type: string
-    GetResponsesForRapidEndpoint_Output:
+    TranscriptionTruthModel_TranscriptionWord:
       required:
-      - rapidId
-      - asset
-      - responses
-      - state
+      - word
+      - wordIndex
       type: object
       properties:
-        rapidId:
+        word:
           type: string
-          description: The id of the rapid.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetModel'
-          description: The asset of the rapid.
-        responses:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetResponsesForRapidEndpoint_Output_Response'
-          description: The list of responses for the rapid.
-        state:
-          allOf:
-          - $ref: '#/components/schemas/RapidStateModel'
-          description: The state of the rapid.
-    IRapidPayloadModelLinePayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - LinePayload
-          type: string
-        target:
-          type: string
-    ClassifyPayloadModel:
-      required:
-      - categories
-      - title
-      type: object
-      properties:
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
-        title:
-          type: string
-    IValidationTruthModelTranscriptionTruthModel:
-      required:
-      - correctWords
-      - _t
-      properties:
-        _t:
-          enum:
-          - TranscriptionTruth
-          type: string
-        correctWords:
-          type: array
-          items:
-            $ref: '#/components/schemas/TranscriptionTruthModel_TranscriptionWord'
-        strictGrading:
-          type:
-          - boolean
-          - 'null'
-        requiredPrecision:
-          type:
-          - number
-          - 'null'
-          format: double
-        requiredCompleteness:
-          type:
-          - number
-          - 'null'
-          format: double
-    CreateDemographicRapidEndpoint_Output:
-      required:
-      - rapidId
-      type: object
-      properties:
-        rapidId:
-          type: string
-          description: The id of the created rapid.
-    IMetadataInput:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
-      discriminator:
-        propertyName: _t
-        mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
-    IRapidResultModelFreeTextResultModel:
-      required:
-      - rapidId
-      - answer
-      - _t
-      properties:
-        _t:
-          enum:
-          - FreeTextResult
-          type: string
-        rapidId:
-          type: string
-        answer:
-          type: string
-    NamedEntityTruthModel_NamedClassification:
-      required:
-      - start
-      - end
-      - classification
-      type: object
-      properties:
-        start:
+        wordIndex:
           type: integer
           format: int32
-        end:
-          type: integer
-          format: int32
-        classification:
-          type: string
-    CreateDemographicRapidEndpoint_Input:
-      required:
-      - key
-      - payload
-      type: object
-      properties:
-        key:
-          type: string
-          description: The identifier of the demographic classification.
-        payload:
-          allOf:
-          - $ref: '#/components/schemas/ClassifyPayloadModel'
-          description: The payload for the classification.
-        featureFlags:
-          allOf:
-          - type:
-            - array
-            - 'null'
-            items:
-              $ref: '#/components/schemas/FeatureFlag'
-          description: Optional feature flags to apply to the rapid.
-        asset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset to associate with the rapid.
-        context:
-          type:
-          - string
-          - 'null'
-          description: An optional text context to show to the user.
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: An optional asset to use as context to show to the user.
-    IValidationTruthModelPolygonTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - PolygonTruth
-          type: string
-    IRapidPayloadModelClassifyPayloadModel:
-      required:
-      - categories
-      - title
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassifyPayload
-          type: string
-        categories:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassifyPayloadModel_Category'
-        title:
-          type: string
-    IValidationTruthModelLocateBoxTruthModel:
-      required:
-      - boundingBoxes
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocateBoxTruth
-          type: string
-        boundingBoxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocateBoxTruthModel_Box'
-        requiredPrecision:
-          type: number
-          format: double
-        requiredCompleteness:
-          type: number
-          format: double
-    IMetadataModelImageDimensionMetadataModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - ImageDimensionMetadata
-          type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
-    LineResultModel_Line:
-      required:
-      - size
-      - points
-      type: object
-      properties:
-        size:
-          type: number
-          format: double
-        points:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineResultModel_LinePoint'
-    MetadataModelCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
     QueryFlaggedRapidsEndpoint_Output:
       required:
       - id
@@ -1875,112 +1978,23 @@ components:
             items:
               $ref: '#/components/schemas/FeatureFlag'
           description: The feature flags enabled for the rapid.
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    RapidStateModel:
+    FileType:
       enum:
-      - Labeling
-      - Paused
-      - Incomplete
-      - Flagged
-      - Done
-      - None
-      - Rejected
-    TranscriptionPayloadModel_TranscriptionWord:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IMetadataModelFileTypeMetadataModel:
       required:
-      - word
-      - wordIndex
-      type: object
-      properties:
-        word:
-          type: string
-        wordIndex:
-          type: integer
-          format: int32
-    GetGlobalResponsesEndpoint_Output_Response:
-      required:
-      - id
-      - userId
-      - country
-      type: object
-      properties:
-        id:
-          type: string
-        userId:
-          type: string
-        country:
-          type: string
-        age:
-          type:
-          - string
-          - 'null'
-        occupation:
-          type:
-          - string
-          - 'null'
-        gender:
-          type:
-          - string
-          - 'null'
-    IRefereeInfoModelQuorumRefereeInfoModel:
-      required:
-      - maxVotes
-      - threshold
+      - fileType
       - _t
       properties:
         _t:
           enum:
-          - QuorumRefereeInfo
+          - FileTypeMetadata
           type: string
-        maxVotes:
-          type: integer
-          format: int32
-        threshold:
-          type: integer
-          format: int32
-    IValidationTruthModelAttachCategoryTruthModel:
-      required:
-      - correctCategories
-      - _t
-      properties:
-        _t:
-          enum:
-          - AttachCategoryTruth
-          type: string
-        correctCategories:
-          type: array
-          items:
-            type: string
-    IRapidPayloadModelComparePayloadModel:
-      required:
-      - criteria
-      - _t
-      properties:
-        _t:
-          enum:
-          - ComparePayload
-          type: string
-        criteria:
-          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
     IRapidPayloadModelTranscriptionPayloadModel:
       required:
       - title
@@ -1997,195 +2011,153 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TranscriptionPayloadModel_TranscriptionWord'
-    IRapidResultModelTranscriptionResultModel:
+    LineResultModel_Line:
       required:
-      - rapidId
-      - selectedWords
-      - _t
+      - size
+      - points
+      type: object
       properties:
-        _t:
-          enum:
-          - TranscriptionResult
-          type: string
-        rapidId:
-          type: string
-        selectedWords:
+        size:
+          type: number
+          format: double
+        points:
           type: array
           items:
-            $ref: '#/components/schemas/TranscriptionResultModel_TranscriptionWord'
-    IRapidResultModelSkipResultModel:
+            $ref: '#/components/schemas/LineResultModel_LinePoint'
+    IMetadataModelClassificationMetadataModel:
       required:
-      - rapidId
+      - classification
       - _t
       properties:
         _t:
           enum:
-          - SkipResult
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    CreateDemographicRapidEndpoint_Output:
+      required:
+      - rapidId
+      type: object
+      properties:
+        rapidId:
+          type: string
+          description: The id of the created rapid.
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
+    IValidationTruthModelScrubTruthModel:
+      required:
+      - validRanges
+      - _t
+      properties:
+        _t:
+          enum:
+          - ScrubTruth
+          type: string
+        validRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/ScrubTruthModel_ScrubRange'
+    IRapidResultModelAttachCategoryResultModel:
+      required:
+      - rapidId
+      - category
+      - _t
+      properties:
+        _t:
+          enum:
+          - AttachCategoryResult
           type: string
         rapidId:
           type: string
-    IValidationTruthModelEmptyValidationTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - EmptyValidationTruth
+        category:
           type: string
-    IAssetModelNullAssetModel:
-      required:
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    IValidationTruthModelSkipTruthModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - SkipTruth
-          type: string
-    IRefereeInfoModelNeverEndingRefereeInfoModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - NeverEndingRefereeInfo
-          type: string
-    GetResponsesForRapidEndpoint_Output_Response:
-      required:
-      - id
-      - userId
-      - country
-      - result
-      - userScore
-      - userScores
-      - demographicInformation
-      type: object
-      properties:
-        id:
-          type: string
-        userId:
-          type: string
-        country:
-          type: string
-        result:
-          $ref: '#/components/schemas/IRapidResultModel'
-        userScore:
-          type: number
-          format: double
-        userScores:
-          type: object
-          additionalProperties:
-            type: number
-            format: double
-        demographicInformation:
-          type: object
-          additionalProperties:
-            type: string
-    LineResultModel_LinePoint:
-      required:
-      - x
-      - y
-      type: object
-      properties:
-        x:
-          type: number
-          format: double
-        y:
-          type: number
-          format: double
-    PolygonResultModel_Coordinate:
-      required:
-      - x
-      - y
-      type: object
-      properties:
-        x:
-          type:
-          - number
-          - 'null'
-          format: double
-        y:
-          type:
-          - number
-          - 'null'
-          format: double
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IValidationTruthModelBoundingBoxTruthModel:
-      required:
-      - xMin
-      - yMin
-      - xMax
-      - yMax
-      - _t
-      properties:
-        _t:
-          enum:
-          - BoundingBoxTruth
-          type: string
-        xMin:
-          type: number
-          format: double
-        yMin:
-          type: number
-          format: double
-        xMax:
-          type: number
-          format: double
-        yMax:
-          type: number
-          format: double
-    IRapidPayloadModelPolygonPayloadModel:
-      required:
-      - target
-      - _t
-      properties:
-        _t:
-          enum:
-          - PolygonPayload
-          type: string
-        target:
-          type: string
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    BoundingBoxResultModel_Box:
+    LocateBoxTruthModel_Box:
       type: object
       properties:
         xMin:
@@ -2207,6 +2179,34 @@ components:
           type:
           - number
           - 'null'
+          format: double
+    IRapidResultModelLineResultModel:
+      required:
+      - rapidId
+      - lines
+      - _t
+      properties:
+        _t:
+          enum:
+          - LineResult
+          type: string
+        rapidId:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineResultModel_Line'
+    LocateCoordinateModel:
+      required:
+      - x
+      - y
+      type: object
+      properties:
+        x:
+          type: number
+          format: double
+        y:
+          type: number
           format: double
   securitySchemes:
     OpenIdConnect:

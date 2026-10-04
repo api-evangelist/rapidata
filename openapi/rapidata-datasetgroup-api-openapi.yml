@@ -51,23 +51,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CreateDatasetGroupEndpoint_Input:
-      required:
-      - group
-      type: object
-      properties:
-        group:
-          type: string
-          description: The name of the group.
-        context:
-          type:
-          - string
-          - 'null'
-          description: The optional text context for the group.
-        contextAsset:
-          allOf:
-          - $ref: '#/components/schemas/IAssetInput'
-          description: The optional asset context for the group.
     IAssetInput:
       required:
       - _t
@@ -82,102 +65,6 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
     ValidationProblemDetails:
       type: object
       properties:
@@ -208,6 +95,75 @@ components:
             type: array
             items:
               type: string
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    CreateDatasetGroupEndpoint_Input:
+      required:
+      - group
+      type: object
+      properties:
+        group:
+          type: string
+          description: The name of the group.
+        context:
+          type:
+          - string
+          - 'null'
+          description: The optional text context for the group.
+        contextAsset:
+          allOf:
+          - $ref: '#/components/schemas/IAssetInput'
+          description: The optional asset context for the group.
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
     IMetadataInput:
       required:
       - _t
@@ -218,6 +174,50 @@ components:
         propertyName: _t
         mapping:
           TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

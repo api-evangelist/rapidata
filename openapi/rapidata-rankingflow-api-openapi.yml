@@ -88,16 +88,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    FeatureFlag:
-      required:
-      - key
-      - value
+    ValidationProblemDetails:
       type: object
       properties:
-        key:
-          type: string
-        value:
-          type: string
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     CreateFlowEndpoint_Input:
       required:
       - name
@@ -216,6 +236,24 @@ components:
           - 'null'
           description: Duration in seconds for draining flow items. Defaults to 40.
           format: int32
+    CreateFlowEndpoint_Output:
+      required:
+      - flowId
+      type: object
+      properties:
+        flowId:
+          type: string
+          description: The ID of the created ranking flow.
+    FeatureFlag:
+      required:
+      - key
+      - value
+      type: object
+      properties:
+        key:
+          type: string
+        value:
+          type: string
     UpdateConfigEndpoint_Input:
       type: object
       properties:
@@ -302,44 +340,6 @@ components:
       - Total
       - PerBatch
       - PerBatchTimeWeighted
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    CreateFlowEndpoint_Output:
-      required:
-      - flowId
-      type: object
-      properties:
-        flowId:
-          type: string
-          description: The ID of the created ranking flow.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

@@ -149,27 +149,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GoogleOneTapLoginEndpoint_Output:
-      required:
-      - requiresEmailConfirmation
-      type: object
-      properties:
-        requiresEmailConfirmation:
-          type: boolean
-          description: Whether the account still requires email confirmation.
-        email:
-          type:
-          - string
-          - 'null'
-          description: The email of the signed-in user, if available.
-    ReadBridgeTokenEndpoint_NotAvailableOutput:
-      required:
-      - message
-      type: object
-      properties:
-        message:
-          type: string
-          description: A message indicating that the keys are not yet available.
     ValidationProblemDetails:
       type: object
       properties:
@@ -200,14 +179,14 @@ components:
             type: array
             items:
               type: string
-    GoogleOneTapLoginEndpoint_Input:
+    ReadBridgeTokenEndpoint_NotAvailableOutput:
       required:
-      - idToken
+      - message
       type: object
       properties:
-        idToken:
+        message:
           type: string
-          description: The id token received from the Google One Tap login.
+          description: A message indicating that the keys are not yet available.
     ReadBridgeTokenEndpoint_KeysOutput:
       required:
       - accessToken
@@ -261,6 +240,27 @@ components:
         writeKey:
           type: string
           description: The write key used to store the authentication result.
+    GoogleOneTapLoginEndpoint_Input:
+      required:
+      - idToken
+      type: object
+      properties:
+        idToken:
+          type: string
+          description: The id token received from the Google One Tap login.
+    GoogleOneTapLoginEndpoint_Output:
+      required:
+      - requiresEmailConfirmation
+      type: object
+      properties:
+        requiresEmailConfirmation:
+          type: boolean
+          description: Whether the account still requires email confirmation.
+        email:
+          type:
+          - string
+          - 'null'
+          description: The email of the signed-in user, if available.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

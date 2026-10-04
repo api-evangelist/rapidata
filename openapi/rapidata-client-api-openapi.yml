@@ -304,53 +304,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    QueryClientsEndpoint_Output:
-      required:
-      - clientId
-      - displayName
-      - createdAt
+    ValidationProblemDetails:
       type: object
       properties:
-        clientId:
+        type:
           type:
           - string
           - 'null'
-          description: The id of the client.
-        displayName:
+        title:
           type:
           - string
           - 'null'
-          description: The optional display name of the client.
-        createdAt:
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
           type:
           - string
           - 'null'
-          description: The time at which the client was created.
-          format: date-time
-    QueryClientsEndpoint_PagedResultOfOutput:
-      required:
-      - total
-      - page
-      - pageSize
-      - items
-      type: object
-      properties:
-        total:
-          type: integer
-          format: int64
-        page:
-          type: integer
-          format: int32
-        pageSize:
-          type: integer
-          format: int32
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/QueryClientsEndpoint_Output'
-        totalPages:
-          type: integer
-          format: int32
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     JsonWebKey:
       type: object
       properties:
@@ -456,53 +439,29 @@ components:
           type:
           - string
           - 'null'
-    JsonWebKeySet:
+    QueryClientsEndpoint_Output:
+      required:
+      - clientId
+      - displayName
+      - createdAt
       type: object
       properties:
-        keys:
+        clientId:
           type:
-          - array
+          - string
           - 'null'
-          items:
-            $ref: '#/components/schemas/JsonWebKey'
-    CreateClientEndpoint_Input:
-      type: object
-      properties:
+          description: The id of the client.
         displayName:
           type:
           - string
           - 'null'
-          description: An optional display name for the client.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
+          description: The optional display name of the client.
+        createdAt:
           type:
           - string
           - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
+          description: The time at which the client was created.
+          format: date-time
     DynamicClientRegistrationRequest:
       type: object
       properties:
@@ -570,18 +529,39 @@ components:
           - $ref: '#/components/schemas/JsonWebKeySet'
           description: Client's JSON Web Key Set [RFC7517] document value, which contains the client's public keys.
       description: The request body for dynamic client registration.
-    CreateClientEndpoint_Output:
+    QueryClientsEndpoint_PagedResultOfOutput:
       required:
-      - clientId
-      - clientSecret
+      - total
+      - page
+      - pageSize
+      - items
       type: object
       properties:
-        clientId:
-          type: string
-          description: The id of the created client.
-        clientSecret:
-          type: string
-          description: The secret of the created client.
+        total:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        pageSize:
+          type: integer
+          format: int32
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/QueryClientsEndpoint_Output'
+        totalPages:
+          type: integer
+          format: int32
+    JsonWebKeySet:
+      type: object
+      properties:
+        keys:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/JsonWebKey'
     ClientModel:
       required:
       - client_id
@@ -686,6 +666,26 @@ components:
           oneOf:
           - $ref: '#/components/schemas/JsonWebKeySet'
       description: "The response containing the id and secret of a dynamically registered client.\n Additionally, it contains all registered metadata for the client."
+    CreateClientEndpoint_Input:
+      type: object
+      properties:
+        displayName:
+          type:
+          - string
+          - 'null'
+          description: An optional display name for the client.
+    CreateClientEndpoint_Output:
+      required:
+      - clientId
+      - clientSecret
+      type: object
+      properties:
+        clientId:
+          type: string
+          description: The id of the created client.
+        clientSecret:
+          type: string
+          description: The secret of the created client.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

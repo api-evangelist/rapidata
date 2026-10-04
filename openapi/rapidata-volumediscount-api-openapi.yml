@@ -91,6 +91,44 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    CreateVolumeDiscountEndpoint_Output:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: The ID of the created volume discount bracket.
     CreateVolumeDiscountEndpoint_Input:
       required:
       - minResponses
@@ -131,44 +169,6 @@ components:
         discountRatio:
           type: number
           format: double
-    CreateVolumeDiscountEndpoint_Output:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: The ID of the created volume discount bracket.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

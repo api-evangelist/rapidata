@@ -182,27 +182,44 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    GetGroupedRankingWorkflowResultsEndpoint_Output:
-      required:
-      - id
-      - name
-      - state
-      - pairMakerInformation
+    ValidationProblemDetails:
       type: object
       properties:
-        id:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IPairMakerInformationFullPermutationPairMakerInformation:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - FullPermutationPairMakerInformation
           type: string
-          description: The id of the sub-workflow.
-        name:
-          type: string
-          description: The name of the sub-workflow.
-        state:
-          type: string
-          description: The state of the sub-workflow.
-        pairMakerInformation:
-          allOf:
-          - $ref: '#/components/schemas/IPairMakerInformation'
-          description: Information about the pair-maker used by the sub-workflow.
     IPairMakerInformationOnlinePairMakerInformation:
       required:
       - _t
@@ -244,44 +261,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    IPairMakerInformationFullPermutationPairMakerInformation:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - FullPermutationPairMakerInformation
-          type: string
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     IPairMakerInformation:
       required:
       - _t
@@ -294,6 +273,27 @@ components:
         mapping:
           FullPermutationPairMakerInformation: '#/components/schemas/IPairMakerInformationFullPermutationPairMakerInformation'
           OnlinePairMakerInformation: '#/components/schemas/IPairMakerInformationOnlinePairMakerInformation'
+    GetGroupedRankingWorkflowResultsEndpoint_Output:
+      required:
+      - id
+      - name
+      - state
+      - pairMakerInformation
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the sub-workflow.
+        name:
+          type: string
+          description: The name of the sub-workflow.
+        state:
+          type: string
+          description: The state of the sub-workflow.
+        pairMakerInformation:
+          allOf:
+          - $ref: '#/components/schemas/IPairMakerInformation'
+          description: Information about the pair-maker used by the sub-workflow.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

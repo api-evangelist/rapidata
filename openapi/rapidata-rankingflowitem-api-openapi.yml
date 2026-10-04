@@ -329,183 +329,15 @@ components:
           ExistingAssetInput: '#/components/schemas/IAssetInputExistingAssetInput'
           MultiAssetInput: '#/components/schemas/IAssetInputMultiAssetInput'
           TextAssetInput: '#/components/schemas/IAssetInputTextAssetInput'
-    MetadataVisibilities:
-      type: array
-      items:
-        enum:
-        - None
-        - Users
-        - Customers
-        - Admins
-        - Dashboard
-        - All
-        type: string
-    IMetadataModelOriginalFilenameMetadataModel:
+    IAssetModelNullAssetModel:
       required:
-      - originalFilename
-      - _t
-      properties:
-        _t:
-          enum:
-          - OriginalFilenameMetadata
-          type: string
-        originalFilename:
-          type: string
-    MetadataModelCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataModel'
-    IAssetInputMultiAssetInput:
-      required:
-      - assets
-      - _t
-      properties:
-        _t:
-          enum:
-          - MultiAssetInput
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetInput'
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IMetadataModelLocationMetadataModel:
-      required:
-      - x
-      - y
-      - _t
-      properties:
-        _t:
-          enum:
-          - LocationMetadata
-          type: string
-        x:
-          type: number
-          format: float
-        y:
-          type: number
-          format: float
-    IMetadataModelClassificationMetadataModel:
-      required:
-      - classification
-      - _t
-      properties:
-        _t:
-          enum:
-          - ClassificationMetadata
-          type: string
-        classification:
-          type: string
-    GetRankingFlowItemVoteMatrixEndpoint_Output:
-      required:
-      - index
-      - columns
-      - data
-      type: object
-      properties:
-        index:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: Row labels of the vote matrix.
-        columns:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: Column labels of the vote matrix.
-        data:
-          allOf:
-          - type: array
-            items:
-              type: array
-              items:
-                type: number
-                format: double
-          description: The vote counts as a two-dimensional matrix where Data[i][j] is the number of times row i was preferred over column j.
-    IAssetModelMultiAssetModel:
-      required:
-      - assets
       - metadata
       - identifier
       - _t
       properties:
         _t:
           enum:
-          - MultiAsset
-          type: string
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/IAssetModel'
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
-    IAssetInputTextAssetInput:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAssetInput
-          type: string
-        text:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetInputExistingAssetInput:
-      required:
-      - name
-      - _t
-      properties:
-        _t:
-          enum:
-          - ExistingAssetInput
-          type: string
-        name:
-          type: string
-        metadata:
-          type:
-          - object
-          - 'null'
-          oneOf:
-          - $ref: '#/components/schemas/MetadataInputCollection'
-        identifier:
-          type:
-          - string
-          - 'null'
-    IAssetModelTextAssetModel:
-      required:
-      - text
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextAsset
-          type: string
-        text:
+          - NullAsset
           type: string
         metadata:
           $ref: '#/components/schemas/MetadataModelCollection'
@@ -580,6 +412,63 @@ components:
           - 'null'
           description: The timestamp when the flow item failed.
           format: date-time
+    MetadataVisibilities:
+      type: array
+      items:
+        enum:
+        - None
+        - Users
+        - Customers
+        - Admins
+        - Dashboard
+        - All
+        type: string
+    FlowItemState:
+      enum:
+      - Pending
+      - Running
+      - Completed
+      - Failed
+      - Stopping
+      - Stopped
+      - Incomplete
+    GetRankingFlowItemResultsEndpoint_Output:
+      required:
+      - datapoints
+      - totalVotes
+      type: object
+      properties:
+        datapoints:
+          allOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/GetRankingFlowItemResultsEndpoint_Output_Datapoint'
+          description: The ranked datapoints with their Elo scores.
+        totalVotes:
+          type: integer
+          description: The total number of votes across all datapoints.
+          format: int64
+    MetadataModelCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataModel'
+    IAssetModelTextAssetModel:
+      required:
+      - text
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAsset
+          type: string
+        text:
+          type: string
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
     IAssetModelFileAssetModel:
       required:
       - fileName
@@ -597,59 +486,52 @@ components:
           $ref: '#/components/schemas/MetadataModelCollection'
         identifier:
           type: string
-    IMetadataInputTextMetadataInput:
-      required:
-      - text
-      - visibilities
-      - _t
+    ValidationProblemDetails:
+      type: object
       properties:
-        _t:
-          enum:
-          - TextMetadataInput
-          type: string
-        text:
+        type:
           type:
           - string
           - 'null'
-        visibilities:
-          $ref: '#/components/schemas/MetadataVisibilities'
-    MetadataInputCollection:
-      type: object
-      additionalProperties:
-        $ref: '#/components/schemas/IMetadataInput'
-    IMetadataModelSourceUrlMetadataModel:
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+    IAssetModel:
       required:
-      - url
       - _t
-      properties:
-        _t:
-          enum:
-          - SourceUrlMetadataModel
-          type: string
-        url:
-          type: string
-    CreateFlowItemEndpoint_Output:
-      required:
-      - flowItemId
       type: object
-      properties:
-        flowItemId:
-          type: string
-          description: The ID of the created flow item.
-    IAssetModelNullAssetModel:
-      required:
-      - metadata
-      - identifier
-      - _t
-      properties:
-        _t:
-          enum:
-          - NullAsset
-          type: string
-        metadata:
-          $ref: '#/components/schemas/MetadataModelCollection'
-        identifier:
-          type: string
+      oneOf:
+      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
+      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
+      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
+      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
+      discriminator:
+        propertyName: _t
+        mapping:
+          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
+          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
+          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
+          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
     QueryFlowItemsEndpoint_PagedResultOfOutput:
       required:
       - total
@@ -674,55 +556,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    IAssetModel:
-      required:
-      - _t
-      type: object
-      oneOf:
-      - $ref: '#/components/schemas/IAssetModelFileAssetModel'
-      - $ref: '#/components/schemas/IAssetModelMultiAssetModel'
-      - $ref: '#/components/schemas/IAssetModelNullAssetModel'
-      - $ref: '#/components/schemas/IAssetModelTextAssetModel'
-      discriminator:
-        propertyName: _t
-        mapping:
-          FileAsset: '#/components/schemas/IAssetModelFileAssetModel'
-          MultiAsset: '#/components/schemas/IAssetModelMultiAssetModel'
-          NullAsset: '#/components/schemas/IAssetModelNullAssetModel'
-          TextAsset: '#/components/schemas/IAssetModelTextAssetModel'
-    IMetadataModelVideoDurationMetadataModel:
-      required:
-      - duration
-      - _t
-      properties:
-        _t:
-          enum:
-          - VideoDurationMetadata
-          type: string
-        duration:
-          type: string
-          format: date-time
-    FlowItemState:
-      enum:
-      - Pending
-      - Running
-      - Completed
-      - Failed
-      - Stopping
-      - Stopped
-      - Incomplete
-    IMetadataModelCountMetadataModel:
-      required:
-      - count
-      - _t
-      properties:
-        _t:
-          enum:
-          - CountMetadata
-          type: string
-        count:
-          type: integer
-          format: int32
     IMetadataModelStreamsMetadataModel:
       required:
       - hasVideo
@@ -740,16 +573,251 @@ components:
           type: boolean
         hasSubtitles:
           type: boolean
-    IMetadataInput:
+    FileType:
+      enum:
+      - Unknown
+      - Image
+      - Video
+      - Audio
+    IMetadataModelFileTypeMetadataModel:
+      required:
+      - fileType
+      - _t
+      properties:
+        _t:
+          enum:
+          - FileTypeMetadata
+          type: string
+        fileType:
+          $ref: '#/components/schemas/FileType'
+    IMetadataModelSourceUrlMetadataModel:
+      required:
+      - url
+      - _t
+      properties:
+        _t:
+          enum:
+          - SourceUrlMetadataModel
+          type: string
+        url:
+          type: string
+    IAssetModelMultiAssetModel:
+      required:
+      - assets
+      - metadata
+      - identifier
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAsset
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetModel'
+        metadata:
+          $ref: '#/components/schemas/MetadataModelCollection'
+        identifier:
+          type: string
+    IMetadataModelClassificationMetadataModel:
+      required:
+      - classification
+      - _t
+      properties:
+        _t:
+          enum:
+          - ClassificationMetadata
+          type: string
+        classification:
+          type: string
+    IAssetInputMultiAssetInput:
+      required:
+      - assets
+      - _t
+      properties:
+        _t:
+          enum:
+          - MultiAssetInput
+          type: string
+        assets:
+          type: array
+          items:
+            $ref: '#/components/schemas/IAssetInput'
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModel:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
+      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
+      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
       discriminator:
         propertyName: _t
         mapping:
-          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
+          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
+          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
+          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
+          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
+          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
+          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
+          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
+          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
+          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+    MetadataInputCollection:
+      type: object
+      additionalProperties:
+        $ref: '#/components/schemas/IMetadataInput'
+    IMetadataInputTextMetadataInput:
+      required:
+      - text
+      - visibilities
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadataInput
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+        visibilities:
+          $ref: '#/components/schemas/MetadataVisibilities'
+    IMetadataModelCountMetadataModel:
+      required:
+      - count
+      - _t
+      properties:
+        _t:
+          enum:
+          - CountMetadata
+          type: string
+        count:
+          type: integer
+          format: int32
+    IMetadataModelImageDimensionMetadataModel:
+      required:
+      - _t
+      properties:
+        _t:
+          enum:
+          - ImageDimensionMetadata
+          type: string
+        height:
+          type: integer
+          format: int32
+        width:
+          type: integer
+          format: int32
+    GetRankingFlowItemVoteMatrixEndpoint_Output:
+      required:
+      - index
+      - columns
+      - data
+      type: object
+      properties:
+        index:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: Row labels of the vote matrix.
+        columns:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: Column labels of the vote matrix.
+        data:
+          allOf:
+          - type: array
+            items:
+              type: array
+              items:
+                type: number
+                format: double
+          description: The vote counts as a two-dimensional matrix where Data[i][j] is the number of times row i was preferred over column j.
+    IMetadataModelVideoDurationMetadataModel:
+      required:
+      - duration
+      - _t
+      properties:
+        _t:
+          enum:
+          - VideoDurationMetadata
+          type: string
+        duration:
+          type: string
+          format: date-time
+    IAssetInputTextAssetInput:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextAssetInput
+          type: string
+        text:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelTextMetadataModel:
+      required:
+      - text
+      - _t
+      properties:
+        _t:
+          enum:
+          - TextMetadata
+          type: string
+        text:
+          type:
+          - string
+          - 'null'
+    IMetadataModelLocationMetadataModel:
+      required:
+      - x
+      - y
+      - _t
+      properties:
+        _t:
+          enum:
+          - LocationMetadata
+          type: string
+        x:
+          type: number
+          format: float
+        y:
+          type: number
+          format: float
     CreateFlowItemEndpoint_Input:
       required:
       - datasetId
@@ -778,6 +846,76 @@ components:
           - integer
           - 'null'
           description: Optional drain duration in seconds. When set, rapids are paused this many seconds before TTL expiry to allow in-flight responses to complete.
+          format: int32
+    IAssetInputExistingAssetInput:
+      required:
+      - name
+      - _t
+      properties:
+        _t:
+          enum:
+          - ExistingAssetInput
+          type: string
+        name:
+          type: string
+        metadata:
+          type:
+          - object
+          - 'null'
+          oneOf:
+          - $ref: '#/components/schemas/MetadataInputCollection'
+        identifier:
+          type:
+          - string
+          - 'null'
+    IMetadataModelOriginalFilenameMetadataModel:
+      required:
+      - originalFilename
+      - _t
+      properties:
+        _t:
+          enum:
+          - OriginalFilenameMetadata
+          type: string
+        originalFilename:
+          type: string
+    ProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+    GetRankingFlowItemResultsEndpoint_Output_Datapoint:
+      required:
+      - id
+      - asset
+      - elo
+      type: object
+      properties:
+        id:
+          type: string
+        asset:
+          $ref: '#/components/schemas/IAssetModel'
+        elo:
+          type: integer
           format: int32
     QueryFlowItemsEndpoint_Output:
       required:
@@ -838,162 +976,24 @@ components:
           - 'null'
           description: The timestamp when the flow item failed.
           format: date-time
-    ProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-    FileType:
-      enum:
-      - Unknown
-      - Image
-      - Video
-      - Audio
-    IMetadataModel:
+    IMetadataInput:
       required:
       - _t
       type: object
       oneOf:
-      - $ref: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelCountMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelLocationMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelTextMetadataModel'
-      - $ref: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
+      - $ref: '#/components/schemas/IMetadataInputTextMetadataInput'
       discriminator:
         propertyName: _t
         mapping:
-          ClassificationMetadata: '#/components/schemas/IMetadataModelClassificationMetadataModel'
-          CountMetadata: '#/components/schemas/IMetadataModelCountMetadataModel'
-          FileTypeMetadata: '#/components/schemas/IMetadataModelFileTypeMetadataModel'
-          ImageDimensionMetadata: '#/components/schemas/IMetadataModelImageDimensionMetadataModel'
-          LocationMetadata: '#/components/schemas/IMetadataModelLocationMetadataModel'
-          OriginalFilenameMetadata: '#/components/schemas/IMetadataModelOriginalFilenameMetadataModel'
-          SourceUrlMetadataModel: '#/components/schemas/IMetadataModelSourceUrlMetadataModel'
-          StreamsMetadata: '#/components/schemas/IMetadataModelStreamsMetadataModel'
-          TextMetadata: '#/components/schemas/IMetadataModelTextMetadataModel'
-          VideoDurationMetadata: '#/components/schemas/IMetadataModelVideoDurationMetadataModel'
-    GetRankingFlowItemResultsEndpoint_Output:
+          TextMetadataInput: '#/components/schemas/IMetadataInputTextMetadataInput'
+    CreateFlowItemEndpoint_Output:
       required:
-      - datapoints
-      - totalVotes
+      - flowItemId
       type: object
       properties:
-        datapoints:
-          allOf:
-          - type: array
-            items:
-              $ref: '#/components/schemas/GetRankingFlowItemResultsEndpoint_Output_Datapoint'
-          description: The ranked datapoints with their Elo scores.
-        totalVotes:
-          type: integer
-          description: The total number of votes across all datapoints.
-          format: int64
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
-    GetRankingFlowItemResultsEndpoint_Output_Datapoint:
-      required:
-      - id
-      - asset
-      - elo
-      type: object
-      properties:
-        id:
+        flowItemId:
           type: string
-        asset:
-          $ref: '#/components/schemas/IAssetModel'
-        elo:
-          type: integer
-          format: int32
-    IMetadataModelTextMetadataModel:
-      required:
-      - text
-      - _t
-      properties:
-        _t:
-          enum:
-          - TextMetadata
-          type: string
-        text:
-          type:
-          - string
-          - 'null'
-    IMetadataModelFileTypeMetadataModel:
-      required:
-      - fileType
-      - _t
-      properties:
-        _t:
-          enum:
-          - FileTypeMetadata
-          type: string
-        fileType:
-          $ref: '#/components/schemas/FileType'
-    IMetadataModelImageDimensionMetadataModel:
-      required:
-      - _t
-      properties:
-        _t:
-          enum:
-          - ImageDimensionMetadata
-          type: string
-        height:
-          type: integer
-          format: int32
-        width:
-          type: integer
-          format: int32
+          description: The ID of the created flow item.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

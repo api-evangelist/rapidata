@@ -85,17 +85,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    UpdatePromptTagsEndpoint_Input:
-      required:
-      - tags
-      type: object
-      properties:
-        tags:
-          allOf:
-          - type: array
-            items:
-              type: string
-          description: The list of tags to be associated with the prompt.
     ValidationProblemDetails:
       type: object
       properties:
@@ -126,6 +115,17 @@ components:
             type: array
             items:
               type: string
+    UpdatePromptTagsEndpoint_Input:
+      required:
+      - tags
+      type: object
+      properties:
+        tags:
+          allOf:
+          - type: array
+            items:
+              type: string
+          description: The list of tags to be associated with the prompt.
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

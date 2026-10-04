@@ -74,10 +74,6 @@ components:
             type: array
             items:
               type: string
-    ExternalServiceKind:
-      enum:
-      - ContextShortening
-      - ImageGeneration
     CreateExternalServicePriceEndpoint_Input:
       required:
       - serviceKind
@@ -121,6 +117,10 @@ components:
           description: The end of the validity window.
           format: date-time
       description: The external-service price input data.
+    ExternalServiceKind:
+      enum:
+      - ContextShortening
+      - ImageGeneration
   securitySchemes:
     OpenIdConnect:
       type: openIdConnect

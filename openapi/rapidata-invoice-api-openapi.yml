@@ -349,6 +349,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ValidationProblemDetails:
+      type: object
+      properties:
+        type:
+          type:
+          - string
+          - 'null'
+        title:
+          type:
+          - string
+          - 'null'
+        status:
+          type:
+          - integer
+          - 'null'
+          format: int32
+        detail:
+          type:
+          - string
+          - 'null'
+        instance:
+          type:
+          - string
+          - 'null'
+        errors:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
     QueryInvoicesEndpoint_Output:
       required:
       - id
@@ -502,44 +532,6 @@ components:
         totalPages:
           type: integer
           format: int32
-    CreateInvoiceEndpoint_Input:
-      required:
-      - billingPeriodId
-      type: object
-      properties:
-        billingPeriodId:
-          type: string
-          description: The billing period to create an invoice for.
-    ValidationProblemDetails:
-      type: object
-      properties:
-        type:
-          type:
-          - string
-          - 'null'
-        title:
-          type:
-          - string
-          - 'null'
-        status:
-          type:
-          - integer
-          - 'null'
-          format: int32
-        detail:
-          type:
-          - string
-          - 'null'
-        instance:
-          type:
-          - string
-          - 'null'
-        errors:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              type: string
     InvoiceStatus:
       enum:
       - Generating
@@ -549,6 +541,14 @@ components:
       - Void
       - Uncollectible
       - Failed
+    CreateInvoiceEndpoint_Input:
+      required:
+      - billingPeriodId
+      type: object
+      properties:
+        billingPeriodId:
+          type: string
+          description: The billing period to create an invoice for.
     CreateInvoiceEndpoint_Output:
       required:
       - invoiceId
