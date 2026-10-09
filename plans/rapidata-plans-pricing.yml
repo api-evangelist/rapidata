@@ -41,3 +41,35 @@ rate_limit_statements:
 - 'Priority speed: up to 100,000 responses/hour'
 - Unlimited speed
 - Base speed
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - credit
+  plans:
+  - name: Starter Credits
+    access: other
+    model: metered
+    model_how: derived
+    units:
+    - credit
+    periods:
+    - none
+  - name: Usage-based
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - other
+  - name: Custom
+    access: other
+    model: unstated
+    model_how: derived
+    units: []
+    periods:
+    - none
